@@ -19,7 +19,7 @@
  *
  */
 	switch ($_SERVER["HTTP_HOST"]){
-            case "gz5quiz.herokuapp.com": define('ENVIRONMENT','heroku'); break;
+            case "theprizeinside.herokuapp.com": define('ENVIRONMENT','heroku'); break;
 			case "gibson.loc": define('ENVIRONMENT','gibson'); break;
 			//TODO enter more environments as needed
             default : define('ENVIRONMENT', 'production');

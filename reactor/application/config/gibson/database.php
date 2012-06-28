@@ -48,9 +48,9 @@ $active_group = 'default';
 $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
-$db['default']['username'] = "gz5_quiz";
-$db['default']['password'] = "gz5_quiz";
-$db['default']['database'] = "gz5_quiz";
+$db['default']['username'] = "theprizeinside";
+$db['default']['password'] = "theprizeinside";
+$db['default']['database'] = "theprizeinside";
 
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';

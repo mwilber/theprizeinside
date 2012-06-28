@@ -48,9 +48,9 @@ $active_group = 'default';
 $active_record = TRUE;
 
 $db['default']['hostname'] = 'us-mm-auto-dca-01.cleardb.com';
-$db['default']['username'] = "67ca4750906c02";
-$db['default']['password'] = "ba1b5784";
-$db['default']['database'] = "heroku_a45017d09b9fca8";
+$db['default']['username'] = "b353563f1ca329";
+$db['default']['password'] = "597be4a7";
+$db['default']['database'] = "heroku_00205f09df83a58";
 
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
