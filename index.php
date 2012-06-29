@@ -1,4 +1,12 @@
-<?php define('REACTOR', 'http://'.$_SERVER["HTTP_HOST"].$_SERVER['REQUEST_URI'].'reactor/'); ?>
+<?php 
+	switch ($_SERVER["HTTP_HOST"]){
+            case "theprizeinside.herokuapp.com": define('REACTOR', 'http://'.$_SERVER["HTTP_HOST"].$_SERVER['REQUEST_URI'].'reactor/'); break;
+			case "gibson.loc": define('REACTOR', 'http://'.$_SERVER["SERVER_ADDR"].$_SERVER['REQUEST_URI'].'reactor/');  break;
+			//TODO enter more environments as needed
+            default : define('REACTOR', 'http://'.$_SERVER["HTTP_HOST"].$_SERVER['REQUEST_URI'].'reactor/');
+    }
+
+?>
 <!doctype html>
 <!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
 <!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
