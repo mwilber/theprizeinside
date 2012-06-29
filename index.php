@@ -8,13 +8,19 @@
 			'title' => "McDonalds"
 			,'base_url' => "http://www.happymeal.com/en_US"
 			,'data_url' => "http://www.happymeal.com/en_US/config/flash.xml"
-			,'images' => array()
+			,'images' => array(
+				"http://www.happymeal.com/en_US/swf3/sections/toyBox/images/home/toysBoy.png",
+                "http://www.happymeal.com/en_US/swf3/sections/toyBox/images/home/toysGirl.png"
+			)
 			);
 	$restaurants['bk'] = array(
 			'title' => "Burger King"
 			,'base_url' => "http://www.bkcrown.com/toys"
 			,'data_url' => "http://www.bkcrown.com/toys/Default.aspx"
-			,'images' => array()
+			,'images' => array(
+				"http://www.bkcrown.com/toys/../images/sape/Toys/carousels/img_toy_slide1.png",
+                "http://www.bkcrown.com/toys/../images/sape/Toys/carousels/img_toy_slide2.png"
+            )
 			);
 	$restaurants['bel'] = array(
 			'title' => "Taco Bell"
@@ -34,7 +40,7 @@
 <?php
 
 	foreach($restaurants as $key=>$restaurant){
-		switch($key){
+		switch(false){
 			case "mcd":
 				$xmlStr = file_get_contents($restaurant['data_url']);
 				$xmlStr = str_replace('&', '&amp;', $xmlStr);
@@ -91,7 +97,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-	<title></title>
+	<title>The Prize Inside</title>
 	<meta name="description" content="">
 	<meta name="author" content="">
 
@@ -119,12 +125,12 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="#">The Prize Inside</a>
           <div class="nav-collapse">
             <ul class="nav">
-              <li class="active"><a href="#">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#contact">Contact</a></li>
+              <li><a href="#">Home</a></li>
+              <?php $idx=0; foreach($restaurants as $key=>$restaurant): ?>
+              <li><a href="#<?=$key?>"><?=$restaurant['title']?></a></li>
+              <?php endforeach; ?>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -135,15 +141,18 @@
 
       <!-- Main hero unit for a primary marketing message or call to action -->
       <div class="hero-unit">
-        <h1>Hello, world!</h1>
-        <p>This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-        <p><a class="btn btn-primary btn-large">Learn more &raquo;</a></p>
+      	<img id="mascot" src="images/mascot_lg.png"/>
+        <h1>The Prize Inside</h1>
+        <p>What&rsquo;s in the kid&rsquo;s meal at your fast food restaurants.</p>
+        <div style="clear:both;"></div>
       </div>
 
       <!-- Example row of columns -->
       <div class="row">
       <?php $idx=0; foreach($restaurants as $key=>$restaurant): ?>
-	        <div class="flexslider span4">
+      	<div class="span6">
+      		<a name="<?=$key?>"></a> 
+      		<div class="flexslider">
 	          <h2><?=$restaurant['title']?></h2>
 	          <ul class="slides">
 	          	<?php foreach($restaurant['images'] as $rimg): ?>
@@ -154,15 +163,15 @@
 	          	<?php endforeach; ?>
 	          </ul>
 	        </div>
-	      <?php if($idx != 0 && ($idx+1) % 3 == 0): ?>
+      	</div>
+	      <?php if($idx != 0 && ($idx+1) % 2 == 0): ?>
 	      </div><div class="row">
 	      <?php endif; ?>
       <?php $idx++; endforeach; ?>
 	  </div>
-      <hr>
 
       <footer>
-        <p>&copy; Company 2012</p>
+        <p>&copy; 2012</p>
       </footer>
 
     </div> <!-- /container -->

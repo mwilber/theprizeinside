@@ -3,8 +3,145 @@
 /* ===== Primary Styles ========================================================
    Author:
    ========================================================================== */
+  
+@font-face {
+    font-family: 'CooperStdBlackRegular';
+    src: url('../fonts/cooperblackstd-webfont.eot');
+    src: url('../fonts/cooperblackstd-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/cooperblackstd-webfont.woff') format('woff'),
+         url('../fonts/cooperblackstd-webfont.ttf') format('truetype'),
+         url('../fonts/cooperblackstd-webfont.svg#CooperStdBlackRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
 
-.span4{
-	min-height:250px;
 }
 
+body{
+	background-color:#39230E;
+}
+
+.navbar-inner {
+  min-height: 40px;
+  padding-right: 20px;
+  padding-left: 20px;
+  background-color: #D12828;
+  background-image: -moz-linear-gradient(top, #D12828, #BE2828);
+  background-image: -ms-linear-gradient(top, #D12828, #BE2828);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#D12828), to(#BE2828));
+  background-image: -webkit-linear-gradient(top, #D12828, #BE2828);
+  background-image: -o-linear-gradient(top, #D12828, #BE2828);
+  background-image: linear-gradient(top, #D12828, #BE2828);
+  background-repeat: repeat-x;
+  -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+          border-radius: 4px;
+  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#D12828', endColorstr='#BE2828', GradientType=0);
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+     -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+}
+
+.navbar .nav > li > a {
+  float: none;
+  padding: 9px 10px 11px;
+  line-height: 19px;
+  color: #ffffff;
+  text-decoration: none;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+
+.navbar .nav > li > a:hover {
+  color: #ffffff;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+
+.navbar .btn-navbar {
+  background-color: #aa2828;
+  background-image: -ms-linear-gradient(top, #aa2828, #992828);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#aa2828), to(#992828));
+  background-image: -webkit-linear-gradient(top, #aa2828, #992828);
+  background-image: -o-linear-gradient(top, #aa2828, #992828);
+  background-image: linear-gradient(top, #aa2828, #992828);
+  background-image: -moz-linear-gradient(top, #aa2828, #992828);
+}
+
+/*.navbar .btn-navbar .icon-bar {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background-color: #f5f5f5;
+  -webkit-border-radius: 1px;
+     -moz-border-radius: 1px;
+          border-radius: 1px;
+  -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
+     -moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
+          box-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
+}*/
+
+.row .span6{
+	/*margin-left: 0px;*/
+	margin-bottom:20px;
+	height:100%;
+}
+
+.hero-unit{
+	background-color:transparent;
+	color:#FEF500;
+	padding: 10px 0px;
+}
+
+.hero-unit #mascot{
+	width:35%;
+	float:left;
+}
+
+.hero-unit h1, .hero-unit p{
+	float:left;
+	width:65%;
+}
+
+.hero-unit h1{
+	font-size:120px;
+	font-family: 'CooperStdBlackRegular';
+	text-shadow: 3px 2px -1px #E58620, -3px -2px 5px #333;
+}
+
+.hero-unit p{
+	margin-left:15px;
+	width:60%;
+	font-size:36px;
+}
+
+.row .flexslider{
+	background-color:#533F20;
+	border-color:#533F20;
+	padding:5px 15px;
+	height:100%;
+}
+
+.row .flexslider h2{
+	color:#FEF500;
+	font-size: 30px;
+	margin-bottom: 10px;
+}
+
+@media (max-width: 480px) {
+	.hero-unit h1{
+		font-size:40px;
+	}
+	.hero-unit p{
+		font-size:12px;
+	}
+}
+
+@media (min-width: 480px) and (max-width: 979px) {
+	.hero-unit h1{
+		font-size:60px;
+	}
+	.hero-unit p{
+		font-size:18px;
+	}
+}
+	
