@@ -25,7 +25,8 @@
 			<nav>
 				<ul>
 					<? if( $this->session->userdata('userEmail') ): ?>
-						<li><a href="<?= base_url() ?>flashdata" class="flashdata">FlashData</a></li>
+						<li><a href="<?= base_url() ?>restaurant" class="restaurant">Restaurants</a></li>
+						<li><a href="<?= base_url() ?>image" class="image">Images</a></li>
 						<li><a href="<?= base_url() ?>users" class="users">Users</a></li>
 						<li><a href="<?= base_url() ?>welcome/logout" class="logout">Log Out</a></li>
 					<? else: ?>

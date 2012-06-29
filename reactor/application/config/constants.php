@@ -1,6 +1,6 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-define('UPLOAD_DIR', '../backgrounds/');
+define('UPLOAD_DIR', '/var/www/theprizeinside/reactor/uploads/');
 
 /*
 |--------------------------------------------------------------------------

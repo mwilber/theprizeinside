@@ -1,66 +1,37 @@
 <div id="editmast">
 	<strong>EDIT ITEM</strong>
-	<h2><?=$record->quiztitle?></h2>
+	<h2><?=$record->restaurantTitle?></h2>
 </div>
-<? $hidden = array('ID' => $record->flashDataId); ?>
-<?=form_open($this->uri->segment(1).'/edit/'.$record->flashDataId, '', $hidden)?>
+<? $hidden = array('ID' => $record->restaurantId); ?>
+<?=form_open($this->uri->segment(1).'/edit/'.$record->restaurantId, '', $hidden)?>
 <fieldset>
 	<ul>
 		<li>
-			<label>Facebook Page URL <span>(Required)</span></label>
-			<?=form_input('facebook_page', set_value('facebook_page', $record->facebook_page))?>
-			<?=form_error('facebook_page')?>
+			<label>Alias <span>(Required)</span></label>
+			<?=form_input('restaurantAlias', set_value('restaurantAlias', $record->restaurantAlias))?>
+			<?=form_error('restaurantAlias')?>
 		</li>
 		<li>
-			<label>Quiz Title</label>
-			<?=form_input('quiztitle', set_value('quiztitle', $record->quiztitle))?>
-			<?=form_error('quiztitle')?>
+			<label>Title</label>
+			<?=form_input('restaurantTitle', set_value('restaurantTitle', $record->restaurantTitle))?>
+			<?=form_error('restaurantTitle')?>
 		</li>
 		<li>
-			<label>Question 1</label>
-			<textarea name="question1"><?= $record->question1 ?></textarea>
+			<label>Base Url</label>
+			<?=form_input('restaurantBaseUrl', set_value('restaurantBaseUrl', $record->restaurantBaseUrl))?>
+			<?=form_error('restaurantBaseUrl')?>
 		</li>
 		<li>
-			<label>Question 2</label>
-			<textarea name="question2"><?= $record->question2 ?></textarea>
-		</li>
-		<li>
-			<label>Question 3</label>
-			<textarea name="question3"><?= $record->question3 ?></textarea>
-		</li>
-		<li>
-			<label>Question 4</label>
-			<textarea name="question4"><?= $record->question4 ?></textarea>
-		</li>
-		<li>
-			<label>Results</label>
-			<textarea name="results"><?= $record->results ?></textarea>
+			<label>Data Url</label>
+			<?=form_input('restaurantDataUrl', set_value('restaurantDataUrl', $record->restaurantDataUrl))?>
+			<?=form_error('restaurantDataUrl')?>
 		</li>
 		<li>
 			<input type="submit" value="Save" name="" class="button">
 		</li>
 	</ul>
 	<ul>
-		<li>
-			<label>Background Image</label>
-			<?=form_input('backgroundimage', set_value('backgroundimage', $record->backgroundimage))?>
-			<?=form_error('backgroundimage')?>
-		</li>
-		<li>
-			<label>Background Color</label>
-			<?=form_input('backgroundcolor', set_value('backgroundcolor', $record->backgroundcolor))?>
-			<?=form_error('backgroundcolor')?>
-		</li>
-		<li>
-			<label>Title Color</label>
-			<?=form_input('titlecolor', set_value('titlecolor', $record->titlecolor))?>
-			<?=form_error('titlecolor')?>
-		</li>
-		<li>
-			<label>Link Color</label>
-			<?=form_input('linkcolor', set_value('linkcolor', $record->linkcolor))?>
-			<?=form_error('linkcolor')?>
-		</li>
+
 	</ul>
 </fieldset>
 <?=form_close()?>
