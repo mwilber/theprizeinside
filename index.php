@@ -1,4 +1,4 @@
-<?php define('REACTOR', 'http://'.$_SERVER['SERVER_ADDR'].$_SERVER['REQUEST_URI'].'reactor/'); ?>
+<?php define('REACTOR', 'http://'.$_SERVER["HTTP_HOST"].$_SERVER['REQUEST_URI'].'reactor/'); ?>
 <!doctype html>
 <!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
 <!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
@@ -58,7 +58,7 @@
         <p>What&rsquo;s in the kid&rsquo;s meal at your fast food restaurants.</p>
         <div style="clear:both;"></div>
       </div>
-
+		<?php echo REACTOR.'panel/index/mcd' ?>
       <!-- Example row of columns -->
       <div class="row">
       	<div class="span6">
