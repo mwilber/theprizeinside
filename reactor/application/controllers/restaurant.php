@@ -1,13 +1,13 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class FlashData extends CI_Controller
+class Restaurant extends CI_Controller
 {
-	var $requiredfield = "quiztitle";
+	var $requiredfield = "restaurantAlias";
 	
 	// Create
 	function add($pFormat="html")
 	{
-		$this->load->model('flashdata_model');
+		$this->load->model('restaurant_model');
 		
 		$data['format'] = $pFormat;
 		
@@ -16,20 +16,10 @@ class FlashData extends CI_Controller
 	    
 	    if($this->form_validation->run())
 	    {
-			$tokens = explode('/', $_POST['facebook_page']);
-			$fbid = $tokens[sizeof($tokens)-1];
-			if( $fbid == "" ){
-				$fbid = $tokens[sizeof($tokens)-2];
-			}
-
-			$fbprof = file_get_contents('https://graph.facebook.com/'.$fbid);
-			$jfbprof = json_decode($fbprof);
-			//print_r($jfbprof);
-			$_POST['facebook_page'] = $jfbprof->id;
 			
 	    	// Process images here
 	    	if($_FILES['userfile']){
-				$imageData = $this->flashdata_model->manageFile($_POST['facebook_page']);
+				$imageData = $this->restaurant_model->manageFile($_POST['facebook_page']);
 				
 				$this->load->library('s3');
 				
@@ -39,7 +29,7 @@ class FlashData extends CI_Controller
 			}
 			
 	        // Validation passes
-	        $nId = $this->flashdata_model->Add($_POST);
+	        $nId = $this->restaurant_model->Add($_POST);
 	        
 			if($pFormat == "html"){
 				if($nId)
@@ -68,12 +58,12 @@ class FlashData extends CI_Controller
     // Retrieve
 	function index($pFormat="html")
 	{
-		$this->load->model('flashdata_model');
+		$this->load->model('restaurant_model');
 	    
-		$data['total_rows'] = $this->flashdata_model->Get(array('count' => true));
-		$data['records'] = $this->flashdata_model->Get(array('sortBy'=>'flashDataTimestamp','sortDirection'=>'DESC'));
-		$data['fields'] = $this->flashdata_model->_fields();
-		$data['pk'] = $this->flashdata_model->_pk();
+		$data['total_rows'] = $this->restaurant_model->Get(array('count' => true));
+		$data['records'] = $this->restaurant_model->Get(array('sortBy'=>'restaurantTimeStamp','sortDirection'=>'DESC'));
+		$data['fields'] = $this->restaurant_model->_fields();
+		$data['pk'] = $this->restaurant_model->_pk();
 		
 		if($pFormat == "html"){
 			if( $this->session->userdata('userEmail') ){
@@ -92,8 +82,8 @@ class FlashData extends CI_Controller
 	}
 	
 	function build($recordId){
-		$this->load->model('flashdata_model');
-		$record = $this->flashdata_model->Get(array($this->flashdata_model->_pk() => $recordId));
+		$this->load->model('restaurant_model');
+		$record = $this->restaurant_model->Get(array($this->restaurant_model->_pk() => $recordId));
 	    if(!$record) redirect($this->uri->segment(1));
 		
 		// Build the config file
@@ -121,8 +111,8 @@ class FlashData extends CI_Controller
 	}
 
 	function getconfig($recordId){
-		$this->load->model('flashdata_model');
-		$record = $this->flashdata_model->Get(array('facebook_page' => $recordId));
+		$this->load->model('restaurant_model');
+		$record = $this->restaurant_model->Get(array('facebook_page' => $recordId));
 	    if(!$record) redirect($this->uri->segment(1));
 		
 		$record = $record[0];
@@ -151,8 +141,8 @@ class FlashData extends CI_Controller
 	}
 
 	function dumpconfig($recordId){
-		$this->load->model('flashdata_model');
-		$record = $this->flashdata_model->Get(array($this->flashdata_model->_pk() => $recordId));
+		$this->load->model('restaurant_model');
+		$record = $this->restaurant_model->Get(array($this->restaurant_model->_pk() => $recordId));
 	    if(!$record) redirect($this->uri->segment(1));
 		
 		// Build the config file
@@ -175,12 +165,12 @@ class FlashData extends CI_Controller
 	
 	function csv($pFormat="html")
 	{
-		$this->load->model('flashdata_model');
+		$this->load->model('restaurant_model');
 	    
-		$data['total_rows'] = $this->flashdata_model->Get(array('count' => true));
-		$data['records'] = $this->flashdata_model->Get(array('sortBy'=>'flashDataTimestamp','sortDirection'=>'ACS'));
-		$data['fields'] = $this->flashdata_model->_fields();
-		$data['pk'] = $this->flashdata_model->_pk();
+		$data['total_rows'] = $this->restaurant_model->Get(array('count' => true));
+		$data['records'] = $this->restaurant_model->Get(array('sortBy'=>'restaurantTimeStamp','sortDirection'=>'ACS'));
+		$data['fields'] = $this->restaurant_model->_fields();
+		$data['pk'] = $this->restaurant_model->_pk();
 		
 		$header = "";
 		$filedata = "";
@@ -227,11 +217,11 @@ class FlashData extends CI_Controller
 	 // Retrieve
 	function recordcount($pFormat="html")
 	{
-		$this->load->model('flashdata_model');
+		$this->load->model('restaurant_model');
 	    
-		$data['total_rows'] = $this->flashdata_model->Get(array('count' => true));
-		$data['fields'] = $this->flashdata_model->_fields();
-		$data['pk'] = $this->flashdata_model->_pk();
+		$data['total_rows'] = $this->restaurant_model->Get(array('count' => true));
+		$data['fields'] = $this->restaurant_model->_fields();
+		$data['pk'] = $this->restaurant_model->_pk();
 		
 		if($pFormat == "html"){
 			//$this->load->view('template/template_head');
@@ -247,13 +237,13 @@ class FlashData extends CI_Controller
 	
 	function paginated($offset = 0)
 	{
-		$this->load->model('flashdata_model');
+		$this->load->model('restaurant_model');
 	    $this->load->library('pagination');
 	    
 	    $perpage = 10;
 		
 	    $config['base_url'] = base_url() . $this->uri->segment(1).'/index/';
-	    $config['total_rows'] = $this->flashdata_model->Get(array('count' => true));
+	    $config['total_rows'] = $this->restaurant_model->Get(array('count' => true));
 	    $config['per_page'] = $perpage;
 	    $config['uri_segment'] = 3;
 	    
@@ -261,9 +251,9 @@ class FlashData extends CI_Controller
 	    
 	    $data['pagination'] = $this->pagination->create_links();
 	    
-		$data[$this->uri->segment(1)] = $this->flashdata_model->Get(array('sortBy'=>'order','sortDirection'=>'ASC','limit' => $perpage, 'offset' => $offset));
-		$data['fields'] = $this->flashdata_model->_fields();
-		$data['pk'] = $this->flashdata_model->_pk();
+		$data[$this->uri->segment(1)] = $this->restaurant_model->Get(array('sortBy'=>'order','sortDirection'=>'ASC','limit' => $perpage, 'offset' => $offset));
+		$data['fields'] = $this->restaurant_model->_fields();
+		$data['pk'] = $this->restaurant_model->_pk();
 		
 		$this->load->view('template/template_head');
 		$this->load->view($this->uri->segment(1).'/'.$this->uri->segment(1).'_paginated', $data);
@@ -272,20 +262,20 @@ class FlashData extends CI_Controller
 	}
 	
 	function details($pFormat="html", $pId){
-		$this->load->model('flashdata_model');
+		$this->load->model('restaurant_model');
 		
-		$data['record'] = $this->flashdata_model->Get(array('flashDataId'=>$pId));
+		$data['record'] = $this->restaurant_model->Get(array('flashDataId'=>$pId));
 		
 		$this->load->view($this->uri->segment(1).'/'.$this->uri->segment(1).'_details_xml', $data);
-		$data['fields'] = $this->flashdata_model->_fields();
-		$data['pk'] = $this->flashdata_model->_pk();
+		$data['fields'] = $this->restaurant_model->_fields();
+		$data['pk'] = $this->restaurant_model->_pk();
 	}
 	
 	// Update
 	function edit($recordId)
 	{
-		$this->load->model('flashdata_model');
-		$data['record'] = $this->flashdata_model->Get(array($this->flashdata_model->_pk() => $recordId));
+		$this->load->model('restaurant_model');
+		$data['record'] = $this->restaurant_model->Get(array($this->restaurant_model->_pk() => $recordId));
 	    if(!$data['record']) redirect($this->uri->segment(1));
 		
 		// Validate form
@@ -294,9 +284,9 @@ class FlashData extends CI_Controller
 	    if($this->form_validation->run())
 		{
 	        // Validation passes
-	        $_POST[$this->flashdata_model->_pk()] = $recordId;
+	        $_POST[$this->restaurant_model->_pk()] = $recordId;
 	        
-	        if($this->flashdata_model->Update($_POST))
+	        if($this->restaurant_model->Update($_POST))
 	        {
 	            $this->session->set_flashdata('flashConfirm', 'The user has been successfully updated.');
 	            redirect($this->uri->segment(1));
@@ -316,11 +306,11 @@ class FlashData extends CI_Controller
 	// Delete
 	function delete($recordId)
 	{
-		$this->load->model('flashdata_model');
-	    $data['record'] = $this->flashdata_model->Get(array($this->flashdata_model->_pk() => $recordId));
+		$this->load->model('restaurant_model');
+	    $data['record'] = $this->restaurant_model->Get(array($this->restaurant_model->_pk() => $recordId));
 	    if(!$data['record']) redirect($this->uri->segment(1));
 	    
-	    $this->flashdata_model->Delete($recordId);
+	    $this->restaurant_model->Delete($recordId);
 	    
 	    $this->session->set_flashdata('flashConfirm', 'The user has been successfully deleted.');
 	    redirect($this->uri->segment(1));
@@ -334,7 +324,7 @@ class FlashData extends CI_Controller
 		$output->error = "-1";
 		$output->message = "unknown";
 		
-		$this->load->model('flashdata_model');
+		$this->load->model('restaurant_model');
 		
 		$data['format'] = $pFormat;
 		
@@ -373,7 +363,7 @@ class FlashData extends CI_Controller
 			    	// Process images here
 			    	$_POST['backgroundimage'] = "";
 			    	if(isset($_FILES['userfile'])){
-						$imageData = $this->flashdata_model->manageFile($_POST['facebook_page']);
+						$imageData = $this->restaurant_model->manageFile($_POST['facebook_page']);
 					}
 					if( !isset($imageData['error']) ){
 
@@ -408,13 +398,13 @@ class FlashData extends CI_Controller
 				        // Validation passes
 				        $nId = 0;
 				        // Check for an existing record
-				        $tmpRec = $this->flashdata_model->Get(array('facebook_page'=>$_POST['facebook_page']));
+				        $tmpRec = $this->restaurant_model->Get(array('facebook_page'=>$_POST['facebook_page']));
 						if( count($tmpRec) > 0 ){
 							$nId = $tmpRec[0]->flashDataId;
-							$_POST[$this->flashdata_model->_pk()] = $nId;
-							$this->flashdata_model->Update($_POST);
+							$_POST[$this->restaurant_model->_pk()] = $nId;
+							$this->restaurant_model->Update($_POST);
 						}else{
-							$nId = $this->flashdata_model->Add($_POST);	
+							$nId = $this->restaurant_model->Add($_POST);	
 						}
 				        
 						if($nId)

@@ -1,21 +1,13 @@
 <?php
 
-class FlashData_Model extends CI_Model
+class Image_Model extends CI_Model
 {
-	var $table = "tblFlashData";
-	var $pk = "flashDataId";
+	var $table = "tblImage";
+	var $pk = "imageId";
 	var $fields = array(
-		 'facebook_page' => 'str'
-		,'quiztitle' => 'str'
-		,'question1' => 'str'
-		,'question2' => 'str'
-		,'question3' => 'str'
-		,'question4' => 'str'
-		,'results' => 'str'
-		,'backgroundimage' => 'str'
-		,'backgroundcolor' => 'str'
-		,'titlecolor' => 'str'
-		,'linkcolor' => 'str'
+		 'restaurantId' => 'num'
+		,'imageUrl' => 'str'
+		,'imageActive' => 'str'
 		);
 			 	 	 	 	 	 	 	
 	
@@ -100,6 +92,15 @@ class FlashData_Model extends CI_Model
 		}
 
 		$this->db->where($this->pk, $options[$this->pk]);
+		
+		$this->db->update($this->table);
+		
+		return $this->db->affected_rows();
+	}
+	
+	function Deactivate($restaurantId){
+		$this->db->set('imageActive', '0');
+		$this->db->where('restaurantId', $restaurantId);
 		
 		$this->db->update($this->table);
 		

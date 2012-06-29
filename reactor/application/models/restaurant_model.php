@@ -1,21 +1,14 @@
 <?php
 
-class FlashData_Model extends CI_Model
+class Restaurant_Model extends CI_Model
 {
-	var $table = "tblFlashData";
-	var $pk = "flashDataId";
+	var $table = "tblRestaurant";
+	var $pk = "restaurantId";
 	var $fields = array(
-		 'facebook_page' => 'str'
-		,'quiztitle' => 'str'
-		,'question1' => 'str'
-		,'question2' => 'str'
-		,'question3' => 'str'
-		,'question4' => 'str'
-		,'results' => 'str'
-		,'backgroundimage' => 'str'
-		,'backgroundcolor' => 'str'
-		,'titlecolor' => 'str'
-		,'linkcolor' => 'str'
+		 'restaurantTitle' => 'str'
+		,'restaurantBaseUrl' => 'str'
+		,'restaurantDataUrl' => 'str'
+		,'restaurantAlias' => 'str'
 		);
 			 	 	 	 	 	 	 	
 	
