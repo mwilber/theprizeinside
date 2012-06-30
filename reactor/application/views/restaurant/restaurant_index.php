@@ -20,6 +20,7 @@
 
 <table border="1" cellpadding="4" style="float:left; clear:both;">
 	<tr>
+		<th width="100">Id</th>
 		<th width="100">Title</th>
 		<th width="100">Base Url</th>
 		<th width="100">Data Url</th>
@@ -30,6 +31,7 @@
 	<?if(isset($records) && is_array($records) && count($records)>0):?>
 		<?foreach($records as $record):?>
 		<tr>
+			<td><?=$record->restaurantId?></td>
 			<td><?=$record->restaurantTitle?></td>
 			<td><?=$record->restaurantBaseUrl?></td>
 			<td><?=$record->restaurantDataUrl?></td>
