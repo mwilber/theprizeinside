@@ -26,17 +26,17 @@ $(document).ready(function(){
 	});
 });
 
-function fbshare(){
-	WallPost(social['link'] , social['title'] , social['description'] , social['image'] , '');
+function fbshare(pTitle){
+	WallPost(social['link'] , social['title'] , 'Check out what\'s in the '+pTitle+' kids meal at ThePrizeInside.com' , social['image'] , '');
 }
 
-function twshare(){
-	var twcontent = escape(social['title'])+" - "+escape(social['description'])+" "+escape(social['link']);
+function twshare(pTitle){
+	var twcontent = escape('Check out what\'s in the '+pTitle+' kids meal at ThePrizeInside.com')+" "+escape(social['link']);
 	openpopup('http://twitter.com/home?status='+twcontent,'tweeters',550,450);
 }
 
-function gpshare(){
-	var url = "https://plus.google.com/share?url="+escape(social['link']);
+function gpshare(pTitle){
+	var url = "https://plus.google.com/share?url="+escape(social['link'])+"&description="+escape('Check out what\'s in the '+pTitle+' kids meal at ThePrizeInside.com');
 	openpopup(url,'gplus',550,450);
 }
 
