@@ -115,11 +115,14 @@ class Image extends CI_Controller
 														$this->image_model->Update(array('imageId'=>$image->imageId,'imageActive'=>1));
 													}
 												}else{
-													//$file_ext = substr(strrchr($tmpImageUrl, '.'), 1);
-													//$target_name = $restaurant->restaurantAlias.'_'.date("U").'.'.$file_ext;
-													//echo "||copying: ".$tmpImageUrl. " to: ".UPLOAD_DIR.$target_name;
-													//copy($tmpImageUrl, UPLOAD_DIR.$target_name);
-													//$arrInsert['imageUrl'] = $target_name;
+													//Get the image
+													$file_ext = substr(strrchr($tmpImageUrl, '.'), 1);
+													$target_name = $restaurant->restaurantAlias.'_'.date("U").'.'.$file_ext;
+													file_put_contents(UPLOAD_DIR.$target_name, file_get_contents($tmpImageUrl));
+													// Upload to amazon
+													$this->load->library('s3');
+													$arrInsert['imageAmazon'] = $this->s3->upload(UPLOAD_DIR.$target_name, $target_name);
+													
 													$arrInsert['imageUrl'] = $tmpImageUrl;
 													$this->image_model->Add($arrInsert);
 												}
@@ -142,6 +145,14 @@ class Image extends CI_Controller
 								$this->image_model->Update(array('imageId'=>$image->imageId,'imageActive'=>1));
 							}
 						}else{
+							//Get the image
+							$file_ext = substr(strrchr($tmpImageUrl, '.'), 1);
+							$target_name = $restaurant->restaurantAlias.'_'.date("U").'.'.$file_ext;
+							file_put_contents(UPLOAD_DIR.$target_name, file_get_contents($tmpImageUrl));
+							// Upload to amazon
+							$this->load->library('s3');
+							$arrInsert['imageAmazon'] = $this->s3->upload(UPLOAD_DIR.$target_name, $target_name);
+							
 							$arrInsert['imageUrl'] = $tmpImageUrl;
 							$this->image_model->Add($arrInsert);
 						}
@@ -158,6 +169,14 @@ class Image extends CI_Controller
 								$this->image_model->Update(array('imageId'=>$image->imageId,'imageActive'=>1));
 							}
 						}else{
+							//Get the image
+							$file_ext = substr(strrchr($tmpImageUrl, '.'), 1);
+							$target_name = $restaurant->restaurantAlias.'_'.date("U").'.'.$file_ext;
+							file_put_contents(UPLOAD_DIR.$target_name, file_get_contents($tmpImageUrl));
+							// Upload to amazon
+							$this->load->library('s3');
+							$arrInsert['imageAmazon'] = $this->s3->upload(UPLOAD_DIR.$target_name, $target_name);
+							
 							$arrInsert['imageUrl'] = $tmpImageUrl;
 							$this->image_model->Add($arrInsert);
 						}
@@ -174,6 +193,14 @@ class Image extends CI_Controller
 								$this->image_model->Update(array('imageId'=>$image->imageId,'imageActive'=>1));
 							}
 						}else{
+							//Get the image
+							$file_ext = substr(strrchr($tmpImageUrl, '.'), 1);
+							$target_name = $restaurant->restaurantAlias.'_'.date("U").'.'.$file_ext;
+							file_put_contents(UPLOAD_DIR.$target_name, file_get_contents($tmpImageUrl));
+							// Upload to amazon
+							$this->load->library('s3');
+							$arrInsert['imageAmazon'] = $this->s3->upload(UPLOAD_DIR.$target_name, $target_name);
+							
 							$arrInsert['imageUrl'] = $tmpImageUrl;
 							$this->image_model->Add($arrInsert);
 						}
@@ -191,6 +218,14 @@ class Image extends CI_Controller
 								$this->image_model->Update(array('imageId'=>$image->imageId,'imageActive'=>1));
 							}
 						}else{
+							//Get the image
+							$file_ext = substr(strrchr($tmpImageUrl, '.'), 1);
+							$target_name = $restaurant->restaurantAlias.'_'.date("U").'.'.$file_ext;
+							file_put_contents(UPLOAD_DIR.$target_name, file_get_contents($tmpImageUrl));
+							// Upload to amazon
+							$this->load->library('s3');
+							$arrInsert['imageAmazon'] = $this->s3->upload(UPLOAD_DIR.$target_name, $target_name);
+							
 							$arrInsert['imageUrl'] = $tmpImageUrl;
 							$this->image_model->Add($arrInsert);
 						}
@@ -198,7 +233,7 @@ class Image extends CI_Controller
 					break;
 			}
 		}
-		redirect($this->uri->segment(1));
+		//redirect($this->uri->segment(1));
 	}
 	
 	function build($recordId){

@@ -24,6 +24,7 @@
 		<th width="100">restaurantId</th>
 		<th width="100">Url</th>
 		<th width="100">Active</th>
+		<th width="100">Amazon</th>
 		<th width="100"></th>
 		<th width="100"></th>
 	</tr>
@@ -33,6 +34,7 @@
 			<td><?=$record->restaurantId?></td>
 			<td><img src="<?=$record->imageUrl?>" width="200"/></td>
 			<td><?=$record->imageActive?></td>
+			<td><?=$record->imageAmazon?></td>
 			<td><a href='<?=base_url()?><?=$this->uri->segment(1);?>/edit/<?=$record->$pk?>'>Edit</a></td>
 			<td><a href='<?=base_url()?><?=$this->uri->segment(1);?>/delete/<?=$record->$pk?>'>Delete</a></td>
 		</tr>

@@ -8,6 +8,7 @@ class Image_Model extends CI_Model
 		 'restaurantId' => 'num'
 		,'imageUrl' => 'str'
 		,'imageActive' => 'str'
+		,'imageAmazon' => 'str'
 		);
 			 	 	 	 	 	 	 	
 	

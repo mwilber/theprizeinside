@@ -11,7 +11,7 @@
   <ul class="slides">
   	<?php foreach($images as $rimg): ?>
   		<li>
-    		<img src="<?= $rimg->imageUrl ?>" />
+    		<img src="<?= $rimg->imageAmazon ?>" />
     	</li>
   	<?php endforeach; ?>
   </ul>
