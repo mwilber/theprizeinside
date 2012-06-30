@@ -18,12 +18,13 @@
  * NOTE: If you change these, also change the error_reporting() code below
  *
  */
-	switch ($_SERVER["HTTP_HOST"]){
-            case "theprizeinside.herokuapp.com": define('ENVIRONMENT','heroku'); break;
-			case "gibson.loc": define('ENVIRONMENT','gibson'); break;
-			//TODO enter more environments as needed
-            default : define('ENVIRONMENT','gibson');
-    }
+//	switch ($_SERVER["HTTP_HOST"]){
+//            case "theprizeinside.herokuapp.com": define('ENVIRONMENT','heroku'); break;
+//			case "gibson.loc": define('ENVIRONMENT','gibson'); break;
+//			//TODO enter more environments as needed
+//            default : define('ENVIRONMENT','gibson');
+//    }
+	define('ENVIRONMENT','heroku');
 /*
  *---------------------------------------------------------------
  * ERROR REPORTING
