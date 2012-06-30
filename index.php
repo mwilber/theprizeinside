@@ -1,10 +1,24 @@
 <?php 
-	switch ($_SERVER["HTTP_HOST"]){
-            case "theprizeinside.herokuapp.com": define('REACTOR', 'http://'.$_SERVER["HTTP_HOST"].$_SERVER['REQUEST_URI'].'reactor/'); break;
-			case "gibson.loc": define('REACTOR', 'http://'.$_SERVER["SERVER_ADDR"].$_SERVER['REQUEST_URI'].'reactor/');  break;
-			//TODO enter more environments as needed
-            default : define('REACTOR', 'http://'.$_SERVER["HTTP_HOST"].$_SERVER['REQUEST_URI'].'reactor/');
-    }
+	
+	function LoadContent($pId){
+		
+		if($_SERVER["HTTP_HOST"] == "gibson.loc"){
+			$url = 'http://'.$_SERVER["SERVER_ADDR"].$_SERVER['REQUEST_URI'].'reactor/';
+		}else{
+			$url = 'http://'.$_SERVER["HTTP_HOST"].$_SERVER['REQUEST_URI'].'reactor/';
+		}
+		$url .= 'panel/index/'.$pId;
+		
+		
+		$ch = curl_init();
+		$timeout = 5;
+		curl_setopt($ch,CURLOPT_URL,$url);
+		curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+		curl_setopt($ch,CURLOPT_CONNECTTIMEOUT,$timeout);
+		$data = curl_exec($ch);
+		curl_close($ch);
+		return $data;
+	}
 
 ?>
 <!doctype html>
@@ -62,26 +76,25 @@
       <!-- Main hero unit for a primary marketing message or call to action -->
       <div class="hero-unit">
       	<img id="mascot" src="images/mascot_lg.png"/>
-        <h1>The Prize Inside</h1>
+        <h1><span id="wordone">The</span><span id="wordtwo">Prize</span><br/><span id="wordthree">Inside</span></h1>
         <p>What&rsquo;s in the kid&rsquo;s meal at your fast food restaurants.</p>
         <div style="clear:both;"></div>
       </div>
-		<?php echo REACTOR.'panel/index/mcd' ?>
       <!-- Example row of columns -->
       <div class="row">
       	<div class="span6">
-      		<?php $panel = file_get_contents(REACTOR.'panel/index/mcd'); echo $panel; ?>
+      		<?php echo LoadContent('mcd'); ?>
       	</div>
       	<div class="span6">
-      		<?php $panel = file_get_contents(REACTOR.'panel/index/bk'); echo $panel; ?>
+      		<?php echo LoadContent('bk'); ?>
       	</div>
 	  </div>
 	  <div class="row">
       	<div class="span6">
-      		<?php $panel = file_get_contents(REACTOR.'panel/index/bel'); echo $panel; ?>
+      		<?php echo LoadContent('bel'); ?>
       	</div>
       	<div class="span6">
-      		<?php $panel = file_get_contents(REACTOR.'panel/index/snc'); echo $panel; ?>
+      		<?php echo LoadContent('snc'); ?>
       	</div>
 	  </div>
 
