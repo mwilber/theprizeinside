@@ -233,7 +233,7 @@ class Image extends CI_Controller
 					break;
 			}
 		}
-		//redirect($this->uri->segment(1));
+		redirect($this->uri->segment(1));
 	}
 	
 	function build($recordId){
