@@ -179,6 +179,23 @@ class Image extends CI_Controller
 						}
 					}
 					break;
+				case "sub":
+					$xmlObj = file_get_html($restaurant->restaurantDataUrl);
+					foreach($xmlObj->find('.modal3 img') as $e){
+						//array_push($restaurants[$key]['images'], $restaurant['base_url']."/".$e->src );
+						$tmpImageUrl = $restaurant->restaurantBaseUrl."/".$e->src;
+						$tmpImageUrl = str_replace(".png", "_big.png", $tmpImageUrl);
+						$images = $this->image_model->Get(array('restaurantId'=>$restaurant->restaurantId,'imageUrl'=>$tmpImageUrl));
+						if( count($images)>0 ){
+							foreach($images as $image){
+								$this->image_model->Update(array('imageId'=>$image->imageId,'imageActive'=>1));
+							}
+						}else{
+							$arrInsert['imageUrl'] = $tmpImageUrl;
+							$this->image_model->Add($arrInsert);
+						}
+					}
+					break;
 			}
 		}
 		redirect($this->uri->segment(1));
