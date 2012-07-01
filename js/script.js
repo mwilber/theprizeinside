@@ -31,7 +31,7 @@ function fbshare(pTitle){
 }
 
 function twshare(pTitle){
-	var twcontent = escape('Check out what\'s in the '+pTitle+' kids meal at ThePrizeInside.com')+" "+escape(social['link']);
+	var twcontent = escape('Check out what\'s in the '+pTitle+' kids meal at ThePrizeInside')+" "+escape(social['link']);
 	openpopup('http://twitter.com/home?status='+twcontent,'tweeters',550,450);
 }
 

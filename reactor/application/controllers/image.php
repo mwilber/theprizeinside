@@ -162,6 +162,7 @@ class Image extends CI_Controller
 		
 		$this->load->model('image_model');
 		$this->load->helper('simple_html_dom');
+		$this->load->helper('image');
 		
 		$xmlObj = file_get_html($restaurant->restaurantDataUrl);
 		
@@ -182,6 +183,7 @@ class Image extends CI_Controller
 				$target_name = $restaurant->restaurantAlias.'_'.date("U").'.'.$file_ext;
 				//echo "getting image: ".$tmpImageUrl;
 				file_put_contents(UPLOAD_DIR.$target_name, file_get_contents($tmpImageUrl));
+				createthumb(UPLOAD_DIR.$target_name,UPLOAD_DIR.$target_name,400);
 				// Upload to amazon
 				$this->load->library('s3');
 				$arrInsert['imageAmazon'] = $this->s3->upload(UPLOAD_DIR.$target_name, $target_name);

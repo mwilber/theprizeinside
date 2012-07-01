@@ -2,7 +2,7 @@
 
 	$social = array();
 	$social['title'] = "The Prize Inside";
-	$social['description'] = "What's in the kid's meal at your fast food restaurants.";
+	$social['description'] = "Choose your fast food by the prize inside.";
 	$social['image'] = "http://theprizeinside.com/images/fb_icon.png";
 	$social['link'] = "http://theprizeinside.com/";
 
@@ -86,7 +86,7 @@
       	</div>
       	<img id="mascot" src="images/mascot_lg.png"/>
         <h1><span id="wordone">The</span><span id="wordtwo">Prize</span><br/><span id="wordthree">Inside</span></h1>
-        <p>What&rsquo;s in the kid&rsquo;s meal at your fast food restaurants.</p>
+        <p>Choose your fast food by the prize inside.</p>
         <div style="clear:both;"></div>
       </div>
       <!-- Example row of columns -->
@@ -94,12 +94,12 @@
       	<div id="mcd" class="span6">
       		
       	</div>
-      	<div id="bk" class="span6">
+      	<div id="bel" class="span6">
       		
       	</div>
 	  </div>
 	  <div class="row">
-      	<div id="bel" class="span6">
+      	<div id="bk" class="span6">
       		
       	</div>
       	<div id="snc" class="span6">
