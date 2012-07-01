@@ -68,6 +68,7 @@
               <li><a href="#bel">Taco Bell</a></li>
               <li><a href="#snc">Sonic Drive-In</a></li>
               <li><a href="#sub">Subway</a></li>
+              <li><a href="#arb">Arbys</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -109,7 +110,7 @@
       	<div id="sub" class="span6">
       		
       	</div>
-      	<div id="" class="span6">
+      	<div id="arb" class="span6">
       		
       	</div>
 	  </div>

@@ -85,6 +85,7 @@ class Image extends CI_Controller
 		$this->load->model('restaurant_model');
 		$this->load->model('image_model');
 		$this->load->helper('simple_html_dom');
+		$this->load->helper('scraper');
 		
 		$restaurants = $this->restaurant_model->Get();
 		
@@ -134,106 +135,61 @@ class Image extends CI_Controller
 						}/*endif*/
 					}
 					break;
+				case "sub":
+					$this->ScrapeHtml($restaurant, '.modal3 img', array(".png", "_big.png"));
+					break;
 				case "bk":
-					$xmlObj = file_get_html($restaurant->restaurantDataUrl);
-					foreach($xmlObj->find('#scroller2 div.toyScroller div.items div.item img') as $e){
-						//array_push($restaurants[$key]['images'], $restaurant['base_url']."/".$e->src );
-						$tmpImageUrl = $restaurant->restaurantBaseUrl."/".$e->src;
-						$images = $this->image_model->Get(array('restaurantId'=>$restaurant->restaurantId,'imageUrl'=>$tmpImageUrl));
-						if( count($images)>0 ){
-							foreach($images as $image){
-								$this->image_model->Update(array('imageId'=>$image->imageId,'imageActive'=>1));
-							}
-						}else{
-							//Get the image
-							$file_ext = substr(strrchr($tmpImageUrl, '.'), 1);
-							$target_name = $restaurant->restaurantAlias.'_'.date("U").'.'.$file_ext;
-							file_put_contents(UPLOAD_DIR.$target_name, file_get_contents($tmpImageUrl));
-							// Upload to amazon
-							$this->load->library('s3');
-							$arrInsert['imageAmazon'] = $this->s3->upload(UPLOAD_DIR.$target_name, $target_name);
-							
-							$arrInsert['imageUrl'] = $tmpImageUrl;
-							$this->image_model->Add($arrInsert);
-						}
-					}
+					$this->ScrapeHtml($restaurant, '#scroller2 div.toyScroller div.items div.item img');
 					break;
 				case "bel":
-					$xmlObj = file_get_html($restaurant->restaurantDataUrl);
-					foreach($xmlObj->find('#itemMenu ul li img') as $e){
-						//array_push($restaurants[$key]['images'], $restaurant['base_url']."/".$e->src );
-						$tmpImageUrl = $restaurant->restaurantBaseUrl."/".$e->src;
-						$images = $this->image_model->Get(array('restaurantId'=>$restaurant->restaurantId,'imageUrl'=>$tmpImageUrl));
-						if( count($images)>0 ){
-							foreach($images as $image){
-								$this->image_model->Update(array('imageId'=>$image->imageId,'imageActive'=>1));
-							}
-						}else{
-							//Get the image
-							$file_ext = substr(strrchr($tmpImageUrl, '.'), 1);
-							$target_name = $restaurant->restaurantAlias.'_'.date("U").'.'.$file_ext;
-							file_put_contents(UPLOAD_DIR.$target_name, file_get_contents($tmpImageUrl));
-							// Upload to amazon
-							$this->load->library('s3');
-							$arrInsert['imageAmazon'] = $this->s3->upload(UPLOAD_DIR.$target_name, $target_name);
-							
-							$arrInsert['imageUrl'] = $tmpImageUrl;
-							$this->image_model->Add($arrInsert);
-						}
-					}
+					$this->ScrapeHtml($restaurant, '#itemMenu ul li img');
 					break;
 				case "snc":
-					$xmlObj = file_get_html($restaurant->restaurantDataUrl);
-					foreach($xmlObj->find('div.bodycontent img') as $e){
-						//array_push($restaurants[$key]['images'], $restaurant['base_url']."/".$e->src );
-						$tmpImageUrl = $restaurant->restaurantBaseUrl."/".$e->src;
-						$images = $this->image_model->Get(array('restaurantId'=>$restaurant->restaurantId,'imageUrl'=>$tmpImageUrl));
-						if( count($images)>0 ){
-							foreach($images as $image){
-								$this->image_model->Update(array('imageId'=>$image->imageId,'imageActive'=>1));
-							}
-						}else{
-							//Get the image
-							$file_ext = substr(strrchr($tmpImageUrl, '.'), 1);
-							$target_name = $restaurant->restaurantAlias.'_'.date("U").'.'.$file_ext;
-							file_put_contents(UPLOAD_DIR.$target_name, file_get_contents($tmpImageUrl));
-							// Upload to amazon
-							$this->load->library('s3');
-							$arrInsert['imageAmazon'] = $this->s3->upload(UPLOAD_DIR.$target_name, $target_name);
-							
-							$arrInsert['imageUrl'] = $tmpImageUrl;
-							$this->image_model->Add($arrInsert);
-						}
-					}
+					$this->ScrapeHtml($restaurant, 'div.bodycontent img');
 					break;
-				case "sub":
-					$xmlObj = file_get_html($restaurant->restaurantDataUrl);
-					foreach($xmlObj->find('.modal3 img') as $e){
-						//array_push($restaurants[$key]['images'], $restaurant['base_url']."/".$e->src );
-						$tmpImageUrl = $restaurant->restaurantBaseUrl."/".$e->src;
-						$tmpImageUrl = str_replace(".png", "_big.png", $tmpImageUrl);
-						$images = $this->image_model->Get(array('restaurantId'=>$restaurant->restaurantId,'imageUrl'=>$tmpImageUrl));
-						if( count($images)>0 ){
-							foreach($images as $image){
-								$this->image_model->Update(array('imageId'=>$image->imageId,'imageActive'=>1));
-							}
-						}else{
-							//Get the image
-							$file_ext = substr(strrchr($tmpImageUrl, '.'), 1);
-							$target_name = $restaurant->restaurantAlias.'_'.date("U").'.'.$file_ext;
-							file_put_contents(UPLOAD_DIR.$target_name, file_get_contents($tmpImageUrl));
-							// Upload to amazon
-							$this->load->library('s3');
-							$arrInsert['imageAmazon'] = $this->s3->upload(UPLOAD_DIR.$target_name, $target_name);
-							
-							$arrInsert['imageUrl'] = $tmpImageUrl;
-							$this->image_model->Add($arrInsert);
-						}
-					}
+				case "arb":
+					$this->ScrapeHtml($restaurant, '#hey-kids-info img');
 					break;
 			}
 		}
 		redirect($this->uri->segment(1));
+	}
+
+	function ScrapeHtml($restaurant, $pPath, $pFind=array()){
+		
+		$arrInsert = array();
+		$arrInsert['restaurantId'] = $restaurant->restaurantId;
+		
+		$this->load->model('image_model');
+		$this->load->helper('simple_html_dom');
+		
+		$xmlObj = file_get_html($restaurant->restaurantDataUrl);
+		
+		foreach($xmlObj->find($pPath) as $e){
+			//array_push($restaurants[$key]['images'], $restaurant['base_url']."/".$e->src );
+			$tmpImageUrl = $restaurant->restaurantBaseUrl."/".$e->src;
+			if( count($pFind) > 1){
+				$tmpImageUrl = str_replace($pFind[0], $pFind[1], $tmpImageUrl);
+			}
+			$images = $this->image_model->Get(array('restaurantId'=>$restaurant->restaurantId,'imageUrl'=>$tmpImageUrl));
+			if( count($images)>0 ){
+				foreach($images as $image){
+					$this->image_model->Update(array('imageId'=>$image->imageId,'imageActive'=>1));
+				}
+			}else{
+				//Get the image
+				$file_ext = substr(strrchr($tmpImageUrl, '.'), 1);
+				$target_name = $restaurant->restaurantAlias.'_'.date("U").'.'.$file_ext;
+				//echo "getting image: ".$tmpImageUrl;
+				file_put_contents(UPLOAD_DIR.$target_name, file_get_contents($tmpImageUrl));
+				// Upload to amazon
+				$this->load->library('s3');
+				$arrInsert['imageAmazon'] = $this->s3->upload(UPLOAD_DIR.$target_name, $target_name);
+				
+				$arrInsert['imageUrl'] = $tmpImageUrl;
+				$this->image_model->Add($arrInsert);
+			}
+		}
 	}
 	
 	function build($recordId){
