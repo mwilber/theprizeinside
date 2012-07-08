@@ -32,9 +32,9 @@
 		<?foreach($records as $record):?>
 		<tr>
 			<td><?=$record->restaurantId?></td>
-			<td><img src="<?=$record->imageUrl?>" width="200"/></td>
+			<td><a href="<?=$record->imageUrl?>" target="_blank">LIVE</a></td>
 			<td><?=$record->imageActive?></td>
-			<td><?=$record->imageAmazon?></td>
+			<td><img src="<?=$record->imageAmazon?>" width="200"/></td>
 			<td><a href='<?=base_url()?><?=$this->uri->segment(1);?>/edit/<?=$record->$pk?>'>Edit</a></td>
 			<td><a href='<?=base_url()?><?=$this->uri->segment(1);?>/delete/<?=$record->$pk?>'>Delete</a></td>
 		</tr>

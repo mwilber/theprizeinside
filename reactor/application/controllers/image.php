@@ -95,7 +95,10 @@ class Image extends CI_Controller
 			$arrInsert = array();
 			$arrInsert['restaurantId'] = $restaurant->restaurantId;
 			switch($restaurant->restaurantAlias){
-				case "mcd":
+				case "mcdold":
+					
+					$this->load->helper('image');
+					
 					$xmlStr = file_get_contents($restaurant->restaurantDataUrl);
 					$xmlStr = str_replace('&', '&amp;', $xmlStr);
 					$xmlStr = str_replace('e->', 'e-->', $xmlStr);
@@ -120,6 +123,7 @@ class Image extends CI_Controller
 													$file_ext = substr(strrchr($tmpImageUrl, '.'), 1);
 													$target_name = $restaurant->restaurantAlias.'_'.date("U").'.'.$file_ext;
 													file_put_contents(UPLOAD_DIR.$target_name, file_get_contents($tmpImageUrl));
+													createthumb(UPLOAD_DIR.$target_name,UPLOAD_DIR.$target_name,400);
 													// Upload to amazon
 													$this->load->library('s3');
 													$arrInsert['imageAmazon'] = $this->s3->upload(UPLOAD_DIR.$target_name, $target_name);
@@ -133,6 +137,61 @@ class Image extends CI_Controller
 								}/*endif*/
 							}/*endforeach*/
 						}/*endif*/
+					}
+					break;
+				case "mcd":
+					$arrInsert = array();
+					$arrInsert['restaurantId'] = $restaurant->restaurantId;
+					
+					$this->load->model('image_model');
+					$this->load->helper('simple_html_dom');
+					$this->load->helper('image');
+					
+					$useragent= "Mozilla/5.0 (iPad; U; CPU OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B334b Safari/531.21.10')";
+					 $ch = curl_init ($restaurant->restaurantDataUrl);
+				    curl_setopt ($ch, CURLOPT_USERAGENT, $useragent); // set user agent
+				    curl_setopt ($ch, CURLOPT_RETURNTRANSFER, true);
+				    $output = curl_exec ($ch);
+					
+					$xmlObj = str_get_html($output);
+					
+					//$xmlObj = file_get_html($restaurant->restaurantDataUrl);
+					
+					foreach($xmlObj->find('#toyspictures img') as $e){
+						//array_push($restaurants[$key]['images'], $restaurant['base_url']."/".$e->src );
+						$tmpImageUrl = $restaurant->restaurantBaseUrl."/".ltrim($e->src, "./");
+						//if( count($pFind) > 1){
+						//	$tmpImageUrl = str_replace($pFind[0], $pFind[1], $tmpImageUrl);
+						//}
+						$images = $this->image_model->Get(array('restaurantId'=>$restaurant->restaurantId,'imageUrl'=>$tmpImageUrl));
+						if( count($images)>0 ){
+							foreach($images as $image){
+								$this->image_model->Update(array('imageId'=>$image->imageId,'imageActive'=>1));
+							}
+						}else{
+							//Get the image
+							$file_ext = substr(strrchr($tmpImageUrl, '.'), 1);
+							$target_name = $restaurant->restaurantAlias.'_'.date("U").'.'.$file_ext;
+							//echo "getting image: ".$tmpImageUrl;
+							//file_put_contents(UPLOAD_DIR.$target_name, file_get_contents($tmpImageUrl));
+							
+							$ch = curl_init ($tmpImageUrl);
+						    curl_setopt ($ch, CURLOPT_USERAGENT, $useragent); // set user agent
+						    curl_setopt ($ch, CURLOPT_RETURNTRANSFER, true);
+						    curl_setopt($ch, CURLOPT_HEADER, 0);
+						    curl_setopt($ch, CURLOPT_BINARYTRANSFER,1);
+						    // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, TRUE);
+						    $output = curl_exec ($ch);
+							file_put_contents(UPLOAD_DIR.$target_name, $output);
+							
+							createthumb(UPLOAD_DIR.$target_name,UPLOAD_DIR.$target_name,200);
+							// Upload to amazon
+							$this->load->library('s3');
+							$arrInsert['imageAmazon'] = $this->s3->upload(UPLOAD_DIR.$target_name, $target_name);
+							
+							$arrInsert['imageUrl'] = $tmpImageUrl;
+							$this->image_model->Add($arrInsert);
+						}
 					}
 					break;
 				case "sub":
