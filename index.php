@@ -94,15 +94,15 @@
       	<div id="mcd" class="span6">
       		
       	</div>
-      	<div id="bel" class="span6">
+      	<div id="bk" class="span6">
       		
       	</div>
 	  </div>
 	  <div class="row">
-      	<div id="bk" class="span6">
+      	<div id="bel" class="span6">
       		
       	</div>
-      	<div id="snc" class="span6">
+      	<div id="arb" class="span6">
       		
       	</div>
 	  </div>
@@ -110,7 +110,7 @@
       	<div id="sub" class="span6">
       		
       	</div>
-      	<div id="arb" class="span6">
+      	<div id="snc" class="span6">
       		
       	</div>
 	  </div>
