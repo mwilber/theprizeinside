@@ -18,7 +18,7 @@
     curl_setopt ($ch, CURLOPT_USERAGENT, $useragent); // set user agent
     curl_setopt ($ch, CURLOPT_RETURNTRANSFER, true);
     // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, TRUE);
-   $output = curl_exec ($ch);
+    $output = curl_exec ($ch);
 
     
 	
