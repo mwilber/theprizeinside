@@ -27,6 +27,7 @@
 		<th width="100">Alias</th>
 		<th width="100"></th>
 		<th width="100"></th>
+		<th width="100"></th>
 	</tr>
 	<?if(isset($records) && is_array($records) && count($records)>0):?>
 		<?foreach($records as $record):?>
@@ -37,6 +38,7 @@
 			<td><?=$record->restaurantDataUrl?></td>
 			<td><?=$record->restaurantAlias?></td>
 			<td><a href='<?=base_url()?><?=$this->uri->segment(1);?>/edit/<?=$record->$pk?>'>Edit</a></td>
+			<td><a href='<?=base_url()?>image/archive/<?=$record->$pk?>'>Archive</a></td>
 			<td><a href='<?=base_url()?><?=$this->uri->segment(1);?>/delete/<?=$record->$pk?>'>Delete</a></td>
 		</tr>
 		<?endforeach?>

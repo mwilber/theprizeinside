@@ -164,6 +164,19 @@ body{
 .row .flexslider .sharegroup{
 	float:right;
 	margin-top: 7px;
+	display:none;
+}
+
+.row .flexslider .locations{
+	float: right;
+	margin-top: 15px;
+	color: #FEF500;
+	font-size: 14px;
+}
+
+.row .flexslider .locations a{
+	color: #FEF500;
+	font-size: 14px;
 }
 
 .row .flexslider .flex-viewport{
@@ -178,6 +191,10 @@ body{
 	
 	.row .flexslider h2{
 		font-size: 18px;
+	}
+	
+	.row .flexslider .locations{
+		margin-top: 11px;
 	}
 	
 	.hero-unit h1{

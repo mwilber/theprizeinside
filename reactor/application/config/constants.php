@@ -1,6 +1,7 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 define('UPLOAD_DIR', './uploads/');
+define('IMAGE_BACKGROUND', '#39230E');
 
 /*
 |--------------------------------------------------------------------------

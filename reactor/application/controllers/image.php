@@ -81,6 +81,12 @@ class Image extends CI_Controller
 		
 	}
 	
+	function Archive($pRestaurantId){
+		$this->load->model('image_model');
+		$this->image_model->Archive($pRestaurantId);
+		redirect($this->uri->segment(1));
+	}
+	
 	function GetPhotos(){
 		$this->load->model('restaurant_model');
 		$this->load->model('image_model');
@@ -123,7 +129,7 @@ class Image extends CI_Controller
 													$file_ext = substr(strrchr($tmpImageUrl, '.'), 1);
 													$target_name = $restaurant->restaurantAlias.'_'.date("U").'.'.$file_ext;
 													file_put_contents(UPLOAD_DIR.$target_name, file_get_contents($tmpImageUrl));
-													createthumb(UPLOAD_DIR.$target_name,UPLOAD_DIR.$target_name,400);
+													createthumb(UPLOAD_DIR.$target_name,UPLOAD_DIR.$target_name,300);
 													// Upload to amazon
 													$this->load->library('s3');
 													$arrInsert['imageAmazon'] = $this->s3->upload(UPLOAD_DIR.$target_name, $target_name);
@@ -163,7 +169,7 @@ class Image extends CI_Controller
 						//if( count($pFind) > 1){
 						//	$tmpImageUrl = str_replace($pFind[0], $pFind[1], $tmpImageUrl);
 						//}
-						$images = $this->image_model->Get(array('restaurantId'=>$restaurant->restaurantId,'imageUrl'=>$tmpImageUrl));
+						$images = $this->image_model->Get(array('restaurantId'=>$restaurant->restaurantId,'imageUrl'=>$tmpImageUrl, 'imageActive'=>0));
 						if( count($images)>0 ){
 							foreach($images as $image){
 								$this->image_model->Update(array('imageId'=>$image->imageId,'imageActive'=>1));
@@ -184,7 +190,7 @@ class Image extends CI_Controller
 						    $output = curl_exec ($ch);
 							file_put_contents(UPLOAD_DIR.$target_name, $output);
 							
-							createthumb(UPLOAD_DIR.$target_name,UPLOAD_DIR.$target_name,200);
+							createthumb(UPLOAD_DIR.$target_name,UPLOAD_DIR.$target_name,300);
 							// Upload to amazon
 							$this->load->library('s3');
 							$arrInsert['imageAmazon'] = $this->s3->upload(UPLOAD_DIR.$target_name, $target_name);
@@ -194,7 +200,7 @@ class Image extends CI_Controller
 						}
 					}
 					break;
-				case "sub":
+				case "subx":
 					$this->ScrapeHtml($restaurant, '.modal3 img', array(".png", "_big.png"));
 					break;
 				case "bk":
@@ -231,7 +237,7 @@ class Image extends CI_Controller
 			if( count($pFind) > 1){
 				$tmpImageUrl = str_replace($pFind[0], $pFind[1], $tmpImageUrl);
 			}
-			$images = $this->image_model->Get(array('restaurantId'=>$restaurant->restaurantId,'imageUrl'=>$tmpImageUrl));
+			$images = $this->image_model->Get(array('restaurantId'=>$restaurant->restaurantId,'imageUrl'=>$tmpImageUrl, 'imageActive'=>0));
 			if( count($images)>0 ){
 				foreach($images as $image){
 					$this->image_model->Update(array('imageId'=>$image->imageId,'imageActive'=>1));
@@ -242,7 +248,7 @@ class Image extends CI_Controller
 				$target_name = $restaurant->restaurantAlias.'_'.date("U").'.'.$file_ext;
 				//echo "getting image: ".$tmpImageUrl;
 				file_put_contents(UPLOAD_DIR.$target_name, file_get_contents($tmpImageUrl));
-				createthumb(UPLOAD_DIR.$target_name,UPLOAD_DIR.$target_name,400);
+				createthumb(UPLOAD_DIR.$target_name,UPLOAD_DIR.$target_name,300);
 				// Upload to amazon
 				$this->load->library('s3');
 				$arrInsert['imageAmazon'] = $this->s3->upload(UPLOAD_DIR.$target_name, $target_name);

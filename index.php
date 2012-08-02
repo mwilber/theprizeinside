@@ -120,9 +120,11 @@
   		<a id="gzlink" href="http://www.greenzeta.com" target="_blank">A GreenZeta Production</a>
       </footer>
 	  <div id="fb-root"></div>
+	  <div id="map"></div>
     </div> <!-- /container -->
     
 <script type="text/javascript" src="https://connect.facebook.net/en_US/all.js"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places&sensor=true"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.2.min.js"><\/script>')</script>
 

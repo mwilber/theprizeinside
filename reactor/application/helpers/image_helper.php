@@ -67,8 +67,12 @@
 		list($width, $height) = array(imagesx($im),imagesy($im));
 		    
 	    // Get the scale based on the requested dimension
-	    $scale = $width/$new_w;
-	    
+	    if( $width > $height ){
+	    	 $scale = $width/$new_w;
+	    }else{
+	    	 $scale = $height/$new_w;
+	    }
+	   
 	    // X&Y scales remain the same because resizing will always be proportionate
 	    $xscale=$scale;
 	    $yscale=$scale;
@@ -84,12 +88,16 @@
 	    }
 	
 	    // Resize the original image
-	    $imageResized = imagecreatetruecolor($new_width, $new_height);
-	    imagealphablending( $imageResized, false );
-		imagesavealpha( $imageResized, true );
+	    $imageResized = imagecreatetruecolor($new_w, $new_w);
+	    $background_color = html2rgb(IMAGE_BACKGROUND);
+		$background_color = imagecolorallocate($imageResized, $background_color[0], $background_color[1], $background_color[2]);
+		imagefilledrectangle($imageResized, 0, 0, $new_w, $new_w, $background_color);
+		imagecolortransparent($imageResized, imagecolorallocate($imageResized, $background_color[0], $background_color[1], $background_color[2]));
+	    //imagealphablending( $imageResized, false );
+		//imagesavealpha( $imageResized, true );
 	    
 	    $imageTmp     = $im;
-	    imagecopyresampled($imageResized, $imageTmp, 0, 0, 0, 0, $new_width, $new_height, $width, $height);
+	    imagecopyresampled($imageResized, $imageTmp, (($new_w-$new_width)/2), (($new_w-$new_height)/2), 0, 0, $new_width, $new_height, $width, $height);
 	
 		
 	/*	$old_x=imageSX($src_img);
@@ -114,15 +122,34 @@
 		
 		//echo "creating image: ".$system[count($system)-1]." sys1: ".$system[1]." filename: ".$filename;
 		
-		if (preg_match("/png/",$system[count($system)-1])){
-			imagepng($imageResized,$filename); 
-		} else {
+		//if (preg_match("/png/",$system[count($system)-1])){
+		//	imagepng($imageResized,$filename); 
+		//} else {
 			imagejpeg($imageResized,$filename); 
-		}
+		//}
 		imagedestroy($im); 
 		imagedestroy($imageResized);
 		
 		return true;
+	}
+
+	function html2rgb($color)
+	{
+	    if ($color[0] == '#')
+	        $color = substr($color, 1);
+	
+	    if (strlen($color) == 6)
+	        list($r, $g, $b) = array($color[0].$color[1],
+	                                 $color[2].$color[3],
+	                                 $color[4].$color[5]);
+	    elseif (strlen($color) == 3)
+	        list($r, $g, $b) = array($color[0].$color[0], $color[1].$color[1], $color[2].$color[2]);
+	    else
+	        return false;
+	
+	    $r = hexdec($r); $g = hexdec($g); $b = hexdec($b);
+	
+	    return array($r, $g, $b);
 	}
 	
 ?>

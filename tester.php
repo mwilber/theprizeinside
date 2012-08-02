@@ -2,7 +2,7 @@
 
 	include('./reactor/application/helpers/simple_html_dom_helper.php');
 	
-	$bkUrl = "http://www.arbys.com/kids.html";
+	$bkUrl = "http://subwaykids.com/grownups/promotions/kidsmeals.aspx";
 	$bkObj = file_get_html($bkUrl);
 
 ?>

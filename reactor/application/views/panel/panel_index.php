@@ -7,6 +7,7 @@
 	<a class="tweeters" href="#" onclick="twshare('<?=$restaurant->restaurantTitle?>'); return false;"><img src="images/btn_tw.png" alt="Tweeters"/></a>
 	<!--<a id="info" href="#" onclick="return false;"><img src="images/btn_info.png" alt="info"/></a>-->
   </div>
+  <div class="locations"><a href="#" onclick="GetDistance('<?=$restaurant->restaurantTitle?>', '<?=$restaurant->restaurantAlias?>'); return false;">Get locations</a></div>
   <div class="clearfix"></div>
   <ul class="slides">
   	<?php foreach($images as $rimg): ?>

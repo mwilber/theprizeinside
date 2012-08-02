@@ -101,7 +101,16 @@ class Image_Model extends CI_Model
 	
 	function Deactivate($restaurantId){
 		$this->db->set('imageActive', '0');
-		$this->db->where('restaurantId', $restaurantId);
+		$this->db->where(array('restaurantId'=>$restaurantId,'imageActive'=>1));
+		
+		$this->db->update($this->table);
+		
+		return $this->db->affected_rows();
+	}
+	
+	function Archive($restaurantId){
+		$this->db->set('imageActive', '-1');
+		$this->db->where(array('restaurantId'=>$restaurantId,'imageActive'=>1));
 		
 		$this->db->update($this->table);
 		
