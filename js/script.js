@@ -53,14 +53,14 @@ $(document).ready(function(){
 
 function StartGetDistance(){
 	//alert($('.nav li a').children()[queryLocIdx].attr('href').substring(1));
-	if(queryLocIdx < $('.nav li a').length){
-    	queryLocIdx ++;
-    	if( $($('.nav li a')[queryLocIdx]).attr('href') ){
-    		GetDistance($($('.nav li a')[queryLocIdx]).html(), $($('.nav li a')[queryLocIdx]).attr('href').substring(1));
-    	}
-    }else{
-    	StartGetDistance();
-    }
+	if(queryPanelIdx >= $('.nav li a').length-1){
+		if(queryLocIdx < $('.nav li a').length){
+	    	queryLocIdx ++;
+	    	if( $($('.nav li a')[queryLocIdx]).attr('href') ){
+	    		GetDistance($($('.nav li a')[queryLocIdx]).html(), $($('.nav li a')[queryLocIdx]).attr('href').substring(1));
+	    	}
+	    }
+	}
 }
 
 function fbshare(pTitle){
