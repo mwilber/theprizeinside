@@ -88,16 +88,16 @@
 	    }
 	
 	    // Resize the original image
-	    $imageResized = imagecreatetruecolor($new_w, $new_w);
+	    $imageResized = imagecreatetruecolor(IMAGE_DIMENSION, IMAGE_DIMENSION);
 	    $background_color = html2rgb(IMAGE_BACKGROUND);
 		$background_color = imagecolorallocate($imageResized, $background_color[0], $background_color[1], $background_color[2]);
-		imagefilledrectangle($imageResized, 0, 0, $new_w, $new_w, $background_color);
+		imagefilledrectangle($imageResized, 0, 0, IMAGE_DIMENSION, IMAGE_DIMENSION, $background_color);
 		imagecolortransparent($imageResized, imagecolorallocate($imageResized, $background_color[0], $background_color[1], $background_color[2]));
 	    //imagealphablending( $imageResized, false );
 		//imagesavealpha( $imageResized, true );
 	    
 	    $imageTmp     = $im;
-	    imagecopyresampled($imageResized, $imageTmp, (($new_w-$new_width)/2), (($new_w-$new_height)/2), 0, 0, $new_width, $new_height, $width, $height);
+	    imagecopyresampled($imageResized, $imageTmp, ((IMAGE_DIMENSION-$new_width)/2), ((IMAGE_DIMENSION-$new_height)/2), 0, 0, $new_width, $new_height, $width, $height);
 	
 		
 	/*	$old_x=imageSX($src_img);

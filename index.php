@@ -29,6 +29,7 @@
 
 	<meta name="viewport" content="width=device-width">
 	<meta name="apple-mobile-web-app-capable" content="yes">
+	<link rel="apple-touch-startup-image" href="/startup.png">
 
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<style>

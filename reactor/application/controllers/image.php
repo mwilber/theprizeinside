@@ -190,7 +190,7 @@ class Image extends CI_Controller
 						    $output = curl_exec ($ch);
 							file_put_contents(UPLOAD_DIR.$target_name, $output);
 							
-							createthumb(UPLOAD_DIR.$target_name,UPLOAD_DIR.$target_name,300);
+							createthumb(UPLOAD_DIR.$target_name,UPLOAD_DIR.$target_name,200);
 							// Upload to amazon
 							$this->load->library('s3');
 							$arrInsert['imageAmazon'] = $this->s3->upload(UPLOAD_DIR.$target_name, $target_name);

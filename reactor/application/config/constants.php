@@ -3,6 +3,7 @@
 define('UPLOAD_DIR', './uploads/');
 //define('IMAGE_BACKGROUND', '#39230E');
 define('IMAGE_BACKGROUND', '#533F20');
+define('IMAGE_DIMENSION', 300);
 
 /*
 |--------------------------------------------------------------------------
