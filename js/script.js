@@ -133,7 +133,7 @@ function CalcRoute(pEnd, pName, pRef, pCt) {
 		if (status == google.maps.DirectionsStatus.OK) {
 			//console.log(result);
 			//$('#'+pRef+' .locations').html('<a href="http://maps.google.com/?q='+pName+'" target="_blank"">'+pCt+' nearby.</a> <a href="http://maps.google.com/?saddr=&daddr='+result.routes[0].legs[0].end_address+'" target="_blank"">Closest: '+result.routes[0].legs[0].distance.text+'</a>');
-			$('#'+pRef+' .locations').html('<a href="http://maps.google.com/?saddr=&daddr='+result.routes[0].legs[0].end_address+'" target="_blank"">Closest Location: '+result.routes[0].legs[0].distance.text+'</a>');
+			$('#'+pRef+' .locations').html('<a href="http://maps.google.com/?saddr='+searchRequest.location.lat()+","+searchRequest.location.lng()+'&daddr='+result.routes[0].legs[0].end_address+'" target="_blank""><i class="icon-road"></i>&nbsp;'+result.routes[0].legs[0].distance.text+'</a>');
 		}
 		StartGetDistance();
 	});

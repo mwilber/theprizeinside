@@ -90,31 +90,36 @@
         <div style="clear:both;"></div>
       </div>
       <!-- Example row of columns -->
-      <div class="row" id="listing">
-      	<div id="mcd" class="span6">
-      		
-      	</div>
-      	<div id="bk" class="span6">
-      		
-      	</div>
-	  </div>
+      <!--<div class="row" id="listing">
+      	<div id="mcd" class="span6"></div>
+      	<div id="bk" class="span6"></div>
+      </div>
 	  <div class="row">
-      	<div id="bel" class="span6">
-      		
-      	</div>
-      	<div id="arb" class="span6">
-      		
-      	</div>
-	  </div>
+      	<div id="bel" class="span6"></div>
+      	<div id="arb" class="span6"></div>
+      </div>
 	  <div class="row">
-      	<div id="sub" class="span6">
-      		
-      	</div>
-      	<div id="snc" class="span6">
-      		
-      	</div>
-	  </div>
-
+      	<div id="sub" class="span6"></div>
+      	<div id="snc" class="span6"></div>
+	  </div>-->
+	  <!--<div class="row" id="listing">
+      	<div id="mcd" class="span4"></div>
+      	<div id="bk" class="span4"></div>
+      	<div id="bel" class="span4"></div>
+      </div>
+	  <div class="row">
+      	<div id="arb" class="span4"></div>
+      	<div id="sub" class="span4"></div>
+      	<div id="snc" class="span4"></div>
+	  </div>-->
+	  <div class="row" id="listing">
+      	<div id="mcd" class="span1"></div>
+      	<div id="bk" class="span1"></div>
+      	<div id="bel" class="span1"></div>
+      	<div id="arb" class="span1"></div>
+      	<div id="sub" class="span1"></div>
+      	<div id="snc" class="span1"></div>
+	 </div>
       <footer>
         <a id="addtopage" href="#" onclick="AddToPage(); return false;">Add To Your Facebook Page</a>
   		<a id="gzlink" href="http://www.greenzeta.com" target="_blank">A GreenZeta Production</a>

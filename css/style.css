@@ -80,10 +80,14 @@ body{
           box-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
 }*/
 
-.row .span6{
+.row .span1, .row .span4, .row .span6{
 	/*margin-left: 0px;*/
-	margin-bottom:20px;
+	margin:0px 0px 20px 20px;
 	height:100%;
+}
+
+.row .span1{
+	width:340px;
 }
 
 .hero-unit{
@@ -152,35 +156,71 @@ body{
 	border-color:#533F20;
 	padding:5px 15px 25px 15px;;
 	height:100%;
+	width:300px;
+	min-height:350px;
 }
 
 .row .flexslider h2{
 	color:#FEF500;
-	font-size: 30px;
+	font-size: 22px;
 	margin-bottom: 10px;
 	float:left;
 }
 
-.row .flexslider .sharegroup{
+.row .flexslider .sharegroup, .row .flexslider .locations{
 	float:right;
-	margin-top: 7px;
-	display:none;
+	margin-top: 2px;
 }
 
 .row .flexslider .locations{
-	float: right;
-	margin-top: 15px;
+	margin-right: 5px;
 	color: #FEF500;
 	font-size: 14px;
 }
 
-.row .flexslider .locations a{
+.row .flexslider .locations a, .row .flexslider .locations a:hover{
 	color: #FEF500;
 	font-size: 14px;
+	text-decoration:none;
 }
 
 .row .flexslider .flex-viewport{
 	clear:both;
+}
+
+.btn{
+	background-color:#39230E;
+	background-image:none;
+	text-shadow: none;
+}
+
+.btn:hover{
+	background-color:#533F20;
+	background-color:#39230E;
+	background-image:none;
+}
+
+.btn-group.open .btn.dropdown-toggle {
+	background-color:#533F20;
+}
+
+.dropdown-menu {
+	background-color:#533F20;
+}
+
+.dropdown-menu a{
+	color:#FEF500;
+}
+
+.dropdown-menu li > a:hover, .dropdown-menu .active > a, .dropdown-menu .active > a:hover {
+	color: #FEF500;
+	text-decoration: none;
+	background-color: #39230E;
+}
+
+.caret {
+	border-top: 4px solid #FEF500;
+	opacity: 1;
 }
 
 @media (max-width: 480px) {
