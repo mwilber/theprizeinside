@@ -21,8 +21,10 @@ $(document).ready(function(){
 	
 	navigator.geolocation.getCurrentPosition(HandleGeolocationQuery,HandleGeolocationErrors);
 	
-	FB.init({appId: FBconfig.app.id, status : true, cookie: true, xfbml : true});
-	SetFrame();
+	if( !isMobile ){
+		FB.init({appId: FBconfig.app.id, status : true, cookie: true, xfbml : true});
+		SetFrame();
+	}
 	
 	$('.nav li a').each( function(key, item){
 		var tempId = $(item).attr('href').substring(1);
@@ -64,7 +66,12 @@ function StartGetDistance(){
 }
 
 function fbshare(pTitle){
-	WallPost(social['link'] , social['title'] , 'Check out what\'s in the '+pTitle+' kids meal at ThePrizeInside.com' , social['image'] , '');
+	if( isMobile ){
+		var url = "http://www.facebook.com/sharer.php?u="+escape(social['link']);
+		openpopup(url,'gplus',550,450);
+	}else{
+		WallPost(social['link'] , social['title'] , 'Check out what\'s in the '+pTitle+' kids meal at ThePrizeInside.com' , social['image'] , '');
+	}
 }
 
 function twshare(pTitle){

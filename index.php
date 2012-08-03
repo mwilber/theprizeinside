@@ -1,5 +1,13 @@
 <?php
 
+	include('mobile_device_detect.php');
+	
+	$isMobile = false;
+	$isiPad = (bool) strpos($_SERVER['HTTP_USER_AGENT'],'iPad');
+	if( mobile_device_detect() && !$isiPad ){
+		$isMobile = true;
+	}
+
 	$social = array();
 	$social['title'] = "The Prize Inside";
 	$social['description'] = "Choose your fast food by the prize inside.";
@@ -49,6 +57,7 @@
 		social['description'] = "<?=$social['description']?>";
 		social['image'] = "<?=$social['image']?>";
 		social['link'] = "<?=$social['link']?>";
+		var isMobile = <?php if($isMobile) echo "true"; else echo "false"; ?>;
 	</script>
 	<script src="js/libs/modernizr-2.5.3-respond-1.1.0.min.js"></script>
 </head>
@@ -81,9 +90,11 @@
       <!-- Main hero unit for a primary marketing message or call to action -->
       <div class="hero-unit">
       	<div id="likegroup">
+      		<?php if(!$isMobile): ?>
       		<div class="fb-like" data-href="<?=$social['link']?>" data-send="false" data-layout="button_count" data-width="90" data-show-faces="false"></div>
 			<g:plusone size="medium" href="<?=$social['link']?>"></g:plusone>
 			<a href="https://twitter.com/share" class="twitter-share-button" data-url="<?=$social['link']?>" data-text="<?=$social['title']?> - <?=$social['description']?>" data-hashtags="fastfood">Tweet</a>
+      		<?php endif; ?>
       	</div>
       	<img id="mascot" src="images/mascot_lg.png"/>
         <h1><span id="wordone">The</span><span id="wordtwo">Prize</span><br/><span id="wordthree">Inside</span></h1>
@@ -128,8 +139,10 @@
 	  <div id="fb-root"></div>
 	  <div id="map"></div>
     </div> <!-- /container -->
-    
+
+<?php if(!$isMobile): ?>
 <script type="text/javascript" src="https://connect.facebook.net/en_US/all.js"></script>
+<?php endif; ?>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places&sensor=true"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.2.min.js"><\/script>')</script>
@@ -140,7 +153,9 @@
 <script src="js/libs/jquery.mobile.customized.min.js"></script>
 <script src="js/libs/jquery.flexslider-min.js"></script>
 
+<?php if(!$isMobile): ?>
 <script src="js/fb.js"></script>
+<?php endif; ?>
 <script src="js/script.js"></script>
 <!-- end scripts-->
 
@@ -157,6 +172,7 @@
   })();
 
 </script>
+<?php if(!$isMobile): ?>
 <script type="text/javascript">
   (function() {
     var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
@@ -165,7 +181,7 @@
   })();
 </script>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-
+<?php endif; ?>
 
 
 </body>

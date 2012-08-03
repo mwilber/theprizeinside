@@ -2,7 +2,7 @@
 <div class="flexslider">
 	<h2><?=$restaurant->restaurantTitle?></h2>
 	<div class="btn-group sharegroup">
-		<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+		<a class="btn btn-large dropdown-toggle" data-toggle="dropdown" href="#">
 			<i class="icon-share"></i>
 			<span class="caret"></span>
 		</a>
@@ -12,13 +12,19 @@
 			<li><a class="tweeters" href="#" onclick="twshare('<?=$restaurant->restaurantTitle?>'); return false;"><!--<img src="images/btn_tw.png" alt="Tweeters"/>-->Twitter</a></li>
 		</ul>
 	</div>
-  <div class="locations btn"><a href="#" onclick="GetDistance('<?=$restaurant->restaurantTitle?>', '<?=$restaurant->restaurantAlias?>'); return false;">Get locations</a></div>
+  <div class="locations btn btn-large"><a href="#" onclick="GetDistance('<?=$restaurant->restaurantTitle?>', '<?=$restaurant->restaurantAlias?>'); return false;">Get locations</a></div>
   <div class="clearfix"></div>
   <ul class="slides">
+  	<?php if( count($images) < 1 ): ?>
+  		<li>
+    		<img src="images/no_prize.jpg" width="270" height="270" />
+    	</li>
+  	<?php else: ?>
   	<?php foreach($images as $rimg): ?>
   		<li>
     		<img src="<?= $rimg->imageAmazon ?>" width="270" height="270" />
     	</li>
   	<?php endforeach; ?>
+  	<?php endif; ?>
   </ul>
 </div>
