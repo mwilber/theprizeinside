@@ -166,11 +166,14 @@ body{
 }
 
 .row .flexslider h2{
-	color:#FEF500;
-	float:left;
-	font-size: 20px;
+	color: #FEF500;
+	float: left;
+	font-size: 31px;
 	padding-top: 2px;
-	margin-bottom:0px;
+	margin-bottom: 5px;
+	letter-spacing: 3px;
+	width:100%;
+	text-align:center;
 }
 
 .row .flexslider h2 a, .row .flexslider h2 a:hover{
@@ -181,10 +184,19 @@ body{
 .row .flexslider .sharegroup, .row .flexslider .locations{
 	float:right;
 	margin-top: 2px;
+	clear:left;
 }
 
 .row .flexslider .locations{
 	margin-right: 5px;
+	color: #FEF500;
+	font-size: 14px;
+}
+
+.row .flexslider .extlink{
+	float:right;
+	margin-right: 5px;
+	margin-top: 2px;
 	color: #FEF500;
 	font-size: 14px;
 }
@@ -297,10 +309,10 @@ body{
 		letter-spacing: 10px;
 	}
 	
-	.row .flexslider h2{
+	/*.row .flexslider h2{
 		font-size: 16px;
 		padding-top: 4px;
-	}
+	}*/
 	
 	.flexslider .slides img {
 		margin-left: 0px;
