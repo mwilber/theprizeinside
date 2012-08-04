@@ -108,8 +108,9 @@ body{
 }
 
 .hero-unit #mascot{
-	width:35%;
+	width:30%;
 	float:left;
+	margin-right: 30px;
 }
 
 .hero-unit h1, .hero-unit p{
@@ -125,18 +126,18 @@ body{
 }
 
 .hero-unit h1 #wordone{
-	font-size: 50px;
+	font-size: 60px;
 	text-transform: uppercase;
 	letter-spacing: 10px;
 }
 
 .hero-unit h1 #wordtwo{
-	font-size: 110px;
+	font-size: 120px;
 	text-transform: uppercase;
 	letter-spacing: 10px;
 }
 .hero-unit h1 #wordthree{
-	font-size: 130px;
+	font-size: 145px;
 	text-transform: uppercase;
 	letter-spacing: 10px;
 }
@@ -157,14 +158,24 @@ body{
 	padding:5px 15px 25px 15px;;
 	height:100%;
 	width:300px;
-	min-height:350px;
+	min-height:320px;
+}
+
+.flexslider .slides img {
+	margin-left: 15px;
 }
 
 .row .flexslider h2{
 	color:#FEF500;
-	font-size: 22px;
-	margin-bottom: 10px;
 	float:left;
+	font-size: 20px;
+	padding-top: 2px;
+	margin-bottom:0px;
+}
+
+.row .flexslider h2 a, .row .flexslider h2 a:hover{
+	color:#FEF500;
+	text-decoration:none;
 }
 
 .row .flexslider .sharegroup, .row .flexslider .locations{
@@ -250,18 +261,16 @@ body{
 		margin-bottom:10px;
 	}
 	
+	.hero-unit #mascot{
+		margin-right: 5px;
+	}
+		
 	.row .span1, .row .span4, .row .span6 {
 		margin: 0px 0px 20px 0px;
 	}
 	
 	.row .span1, .row .flexslider{
 		width:270px;
-	}
-	
-	.row .flexslider h2{
-		font-size: 16px;
-		padding-top: 12px;
-		margin-bottom:0px;
 	}
 	
 	.hero-unit h1{
@@ -287,9 +296,23 @@ body{
 		font-size: 40px;
 		letter-spacing: 10px;
 	}
+	
+	.row .flexslider h2{
+		font-size: 16px;
+		padding-top: 4px;
+	}
+	
+	.flexslider .slides img {
+		margin-left: 0px;
+	}
 }
 
 @media (min-width: 480px) and (max-width: 640px) {
+	
+	.hero-unit #mascot{
+		margin-right: 10px;
+	}
+	
 	.hero-unit h1{
 		font-size:60px;
 	}
@@ -315,6 +338,11 @@ body{
 }
 
 @media (min-width: 640px) and (max-width: 979px) {
+	
+	.hero-unit #mascot{
+		margin-right: 15px;
+	}
+	
 	.hero-unit h1{
 		font-size:60px;
 	}
