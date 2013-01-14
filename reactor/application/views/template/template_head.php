@@ -14,6 +14,7 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 
 	<link rel="stylesheet" href="<?= base_url() ?>css/style.css">
+	<link rel="stylesheet" href="<?= base_url() ?>css/jquery.qtip.min.css">
 
 	<script src="<?= base_url() ?>js/libs/modernizr-2.0.min.js"></script>
 	<script src="<?= base_url() ?>js/libs/respond.min.js"></script>
@@ -21,16 +22,16 @@
 <body class="<?=$this->uri->segment(1);?>">
 	<div id="header-container">
 		<header class="wrapper">
-			<img id="title" src="<?= base_url() ?>images/logo.png" alt="Admin" width="110" height="110" />
+			<img id="title" src="<?= base_url() ?>images/logo.png" alt="Admin" />
 			<nav>
 				<ul>
 					<? if( $this->session->userdata('userEmail') ): ?>
-						<li><a href="<?= base_url() ?>restaurant" class="restaurant">Restaurants</a></li>
-						<li><a href="<?= base_url() ?>image" class="image">Images</a></li>
-						<li><a href="<?= base_url() ?>users" class="users">Users</a></li>
-						<li><a href="<?= base_url() ?>welcome/logout" class="logout">Log Out</a></li>
+						<!-- Add nav elements here -->
+						<li><a href="<?= base_url() ?>user" class="users">Users</a></li>
+						<li><a href="<?= base_url() ?>admin/builder" class="builder">Builder</a></li>
+						<li><a href="<?= base_url() ?>admin/logout" class="logout">Log Out</a></li>
 					<? else: ?>
-						<li><a href="<?= base_url() ?>welcome/login" class="login">Log In</a></li>
+						<li><a href="<?= base_url() ?>admin/login" class="login">Log In</a></li>
 					<? endif; ?>
 				</ul>
 			</nav>

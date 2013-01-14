@@ -1,4 +1,30 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php
+/**
+ * CodeIgniter
+ *
+ * An open source application development framework for PHP 5.2.4 or newer
+ *
+ * NOTICE OF LICENSE
+ *
+ * Licensed under the Academic Free License version 3.0
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0) that is
+ * bundled with this package in the files license_afl.txt / license_afl.rst.
+ * It is also available through the world wide web at this URL:
+ * http://opensource.org/licenses/AFL-3.0
+ * If you did not receive a copy of the license and are unable to obtain it
+ * through the world wide web, please send an email to
+ * licensing@ellislab.com so we can send you a copy immediately.
+ *
+ * @package		CodeIgniter
+ * @author		EllisLab Dev Team
+ * @copyright	Copyright (c) 2008 - 2013, EllisLab, Inc. (http://ellislab.com/)
+ * @license		http://opensource.org/licenses/AFL-3.0 Academic Free License (AFL 3.0)
+ * @link		http://codeigniter.com
+ * @since		Version 1.0
+ * @filesource
+ */
+defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Welcome extends CI_Controller {
 
@@ -7,66 +33,19 @@ class Welcome extends CI_Controller {
 	 *
 	 * Maps to the following URL
 	 * 		http://example.com/index.php/welcome
-	 *	- or -  
+	 *	- or -
 	 * 		http://example.com/index.php/welcome/index
 	 *	- or -
-	 * Since this controller is set as the default controller in 
+	 * Since this controller is set as the default controller in
 	 * config/routes.php, it's displayed at http://example.com/
 	 *
 	 * So any other public methods not prefixed with an underscore will
 	 * map to /index.php/welcome/<method_name>
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
-	function Main()
+	public function index()
 	{
-		parent::Controller();
-		$this->load->model('user_model');
-	}
-	
-	function login()
-	{
-		$this->load->model('user_model');
-		$this->form_validation->set_rules('userEmail', 'email', 'trim|required|valid_email|callback__check_login');
-		$this->form_validation->set_rules('userPassword', 'password', 'trim|required');
-		
-		//if($this->form_validation->run())
-		//{
-			// the form has successfully validated
-			if($this->user_model->Login(array('userEmail' => $this->input->post('userEmail'), 'userPassword' => $this->input->post('userPassword'))))
-			{
-				redirect('users/index');
-			} //redirect('welcome/login');
-		//}
-		
-		$this->load->view('template/template_head');
-		$this->load->view('welcome/welcome_login_form');
-		$this->load->view('template/template_foot');
-	}
-	
-	function logout()
-	{
-		$this->session->sess_destroy();
-		redirect('welcome/index');
-	}
-	
-	function index()
-	{
-		$this->load->view('template/template_head');
-		$this->load->view('welcome/welcome_index');
-		$this->load->view('template/template_foot');
-	}
-	
-	function _check_login($userEmail)
-	{
-		$this->load->model('user_model');
-		if($this->input->post('userPassword'))
-		{
-			$user = $this->user_model->GetUsers(array('userEmail' => $userEmail, 'userPassword' => md5($this->input->post('userPassword'))));
-			if($user) return true;
-		}
-		
-		$this->form_validation->set_message('_check_login', 'Your username / password combination is invalid.');
-		return false;
+		$this->load->view('welcome_message');
 	}
 }
 

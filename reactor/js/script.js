@@ -28,3 +28,27 @@ $(document).ready(function() {
 		
 	$('.dialog').dialog({ autoOpen: false });
 });
+
+$('.join').qtip({
+	content: {
+		text: 'Loading...', // The text to use whilst the AJAX request is loading
+		ajax: {
+			url: 'empty', // this is overridden in the plugin
+			type: 'GET', // POST or GET
+			data: {} // Data to pass along with your request
+		},
+	},
+	position: {
+			my: 'top center',
+			at: 'bottom center'
+	},
+	style: {
+		classes: 'qtip-dark qtip-rounded'
+	}
+});
+
+/*
+
+$(this).attr('ref');
+
+*/
