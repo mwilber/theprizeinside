@@ -1,15 +1,16 @@
 <?php
 
-class Name_Model extends CI_Model
+class Restaurant_Model extends CI_Model
 {
-	var $table = "tblName";
-	var $pk = "nameId";
-	var $ds = "nameTimeStamp";  //Default sortby field 
-	var $rq = "nameLast";		//Required field (you'll need to mod the form validation if there isn't one)
+	var $table = "tblRestaurant";
+	var $pk = "restaurantId";
+	var $ds = "restaurantTimeStamp";  //Default sortby field 
+	var $rq = "restaurantAlias";		//Required field (you'll need to mod the form validation if there isn't one)
 	var $fields = array(
-		 'nameLast' => array('label'=>'Last Name','type'=>'varchar','constraint'=>50),
-		 'nameFirst' => array('label'=>'First Name','type'=>'varchar','constraint'=>50),
-		 'addressId' => array('label'=>'Address','type'=>'int'),
+		 'restaurantAlias' => array('label'=>'Alias','type'=>'varchar','constraint'=>10),
+		 'restaurantName' => array('label'=>'Name','type'=>'varchar','constraint'=>50),
+		 'restaurantUrl' => array('label'=>'Url','type'=>'varchar','constraint'=>200),
+		 'restaurantDataUrl' => array('label'=>'Data Url','type'=>'varchar','constraint'=>200),
 		);
 
 	 	 	 	

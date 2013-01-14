@@ -1,19 +1,23 @@
 <?php
 
-class Address_Model extends CI_Model
+class Checkin_Model extends CI_Model
 {
-	var $table = "tblAddress";
-	var $pk = "addressId";
-	var $ds = "addressTimeStamp";  //Default sortby field 
-	var $rq = "addressStreet";		//Required field (you'll need to mod the form validation if there isn't one)
+	var $table = "tblCheckin";
+	var $pk = "checkinId";
+	var $ds = "checkinTimeStamp";  //Default sortby field 
+	var $rq = "checkinLocation";		//Required field (you'll need to mod the form validation if there isn't one)
 	var $fields = array(
-		 'addressStreet' => array('label'=>'Street','type'=>'varchar','constraint'=>50),
-		 'addressCity' => array('label'=>'City','type'=>'varchar','constraint'=>50),
-		 'addressState' => array('label'=>'State','type'=>'varchar','constraint'=>50),
-		 'addressZIP' => array('label'=>'ZIP','type'=>'varchar','constraint'=>5),
+		 'checkinLocation' => array('label'=>'Location','type'=>'varchar','constraint'=>200),
+		 'checkinLat' => array('label'=>'Lat','type'=>'float','constraint'=>'10,6'),
+		 'checkinLng' => array('label'=>'Lng','type'=>'float','constraint'=>'10,6'),
+		 'checkinComment' => array('label'=>'Comment','type'=>'text'),
+		 'checkinRating' => array('label'=>'Rating','type'=>'int'),
+		 'profileId' => array('label'=>'Profile','type'=>'int'),
+		 'restaurantId' => array('label'=>'Restaurant','type'=>'int'),
+		 'prizeId' => array('label'=>'Prize','type'=>'int'),
 		);
 
-	 	 	 	
+
 							
 	
 	/** Utility Methods **/
