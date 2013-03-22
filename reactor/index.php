@@ -46,7 +46,7 @@
 	switch ($_SERVER["HTTP_HOST"]){
 			case "gibson.loc": define('ENVIRONMENT','development'); break;
 			//TODO enter more environments as needed
-            default : define('ENVIRONMENT', 'production');
+            default : define('ENVIRONMENT', 'development');
     }
 
 /*

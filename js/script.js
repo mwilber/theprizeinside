@@ -1,0 +1,179 @@
+var serviceDirection = new google.maps.DirectionsService();
+var userLocation;
+var restaurants;
+
+var testLocFallbackOn = true
+var mapthumb = {
+	width:'200',
+	height:'100',
+	zoom:'15'
+}
+
+$(document).ready(function(){
+	
+	navigator.geolocation.getCurrentPosition(HandleGeolocationQuery,HandleGeolocationErrors);
+	
+});
+
+
+function GetRest(){
+	$.get('reactor/srvlist/getnames',function(response){
+		console.log(response);
+		restaurants = response;
+		for( idx in restaurants ){
+			GetDistance(idx);
+		}
+	});
+}
+
+
+function GetDistance(pIdx){
+	console.log("Getting Distance for: "+restaurants[pIdx].restaurantName+" ("+restaurants[pIdx].restaurantAlias+")");
+	
+	var searchRequest = {
+		location: userLocation,
+		radius: '50',
+		types: ['food'],
+		rankBy: google.maps.places.RankBy.DISTANCE,
+		query: restaurants[idx].restaurantName,
+		ref: pIdx
+	};
+        	
+	service = new google.maps.places.PlacesService(map);
+	service.textSearch(searchRequest, function (results, status) {
+		if (status == google.maps.places.PlacesServiceStatus.OK) {
+			console.log(results);
+			var i=0;
+			// Going with the first result because that's the closest
+			CalcRoute(results[i].geometry.location.kb+","+results[i].geometry.location.lb, pIdx, results.length);
+		}else{
+			
+		}
+	});
+}
+
+function CalcRoute(pEnd, pIdx, pCt) {
+	var request = {
+		origin:userLocation.lat()+","+userLocation.lng(),
+		destination:pEnd,
+		travelMode: google.maps.TravelMode.DRIVING
+	};
+	serviceDirection.route(request, function(result, status) {
+		console.log(result);
+		if (status == google.maps.DirectionsStatus.OK) {
+			if( restaurants[pIdx].prize[0].prizeName ){
+				var imgurl = "http://maps.googleapis.com/maps/api/staticmap?center="+result.routes[0].legs[0].end_location.kb+","+result.routes[0].legs[0].end_location.lb+"&zoom="+mapthumb.zoom+"&size="+mapthumb.width+"x"+mapthumb.height+"&markers=color:red%7Clabel:*%7C"+result.routes[0].legs[0].end_location.kb+","+result.routes[0].legs[0].end_location.lb+"&sensor=false";
+				var tmpListing = $('<li/>').attr('id',restaurants[pIdx].restaurantAlias).html('<a href="http://maps.google.com/?saddr='+userLocation.lat()+","+userLocation.lng()+'&daddr='+result.routes[0].legs[0].end_address+'" class="" target="_blank""><i class="icon-road"></i>&nbsp;'+restaurants[pIdx].prize[0].prizeName+' ['+restaurants[pIdx].restaurantName+' - <span class="distance">'+result.routes[0].legs[0].distance.text+'</span>]</a><br/>');
+				tmpListing.append($('<img/>').attr('src',imgurl));
+				$('#listlist').append(tmpListing);
+				
+				var items = $('#listlist li').get();
+				items.sort(function(a,b){
+				  var keyA = $(a).find('.distance').text();
+				  var keyB = $(b).find('.distance').text();
+				
+				  if (keyA < keyB) return -1;
+				  if (keyA > keyB) return 1;
+				  return 0;
+				});
+				var ul = $('#listlist');
+				$.each(items, function(i, li){
+				  ul.append(li);
+				});
+			}
+		}
+	});
+}
+
+function HandleGeolocationErrors(error)  
+{  
+    switch(error.code)  
+    {  
+        case error.PERMISSION_DENIED: 
+        	alert("user did not share geolocation data");  
+           	break;  
+  
+		case error.POSITION_UNAVAILABLE: 
+			alert("could not detect current position");  
+			break;  
+  
+		case error.TIMEOUT: 
+ 			alert("retrieving position timed out");  
+			break;  
+  
+		default: 
+			alert("unknown error");  
+			break;  
+	}
+	
+	if( testLocFallbackOn ){
+		// Set a fallback location 40.7406941, -73.9905943 
+		HandleGeolocationQuery({coords:{latitude:40.7406941,longitude:-73.9905943}});
+	}
+}  
+  
+function HandleGeolocationQuery(position){
+	userLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+	DebugOut('user location set: '+position.coords.latitude+', '+position.coords.longitude);
+}
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+//	Utility Functions
+/////////////////////////////////////////////////////////////////////////////
+
+function pausecomp(millis) 
+{
+var date = new Date();
+var curDate = null;
+
+do { curDate = new Date(); } 
+while(curDate-date < millis);
+} 
+
+// If the browser has a console, write to it.
+function DebugOut(newline){
+	try{
+		if (typeof console == "object"){ 
+			console.log(newline);
+		}
+	}catch(err){
+		
+	}
+	
+}
+
+// Open a popup centered on the screen.
+function openpopup(url,name,width,height)
+{
+	// Set up the window attrubutes
+	var attributes = "toolbar=0,location=0,height=" + height;
+	attributes = attributes + ",width=" + width;
+	var leftprop, topprop, screenX, screenY, cursorX, cursorY, padAmt;
+	
+	// Get the clients screen size
+	if(navigator.appName == "Microsoft Internet Explorer") {
+		screenY = screen.height;
+		screenX = screen.width;
+	}else{
+		screenY = window.outerHeight;
+		screenX = window.outerWidth;
+	}
+	
+	// Set the x/y position relative to the center of the screen
+	leftvar = (screenX - width) / 2;
+	rightvar = (screenY - height) / 2;
+	if(navigator.appName == "Microsoft Internet Explorer") {
+		leftprop = leftvar;
+		topprop = rightvar;
+	}else {
+		leftprop = (leftvar - pageXOffset);
+		topprop = (rightvar - pageYOffset);
+	}
+	attributes = attributes + ",left=" + leftprop;
+	attributes = attributes + ",top=" + topprop;
+
+	// Open the window
+	window.open(url,name,attributes)
+}
