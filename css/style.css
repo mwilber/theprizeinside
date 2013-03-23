@@ -1,0 +1,135 @@
+body {
+	background-color: #39230E;
+}
+
+#header {
+	width:100%;
+	min-height: 30px;
+	padding-right: 20px;
+	padding-left: 20px;
+	background-color: #D12828;
+	background-image: -moz-linear-gradient(top, #D12828, #BE2828);
+	background-image: -ms-linear-gradient(top, #D12828, #BE2828);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#D12828), to(#BE2828));
+	background-image: -webkit-linear-gradient(top, #D12828, #BE2828);
+	background-image: -o-linear-gradient(top, #D12828, #BE2828);
+	background-image: linear-gradient(top, #D12828, #BE2828);
+	background-repeat: repeat-x;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	filter: progid:dximagetransform.microsoft.gradient(startColorstr='#D12828', endColorstr='#BE2828', GradientType=0);
+	-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+	-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+	font-family: 'Vollkorn', serif;
+	font-size: 36px;
+	color: #FEF500;
+	text-shadow: 2px 1px -1px #E58620;
+	padding-top: 15px;
+}
+
+#likegroup {
+	float: right;
+	position: relative;
+	z-index: 200;
+	width: 300px;
+}
+
+#likegroup .fb-like {
+	float: left;
+	margin-top: -12px;
+	margin-right: 18px;
+}
+
+#likegroup .fb-like iframe{
+	margin-top: -3px;	
+}
+
+#listlist li{
+	float:left;
+	width:86%;
+	margin:20px 5% 5px 5%;
+	background-color: #533F20;
+	border-color: #533F20;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-o-border-radius: 5px;
+	border-radius: 5px;
+	padding: 5px 2%;
+}
+
+#listlist li .btn{
+	padding-top: 15px;
+	height: 30px;
+}
+
+#btn_showall{
+	display:none;
+}
+
+.details{
+	display:none;
+	float: left;
+	clear: both;
+	width: 96%;
+	margin: 10px 2%;
+}
+
+.map{
+	display:block;
+	float:left;
+	clear:right;
+}
+
+.btn.showall{
+	display:block;
+	float:right;
+}
+
+.address{
+	float:left;
+	color: #FEF500;
+	font-size: 18px;
+	margin-right: 50px;
+}
+
+.prize{
+	display: block;
+	float: left;
+	clear: left;
+	margin: 0px;
+	font-size: 25px;
+	line-height: 25px;
+	margin-bottom:0px;
+	color:#FEF500;
+	font-weight: normal;
+}
+
+.restaurant{
+	display: block;
+	float: left;
+	clear: left;
+	margin-right: 10px;
+	font-weight: bold;
+	color: #c2b50b;
+	font-size: 18px;
+}
+
+.distance{
+	display: block;
+	float: left;
+	color: #c2b50b;
+	font-size: 24px;
+}
+
+.directions{
+	display:block;
+	float:right;
+}
+
+.detailsbtn{
+	display:block;
+	float:right;
+	margin-right:5px;
+}

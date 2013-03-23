@@ -8,6 +8,7 @@ class Restaurant_Model extends CI_Model
 	var $rq = "restaurantAlias";		//Required field (you'll need to mod the form validation if there isn't one)
 	var $fields = array(
 		 'restaurantAlias' => array('label'=>'Alias','type'=>'varchar','constraint'=>10),
+		 'restaurantColor' => array('label'=>'Color','type'=>'varchar','constraint'=>10),
 		 'restaurantName' => array('label'=>'Name','type'=>'varchar','constraint'=>50),
 		 'restaurantUrl' => array('label'=>'Url','type'=>'varchar','constraint'=>200),
 		 'restaurantDataUrl' => array('label'=>'Data Url','type'=>'varchar','constraint'=>200),

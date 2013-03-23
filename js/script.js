@@ -1,16 +1,25 @@
 var serviceDirection = new google.maps.DirectionsService();
 var userLocation;
 var restaurants;
+var overmap;
 
 var testLocFallbackOn = true
 var mapthumb = {
 	width:'200',
 	height:'100',
 	zoom:'15'
-}
+};
+var mapDetailZoomLevel = 15;
+var bounds = new google.maps.LatLngBounds();
 
 $(document).ready(function(){
 	
+	//if( !isMobile ){
+		FB.init({appId: FBconfig.app.id, status : true, cookie: true, xfbml : true});
+		SetFrame();
+	//}
+	
+	InitMap();
 	navigator.geolocation.getCurrentPosition(HandleGeolocationQuery,HandleGeolocationErrors);
 	
 });
@@ -62,15 +71,38 @@ function CalcRoute(pEnd, pIdx, pCt) {
 		console.log(result);
 		if (status == google.maps.DirectionsStatus.OK) {
 			if( restaurants[pIdx].prize[0].prizeName ){
+				restaurants[pIdx].location = new google.maps.LatLng(result.routes[0].legs[0].end_location.kb, result.routes[0].legs[0].end_location.lb);
 				var imgurl = "http://maps.googleapis.com/maps/api/staticmap?center="+result.routes[0].legs[0].end_location.kb+","+result.routes[0].legs[0].end_location.lb+"&zoom="+mapthumb.zoom+"&size="+mapthumb.width+"x"+mapthumb.height+"&markers=color:red%7Clabel:*%7C"+result.routes[0].legs[0].end_location.kb+","+result.routes[0].legs[0].end_location.lb+"&sensor=false";
-				var tmpListing = $('<li/>').attr('id',restaurants[pIdx].restaurantAlias).html('<a href="http://maps.google.com/?saddr='+userLocation.lat()+","+userLocation.lng()+'&daddr='+result.routes[0].legs[0].end_address+'" class="" target="_blank""><i class="icon-road"></i>&nbsp;'+restaurants[pIdx].prize[0].prizeName+' ['+restaurants[pIdx].restaurantName+' - <span class="distance">'+result.routes[0].legs[0].distance.text+'</span>]</a><br/>');
-				tmpListing.append($('<img/>').attr('src',imgurl));
+				var maplink = 'http://maps.google.com/?saddr='+userLocation.lat()+","+userLocation.lng()+'&daddr='+result.routes[0].legs[0].end_address;
+				
+				var tmpListing = $('<li/>').attr('id',restaurants[pIdx].restaurantAlias).click(function(){GetDetails(pIdx);});
+				
+				tmpListing.append($('<a/>').addClass('directions').addClass('btn').attr('href',maplink).attr('target','_blank').append($('<i/>').addClass('icon-road')).append('&nbsp;Get Directions'));
+				//tmpListing.append($('<a/>').addClass('detailsbtn').addClass('btn').attr('href','#').attr('target','_blank').append($('<i/>').addClass('icon-info-sign')).append('&nbsp;Details').click(function(){GetDetails(pIdx); return false;}));
+				
+				var tmpName = "";
+				for(idx=0; idx<restaurants[pIdx].prize.length; idx++){
+					if(idx > 0) tmpName += " / ";
+					tmpName += restaurants[pIdx].prize[idx].prizeName;
+				}
+				tmpListing.append($('<h2/>').addClass('prize').append($('<img/>').attr('src','http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|'+restaurants[pIdx].restaurantColor)).append('&nbsp;'+tmpName));
+				tmpListing.append($('<div/>').addClass('restaurant').html(restaurants[pIdx].restaurantName));
+				tmpListing.append($('<div/>').addClass('distance').html(result.routes[0].legs[0].distance.text));
+				
+				// Prize details here
+				var tmpDetails = $('<div/>').addClass('details');
+				tmpDetails.append($('<div/>').addClass('address').html(result.routes[0].legs[0].end_address.replace(',','<br/>')));
+				//tmpDetails.append('<a href="#" onclick="GetHome(); return false;" class="btn showall"><i class="icon-remove"></i></a>');
+				tmpDetails.append($('<img/>').attr('src',imgurl).addClass('map'));
+				
+				tmpListing.append(tmpDetails);
+				
 				$('#listlist').append(tmpListing);
 				
 				var items = $('#listlist li').get();
 				items.sort(function(a,b){
-				  var keyA = $(a).find('.distance').text();
-				  var keyB = $(b).find('.distance').text();
+				  var keyA = parseFloat($(a).find('.distance').text());
+				  var keyB = parseFloat($(b).find('.distance').text());
 				
 				  if (keyA < keyB) return -1;
 				  if (keyA > keyB) return 1;
@@ -80,9 +112,48 @@ function CalcRoute(pEnd, pIdx, pCt) {
 				$.each(items, function(i, li){
 				  ul.append(li);
 				});
+				
+				// Add map marker
+				
+				//give the marker a color
+			    var pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + restaurants[pIdx].restaurantColor,
+			        new google.maps.Size(21, 34),
+			        new google.maps.Point(0,0),
+			        new google.maps.Point(10, 34));
+				var tmpMarker = new google.maps.Marker({
+			        map: overmap, 
+			        icon: pinImage,
+			        position: restaurants[pIdx].location,
+					title: restaurants[pIdx].restaurantAlias
+			    });
+//			    google.maps.event.addListener(tmpMarker, 'click', function() {
+//		          overmap.setZoom(mapDetailZoomLevel);
+//		          overmap.setCenter(tmpMarker.getPosition());
+//		          $('#listlist li').hide();
+//		          $('#listlist #'+tmpMarker.title).show();
+//		        });
+				bounds.extend(restaurants[pIdx].location);
+				overmap.fitBounds(bounds);
 			}
 		}
 	});
+}
+
+function GetDetails(pIdx){
+	//
+	$('#listlist li .details').hide();
+	$('#listlist #'+restaurants[pIdx].restaurantAlias).show().find('.details').show();
+	//$('#btn_showall').show();
+	overmap.setZoom(mapDetailZoomLevel);
+	overmap.setCenter(restaurants[pIdx].location);
+}
+
+function GetHome(){
+	overmap.fitBounds(bounds); 
+	$('#listlist li .details').hide(); 
+	$('#listlist li').show(); 
+	$(this).hide(); 
+	return false;
 }
 
 function HandleGeolocationErrors(error)  
@@ -115,6 +186,45 @@ function HandleGeolocationErrors(error)
 function HandleGeolocationQuery(position){
 	userLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
 	DebugOut('user location set: '+position.coords.latitude+', '+position.coords.longitude);
+	GetRest();
+}
+
+
+
+function InitMap(){
+    var latlng = new google.maps.LatLng(40.6687125,-73.5270709);
+    var myOptions = {
+      zoom: 15,
+      center: latlng,
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+      scrollwheel: false,
+      streetViewControl: false,
+      disableDefaultUI: true
+    }  
+    
+    overmap = new google.maps.Map(document.getElementById("overmap"), myOptions);
+}
+
+
+
+
+function fbshare(pTitle){
+	if( isMobile ){
+		var url = "http://www.facebook.com/sharer.php?u="+escape(social['link']);
+		openpopup(url,'gplus',550,450);
+	}else{
+		WallPost(social['link'] , social['title'] , 'Check out what\'s in the '+pTitle+' kids meal at ThePrizeInside.com' , social['image'] , '');
+	}
+}
+
+function twshare(pTitle){
+	var twcontent = escape('Check out what\'s in the '+pTitle+' kids meal at ThePrizeInside')+" "+escape(social['link']);
+	openpopup('http://twitter.com/home?status='+twcontent,'tweeters',550,450);
+}
+
+function gpshare(pTitle){
+	var url = "https://plus.google.com/share?url="+escape(social['link'])+"&description="+escape('Check out what\'s in the '+pTitle+' kids meal at ThePrizeInside.com');
+	openpopup(url,'gplus',550,450);
 }
 
 

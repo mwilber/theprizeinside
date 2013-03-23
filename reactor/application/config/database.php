@@ -81,10 +81,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'theprizeinside',
-	'password' => 'theprizeinside',
-	'database' => 'theprizeinside_dev',
+	'hostname' => 'us-mm-auto-dca-01.cleardb.com',
+	'username' => 'b353563f1ca329',
+	'password' => '597be4a7',
+	'database' => 'heroku_00205f09df83a58',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => TRUE,
