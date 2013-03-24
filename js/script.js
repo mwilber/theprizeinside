@@ -10,6 +10,7 @@ var mapthumb = {
 	zoom:'15'
 };
 var mapDetailZoomLevel = 15;
+var mapYOffset = -30;
 var bounds = new google.maps.LatLngBounds();
 
 $(document).ready(function(){
@@ -136,26 +137,34 @@ function CalcRoute(pEnd, pIdx, pCt) {
 //		        });
 				bounds.extend(restaurants[pIdx].location);
 				overmap.fitBounds(bounds);
-				overmap.panBy(0, -60);
+				overmap.panBy(0, mapYOffset);
 			}
 		}
 	});
 }
 
 function GetDetails(pIdx){
-	//
-	$('#listlist li .details').hide();
-	$('#listlist #'+restaurants[pIdx].restaurantAlias).show().find('.details').show();
-	//$('#btn_showall').show();
-	overmap.setZoom(mapDetailZoomLevel);
-	overmap.setCenter(restaurants[pIdx].location);
+	if( $('#listlist #'+restaurants[pIdx].restaurantAlias+' .details').css('display') == 'none' ){
+		$('#listlist li .details').hide();
+		$('#listlist #'+restaurants[pIdx].restaurantAlias).show().find('.details').show();
+		var container = $('#listlist');
+		var scrollTo = $('#listlist #'+restaurants[pIdx].restaurantAlias);
+		container.animate({
+			scrollTop: scrollTo.offset().top - container.offset().top + container.scrollTop() - 20
+		});
+		//$('#btn_showall').show();
+		overmap.setZoom(mapDetailZoomLevel);
+		overmap.setCenter(restaurants[pIdx].location);
+		overmap.panBy(0, mapYOffset);
+	}else{
+		GetHome();
+	}
 }
 
 function GetHome(){
 	overmap.fitBounds(bounds); 
 	$('#listlist li .details').hide(); 
 	$('#listlist li').show(); 
-	$(this).hide(); 
 	return false;
 }
 
