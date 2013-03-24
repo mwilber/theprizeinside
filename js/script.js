@@ -136,6 +136,7 @@ function CalcRoute(pEnd, pIdx, pCt) {
 //		        });
 				bounds.extend(restaurants[pIdx].location);
 				overmap.fitBounds(bounds);
+				overmap.panBy(0, -60);
 			}
 		}
 	});

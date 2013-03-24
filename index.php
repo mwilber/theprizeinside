@@ -45,12 +45,10 @@
     	</div>
     	<div class="clearfix"></div>
   	</div>
-    <div id="">
-    	<div id="overmap" style="width:100%; height:300px;"></div>
-    	<ul id="listlist" class="unstyled">
-    		
-    	</ul>
-    </div>
+	<div id="overmap"></div>
+	<ul id="listlist" class="unstyled">
+		
+	</ul>
     <div id="fb-root"></div>
 	<div id="map"></div>
     
