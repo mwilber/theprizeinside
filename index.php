@@ -36,7 +36,8 @@
   </head>
   <body>
   	<div id="header">
-  		The Prize Inside
+  		<img id="logo" src="img/logo.png"/>
+  		<div id="title">The Prize Inside</div>
   		<div id="likegroup">
       		<div class="fb-like" data-href="http://theprizeinside.com/" data-send="false" data-layout="button_count" data-width="90" data-show-faces="false"></div>
 			<g:plusone size="medium" href="http://theprizeinside.com/"></g:plusone>

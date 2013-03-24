@@ -72,22 +72,24 @@ function CalcRoute(pEnd, pIdx, pCt) {
 		if (status == google.maps.DirectionsStatus.OK) {
 			if( restaurants[pIdx].prize[0].prizeName ){
 				restaurants[pIdx].location = new google.maps.LatLng(result.routes[0].legs[0].end_location.kb, result.routes[0].legs[0].end_location.lb);
-				var imgurl = "http://maps.googleapis.com/maps/api/staticmap?center="+result.routes[0].legs[0].end_location.kb+","+result.routes[0].legs[0].end_location.lb+"&zoom="+mapthumb.zoom+"&size="+mapthumb.width+"x"+mapthumb.height+"&markers=color:red%7Clabel:*%7C"+result.routes[0].legs[0].end_location.kb+","+result.routes[0].legs[0].end_location.lb+"&sensor=false";
+				var imgurl = "http://maps.googleapis.com/maps/api/staticmap?center="+result.routes[0].legs[0].end_location.kb+","+result.routes[0].legs[0].end_location.lb+"&zoom="+mapthumb.zoom+"&size="+mapthumb.width+"x"+mapthumb.height+"&markers=color:0x"+restaurants[pIdx].restaurantColor+"%7Clabel:*%7C"+result.routes[0].legs[0].end_location.kb+","+result.routes[0].legs[0].end_location.lb+"&sensor=false";
 				var maplink = 'http://maps.google.com/?saddr='+userLocation.lat()+","+userLocation.lng()+'&daddr='+result.routes[0].legs[0].end_address;
 				
-				var tmpListing = $('<li/>').attr('id',restaurants[pIdx].restaurantAlias).click(function(){GetDetails(pIdx);});
-				
-				tmpListing.append($('<a/>').addClass('directions').addClass('btn').attr('href',maplink).attr('target','_blank').append($('<i/>').addClass('icon-road')).append('&nbsp;Get Directions'));
-				//tmpListing.append($('<a/>').addClass('detailsbtn').addClass('btn').attr('href','#').attr('target','_blank').append($('<i/>').addClass('icon-info-sign')).append('&nbsp;Details').click(function(){GetDetails(pIdx); return false;}));
+				var tmpListing = $('<li/>').attr('id',restaurants[pIdx].restaurantAlias).css('backgroundColor','#'+restaurants[pIdx].restaurantColor).click(function(){GetDetails(pIdx);});
 				
 				var tmpName = "";
 				for(idx=0; idx<restaurants[pIdx].prize.length; idx++){
 					if(idx > 0) tmpName += " / ";
 					tmpName += restaurants[pIdx].prize[idx].prizeName;
 				}
-				tmpListing.append($('<h2/>').addClass('prize').append($('<img/>').attr('src','http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|'+restaurants[pIdx].restaurantColor)).append('&nbsp;'+tmpName));
+				tmpListing.append($('<h2/>').addClass('prize').append(tmpName));
+				//.append($('<img/>').attr('src','http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|'+restaurants[pIdx].restaurantColor))
 				tmpListing.append($('<div/>').addClass('restaurant').html(restaurants[pIdx].restaurantName));
 				tmpListing.append($('<div/>').addClass('distance').html(result.routes[0].legs[0].distance.text));
+				
+				tmpListing.append($('<a/>').addClass('directions').addClass('btn').attr('href',maplink).attr('target','_blank').append($('<i/>').addClass('icon-road')).append('&nbsp;Get Directions'));
+				//tmpListing.append($('<a/>').addClass('detailsbtn').addClass('btn').attr('href','#').attr('target','_blank').append($('<i/>').addClass('icon-info-sign')).append('&nbsp;Details').click(function(){GetDetails(pIdx); return false;}));
+				
 				
 				// Prize details here
 				var tmpDetails = $('<div/>').addClass('details');

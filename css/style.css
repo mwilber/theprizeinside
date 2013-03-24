@@ -1,24 +1,24 @@
 body {
-	background-color: #39230E;
+	background-color: #eee;
 }
 
 #header {
-	width:100%;
+	width: 90%;
 	min-height: 30px;
-	padding-right: 20px;
-	padding-left: 20px;
+	padding-right: 5%;
+	padding-left: 5%;
 	background-color: #D12828;
-	background-image: -moz-linear-gradient(top, #D12828, #BE2828);
-	background-image: -ms-linear-gradient(top, #D12828, #BE2828);
-	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#D12828), to(#BE2828));
-	background-image: -webkit-linear-gradient(top, #D12828, #BE2828);
-	background-image: -o-linear-gradient(top, #D12828, #BE2828);
-	background-image: linear-gradient(top, #D12828, #BE2828);
+	background-image: -moz-linear-gradient(top, #533F20, #39230E);
+	background-image: -ms-linear-gradient(top, #533F20, #39230E);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#533F20), to(#39230E));
+	background-image: -webkit-linear-gradient(top, #533F20, #39230E);
+	background-image: -o-linear-gradient(top, #533F20, #39230E);
+	background-image: linear-gradient(top, #533F20, #39230E);
 	background-repeat: repeat-x;
 	-webkit-border-radius: 4px;
 	-moz-border-radius: 4px;
 	border-radius: 4px;
-	filter: progid:dximagetransform.microsoft.gradient(startColorstr='#D12828', endColorstr='#BE2828', GradientType=0);
+	filter: progid:dximagetransform.microsoft.gradient(startColorstr='#533F20', endColorstr='#39230E', GradientType=0);
 	-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
 	-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
 	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
@@ -27,6 +27,23 @@ body {
 	color: #FEF500;
 	text-shadow: 2px 1px -1px #E58620;
 	padding-top: 15px;
+}
+
+#logo{
+	float: left;
+	margin-top: -25px;
+	margin-bottom: -15px;
+	position: absolute;
+	z-index: 1000;
+	margin-right:10px;
+}
+
+#title{
+	float: left;
+	margin-left: 75px;
+	font-weight: bold;
+	font-size: 30px;
+	margin-top: 2px;
 }
 
 #likegroup {
@@ -46,12 +63,19 @@ body {
 	margin-top: -3px;	
 }
 
+#overmap{
+	border-bottom:solid 1px #ccc;
+	 box-shadow: 0px 1px 12px rgba(0, 0, 0, 0.99);
+    -moz-box-shadow: 0px 1px 12px rgba(0, 0, 0, 0.99);
+    -webkit-box-shadow: 0px 1px 12px rgba(0, 0, 0, 0.99);
+}
+
 #listlist li{
 	float:left;
 	width:86%;
 	margin:20px 5% 5px 5%;
-	background-color: #533F20;
-	border-color: #533F20;
+	background-color: #666;
+	border: solid 1px #999;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	-o-border-radius: 5px;
@@ -89,7 +113,7 @@ body {
 
 .address{
 	float:left;
-	color: #FEF500;
+	color: #000;
 	font-size: 18px;
 	margin-right: 50px;
 }
@@ -102,7 +126,7 @@ body {
 	font-size: 25px;
 	line-height: 25px;
 	margin-bottom:0px;
-	color:#FEF500;
+	color:#000;
 	font-weight: normal;
 }
 
@@ -112,14 +136,14 @@ body {
 	clear: left;
 	margin-right: 10px;
 	font-weight: bold;
-	color: #c2b50b;
+	color: #666;
 	font-size: 18px;
 }
 
 .distance{
 	display: block;
 	float: left;
-	color: #c2b50b;
+	color: #666;
 	font-size: 24px;
 }
 
@@ -132,4 +156,36 @@ body {
 	display:block;
 	float:right;
 	margin-right:5px;
+}
+
+/* Custom sizes
+============================================================================================== */
+@media screen and (max-width: 480px) {
+ /* Add your styles for devices with a maximum width of 480 */
+}
+
+@media screen and (max-width: 768px) {
+ /* Add your styles for devices with a maximum width of 768 */
+	#likegroup{
+		clear:both;
+		margin-top:20px;
+		margin-bottom:10px;
+	}
+}
+
+@media screen and (max-width: 320px) {
+ /* Add your styles for devices with a maximum width of 320 */
+}
+
+@media screen and (max-width: 1024px) {
+ /* Add your styles for devices with a maximum width of 1024 */
+}
+
+/* iPads (landscape) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
+   /* Add your styles for devices with a maximum width of 1024 */
+}
+/* iPads (portrait) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
+  /* Add your styles for devices with a maximum width of 768 */
 }
