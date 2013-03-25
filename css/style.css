@@ -259,6 +259,11 @@ html, body {
 
 @media screen and (max-width: 480px) {
  /* Add your styles for devices with a maximum width of 480 */
+
+	#title{
+		font-size: 28px;
+	}
+
 	#overmap{
 		height:36%;
 	}

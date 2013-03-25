@@ -97,7 +97,8 @@ function CalcRoute(pEnd, pIdx, pCt) {
 				tmpDetails.append($('<a/>').addClass('extlink').addClass('btn').attr('href',restaurants[pIdx].restaurantUrl).attr('target','_blank').append($('<i/>').addClass('icon-globe')).append('&nbsp;More Info'));
 				tmpDetails.append($('<div/>').addClass('address').html(result.routes[0].legs[0].end_address.replace(',','<br/>')));
 				//tmpDetails.append('<a href="#" onclick="GetHome(); return false;" class="btn showall"><i class="icon-remove"></i></a>');
-				tmpDetails.append($('<img/>').attr('src',imgurl).addClass('map'));
+				// mini map
+				//tmpDetails.append($('<img/>').attr('src',imgurl).addClass('map'));
 				
 				tmpListing.append(tmpDetails);
 				
