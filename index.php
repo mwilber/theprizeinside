@@ -19,6 +19,7 @@
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<link rel="apple-touch-startup-image" href="/startup.png">
 	<link href='http://fonts.googleapis.com/css?family=Vollkorn:400,700' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Ultra' rel='stylesheet' type='text/css'>
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link href="css/style.css" rel="stylesheet" media="screen">
