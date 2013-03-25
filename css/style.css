@@ -1,5 +1,5 @@
 html, body {
-	background-color: #eee;
+	background-color: #e8e0d9;
 	height:100%;
 	min-height:100%;
 }
@@ -17,9 +17,6 @@ html, body {
 	background-image: -o-linear-gradient(top, #533F20, #39230E);
 	background-image: linear-gradient(top, #533F20, #39230E);
 	background-repeat: repeat-x;
-	-webkit-border-radius: 4px;
-	-moz-border-radius: 4px;
-	border-radius: 4px;
 	filter: progid:dximagetransform.microsoft.gradient(startColorstr='#533F20', endColorstr='#39230E', GradientType=0);
 	-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
 	-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
@@ -35,7 +32,7 @@ html, body {
 
 #logo{
 	float: left;
-	margin-top: -25px;
+	margin-top: -21px;
 	margin-bottom: -15px;
 	position: absolute;
 	z-index: 1000;
@@ -57,7 +54,7 @@ html, body {
 	width: 300px;
 }
 
-#likegroup .fb-like {
+#header #likegroup .fb-like {
 	float: left;
 	margin-top: -12px;
 	margin-right: 18px;
@@ -79,7 +76,8 @@ html, body {
 
 #listlist{
 	width:100%;
-	height:60%;
+	height:56%;
+	margin: 0px;
 	overflow-x:hidden;
 	overflow-y:scroll;
 }
@@ -89,7 +87,7 @@ html, body {
 	width:86%;
 	margin:20px 5% 5px 5%;
 	background-color: #666;
-	border: solid 1px #999;
+	border: solid 1px #39230E;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	-o-border-radius: 5px;
@@ -127,7 +125,7 @@ html, body {
 
 .address{
 	float:left;
-	color: #000;
+	color: #39230E;
 	font-size: 18px;
 	margin-right: 50px;
 }
@@ -140,7 +138,7 @@ html, body {
 	font-size: 25px;
 	line-height: 25px;
 	margin-bottom:0px;
-	color:#000;
+	color:#39230E;
 	font-weight: normal;
 }
 
@@ -150,14 +148,14 @@ html, body {
 	clear: left;
 	margin-right: 10px;
 	font-weight: bold;
-	color: #666;
+	color: #533F20;
 	font-size: 18px;
 }
 
 .distance{
 	display: block;
 	float: left;
-	color: #666;
+	color: #533F20;
 	font-size: 24px;
 }
 
@@ -166,24 +164,73 @@ html, body {
 	float:right;
 }
 
+#listlist li .btn.extlink{
+	display:block;
+	float:right;
+	margin-top:0px;
+}
+
 .detailsbtn{
 	display:block;
 	float:right;
 	margin-right:5px;
 }
 
+#footer{
+	width:100%;
+	height:4%;
+	margin: 0px;
+	overflow:hidden;
+	background-color: #D12828;
+	background-image: -moz-linear-gradient(top, #533F20, #39230E);
+	background-image: -ms-linear-gradient(top, #533F20, #39230E);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#533F20), to(#39230E));
+	background-image: -webkit-linear-gradient(top, #533F20, #39230E);
+	background-image: -o-linear-gradient(top, #533F20, #39230E);
+	background-image: linear-gradient(top, #533F20, #39230E);
+	background-repeat: repeat-x;
+	filter: progid:dximagetransform.microsoft.gradient(startColorstr='#533F20', endColorstr='#39230E', GradientType=0);
+}
+
+#footer #gzlink{
+	float:left;
+	text-align: right;
+	font-family: 'Vollkorn', serif;
+	font-size:18px;
+	color: #FEF500;
+	display: block;
+	margin: 1% 0% 0% 3%;
+}
+
+#footer #likegroup{
+	display:none;
+	margin-top:2%;
+}
+
+#footers {
+	width: 90%;
+	height: 4%;
+	padding-right: 5%;
+	padding-left: 5%;
+	-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+	-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+	font-family: 'Vollkorn', serif;
+	font-size: 36px;
+	
+	text-shadow: 2px 1px -1px #E58620;
+	padding-top: 15px;
+	z-index: 999;
+}
+
+
 /* Custom sizes
 ============================================================================================== */
-@media screen and (max-width: 480px) {
- /* Add your styles for devices with a maximum width of 480 */
-	#likegroup{
-		display:none;
-	}
-}
 
 @media screen and (max-width: 768px) {
  /* Add your styles for devices with a maximum width of 768 */
-	#likegroup{
+	#header #likegroup{
+		display:none;
 		clear:both;
 		margin-top:20px;
 		margin-bottom:10px;
@@ -191,6 +238,50 @@ html, body {
 	
 	#listlist li .btn{
 		margin-top:20px;
+	}
+	
+	#overmap{
+		height:38%;
+	}
+	
+	#footer{
+		height:6%;
+	}
+	
+	#footer #likegroup{
+		display:block;
+	}
+	
+	#footer #gzlink{
+		margin-top:3%;
+	}
+}
+
+@media screen and (max-width: 480px) {
+ /* Add your styles for devices with a maximum width of 480 */
+	#overmap{
+		height:36%;
+	}
+	
+	#listlist{
+		height:52%;
+	}
+	
+	.address {
+		font-size: 12px;
+		line-height: 14px;
+		margin-right: 0px;
+	}
+	
+	#footer{
+		height:12%;
+	}
+	
+	#header #likegroup{
+		display:none;
+	}
+	#footer #gzlink{
+		margin-top:1%;
 	}
 }
 
