@@ -97,8 +97,8 @@ html, body {
 }
 
 #listlist li .btn{
-	padding-top: 15px;
-	height: 30px;
+	padding-top: 8px;
+	height: 25px;
 }
 
 #btn_showall{
@@ -264,6 +264,10 @@ html, body {
 		width: 96%;
 		padding-right: 2%;
 		padding-left: 2%;
+	}
+	
+	#title{
+		font-size: 70%;;
 	}
 
 	#overmap{

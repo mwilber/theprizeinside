@@ -21,9 +21,13 @@ $(document).ready(function(){
 	//}
 	
 	InitMap();
-	navigator.geolocation.getCurrentPosition(HandleGeolocationQuery,HandleGeolocationErrors);
+	QueryLocation();
 	
 });
+
+function QueryLocation(){
+	navigator.geolocation.getCurrentPosition(HandleGeolocationQuery,HandleGeolocationErrors);
+}
 
 
 function GetRest(){
@@ -173,7 +177,9 @@ function GetHome(){
 
 function HandleGeolocationErrors(error)  
 {  
-    switch(error.code)  
+	
+	$('#geoModal').modal('show');
+ /*   switch(error.code)  
     {  
         case error.PERMISSION_DENIED: 
         	alert("user did not share geolocation data");  
@@ -190,7 +196,7 @@ function HandleGeolocationErrors(error)
 		default: 
 			alert("unknown error");  
 			break;  
-	}
+	}*/
 	
 	if( testLocFallbackOn ){
 		// Set a fallback location 40.7406941, -73.9905943 

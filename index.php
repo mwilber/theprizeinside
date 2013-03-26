@@ -47,6 +47,19 @@
     	<div class="clearfix"></div>
   	</div>
 	<div id="overmap"></div>
+	<div id="geoModal" class="modal hide fade">
+	  <div class="modal-header">
+	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	    <h3>Could Not Determine Your Location</h3>
+	  </div>
+	  <div class="modal-body">
+	    <p>The Prize Inside uses your location to display nearby fast food restaurants. You may continue to use the site however, for the optimal experience, you should use a browser that is location aware and grant The Prize Inside permission to your location. Location information provided to The Prize Inside is used directly in your browser and not stored in any form.</p>
+	  </div>
+	  <!--<div class="modal-footer">
+	    <a href="#" class="btn" onclick="$('#geoModal').modal('hide');">Close</a>
+	    <a href="#" class="btn btn-primary" onclick="QueryLocation();">Get Location</a>
+	  </div>-->
+	</div>
 	<ul id="listlist" class="unstyled">
 		
 	</ul>
