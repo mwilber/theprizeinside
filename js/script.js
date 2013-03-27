@@ -80,7 +80,7 @@ function CalcRoute(pEnd, pIdx, pCt) {
 				var imgurl = "http://maps.googleapis.com/maps/api/staticmap?center="+result.routes[0].legs[0].end_location.kb+","+result.routes[0].legs[0].end_location.lb+"&zoom="+mapthumb.zoom+"&size="+mapthumb.width+"x"+mapthumb.height+"&markers=color:0x"+restaurants[pIdx].restaurantColor+"%7Clabel:*%7C"+result.routes[0].legs[0].end_location.kb+","+result.routes[0].legs[0].end_location.lb+"&sensor=false";
 				var maplink = 'http://maps.google.com/?saddr='+userLocation.lat()+","+userLocation.lng()+'&daddr='+result.routes[0].legs[0].end_address;
 				
-				var tmpListing = $('<li/>').attr('id',restaurants[pIdx].restaurantAlias).css('backgroundColor','#'+restaurants[pIdx].restaurantColor).click(function(){GetDetails(pIdx);});
+				var tmpListing = $('<li/>').attr('id',restaurants[pIdx].restaurantAlias).addClass('listing').css('backgroundColor','#'+restaurants[pIdx].restaurantColor).click(function(){/*GetDetails(pIdx);*/});
 				
 				var tmpName = "";
 				for(idx=0; idx<restaurants[pIdx].prize.length; idx++){
@@ -92,17 +92,26 @@ function CalcRoute(pEnd, pIdx, pCt) {
 				tmpListing.append($('<div/>').addClass('restaurant').html(restaurants[pIdx].restaurantName));
 				tmpListing.append($('<div/>').addClass('distance').html(result.routes[0].legs[0].distance.text));
 				
-				tmpListing.append($('<a/>').addClass('directions').addClass('btn').attr('href',maplink).attr('target','_blank').append($('<i/>').addClass('icon-road')).append('&nbsp;Get Directions'));
 				//tmpListing.append($('<a/>').addClass('detailsbtn').addClass('btn').attr('href','#').attr('target','_blank').append($('<i/>').addClass('icon-info-sign')).append('&nbsp;Details').click(function(){GetDetails(pIdx); return false;}));
+				// Share dropdown
+				var shareGroup = $('<div/>').addClass('btn-group').addClass('socialgroup');
+				
+				shareGroup.append($('<a/>').attr('href','#').addClass('btn').append($('<i/>').addClass('icon-twitter')).click(function(){twshare(restaurants[pIdx].restaurantName);}));
+				shareGroup.append($('<a/>').attr('href','#').addClass('btn').append($('<i/>').addClass('icon-facebook')).click(function(){fbshare(restaurants[pIdx].restaurantName);}));
+				//shareDropdown.append($('<a/>').attr('href','#').addClass('btn').append($('<i/>').addClass('icon-google-plus')).click(function(){gpshare(restaurants[pIdx].restaurantName);}));
+				
+				var toolGroup = $('<div/>').addClass('btn-group').addClass('toolgroup');
+				toolGroup.append($('<a/>').addClass('extlink').addClass('btn').attr('href',restaurants[pIdx].restaurantUrl).attr('target','_blank').append($('<i/>').addClass('icon-globe')).append('&nbsp;Website'));
+				toolGroup.append($('<a/>').addClass('directions').addClass('btn').attr('href',maplink).attr('target','_blank').append($('<i/>').addClass('icon-road')).append('&nbsp;Directions'));
+				toolGroup.append($('<a/>').attr('href','#').addClass('btndetails').addClass('btn').append($('<i/>').addClass('icon-zoom-in')).click(function(){GetDetails(pIdx);}));
+				
+				tmpListing.append(toolGroup);
+				tmpListing.append(shareGroup);
 				
 				
 				// Prize details here
 				var tmpDetails = $('<div/>').addClass('details');
-				tmpDetails.append($('<a/>').addClass('extlink').addClass('btn').attr('href',restaurants[pIdx].restaurantUrl).attr('target','_blank').append($('<i/>').addClass('icon-globe')).append('&nbsp;More Info'));
 				tmpDetails.append($('<div/>').addClass('address').html(result.routes[0].legs[0].end_address.replace(',','<br/>')));
-				//tmpDetails.append('<a href="#" onclick="GetHome(); return false;" class="btn showall"><i class="icon-remove"></i></a>');
-				// mini map
-				//tmpDetails.append($('<img/>').attr('src',imgurl).addClass('map'));
 				
 				tmpListing.append(tmpDetails);
 				
@@ -135,12 +144,6 @@ function CalcRoute(pEnd, pIdx, pCt) {
 			        position: restaurants[pIdx].location,
 					title: restaurants[pIdx].restaurantAlias
 			    });
-//			    google.maps.event.addListener(tmpMarker, 'click', function() {
-//		          overmap.setZoom(mapDetailZoomLevel);
-//		          overmap.setCenter(tmpMarker.getPosition());
-//		          $('#listlist li').hide();
-//		          $('#listlist #'+tmpMarker.title).show();
-//		        });
 				bounds.extend(restaurants[pIdx].location);
 				overmap.fitBounds(bounds);
 				overmap.panBy(0, mapYOffset);
@@ -150,9 +153,11 @@ function CalcRoute(pEnd, pIdx, pCt) {
 }
 
 function GetDetails(pIdx){
+	//
 	if( $('#listlist #'+restaurants[pIdx].restaurantAlias+' .details').css('display') == 'none' ){
 		$('#listlist li .details').hide();
 		$('#listlist #'+restaurants[pIdx].restaurantAlias).show().find('.details').show();
+		$('#listlist #'+restaurants[pIdx].restaurantAlias).show().find('.btndetails i').removeClass('icon-zoom-in').addClass('icon-zoom-out');
 		var container = $('#listlist');
 		var scrollTo = $('#listlist #'+restaurants[pIdx].restaurantAlias);
 		container.animate({
@@ -171,6 +176,7 @@ function GetHome(){
 	overmap.fitBounds(bounds);
 	overmap.panBy(0, mapYOffset); 
 	$('#listlist li .details').hide(); 
+	$('#listlist li .btndetails i').removeClass('icon-zoom-out').addClass('icon-zoom-in');
 	$('#listlist li').show(); 
 	return false;
 }
