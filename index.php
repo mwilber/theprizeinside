@@ -37,6 +37,11 @@
 
   </head>
   <body>
+  	<div id="loader">
+  		<div class="progress progress-warning">
+		  <div class="bar" style="width: 0%;"></div>
+		</div>
+  	</div>
   	<div id="header">
   		<img id="logo" src="img/logo.png"/>
   		<div id="title">The Prize Inside</div>

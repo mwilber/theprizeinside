@@ -12,6 +12,8 @@ var mapthumb = {
 var mapDetailZoomLevel = 15;
 var mapYOffset = -30;
 var bounds = new google.maps.LatLngBounds();
+var loadCt = 0;
+var loadMax = 0;
 
 $(document).ready(function(){
 	
@@ -29,12 +31,26 @@ function QueryLocation(){
 	navigator.geolocation.getCurrentPosition(HandleGeolocationQuery,HandleGeolocationErrors);
 }
 
+function UpdateProgressBar(){
+	loadCt++;
+	var percent = (loadCt/loadMax)*100;
+	DebugOut('loading: '+percent+'% ('+loadMax+'/'+loadCt+')');
+	if( percent > 99 ){
+		$('#loader').hide();
+	}else{
+		$('.progress .bar').css('width',percent+'%');
+	}
+	
+}
+
 
 function GetRest(){
 	$.get('reactor/srvlist/getnames',function(response){
 		console.log(response);
 		restaurants = response;
+		loadMax = restaurants.length*3;
 		for( idx in restaurants ){
+			UpdateProgressBar();
 			GetDistance(idx);
 		}
 	});
@@ -59,10 +75,11 @@ function GetDistance(pIdx){
 			console.log(results);
 			var i=0;
 			// Going with the first result because that's the closest
-			CalcRoute(results[i].geometry.location.kb+","+results[i].geometry.location.lb, pIdx, results.length);
+			CalcRoute(results[i].geometry.location.jb+","+results[i].geometry.location.kb, pIdx, results.length);
 		}else{
 			
 		}
+		UpdateProgressBar();
 	});
 }
 
@@ -72,12 +89,14 @@ function CalcRoute(pEnd, pIdx, pCt) {
 		destination:pEnd,
 		travelMode: google.maps.TravelMode.DRIVING
 	};
+	//DebugOut('Getting Directions...');
+	//DebugOut(request);
 	serviceDirection.route(request, function(result, status) {
 		console.log(result);
 		if (status == google.maps.DirectionsStatus.OK) {
 			if( restaurants[pIdx].prize[0].prizeName ){
-				restaurants[pIdx].location = new google.maps.LatLng(result.routes[0].legs[0].end_location.kb, result.routes[0].legs[0].end_location.lb);
-				var imgurl = "http://maps.googleapis.com/maps/api/staticmap?center="+result.routes[0].legs[0].end_location.kb+","+result.routes[0].legs[0].end_location.lb+"&zoom="+mapthumb.zoom+"&size="+mapthumb.width+"x"+mapthumb.height+"&markers=color:0x"+restaurants[pIdx].restaurantColor+"%7Clabel:*%7C"+result.routes[0].legs[0].end_location.kb+","+result.routes[0].legs[0].end_location.lb+"&sensor=false";
+				restaurants[pIdx].location = new google.maps.LatLng(result.routes[0].legs[0].end_location.jb, result.routes[0].legs[0].end_location.kb);
+				var imgurl = "http://maps.googleapis.com/maps/api/staticmap?center="+result.routes[0].legs[0].end_location.jb+","+result.routes[0].legs[0].end_location.kb+"&zoom="+mapthumb.zoom+"&size="+mapthumb.width+"x"+mapthumb.height+"&markers=color:0x"+restaurants[pIdx].restaurantColor+"%7Clabel:*%7C"+result.routes[0].legs[0].end_location.jb+","+result.routes[0].legs[0].end_location.kb+"&sensor=false";
 				var maplink = 'http://maps.google.com/?saddr='+userLocation.lat()+","+userLocation.lng()+'&daddr='+result.routes[0].legs[0].end_address;
 				
 				var tmpListing = $('<li/>').attr('id',restaurants[pIdx].restaurantAlias).addClass('listing').css('backgroundColor','#'+restaurants[pIdx].restaurantColor).click(function(){/*GetDetails(pIdx);*/});
@@ -147,8 +166,10 @@ function CalcRoute(pEnd, pIdx, pCt) {
 				bounds.extend(restaurants[pIdx].location);
 				overmap.fitBounds(bounds);
 				overmap.panBy(0, mapYOffset);
+				
 			}
 		}
+		UpdateProgressBar();
 	});
 }
 
