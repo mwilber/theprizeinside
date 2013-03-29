@@ -10,7 +10,7 @@
 	<meta property="og:title" content="The Prize Inside" />
 	<meta property="og:type" content="website" />
 	<meta property="og:url" content="http://theprizeinside.com/" />
-	<meta property="og:image" content="http://theprizeinside.com/images/fb_icon.png" />
+	<meta property="og:image" content="http://theprizeinside.com/img/fb_icon.png" />
 	<meta property="og:site_name" content="The Prize Inside" />
 	<meta property="fb:admins" content="631337813" />
 	<meta property="og:description" content="Choose your fast food by the prize inside." />
@@ -30,7 +30,7 @@
 		var social = [];
 		social['title'] = "The Prize Inside";
 		social['description'] = "Choose your fast food by the prize inside.";
-		social['image'] = "http://theprizeinside.com/images/fb_icon.png";
+		social['image'] = "http://theprizeinside.com/img/fb_icon.png";
 		social['link'] = "http://theprizeinside.com/";
 		var isMobile = false;
 	</script>
