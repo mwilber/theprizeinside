@@ -161,6 +161,7 @@ html, body {
 	line-height: 25px;
 	margin-bottom:2px;
 	color:#39230E;
+	cursor:pointer;
 }
 
 .restaurant{
@@ -171,6 +172,7 @@ html, body {
 	font-weight: bold;
 	color: #533F20;
 	font-size: 18px;
+	cursor:pointer;
 }
 
 .distance{
@@ -178,6 +180,7 @@ html, body {
 	float: left;
 	color: #533F20;
 	font-size: 24px;
+	cursor:pointer;
 }
 
 .directions{
@@ -312,6 +315,11 @@ html, body {
 
 	#overmap{
 		height:36%;
+	}
+	
+	#geoModal{
+		width:90%;
+		margin-left:-45%;
 	}
 	
 	#listlist{

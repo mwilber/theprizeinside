@@ -106,10 +106,10 @@ function CalcRoute(pEnd, pIdx, pCt) {
 					if(idx > 0) tmpName += " / ";
 					tmpName += restaurants[pIdx].prize[idx].prizeName;
 				}
-				tmpListing.append($('<h2/>').addClass('prize').append(tmpName));
+				tmpListing.append($('<h2/>').addClass('prize').append(tmpName).append($('<i/>').addClass('icon-info-sign')).click(function(){GetDetails(pIdx);}));
 				//.append($('<img/>').attr('src','http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|'+restaurants[pIdx].restaurantColor))
-				tmpListing.append($('<div/>').addClass('restaurant').html(restaurants[pIdx].restaurantName));
-				tmpListing.append($('<div/>').addClass('distance').html(result.routes[0].legs[0].distance.text));
+				tmpListing.append($('<div/>').addClass('restaurant').html(restaurants[pIdx].restaurantName).click(function(){GetDetails(pIdx);}));
+				tmpListing.append($('<div/>').addClass('distance').html(result.routes[0].legs[0].distance.text).click(function(){GetDetails(pIdx);}));
 				
 				//tmpListing.append($('<a/>').addClass('detailsbtn').addClass('btn').attr('href','#').attr('target','_blank').append($('<i/>').addClass('icon-info-sign')).append('&nbsp;Details').click(function(){GetDetails(pIdx); return false;}));
 				// Share dropdown
@@ -122,7 +122,7 @@ function CalcRoute(pEnd, pIdx, pCt) {
 				var toolGroup = $('<div/>').addClass('btn-group').addClass('toolgroup');
 				toolGroup.append($('<a/>').addClass('extlink').addClass('btn').attr('href',restaurants[pIdx].restaurantUrl).attr('target','_blank').append($('<i/>').addClass('icon-globe')).append('&nbsp;Website'));
 				toolGroup.append($('<a/>').addClass('directions').addClass('btn').attr('href',maplink).attr('target','_blank').append($('<i/>').addClass('icon-road')).append('&nbsp;Directions'));
-				toolGroup.append($('<a/>').attr('href','#').addClass('btndetails').addClass('btn').append($('<i/>').addClass('icon-zoom-in')).click(function(){GetDetails(pIdx);}));
+				//toolGroup.append($('<a/>').attr('href','#').addClass('btndetails').addClass('btn').append($('<i/>').addClass('icon-zoom-in')).click(function(){GetDetails(pIdx);}));
 				
 				tmpListing.append(toolGroup);
 				tmpListing.append(shareGroup);
@@ -163,6 +163,10 @@ function CalcRoute(pEnd, pIdx, pCt) {
 			        position: restaurants[pIdx].location,
 					title: restaurants[pIdx].restaurantAlias
 			    });
+			    
+			    google.maps.event.addListener(tmpMarker, 'click', function() {
+		        	GetDetails(pIdx);
+		        });
 				bounds.extend(restaurants[pIdx].location);
 				overmap.fitBounds(bounds);
 				overmap.panBy(0, mapYOffset);
@@ -178,7 +182,7 @@ function GetDetails(pIdx){
 	if( $('#listlist #'+restaurants[pIdx].restaurantAlias+' .details').css('display') == 'none' ){
 		$('#listlist li .details').hide();
 		$('#listlist #'+restaurants[pIdx].restaurantAlias).show().find('.details').show();
-		$('#listlist #'+restaurants[pIdx].restaurantAlias).show().find('.btndetails i').removeClass('icon-zoom-in').addClass('icon-zoom-out');
+		//$('#listlist #'+restaurants[pIdx].restaurantAlias).show().find('.btndetails i').removeClass('icon-zoom-in').addClass('icon-zoom-out');
 		var container = $('#listlist');
 		var scrollTo = $('#listlist #'+restaurants[pIdx].restaurantAlias);
 		container.animate({
@@ -197,7 +201,7 @@ function GetHome(){
 	overmap.fitBounds(bounds);
 	overmap.panBy(0, mapYOffset); 
 	$('#listlist li .details').hide(); 
-	$('#listlist li .btndetails i').removeClass('icon-zoom-out').addClass('icon-zoom-in');
+	//$('#listlist li .btndetails i').removeClass('icon-zoom-out').addClass('icon-zoom-in');
 	$('#listlist li').show(); 
 	return false;
 }
@@ -245,7 +249,7 @@ function InitMap(){
       zoom: 15,
       center: latlng,
       mapTypeId: google.maps.MapTypeId.ROADMAP,
-      scrollwheel: false,
+      scrollwheel: true,
       streetViewControl: false,
       disableDefaultUI: true
     }  
