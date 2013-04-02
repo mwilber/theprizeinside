@@ -229,12 +229,11 @@ html, body {
 	font-size:18px;
 	color: #FEF500;
 	display: block;
-	margin: 1% 0% 0% 3%;
+	margin: 5px 0% 0% 3%;
 }
 
 #footer #likegroup{
-	display:none;
-	margin-top:2%;
+	margin-top:5px;
 }
 
 #footers {

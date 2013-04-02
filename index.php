@@ -45,11 +45,6 @@
   	<div id="header">
   		<img id="logo" src="img/logo.png"/>
   		<div id="title">The Prize Inside</div>
-  		<div id="likegroup">
-      		<div class="fb-like" data-href="http://theprizeinside.com/" data-send="false" data-layout="button_count" data-width="90" data-show-faces="false"></div>
-			<g:plusone size="medium" href="http://theprizeinside.com/"></g:plusone>
-			<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://theprizeinside.com/" data-text="The Prize Inside - Choose your fast food by the prize inside." data-hashtags="fastfood">Tweet</a>
-    	</div>
     	<div class="clearfix"></div>
   	</div>
 	<div id="overmap"></div>
