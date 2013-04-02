@@ -33,6 +33,18 @@
 		social['image'] = "http://theprizeinside.com/img/fb_icon.png";
 		social['link'] = "http://theprizeinside.com/";
 		var isMobile = false;
+		
+		$(document).ready(function(){
+			
+			//if( !isMobile ){
+				FB.init({appId: FBconfig.app.id, status : true, cookie: true, xfbml : true});
+				SetFrame();
+			//}
+			
+			InitMap();
+			QueryLocation();
+			
+		});
 	</script>
 
   </head>

@@ -14,18 +14,7 @@ var mapYOffset = -30;
 var bounds = new google.maps.LatLngBounds();
 var loadCt = 0;
 var loadMax = 0;
-
-$(document).ready(function(){
-	
-	//if( !isMobile ){
-		FB.init({appId: FBconfig.app.id, status : true, cookie: true, xfbml : true});
-		SetFrame();
-	//}
-	
-	InitMap();
-	QueryLocation();
-	
-});
+var isMobi = false;
 
 function QueryLocation(){
 	navigator.geolocation.getCurrentPosition(HandleGeolocationQuery,HandleGeolocationErrors);
@@ -56,20 +45,36 @@ function GetRest(){
 	});
 }
 
+function GetRestMobi(){
+	$.get('http://theprizeinside.com/reactor/srvlist/getnames',function(response){
+		console.log(response);
+		
+		restaurants = jQuery.parseJSON(response);
+		loadMax = 1*3;
+		for( idx in restaurants ){
+			UpdateProgressBar();
+			GetDistance(idx);
+		}
+	});
+}
+
 
 function GetDistance(pIdx){
-	console.log("Getting Distance for: "+restaurants[pIdx].restaurantName+" ("+restaurants[pIdx].restaurantAlias+")");
+	DebugOut("Getting Distance for: "+restaurants[pIdx].restaurantName+" ("+restaurants[pIdx].restaurantAlias+")");
+	
+	var restname = restaurants[pIdx].restaurantName;
 	
 	var searchRequest = {
 		location: userLocation,
 		radius: '50',
 		types: ['food'],
 		rankBy: google.maps.places.RankBy.DISTANCE,
-		query: restaurants[idx].restaurantName,
+		query: restname,
 		ref: pIdx
 	};
+	//alert(JSON.stringify(searchRequest));
         	
-	service = new google.maps.places.PlacesService(map);
+	service = new google.maps.places.PlacesService(overmap);
 	service.textSearch(searchRequest, function (results, status) {
 		if (status == google.maps.places.PlacesServiceStatus.OK) {
 			console.log(results);
@@ -92,7 +97,7 @@ function CalcRoute(pEnd, pIdx, pCt) {
 	//DebugOut('Getting Directions...');
 	//DebugOut(request);
 	serviceDirection.route(request, function(result, status) {
-		console.log(result);
+		DebugOut(result);
 		if (status == google.maps.DirectionsStatus.OK) {
 			if( restaurants[pIdx].prize[0].prizeName ){
 				restaurants[pIdx].location = new google.maps.LatLng(result.routes[0].legs[0].end_location.jb, result.routes[0].legs[0].end_location.kb);
@@ -115,14 +120,25 @@ function CalcRoute(pEnd, pIdx, pCt) {
 				// Share dropdown
 				var shareGroup = $('<div/>').addClass('btn-group').addClass('socialgroup');
 				
-				shareGroup.append($('<a/>').attr('href','#').addClass('btn').append($('<i/>').addClass('icon-twitter')).click(function(){twshare(restaurants[pIdx].restaurantName);}));
-				shareGroup.append($('<a/>').attr('href','#').addClass('btn').append($('<i/>').addClass('icon-facebook')).click(function(){fbshare(restaurants[pIdx].restaurantName);}));
+				
+				if( isMobi ){
+					shareGroup.append($('<a/>').attr('href','#').addClass('btn').append($('<i/>').addClass('icon-twitter')).attr('onclick','twsharemobi(restaurants['+pIdx+'].restaurantName);'));
+					shareGroup.append($('<a/>').attr('href','#').addClass('btn').append($('<i/>').addClass('icon-facebook')).attr('onclick','fbsharemobi(restaurants['+pIdx+'].restaurantName);'));
+				}else{
+					shareGroup.append($('<a/>').attr('href','#').addClass('btn').append($('<i/>').addClass('icon-twitter')).click(function(){twshare(restaurants[pIdx].restaurantName);}));
+					shareGroup.append($('<a/>').attr('href','#').addClass('btn').append($('<i/>').addClass('icon-facebook')).click(function(){fbshare(restaurants[pIdx].restaurantName);}));
+				}
 				//shareDropdown.append($('<a/>').attr('href','#').addClass('btn').append($('<i/>').addClass('icon-google-plus')).click(function(){gpshare(restaurants[pIdx].restaurantName);}));
 				
 				var toolGroup = $('<div/>').addClass('btn-group').addClass('toolgroup');
-				toolGroup.append($('<a/>').addClass('extlink').addClass('btn').attr('href',restaurants[pIdx].restaurantUrl).attr('target','_blank').append($('<i/>').addClass('icon-globe')).append('&nbsp;Website'));
-				toolGroup.append($('<a/>').addClass('directions').addClass('btn').attr('href',maplink).attr('target','_blank').append($('<i/>').addClass('icon-road')).append('&nbsp;Directions'));
-				//toolGroup.append($('<a/>').attr('href','#').addClass('btndetails').addClass('btn').append($('<i/>').addClass('icon-zoom-in')).click(function(){GetDetails(pIdx);}));
+				if( isMobi ){
+					toolGroup.append($('<a/>').addClass('extlink').addClass('btn').attr('href','#').attr('onclick','AppMobi.device.launchExternal(restaurants['+pIdx+'].restaurantUrl); return false;').append($('<i/>').addClass('icon-globe')).append('&nbsp;Website'));
+					toolGroup.append($('<a/>').addClass('directions').addClass('btn').attr('href','#').attr('onclick','AppMobi.device.launchExternal(\''+maplink+'\'); return false;').append($('<i/>').addClass('icon-road')).append('&nbsp;Directions'));
+				}else{
+					toolGroup.append($('<a/>').addClass('extlink').addClass('btn').attr('href',restaurants[pIdx].restaurantUrl).attr('target','_blank').append($('<i/>').addClass('icon-globe')).append('&nbsp;Website'));
+					toolGroup.append($('<a/>').addClass('directions').addClass('btn').attr('href',maplink).attr('target','_blank').append($('<i/>').addClass('icon-road')).append('&nbsp;Directions'));
+					//toolGroup.append($('<a/>').attr('href','#').addClass('btndetails').addClass('btn').append($('<i/>').addClass('icon-zoom-in')).click(function(){GetDetails(pIdx);}));
+				}
 				
 				tmpListing.append(toolGroup);
 				tmpListing.append(shareGroup);
@@ -241,6 +257,11 @@ function HandleGeolocationQuery(position){
 	GetRest();
 }
 
+function HandleGeolocationQueryMobi(position){
+	userLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+	//alert('user location set: '+position.coords.latitude+', '+position.coords.longitude);
+	GetRestMobi();
+}
 
 
 function InitMap(){
@@ -269,9 +290,23 @@ function fbshare(pTitle){
 	}
 }
 
+function fbsharemobi(pTitle){
+	
+	var fbcontent = "https://www.facebook.com/dialog/feed?app_id=314668331957423&link="+escape(social['link'])+"&picture="+escape(social['image'])+"&name="+escape(social['title'])+"&caption="+escape(social['title'])+"&description="+escape('Check out whats in the '+pTitle+' kids meal at ThePrizeInside')+"&redirect_uri=https://facebook.com/";
+	
+	AppMobi.device.launchExternal(fbcontent);
+}
+
 function twshare(pTitle){
 	var twcontent = escape('Check out what\'s in the '+pTitle+' kids meal at ThePrizeInside')+" "+escape(social['link']);
 	openpopup('http://twitter.com/home?status='+twcontent,'tweeters',550,450);
+}
+
+function twsharemobi(pTitle){
+	//var twcontent = 'http://twitter.com/home?status='+tescape('Check out what\'s in the '+pTitle+' kids meal at ThePrizeInside')+" "+escape(social['link']);
+	var twcontent = 'https://mobile.twitter.com/compose/tweet?status='+escape('Check out whats in the '+pTitle+' kids meal at The Prize Inside http://theprizeinside.com');
+	//alert('launching external: '+twcontent);
+	AppMobi.device.launchExternal(twcontent);
 }
 
 function gpshare(pTitle){
