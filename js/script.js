@@ -282,18 +282,14 @@ function InitMap(){
 
 
 function fbshare(pTitle){
-	if( isMobile ){
-		var url = "http://www.facebook.com/sharer.php?u="+escape(social['link']);
-		openpopup(url,'gplus',550,450);
-	}else{
-		WallPost(social['link'] , social['title'] , 'Check out what\'s in the '+pTitle+' kids meal at ThePrizeInside.com' , social['image'] , '');
-	}
+	
+	var fbcontent = "https://www.facebook.com/dialog/feed?app_id=314668331957423&link="+escape(social['link'])+"&picture="+escape(social['image'])+"&name="+escape(social['title'])+"&caption="+escape(social['title'])+"&description="+escape('Check out whats in the '+pTitle+' kids meal at ThePrizeInside')+"&redirect_uri=https://facebook.com/";
+	openpopup(fbcontent,'facebook',1000,450);
 }
 
 function fbsharemobi(pTitle){
 	
 	var fbcontent = "https://www.facebook.com/dialog/feed?app_id=314668331957423&link="+escape(social['link'])+"&picture="+escape(social['image'])+"&name="+escape(social['title'])+"&caption="+escape(social['title'])+"&description="+escape('Check out whats in the '+pTitle+' kids meal at ThePrizeInside')+"&redirect_uri=https://facebook.com/";
-	
 	AppMobi.device.launchExternal(fbcontent);
 }
 
