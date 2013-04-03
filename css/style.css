@@ -24,7 +24,7 @@ html, body {
 
 #header {
 	width: 90%;
-	min-height: 30px;
+	min-height: 35px;
 	padding-right: 5%;
 	padding-left: 5%;
 	background-color: #D12828;
@@ -81,6 +81,98 @@ html, body {
 
 #likegroup .fb-like iframe{
 	margin-top: -3px;	
+}
+
+#header #info{
+	display:block;
+	float:right;
+	margin-top: -10px;
+	color: #FEF500;
+	text-decoration:none;
+}
+
+#aboutbox{
+	display:none;
+	position:absolute;
+	z-index:500;
+	top:15%;
+	left:50%;
+	background-color:#39230E;
+	width:250px;
+	height:360px;
+	margin: 0px 0px 0px -125px;
+	padding: 20px 40px;
+	border-radius: 15px; 
+	-moz-border-radius: 15px; 
+	-webkit-border-radius: 15px; 
+}
+
+#aboutbox h2{
+	margin: 2px 0px 20px 0px;
+	color: #FEF500;
+	font-size: 20px;
+}
+
+#aboutbox #about strong{
+	display:block;
+	margin-top:15px;
+	margin-bottom:5px;
+	color: #FEF500;
+	font-weight: normal;
+	font-size: 16px;
+	line-height: 18px;
+}
+
+#aboutbox #about a{
+	text-decoration:underline;
+}
+
+#aboutbox #about p, #aboutbox #about a{
+	margin-top:0px;
+	color: #FEF500;
+	font-weight: normal;
+	font-size: 14px;
+	line-height: 18px;
+}
+
+#aboutbox #btnclose{
+	display:block;
+	float:right;
+	margin-right:-20px;
+}
+
+#aboutbox #about{
+	height: 280px;
+	width: 270px;
+	overflow-y:scroll;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:14px;
+}
+
+.jspVerticalBar
+{
+	background: transparent;
+}
+
+.jspDrag
+{
+	background-color: #FEF500;
+	-moz-border-radius: 10px;
+	border-radius: 10px; 
+}
+
+.jspTrack
+{
+	background-color: transparent;
+	background-color: rgba(254,245,0,0.5); 
+	-moz-border-radius: 10px;
+	border-radius: 10px; 
+}
+
+.jspCap
+{
+	display: block;
+	background: transparent;
 }
 
 #overmap{

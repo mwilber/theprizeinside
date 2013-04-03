@@ -20,6 +20,7 @@
 	<link rel="apple-touch-startup-image" href="/startup.png">
 	<link href='http://fonts.googleapis.com/css?family=Vollkorn:400,700' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Ultra' rel='stylesheet' type='text/css'>
+	<link type="text/css" href="css/jquery.jscrollpane.css" rel="stylesheet" media="all" />
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link rel="stylesheet" href="css/font-awesome.min.css">
@@ -42,9 +43,21 @@
 		  <div class="bar" style="width: 0%;"></div>
 		</div>
   	</div>
+  	<div id="aboutbox">
+		<a id="btnclose" href="#" onclick="return false;"><img src="img/btn_close.png"/></a>
+		<h2>About The Prize Inside</h2>
+		<div id="about" class="scroll-pane">
+			<p>Choose your fast food by the prize inside! Quickly find out what's in the kids' meal at nearby fast food restaurants. Click on each prize to zoom in the map and get the restaurant address or click on "Directions" for driving directions.</p>
+			<p>The Prize Inside was created by Internet software developer Matthew Wilber. For more information, visit <a href="http://www.mwilber.com" target="_blank">mwilber.com</a>.</p>
+			<strong>Mobile Users</strong>
+			<p>Android users can find The Prize Inside in the <a href="https://play.google.com/store/apps/details?id=com.greenzeta.greenzeta.theprizeinside" target="_blank">Google Play Store</a>.</p>
+			<p>iPhone users can use this site as a web app. First you must enable location awareness in mobile safari by going to Settings->Privacy->Location Services and turn on Safari. Then open safari and go to ThePrizeInside.com. When prompted, allow The Prize Inside to use your current location. Finally, install the web app by tapping the share button and selecting "Add to Home Screen"</p>
+		</div>
+	</div>
   	<div id="header">
   		<img id="logo" src="img/logo.png"/>
   		<div id="title">The Prize Inside</div>
+  		<a id="info" href="#" onclick="return false;"><i class="icon-info-sign"></i></a>
     	<div class="clearfix"></div>
   	</div>
 	<div id="overmap"></div>
@@ -79,6 +92,10 @@
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places&sensor=true"></script>
     <script src="http://code.jquery.com/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <!-- the mousewheel plugin -->
+	<script type="text/javascript" src="js/jquery.mousewheel.js"></script>
+	<!-- the jScrollPane script -->
+	<script type="text/javascript" src="js/jquery.jscrollpane.min.js"></script>
     <script src="js/fb.js"></script>
     <script src="js/script.js"></script>
     
@@ -90,6 +107,17 @@
 				FB.init({appId: FBconfig.app.id, status : true, cookie: true, xfbml : true});
 				SetFrame();
 			//}
+			
+			$('#btnclose').click(function(){$('#aboutbox').fadeOut();});
+			$('#info').click(function(){
+				$('#aboutbox').fadeIn();
+				$('.scroll-pane').jScrollPane(
+					{
+						showArrows: false,
+						verticalGutter: 15
+					}
+				);
+			});
 			
 			InitMap();
 			QueryLocation();
