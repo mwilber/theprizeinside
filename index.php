@@ -39,9 +39,11 @@
   </head>
   <body>
   	<div id="loader">
+  		<h1>Loading...</h1>
   		<div class="progress progress-warning">
-		  <div class="bar" style="width: 0%;"></div>
+			<div class="bar" style="width: 0%;"></div>
 		</div>
+		<div class="message">Getting prizes</div>
   	</div>
   	<div id="aboutbox">
 		<a id="btnclose" href="#" onclick="return false;"><img src="img/btn_close.png"/></a>

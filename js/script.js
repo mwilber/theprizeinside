@@ -27,6 +27,14 @@ function UpdateProgressBar(){
 	if( percent > 99 ){
 		$('#loader').hide();
 	}else{
+		if(percent > 66){
+			$('#loader .message').html('Measuring distances');
+		}else if(percent > 33){
+			$('#loader .message').html('Finding restaurants');
+		}else{
+			$('#loader .message').html('Getting prizes');
+		}
+		
 		$('.progress .bar').css('width',percent+'%');
 	}
 	
