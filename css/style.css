@@ -106,7 +106,7 @@ html, body {
 	text-decoration:none;
 }
 
-#aboutbox{
+.float-panel{
 	display:none;
 	position:absolute;
 	z-index:500;
@@ -122,13 +122,17 @@ html, body {
 	-webkit-border-radius: 15px; 
 }
 
-#aboutbox h2{
+#locationbox{
+	height:150px;
+}
+
+.float-panel h2{
 	margin: 2px 0px 20px 0px;
 	color: #FEF500;
 	font-size: 20px;
 }
 
-#aboutbox #about strong{
+.float-panel strong{
 	display:block;
 	margin-top:15px;
 	margin-bottom:5px;
@@ -138,11 +142,11 @@ html, body {
 	line-height: 18px;
 }
 
-#aboutbox #about a{
+.float-panel a{
 	text-decoration:underline;
 }
 
-#aboutbox #about p, #aboutbox #about a{
+.float-panel p, .float-panel a{
 	margin-top:0px;
 	color: #FEF500;
 	font-weight: normal;
@@ -150,7 +154,7 @@ html, body {
 	line-height: 18px;
 }
 
-#aboutbox #btnclose{
+.float-panel #btnclose, .float-panel #btncloseloc{
 	display:block;
 	float:right;
 	margin-right:-20px;
@@ -188,6 +192,42 @@ html, body {
 {
 	display: block;
 	background: transparent;
+}
+
+#setloc input{
+	width:155px;
+}
+
+#setloc a{
+	color:#000;
+	text-decoration:none;
+}
+
+#location{
+	display:block;
+	position:absolute;
+	float:right;
+	background-color:#39230E;
+	padding: 5px 15px;
+	border-bottom-right-radius: 15px; 
+	-moz-border-bottom-right-radius: 15px; 
+	-webkit-border-bottom-right-radius: 15px; 
+	border-bottom-left-radius: 15px; 
+	-moz-border-bottom-left-radius: 15px; 
+	-webkit-border-bottom-left-radius: 15px; 
+	top: 50px;
+	z-index: 999;
+	right: 10px;
+	color: #FEF500;
+	
+}
+
+#location:hover{
+	text-decoration:none;
+}
+
+#location span{
+	text-decoration:underline;
 }
 
 #overmap{

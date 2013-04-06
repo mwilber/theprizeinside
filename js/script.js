@@ -2,6 +2,7 @@ var serviceDirection = new google.maps.DirectionsService();
 var userLocation;
 var restaurants;
 var overmap;
+var markersArray = [];
 
 var testLocFallbackOn = true
 var mapthumb = {
@@ -15,6 +16,30 @@ var bounds = new google.maps.LatLngBounds();
 var loadCt = 0;
 var loadMax = 0;
 var isMobi = false;
+var maxDistance = 20;
+
+$(document).ready(function(){
+	
+	$('#btncloseloc').click(function(){$('#locationbox').fadeOut();});
+	$('#location').click(function(){
+		$('#locationbox').fadeIn();
+		return false;
+	});
+	$('#btnclose').click(function(){$('#aboutbox').fadeOut();});
+	$('#info').click(function(){
+		$('#aboutbox').fadeIn();
+		$('.scroll-pane').jScrollPane(
+			{
+				showArrows: false,
+				verticalGutter: 15
+			}
+		);
+	});
+	
+	InitMap();
+	QueryLocation();
+	
+});
 
 function QueryLocation(){
 	navigator.geolocation.getCurrentPosition(HandleGeolocationQuery,HandleGeolocationErrors);
@@ -42,6 +67,8 @@ function UpdateProgressBar(){
 
 
 function GetRest(){
+	clearOverlays();
+	$('#listlist').empty();
 	$.get('reactor/srvlist/getnames',function(response){
 		console.log(response);
 		restaurants = response;
@@ -54,6 +81,8 @@ function GetRest(){
 }
 
 function GetRestMobi(){
+	clearOverlays();
+	$('#listlist').empty();
 	$.get('http://theprizeinside.com/reactor/srvlist/getnames',function(response){
 		console.log(response);
 		
@@ -74,7 +103,7 @@ function GetDistance(pIdx){
 	
 	var searchRequest = {
 		location: userLocation,
-		radius: '50',
+		radius: maxDistance,
 		types: ['food'],
 		rankBy: google.maps.places.RankBy.DISTANCE,
 		query: restname,
@@ -88,7 +117,7 @@ function GetDistance(pIdx){
 			console.log(results);
 			var i=0;
 			// Going with the first result because that's the closest
-			CalcRoute(results[i].geometry.location.jb+","+results[i].geometry.location.kb, pIdx, results.length);
+			CalcRoute(results[i].geometry.location.lat()+","+results[i].geometry.location.lng(), pIdx, results.length);
 		}else{
 			
 		}
@@ -108,8 +137,8 @@ function CalcRoute(pEnd, pIdx, pCt) {
 		DebugOut(result);
 		if (status == google.maps.DirectionsStatus.OK) {
 			if( restaurants[pIdx].prize[0].prizeName ){
-				restaurants[pIdx].location = new google.maps.LatLng(result.routes[0].legs[0].end_location.jb, result.routes[0].legs[0].end_location.kb);
-				var imgurl = "http://maps.googleapis.com/maps/api/staticmap?center="+result.routes[0].legs[0].end_location.jb+","+result.routes[0].legs[0].end_location.kb+"&zoom="+mapthumb.zoom+"&size="+mapthumb.width+"x"+mapthumb.height+"&markers=color:0x"+restaurants[pIdx].restaurantColor+"%7Clabel:*%7C"+result.routes[0].legs[0].end_location.jb+","+result.routes[0].legs[0].end_location.kb+"&sensor=false";
+				restaurants[pIdx].location = new google.maps.LatLng(result.routes[0].legs[0].end_location.lat(), result.routes[0].legs[0].end_location.lng());
+				var imgurl = "http://maps.googleapis.com/maps/api/staticmap?center="+result.routes[0].legs[0].end_location.lat()+","+result.routes[0].legs[0].end_location.lng()+"&zoom="+mapthumb.zoom+"&size="+mapthumb.width+"x"+mapthumb.height+"&markers=color:0x"+restaurants[pIdx].restaurantColor+"%7Clabel:*%7C"+result.routes[0].legs[0].end_location.lat()+","+result.routes[0].legs[0].end_location.lng()+"&sensor=false";
 				var maplink = 'http://maps.google.com/?saddr='+userLocation.lat()+","+userLocation.lng()+'&daddr='+result.routes[0].legs[0].end_address;
 				
 				var tmpListing = $('<li/>').attr('id',restaurants[pIdx].restaurantAlias).addClass('listing').css('backgroundColor','#'+restaurants[pIdx].restaurantColor).click(function(){/*GetDetails(pIdx);*/});
@@ -188,6 +217,8 @@ function CalcRoute(pEnd, pIdx, pCt) {
 					title: restaurants[pIdx].restaurantAlias
 			    });
 			    
+			    markersArray.push(tmpMarker);
+			    
 			    google.maps.event.addListener(tmpMarker, 'click', function() {
 		        	GetDetails(pIdx);
 		        });
@@ -199,6 +230,13 @@ function CalcRoute(pEnd, pIdx, pCt) {
 		}
 		UpdateProgressBar();
 	});
+}
+
+function clearOverlays() {
+  bounds = new google.maps.LatLngBounds();
+  for (var i = 0; i < markersArray.length; i++ ) {
+    markersArray[i].setMap(null);
+  }
 }
 
 function GetDetails(pIdx){
@@ -255,19 +293,22 @@ function HandleGeolocationErrors(error)
 	
 	if( testLocFallbackOn ){
 		// Set a fallback location 40.7406941, -73.9905943 
-		HandleGeolocationQuery({coords:{latitude:40.7406941,longitude:-73.9905943}});
+		// Location: 40.67857830000001, -73.5421847
+		HandleGeolocationQuery({coords:{latitude:40.67857830000001,longitude:-73.5421847}});
 	}
 }  
   
 function HandleGeolocationQuery(position){
 	userLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
 	DebugOut('user location set: '+position.coords.latitude+', '+position.coords.longitude);
+	$('#location span').html(position.coords.latitude.toString().substring(0,8)+', '+position.coords.longitude.toString().substring(0,8));
 	GetRest();
 }
 
 function HandleGeolocationQueryMobi(position){
 	userLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
 	//alert('user location set: '+position.coords.latitude+', '+position.coords.longitude);
+	$('#location span').html(position.coords.latitude.toString().substring(0,8)+', '+position.coords.longitude.toString().substring(0,8));
 	GetRestMobi();
 }
 

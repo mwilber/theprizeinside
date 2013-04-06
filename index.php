@@ -45,7 +45,7 @@
 		</div>
 		<div class="message">Getting prizes</div>
   	</div>
-  	<div id="aboutbox">
+  	<div id="aboutbox" class="float-panel">
 		<a id="btnclose" href="#" onclick="return false;"><img src="img/btn_close.png"/></a>
 		<h2>About The Prize Inside</h2>
 		<div id="about" class="scroll-pane">
@@ -56,12 +56,22 @@
 			<p>iPhone users can use this site as a web app. First you must enable location awareness in mobile safari by going to Settings->Privacy->Location Services and turn on Safari. Then open safari and go to ThePrizeInside.com. When prompted, allow The Prize Inside to use your current location. Finally, install the web app by tapping the share button and selecting "Add to Home Screen"</p>
 		</div>
 	</div>
+	<div id="locationbox" class="float-panel">
+		<a id="btncloseloc" href="#" onclick="return false;"><img src="img/btn_close.png"/></a>
+		<h2>Change Location</h2>
+		<p>Enter an address to search:</p>
+		<form id="setloc">
+			<input id="loctext" value=""/>
+			<a id="btnlocsearch" href="#" class="btn" onclick="return false;">Search</a>
+		</div>
+	</div>
   	<div id="header">
   		<img id="logo" src="img/logo.png"/>
   		<div id="title">The Prize Inside</div>
   		<a id="info" href="#" onclick="return false;"><i class="icon-info-sign"></i></a>
     	<div class="clearfix"></div>
   	</div>
+  	<a id="location" href="#" onclick="return false;">Location: <span></span></a>
 	<div id="overmap"></div>
 	<div id="geoModal" class="modal hide fade">
 	  <div class="modal-header">
@@ -110,15 +120,19 @@
 				SetFrame();
 			//}
 			
-			$('#btnclose').click(function(){$('#aboutbox').fadeOut();});
-			$('#info').click(function(){
-				$('#aboutbox').fadeIn();
-				$('.scroll-pane').jScrollPane(
-					{
-						showArrows: false,
-						verticalGutter: 15
-					}
-				);
+			$('#btnlocsearch').click(function(){
+				var searchloc = $('#loctext').val();
+				DebugOut('getting coords for: '+searchloc);
+				
+				var geocoder = new google.maps.Geocoder();
+				geocoder.geocode( { 'address': searchloc}, function(results, status) {
+		        	if (status == google.maps.GeocoderStatus.OK) {
+		        		$('#locationbox').fadeOut();
+		        		HandleGeolocationQuery({coords:{latitude:results[0].geometry.location.lat(), longitude:results[0].geometry.location.lng()}});
+		        	} else {
+		        		alert('Could not find address: ' + status);
+		        	}
+		        });
 			});
 			
 			InitMap();

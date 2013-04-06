@@ -67,6 +67,21 @@
 	            //hide splash screen now that our app is ready to run
 	            AppMobi.device.hideSplashScreen();
 	            
+	            $('#btnlocsearch').click(function(){
+					var searchloc = $('#loctext').val();
+					DebugOut('getting coords for: '+searchloc);
+					
+					var geocoder = new google.maps.Geocoder();
+					geocoder.geocode( { 'address': searchloc}, function(results, status) {
+			        	if (status == google.maps.GeocoderStatus.OK) {
+			        		$('#locationbox').fadeOut();
+			        		HandleGeolocationQueryMobi({coords:{latitude:results[0].geometry.location.lat(), longitude:results[0].geometry.location.lng()}});
+			        	} else {
+			        		alert('Could not find address: ' + status);
+			        	}
+			        });
+				});
+	            
 	            InitMap();
 	            //alert('calling get location');
 				getLocation();
@@ -89,10 +104,33 @@
   </head>
   <body>
   	<div id="loader">
+  		<h1>Loading...</h1>
   		<div class="progress progress-warning">
-		  <div class="bar" style="width: 0%;"></div>
+			<div class="bar" style="width: 0%;"></div>
 		</div>
+		<div class="message">Getting prizes</div>
   	</div>
+  	<div id="aboutbox" class="float-panel">
+		<a id="btnclose" href="#" onclick="return false;"><img src="img/btn_close.png"/></a>
+		<h2>About The Prize Inside</h2>
+		<div id="about" class="scroll-pane">
+			<p>Choose your fast food by the prize inside! Quickly find out what's in the kids' meal at nearby fast food restaurants. Click on each prize to zoom in the map and get the restaurant address or click on "Directions" for driving directions.</p>
+			<p>The Prize Inside was created by Internet software developer Matthew Wilber. For more information, visit <a href="http://www.mwilber.com" target="_blank">mwilber.com</a>.</p>
+			<strong>Mobile Users</strong>
+			<p>Android users can find The Prize Inside in the <a href="https://play.google.com/store/apps/details?id=com.greenzeta.greenzeta.theprizeinside" target="_blank">Google Play Store</a>.</p>
+			<p>iPhone users can use this site as a web app. First you must enable location awareness in mobile safari by going to Settings->Privacy->Location Services and turn on Safari. Then open safari and go to ThePrizeInside.com. When prompted, allow The Prize Inside to use your current location. Finally, install the web app by tapping the share button and selecting "Add to Home Screen"</p>
+		</div>
+	</div>
+	<div id="locationbox" class="float-panel">
+		<a id="btncloseloc" href="#" onclick="return false;"><img src="img/btn_close.png"/></a>
+		<h2>Change Location</h2>
+		<p>Enter an address to search:</p>
+		<form id="setloc">
+			<input id="loctext" value=""/>
+			<a id="btnlocsearch" href="#" onclick="return false;">Search</a>
+		</div>
+	</div>
+	<a id="location" href="#" onclick="return false;">Location: <span></span></a>
   	<div id="header">
   		<img id="logo" src="img/logo.png"/>
   		<div id="title">The Prize Inside</div>
