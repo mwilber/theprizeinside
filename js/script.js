@@ -36,9 +36,6 @@ $(document).ready(function(){
 		);
 	});
 	
-	InitMap();
-	QueryLocation();
-	
 });
 
 function QueryLocation(){
