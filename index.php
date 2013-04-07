@@ -1,19 +1,38 @@
+<?php
+
+	$social = array();
+	$social['title'] = "The Prize Inside";
+	$social['description'] = "Choose your fast food by the prize inside.";
+	$social['image'] = "http://theprizeinside.com/img/fb_icon.png";
+	$social['link'] = "http://theprizeinside.com/";
+
+?>
+
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-	<title>The Prize Inside</title>
-	<meta name="description" content="Choose your fast food by the prize inside.">
+	<title><?=$social['title']?></title>
+	<meta name="description" content="<?=$social['description']?>">
 	<meta name="author" content="Matthew Wilber">
-	<meta property="og:title" content="The Prize Inside" />
+	<meta property="og:title" content="<?=$social['title']?>" />
 	<meta property="og:type" content="website" />
-	<meta property="og:url" content="http://theprizeinside.com/" />
-	<meta property="og:image" content="http://theprizeinside.com/img/fb_icon.png" />
-	<meta property="og:site_name" content="The Prize Inside" />
+	<meta property="og:url" content="<?=$social['link']?>" />
+	<meta property="og:image" content="<?=$social['image']?>" />
+	<meta property="og:site_name" content="<?=$social['title']?>" />
 	<meta property="fb:admins" content="631337813" />
-	<meta property="og:description" content="Choose your fast food by the prize inside." />
+	<meta property="og:description" content="<?=$social['description']?>" />
+	
+	<!-- Twitter Summary Card -->
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="<?=$social['title']?>">
+	<meta name="twitter:description" content="<?=$social['description']?>">
+	<meta name="twitter:creator" content="@greenzeta">
+	<meta name="twitter:image:src" content="<?=$social['image']?>">
+	<meta name="twitter:domain" content="theprizeinside.com">
+	
 
 	<meta name="viewport" content="width=device-width">
 	<meta name="apple-mobile-web-app-capable" content="yes">
