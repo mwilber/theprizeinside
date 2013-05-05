@@ -29,7 +29,7 @@ class Admin extends CI_Controller {
 			// the form has successfully validated
 			if($this->user_model->Login(array('userEmail' => $this->input->post('userEmail'), 'userPassword' => $this->input->post('userPassword'))))
 			{
-				redirect('user/index');
+				redirect('review/index');
 			} //redirect('welcome/login');
 		//}
 		
