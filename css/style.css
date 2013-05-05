@@ -259,8 +259,8 @@ html, body {
 	-moz-border-radius: 5px;
 	-o-border-radius: 5px;
 	border-radius: 5px;
-	-webkit-box-shadow: inset 0px 2px 7px 0px rgba(0, 0, 0, .75);
-	box-shadow: inset 0px 2px 7px 0px rgba(0, 0, 0, .75);
+	/*-webkit-box-shadow: inset 0px 2px 7px 0px rgba(0, 0, 0, .75);
+	box-shadow: inset 0px 2px 7px 0px rgba(0, 0, 0, .75);*/
 	padding: 5px 2%;
 }
 
