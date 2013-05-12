@@ -16,9 +16,14 @@ var bounds = new google.maps.LatLngBounds();
 var loadCt = 0;
 var loadMax = 0;
 var isMobi = false;
+var isMobile = false;
 var maxDistance = 20;
 
 $(document).ready(function(){
+	
+	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ) {
+		isMobile = true;
+	}
 	
 	$('#btncloseloc').click(function(){$('#locationbox').fadeOut();});
 	$('#location').click(function(){
@@ -340,8 +345,14 @@ function fbsharemobi(pTitle,pToy){
 }
 
 function twshare(pTitle,pToy){
+	var twurl = "http://twitter.com/home?status=";
+	
+	if( isMobile ){
+		twurl = "https://mobile.twitter.com/compose/tweet?status=";
+	}
+	
 	var twcontent = escape('I got the '+pToy+' at '+pTitle+' thanks to ThePrizeInside')+" "+escape(social['link']);
-	openpopup('http://twitter.com/home?status='+twcontent,'tweeters',550,450);
+	openpopup(twurl+twcontent,'tweeters',550,450);
 }
 
 function twsharemobi(pTitle,pToy){

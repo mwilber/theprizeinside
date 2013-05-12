@@ -52,7 +52,7 @@
 		social['description'] = "Choose your fast food by the prize inside.";
 		social['image'] = "http://theprizeinside.com/img/fb_icon.png";
 		social['link'] = "http://theprizeinside.com/";
-		var isMobile = false;
+		
 	</script>
 
   </head>
