@@ -57,6 +57,20 @@
 
   </head>
   <body>
+  	<div id="appModal" class="modal hide fade">
+	  <div class="modal-header">
+	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	    <h3>The Prize Inside Apps</h3>
+	  </div>
+	  <div class="modal-body">
+	    <a style="float:left; width:auto;" href="https://play.google.com/store/apps/details?id=com.greenzeta.greenzeta.theprizeinside" target="_blank"><img src="img/playstore.png" style="height:55px;"/></a>
+	    <a style="float:left; width:auto;" href="https://chrome.google.com/webstore/detail/the-prize-inside/dhifcjdhfplggpmnlfmgockjchmpcfkb" target="_blank"><img src="img/chromestore.png" style="height:55px;"/></a>
+	  </div>
+	  <!--<div class="modal-footer">
+	    <a href="#" class="btn" onclick="$('#geoModal').modal('hide');">Close</a>
+	    <a href="#" class="btn btn-primary" onclick="QueryLocation();">Get Location</a>
+	  </div>-->
+	</div>
   	<div id="loader">
   		<h1>Loading...</h1>
   		<div class="progress progress-warning">
@@ -101,19 +115,6 @@
 	  <div class="body">
 	    <p>Manually set your location by tapping the coordinates above. For the optimal experience, use a browser that is location aware and grant The Prize Inside access to your location.</p>
 	  	<p><a href="policy.html">Privacy Policy</a></p>
-	  </div>
-	  <!--<div class="modal-footer">
-	    <a href="#" class="btn" onclick="$('#geoModal').modal('hide');">Close</a>
-	    <a href="#" class="btn btn-primary" onclick="QueryLocation();">Get Location</a>
-	  </div>-->
-	</div>
-	<div id="appModal" class="modal hide fade">
-	  <div class="modal-header">
-	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-	    <h3>Mobile Apps</h3>
-	  </div>
-	  <div class="modal-body">
-	    <a style="float:left; width:auto;" href="https://play.google.com/store/apps/details?id=com.greenzeta.greenzeta.theprizeinside" target="_blank"><img src="img/playstore.png" style="height:55px;"/></a>
 	  </div>
 	  <!--<div class="modal-footer">
 	    <a href="#" class="btn" onclick="$('#geoModal').modal('hide');">Close</a>
