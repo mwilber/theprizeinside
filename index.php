@@ -88,17 +88,32 @@
   		<img id="logo" src="img/logo.png"/>
   		<div id="title">The Prize Inside</div>
   		<a id="info" href="#" onclick="return false;"><i class="icon-info-sign"></i></a>
+  		<a id="appmobi" href="#" onclick="return false;"><i class="icon-mobile-phone"></i><span>Get The App!</span></a>
     	<div class="clearfix"></div>
   	</div>
   	<a id="location" href="#" onclick="return false;">Location: <span></span></a>
 	<div id="overmap"></div>
-	<div id="geoModal" class="modal hide fade">
+	<div id="geoModal" class="arrow_box">
+	  <div class="header">
+	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="$(this).parent().parent().fadeOut();"><img src="img/btn_close.png"/></button>
+	    <h3>Location Not Found</h3>
+	  </div>
+	  <div class="body">
+	    <p>Manually set your location by tapping the coordinates above. For the optimal experience, use a browser that is location aware and grant The Prize Inside access to your location.</p>
+	  	<p><a href="policy.html">Privacy Policy</a></p>
+	  </div>
+	  <!--<div class="modal-footer">
+	    <a href="#" class="btn" onclick="$('#geoModal').modal('hide');">Close</a>
+	    <a href="#" class="btn btn-primary" onclick="QueryLocation();">Get Location</a>
+	  </div>-->
+	</div>
+	<div id="appModal" class="modal hide fade">
 	  <div class="modal-header">
 	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-	    <h3>Could Not Determine Your Location</h3>
+	    <h3>Mobile Apps</h3>
 	  </div>
 	  <div class="modal-body">
-	    <p>The Prize Inside uses your location to display nearby fast food restaurants. You may continue to use the site however, for the optimal experience, you should use a browser that is location aware and grant The Prize Inside permission to your location. Location information provided to The Prize Inside is used directly in your browser and not stored in any form.</p>
+	    <a style="float:left; width:auto;" href="https://play.google.com/store/apps/details?id=com.greenzeta.greenzeta.theprizeinside" target="_blank"><img src="img/playstore.png" style="height:55px;"/></a>
 	  </div>
 	  <!--<div class="modal-footer">
 	    <a href="#" class="btn" onclick="$('#geoModal').modal('hide');">Close</a>
@@ -115,6 +130,7 @@
 			<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://theprizeinside.com/" data-text="The Prize Inside - Choose your fast food by the prize inside." data-hashtags="fastfood">Tweet</a>
     	</div>
     	<a id="gzlink" href="http://www.greenzeta.com" target="_blank">A GreenZeta Production</a>
+    	<a id="policylink" href="policy.html">Privacy Policy</a>
    	</div>
     <div id="fb-root"></div>
 	<div id="map"></div>

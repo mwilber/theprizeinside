@@ -27,11 +27,13 @@ $(document).ready(function(){
 	
 	$('#btncloseloc').click(function(){$('#locationbox').fadeOut();});
 	$('#location').click(function(){
+		CloseAllBoxes();
 		$('#locationbox').fadeIn();
 		return false;
 	});
 	$('#btnclose').click(function(){$('#aboutbox').fadeOut();});
 	$('#info').click(function(){
+		CloseAllBoxes();
 		$('#aboutbox').fadeIn();
 		$('.scroll-pane').jScrollPane(
 			{
@@ -39,6 +41,10 @@ $(document).ready(function(){
 				verticalGutter: 15
 			}
 		);
+	});
+	
+	$('#appmobi').click(function(){
+		$('#appModal').modal('show');
 	});
 	
 });
@@ -273,7 +279,8 @@ function GetHome(){
 function HandleGeolocationErrors(error)  
 {  
 	
-	$('#geoModal').modal('show');
+	//$('#geoModal').modal('show');
+	$('#geoModal').fadeIn();
  /*   switch(error.code)  
     {  
         case error.PERMISSION_DENIED: 
@@ -368,6 +375,11 @@ function gpshare(pTitle){
 }
 
 
+function CloseAllBoxes(){
+	$('#geoModal').fadeOut();
+	$('#locationbox').fadeOut();
+	$('#aboutbox').fadeOut();
+}
 
 /////////////////////////////////////////////////////////////////////////////
 //	Utility Functions

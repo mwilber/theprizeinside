@@ -106,13 +106,31 @@ html, body {
 	text-decoration:none;
 }
 
+#header #appmobi{
+	font-family:Arial, sans-serif;
+	font-weight:bold;
+	display: block;
+	float: right;
+	margin: 0px 10% 0px 0px;
+	color: #FEF500;
+	text-decoration: none;
+	font-size: 20px;
+}
+
+#header #appmobi i{
+	font-size: 36px;
+	float: left;
+	display: block;
+	margin: -10px 5px 0px 0px;
+}
+
 .float-panel{
 	display:none;
 	position:absolute;
 	z-index:500;
 	top:15%;
 	left:50%;
-	background-color:#39230E;
+	/*background-color:#39230E;*/
 	width:250px;
 	height:360px;
 	margin: 0px 0px 0px -165px;
@@ -120,10 +138,41 @@ html, body {
 	border-radius: 15px; 
 	-moz-border-radius: 15px; 
 	-webkit-border-radius: 15px; 
+	
+	
+	background: #533F20;
+	border: 3px solid #FEF500;
+	color: #fef500;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	-webkit-box-shadow: -1px 5px 16px 1px #000;
+	box-shadow: -1px 5px 16px 1px #000;
 }
 
 #locationbox{
 	height:150px;
+}
+
+#geoModal{
+	width: 520px;
+	top: 100px;
+	right: 10px;
+}
+
+#geoModal a{
+	color:#FEF500;
+}
+
+#geoModal .close{
+	opacity:1;
+}
+
+#appModal{
+	width: 90%;
+	max-width: 600px;
+	left: 20%;
+	margin-left: 5%;
 }
 
 .float-panel h2{
@@ -379,6 +428,14 @@ html, body {
 	margin: 5px 0% 0% 3%;
 }
 
+#footer #policylink{
+	float: left;
+	font-size: 12px;
+	color: #FEF500;
+	display: block;
+	margin: 8px 0% 0% 3%;
+}
+
 #footer #likegroup{
 	margin-top:5px;
 }
@@ -399,6 +456,63 @@ html, body {
 	z-index: 999;
 }
 
+.arrow_box {
+	position: absolute;
+	z-index: 1000;
+	
+	background: #533F20;
+	border: 3px solid #FEF500;
+	color: #fef500;
+	padding:5px 20px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	-webkit-box-shadow: -1px 5px 16px 1px #000;
+	box-shadow: -1px 5px 16px 1px #000;
+}
+.arrow_box:after, .arrow_box:before {
+	bottom: 100%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+.arrow_box:after {
+	border-color: rgba(83, 63, 32, 0);
+	border-bottom-color: #533F20;
+	border-width: 25px;
+	left: 80%;
+	margin-left: -25px;
+}
+.arrow_box:before {
+	border-color: rgba(254, 245, 0, 0);
+	border-bottom-color: #FEF500;
+	border-width: 29px;
+	left: 80%;
+	margin-left: -29px;
+}
+
+
+#policy{
+	height:95%;
+	float:left;
+}
+
+#policy h1{
+	margin-top:100px;
+}
+
+#policy *{
+	margin: 25px 0% 0px 15%;
+	width: 70%;
+}
+
+#policy a{
+	margin-left:0px;
+}
 
 /* Custom sizes
 ============================================================================================== */
@@ -410,6 +524,26 @@ html, body {
 		clear:both;
 		margin-top:20px;
 		margin-bottom:10px;
+	}
+	
+	#header #appmobi{
+		margin-right:2%;
+	}
+	
+	#header #appmobi span{
+		display:none;
+	}
+	
+	#geoModal{
+		width: 80%;
+		right: 1%;
+	}
+	
+	#appModal {
+		width: 90%;
+		max-width: 600px;
+		left: 20%;
+		margin-left: -15%;
 	}
 	
 	#listlist li .btn{
@@ -444,6 +578,11 @@ html, body {
 	#footer #gzlink{
 		margin-top:3%;
 	}
+	
+	#policy *{
+		margin: 25px 0% 0px 5%;
+		width: 95%;
+	}
 }
 
 @media screen and (max-width: 480px) {
@@ -464,8 +603,7 @@ html, body {
 	}
 	
 	#geoModal{
-		width:90%;
-		margin-left:-45%;
+		width:85%;
 	}
 	
 	#listlist{
