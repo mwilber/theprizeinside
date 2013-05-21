@@ -155,6 +155,7 @@ html, body {
 }
 
 #geoModal{
+	display:none;
 	width: 520px;
 	top: 100px;
 	right: 10px;
