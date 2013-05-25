@@ -347,13 +347,13 @@ function InitMap(){
 
 function fbshare(pTitle,pToy){
 	
-	var fbcontent = "https://www.facebook.com/dialog/feed?app_id=314668331957423&link="+escape(social['link'])+"&picture="+escape(social['image'])+"&name="+escape(social['title'])+"&caption="+escape(social['title'])+"&description="+escape('I got the '+pToy+' at '+pTitle+' thanks to ThePrizeInside')+"&redirect_uri=https://facebook.com/";
+	var fbcontent = "https://www.facebook.com/dialog/feed?app_id=314668331957423&link="+escape(social['link'])+"&picture="+escape(social['image'])+"&name="+escape(social['title'])+"&caption="+escape(social['title'])+"&description="+escape('I found the '+pToy+' at '+pTitle+' thanks to ThePrizeInside')+"&redirect_uri=https://facebook.com/";
 	openpopup(fbcontent,'facebook',1000,450);
 }
 
 function fbsharemobi(pTitle,pToy){
 	
-	var fbcontent = "https://www.facebook.com/dialog/feed?app_id=314668331957423&link="+escape(social['link'])+"&picture="+escape(social['image'])+"&name="+escape(social['title'])+"&caption="+escape(social['title'])+"&description="+escape('I got the '+pToy+' at '+pTitle+' thanks to ThePrizeInside')+"&redirect_uri=https://facebook.com/";
+	var fbcontent = "https://www.facebook.com/dialog/feed?app_id=314668331957423&link="+escape(social['link'])+"&picture="+escape(social['image'])+"&name="+escape(social['title'])+"&caption="+escape(social['title'])+"&description="+escape('I found the '+pToy+' at '+pTitle+' thanks to ThePrizeInside')+"&redirect_uri=https://facebook.com/";
 	AppMobi.device.launchExternal(fbcontent);
 }
 
@@ -364,24 +364,24 @@ function twshare(pTitle,pToy){
 		twurl = "https://mobile.twitter.com/compose/tweet?status=";
 	}
 	
-	var twcontent = escape('I got the '+pToy+' at '+pTitle+' thanks to ThePrizeInside')+" "+escape(social['link']);
+	var twcontent = escape('I found the '+pToy+' at '+pTitle+' thanks to ThePrizeInside')+" "+escape(social['link']);
 	openpopup(twurl+twcontent,'tweeters',550,450);
 }
 
 function twsharemobi(pTitle,pToy){
 	//var twcontent = 'http://twitter.com/home?status='+tescape('Check out what\'s in the '+pTitle+' kids meal at ThePrizeInside')+" "+escape(social['link']);
-	var twcontent = 'https://mobile.twitter.com/compose/tweet?status='+escape('I got the '+pToy+' at '+pTitle+' thanks to ThePrizeInside http://theprizeinside.com');
+	var twcontent = 'https://mobile.twitter.com/compose/tweet?status='+escape('I found the '+pToy+' at '+pTitle+' thanks to ThePrizeInside http://theprizeinside.com');
 	//alert('launching external: '+twcontent);
 	AppMobi.device.launchExternal(twcontent);
 }
 
 function gpshare(pTitle, pToy){
-	var url = "https://plus.google.com/share?url="+escape(social['link'])+"&description="+escape('I got the '+pToy+' at '+pTitle+' thanks to ThePrizeInside');
+	var url = "https://plus.google.com/share?url="+escape(social['link'])+"&description="+escape('I found the '+pToy+' at '+pTitle+' thanks to ThePrizeInside');
 	openpopup(url,'gplus',550,450);
 }
 
 function gpsharemobi(pTitle, pToy){
-	var url = "https://plus.google.com/share?url="+escape(social['link'])+"&description="+escape('I got the '+pToy+' at '+pTitle+' thanks to ThePrizeInside');
+	var url = "https://plus.google.com/share?url="+escape(social['link'])+"&description="+escape('I found the '+pToy+' at '+pTitle+' thanks to ThePrizeInside');
 	AppMobi.device.launchExternal(url);
 }
 
