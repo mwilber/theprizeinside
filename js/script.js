@@ -261,9 +261,9 @@ function GetDetails(pIdx){
 		}
 		
 		if( isMobi ){
-			$('#twshare').attr('onclick','twsharemobi(restaurants['+pIdx+'].restaurantName,restaurants[pIdx].prize['+pIdx+'].prizeName);');
-			$('#fbshare').attr('onclick','fbsharemobi(restaurants['+pIdx+'].restaurantName,restaurants[pIdx].prize['+pIdx+'].prizeName);');
-			$('#gpshare').attr('onclick','gpsharemobi(restaurants['+pIdx+'].restaurantName,restaurants[pIdx].prize['+pIdx+'].prizeName);');
+			$('#twshare').attr('onclick','twsharemobi(restaurants['+pIdx+'].restaurantName,restaurants['+pIdx+'].prize[0].prizeName); return false;');
+			$('#fbshare').attr('onclick','fbsharemobi(restaurants['+pIdx+'].restaurantName,restaurants['+pIdx+'].prize[0].prizeName); return false;');
+			$('#gpshare').attr('onclick','gpsharemobi(restaurants['+pIdx+'].restaurantName,restaurants['+pIdx+'].prize[0].prizeName); return false;');
 		}else{
 			$('#twshare').click(function(){twshare(restaurants[pIdx].restaurantName,restaurants[pIdx].prize[0].prizeName);});
 			$('#fbshare').click(function(){fbshare(restaurants[pIdx].restaurantName,restaurants[pIdx].prize[0].prizeName);});
