@@ -93,7 +93,7 @@
 		<a id="btnclose" class="close" href="#" onclick="return false;"><i class="icon-remove"></i></a>
 		<h2>About The Prize Inside</h2>
 		<div id="about" class="scroll-pane">
-			<p>Choose your fast food by the prize inside! Quickly find out what's in the kids' meal at nearby fast food restaurants. Click on each prize to zoom in the map and get the restaurant address or click on "Directions" for driving directions.</p>
+			<p>Choose your fast food by the prize inside! Quickly find out what's in the kids' meal at nearby fast food restaurants. Click on each prize to zoom in the map and get the restaurant address. Click on "Directions" for driving directions.</p>
 			<p>The Prize Inside was created by Internet software developer Matthew Wilber. For more information, visit <a href="http://www.mwilber.com" target="_blank">mwilber.com</a>.</p>
 			<strong>Mobile Users</strong>
 			<p>Android users can find The Prize Inside for free in the <a href="https://play.google.com/store/apps/details?id=com.greenzeta.greenzeta.theprizeinside" target="_blank">Google Play Store</a>.</p>
@@ -120,7 +120,7 @@
 	    <h3>Location Not Found</h3>
 	  </div>
 	  <div class="body">
-	    <p>Manually set your location by tapping the coordinates above. For the optimal experience, use a browser that is location aware and grant The Prize Inside access to your location.</p>
+	    <p>Manually set your location by tapping the navigation icon above. For the optimal experience, use a browser that is location aware and grant The Prize Inside access to your location.</p>
 	  	<p><a href="policy.html">Privacy Policy</a></p>
 	  </div>
 	</div>
