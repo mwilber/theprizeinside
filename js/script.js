@@ -11,7 +11,10 @@ var mapthumb = {
 	zoom:'15'
 };
 var mapDetailZoomLevel = 15;
-var mapYOffset = -30;
+var mapYOffset = 130;
+var mapXOffset = 0;
+var mapYzoomOffset = 80;
+var mapXzoomOffset = 0;
 var bounds = new google.maps.LatLngBounds();
 var loadCt = 0;
 var loadMax = 0;
@@ -25,8 +28,18 @@ $(document).ready(function(){
 		isMobile = true;
 	}
 	
+	if( $('body').width() > 480 ){
+		mapYOffset = 50;
+	}
+	
+//	if( $('body').width() > 700 ){
+//		mapYOffset = 0;
+//		mapXOffset = -Math.floor($('body').width()/4);
+// 	}
+	
 	$('#btncloseloc').click(function(){$('#locationbox').fadeOut();});
-	$('#location').click(function(){
+	$('#btncloseinfo').click(GetHome);
+	$('#loc').click(function(){
 		CloseAllBoxes();
 		$('#locationbox').fadeIn();
 		return false;
@@ -50,7 +63,11 @@ $(document).ready(function(){
 });
 
 function QueryLocation(){
-	navigator.geolocation.getCurrentPosition(HandleGeolocationQuery,HandleGeolocationErrors);
+	window.navigator.geolocation.getCurrentPosition(HandleGeolocationQuery,HandleGeolocationErrors,{
+	  enableHighAccuracy: true,
+	  timeout: 5000,
+	  maximumAge: 0
+	});
 }
 
 function UpdateProgressBar(){
@@ -146,61 +163,34 @@ function CalcRoute(pEnd, pIdx, pCt) {
 		if (status == google.maps.DirectionsStatus.OK) {
 			if( restaurants[pIdx].prize[0].prizeName ){
 				restaurants[pIdx].location = new google.maps.LatLng(result.routes[0].legs[0].end_location.lat(), result.routes[0].legs[0].end_location.lng());
-				var imgurl = "http://maps.googleapis.com/maps/api/staticmap?center="+result.routes[0].legs[0].end_location.lat()+","+result.routes[0].legs[0].end_location.lng()+"&zoom="+mapthumb.zoom+"&size="+mapthumb.width+"x"+mapthumb.height+"&markers=color:0x"+restaurants[pIdx].restaurantColor+"%7Clabel:*%7C"+result.routes[0].legs[0].end_location.lat()+","+result.routes[0].legs[0].end_location.lng()+"&sensor=false";
-				var maplink = 'http://maps.google.com/?saddr='+userLocation.lat()+","+userLocation.lng()+'&daddr='+result.routes[0].legs[0].end_address;
+				restaurants[pIdx].distance = result.routes[0].legs[0].distance.text;
+				restaurants[pIdx].address = result.routes[0].legs[0].end_address.replace(',','<br/>');
 				
-				var tmpListing = $('<li/>').attr('id',restaurants[pIdx].restaurantAlias).addClass('listing').css('backgroundColor','#'+restaurants[pIdx].restaurantColor).click(function(){/*GetDetails(pIdx);*/});
+				restaurants[pIdx].imgurl = "http://maps.googleapis.com/maps/api/staticmap?center="+result.routes[0].legs[0].end_location.lat()+","+result.routes[0].legs[0].end_location.lng()+"&zoom="+mapthumb.zoom+"&size="+mapthumb.width+"x"+mapthumb.height+"&markers=color:0x"+restaurants[pIdx].restaurantColor+"%7Clabel:*%7C"+result.routes[0].legs[0].end_location.lat()+","+result.routes[0].legs[0].end_location.lng()+"&sensor=false";
+				restaurants[pIdx].maplink = 'http://maps.google.com/?saddr='+userLocation.lat()+","+userLocation.lng()+'&daddr='+result.routes[0].legs[0].end_address;
+				
+				var tmpListing = $('<li/>').attr('id',restaurants[pIdx].restaurantAlias).attr('distance',restaurants[pIdx].distance).addClass('listing');
 				
 				var tmpName = "";
 				for(idx=0; idx<restaurants[pIdx].prize.length; idx++){
 					if(idx > 0) tmpName += " / ";
 					tmpName += restaurants[pIdx].prize[idx].prizeName;
 				}
-				tmpListing.append($('<h2/>').addClass('prize').append(tmpName).append($('<i/>').addClass('icon-info-sign')).click(function(){GetDetails(pIdx);}));
-				//.append($('<img/>').attr('src','http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|'+restaurants[pIdx].restaurantColor))
-				tmpListing.append($('<div/>').addClass('restaurant').html(restaurants[pIdx].restaurantName).click(function(){GetDetails(pIdx);}));
-				tmpListing.append($('<div/>').addClass('distance').html(result.routes[0].legs[0].distance.text).click(function(){GetDetails(pIdx);}));
 				
-				//tmpListing.append($('<a/>').addClass('detailsbtn').addClass('btn').attr('href','#').attr('target','_blank').append($('<i/>').addClass('icon-info-sign')).append('&nbsp;Details').click(function(){GetDetails(pIdx); return false;}));
-				// Share dropdown
-				var shareGroup = $('<div/>').addClass('btn-group').addClass('socialgroup');
-				
-				
-				if( isMobi ){
-					shareGroup.append($('<a/>').attr('href','#').addClass('btn').append($('<i/>').addClass('icon-twitter')).attr('onclick','twsharemobi(restaurants['+pIdx+'].restaurantName,restaurants[pIdx].prize['+pIdx+'].prizeName);'));
-					shareGroup.append($('<a/>').attr('href','#').addClass('btn').append($('<i/>').addClass('icon-facebook')).attr('onclick','fbsharemobi(restaurants['+pIdx+'].restaurantName,restaurants[pIdx].prize['+pIdx+'].prizeName);'));
-				}else{
-					shareGroup.append($('<a/>').attr('href','#').addClass('btn').append($('<i/>').addClass('icon-twitter')).click(function(){twshare(restaurants[pIdx].restaurantName,restaurants[pIdx].prize[0].prizeName);}));
-					shareGroup.append($('<a/>').attr('href','#').addClass('btn').append($('<i/>').addClass('icon-facebook')).click(function(){fbshare(restaurants[pIdx].restaurantName,restaurants[pIdx].prize[0].prizeName);}));
-				}
-				//shareDropdown.append($('<a/>').attr('href','#').addClass('btn').append($('<i/>').addClass('icon-google-plus')).click(function(){gpshare(restaurants[pIdx].restaurantName);}));
-				
-				var toolGroup = $('<div/>').addClass('btn-group').addClass('toolgroup');
-				if( isMobi ){
-					toolGroup.append($('<a/>').addClass('extlink').addClass('btn').attr('href','#').attr('onclick','AppMobi.device.launchExternal(restaurants['+pIdx+'].restaurantUrl); return false;').append($('<i/>').addClass('icon-globe')).append('&nbsp;Website'));
-					toolGroup.append($('<a/>').addClass('directions').addClass('btn').attr('href','#').attr('onclick','AppMobi.device.launchExternal(\''+maplink+'\'); return false;').append($('<i/>').addClass('icon-road')).append('&nbsp;Directions'));
-				}else{
-					toolGroup.append($('<a/>').addClass('extlink').addClass('btn').attr('href',restaurants[pIdx].restaurantUrl).attr('target','_blank').append($('<i/>').addClass('icon-globe')).append('&nbsp;Website'));
-					toolGroup.append($('<a/>').addClass('directions').addClass('btn').attr('href',maplink).attr('target','_blank').append($('<i/>').addClass('icon-road')).append('&nbsp;Directions'));
-					//toolGroup.append($('<a/>').attr('href','#').addClass('btndetails').addClass('btn').append($('<i/>').addClass('icon-zoom-in')).click(function(){GetDetails(pIdx);}));
-				}
-				
-				tmpListing.append(toolGroup);
-				tmpListing.append(shareGroup);
-				
-				
-				// Prize details here
-				var tmpDetails = $('<div/>').addClass('details');
-				tmpDetails.append($('<div/>').addClass('address').html(result.routes[0].legs[0].end_address.replace(',','<br/>')));
-				
-				tmpListing.append(tmpDetails);
+				tmpListing.append($('<a/>')
+					.attr('href','#')
+					.addClass('restaurant')
+					.append($('<img/>').attr('src','img/marker_legend.png').addClass('marker').css('backgroundColor','#'+restaurants[pIdx].restaurantColor))
+					.append(restaurants[pIdx].restaurantName+" - "+tmpName)
+					.click(function(){GetDetails(pIdx); return false;})
+				);
 				
 				$('#listlist').append(tmpListing);
 				
 				var items = $('#listlist li').get();
 				items.sort(function(a,b){
-				  var keyA = parseFloat($(a).find('.distance').text());
-				  var keyB = parseFloat($(b).find('.distance').text());
+				  var keyA = parseFloat($(a).attr('distance'));
+				  var keyB = parseFloat($(b).attr('distance'));
 				
 				  if (keyA < keyB) return -1;
 				  if (keyA > keyB) return 1;
@@ -232,7 +222,7 @@ function CalcRoute(pEnd, pIdx, pCt) {
 		        });
 				bounds.extend(restaurants[pIdx].location);
 				overmap.fitBounds(bounds);
-				overmap.panBy(0, mapYOffset);
+				overmap.panBy(mapXOffset, mapYOffset);
 				
 			}
 		}
@@ -248,38 +238,54 @@ function clearOverlays() {
 }
 
 function GetDetails(pIdx){
-	//
-	if( $('#listlist #'+restaurants[pIdx].restaurantAlias+' .details').css('display') == 'none' ){
-		$('#listlist li .details').hide();
-		$('#listlist #'+restaurants[pIdx].restaurantAlias).show().find('.details').show();
-		//$('#listlist #'+restaurants[pIdx].restaurantAlias).show().find('.btndetails i').removeClass('icon-zoom-in').addClass('icon-zoom-out');
-		var container = $('#listlist');
-		var scrollTo = $('#listlist #'+restaurants[pIdx].restaurantAlias);
-		container.animate({
-			scrollTop: scrollTo.offset().top - container.offset().top + container.scrollTop() - 20
-		});
-		//$('#btn_showall').show();
+
+		$('#listlist').hide();
+		
+		var tmpName = "";
+		for(idx=0; idx<restaurants[pIdx].prize.length; idx++){
+			if(idx > 0) tmpName += " / ";
+			tmpName += restaurants[pIdx].prize[idx].prizeName;
+		}
+		
+		$('#infobox .prize').html(tmpName);
+		$('#infobox .restaurant').html(restaurants[pIdx].restaurantName);
+		$('#infobox .distance').html(restaurants[pIdx].distance);
+		$('#infobox .address').html(restaurants[pIdx].address);
+		
+		if( isMobi ){
+			$('#infobox .extlink').attr('onclick','AppMobi.device.launchExternal(\''+restaurants[pIdx].restaurantUrl+'\'); return false;');
+			$('#infobox .directions').attr('onclick','AppMobi.device.launchExternal(\''+restaurants[pIdx].maplink+'\'); return false;');
+		}else{
+			$('#infobox .extlink').attr('href',restaurants[pIdx].restaurantUrl).attr('target','_blank');
+			$('#infobox .directions').addClass('btn').attr('href',restaurants[pIdx].maplink).attr('target','_blank');
+		}
+		
+		if( isMobi ){
+			$('#twshare').attr('onclick','twsharemobi(restaurants['+pIdx+'].restaurantName,restaurants[pIdx].prize['+pIdx+'].prizeName);');
+			$('#fbshare').attr('onclick','fbsharemobi(restaurants['+pIdx+'].restaurantName,restaurants[pIdx].prize['+pIdx+'].prizeName);');
+			$('#gpshare').attr('onclick','gpsharemobi(restaurants['+pIdx+'].restaurantName,restaurants[pIdx].prize['+pIdx+'].prizeName);');
+		}else{
+			$('#twshare').click(function(){twshare(restaurants[pIdx].restaurantName,restaurants[pIdx].prize[0].prizeName);});
+			$('#fbshare').click(function(){fbshare(restaurants[pIdx].restaurantName,restaurants[pIdx].prize[0].prizeName);});
+			$('#gpshare').click(function(){gpshare(restaurants[pIdx].restaurantName,restaurants[pIdx].prize[0].prizeName);});
+		}
+		
+		$('#infobox').fadeIn(); 
 		overmap.setZoom(mapDetailZoomLevel);
 		overmap.setCenter(restaurants[pIdx].location);
-		overmap.panBy(0, mapYOffset);
-	}else{
-		GetHome();
-	}
+		overmap.panBy(mapXzoomOffset, -($('#infobox').height()-mapYzoomOffset));
 }
 
 function GetHome(){
 	overmap.fitBounds(bounds);
-	overmap.panBy(0, mapYOffset); 
-	$('#listlist li .details').hide(); 
-	//$('#listlist li .btndetails i').removeClass('icon-zoom-out').addClass('icon-zoom-in');
-	$('#listlist li').show(); 
+	overmap.panBy(mapXOffset, mapYOffset);
+	$('#infobox').fadeOut();  
+	$('#listlist').fadeIn(); 
 	return false;
 }
 
 function HandleGeolocationErrors(error)  
 {  
-	
-	//$('#geoModal').modal('show');
 	$('#geoModal').fadeIn();
  /*   switch(error.code)  
     {  
@@ -369,9 +375,14 @@ function twsharemobi(pTitle,pToy){
 	AppMobi.device.launchExternal(twcontent);
 }
 
-function gpshare(pTitle){
-	var url = "https://plus.google.com/share?url="+escape(social['link'])+"&description="+escape('Check out what\'s in the '+pTitle+' kids meal at ThePrizeInside.com');
+function gpshare(pTitle, pToy){
+	var url = "https://plus.google.com/share?url="+escape(social['link'])+"&description="+escape('I got the '+pToy+' at '+pTitle+' thanks to ThePrizeInside');
 	openpopup(url,'gplus',550,450);
+}
+
+function gpsharemobi(pTitle, pToy){
+	var url = "https://plus.google.com/share?url="+escape(social['link'])+"&description="+escape('I got the '+pToy+' at '+pTitle+' thanks to ThePrizeInside');
+	AppMobi.device.launchExternal(url);
 }
 
 

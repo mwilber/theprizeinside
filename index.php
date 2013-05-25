@@ -37,8 +37,9 @@
 	<meta name="viewport" content="width=device-width">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<link rel="apple-touch-startup-image" href="/startup.png">
-	<link href='http://fonts.googleapis.com/css?family=Vollkorn:400,700' rel='stylesheet' type='text/css'>
-	<link href='http://fonts.googleapis.com/css?family=Ultra' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Coustard:900' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Anton' rel='stylesheet' type='text/css'>
+
 	<link type="text/css" href="css/jquery.jscrollpane.css" rel="stylesheet" media="all" />
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
@@ -65,6 +66,7 @@
 	  <div class="modal-body">
 	    <a style="float:left; width:auto;" href="https://play.google.com/store/apps/details?id=com.greenzeta.greenzeta.theprizeinside" target="_blank"><img src="img/playstore.png" style="height:55px;"/></a>
 	    <a style="float:left; width:auto;" href="https://chrome.google.com/webstore/detail/the-prize-inside/dhifcjdhfplggpmnlfmgockjchmpcfkb" target="_blank"><img src="img/chromestore.png" style="height:55px;"/></a>
+	   	<a style="float:left; width:auto;" href="https://itunes.apple.com/us/app/the-prize-inside/id650582612?ls=1&mt=8" target="_blank"><img src="img/appstore.png" style="height:55px;"/></a>
 	  </div>
 	  <!--<div class="modal-footer">
 	    <a href="#" class="btn" onclick="$('#geoModal').modal('hide');">Close</a>
@@ -78,8 +80,10 @@
 		</div>
 		<div class="message">Getting prizes</div>
   	</div>
+  	
+  	<!-- BOUT BOX -->
   	<div id="aboutbox" class="float-panel">
-		<a id="btnclose" href="#" onclick="return false;"><img src="img/btn_close.png"/></a>
+		<a id="btnclose" class="close" href="#" onclick="return false;"><i class="icon-remove"></i></a>
 		<h2>About The Prize Inside</h2>
 		<div id="about" class="scroll-pane">
 			<p>Choose your fast food by the prize inside! Quickly find out what's in the kids' meal at nearby fast food restaurants. Click on each prize to zoom in the map and get the restaurant address or click on "Directions" for driving directions.</p>
@@ -89,54 +93,66 @@
 			<p>iPhone users can use this site as a web app. First you must enable location awareness in mobile safari by going to Settings->Privacy->Location Services and turn on Safari. Then open safari and go to ThePrizeInside.com. When prompted, allow The Prize Inside to use your current location. Finally, install the web app by tapping the share button and selecting "Add to Home Screen"</p>
 		</div>
 	</div>
+	
+	<!-- LOCATION BOX -->
 	<div id="locationbox" class="float-panel">
-		<a id="btncloseloc" href="#" onclick="return false;"><img src="img/btn_close.png"/></a>
+		<a id="btncloseloc" class="close" href="#" onclick="return false;"><i class="icon-remove"></i></a>
+		<a id="location" href="#" onclick="return false;">Location: <span></span></a>
 		<h2>Change Location</h2>
 		<p>Enter an address to search:</p>
-		<form id="setloc">
+		<form id="setloc" onsubmit="$('#btnlocsearch').trigger('click'); return false;">
 			<input id="loctext" value=""/>
 			<a id="btnlocsearch" href="#" class="btn" onclick="return false;">Search</a>
 		</div>
 	</div>
-  	<div id="header">
-  		<img id="logo" src="img/logo.png"/>
-  		<div id="title">The Prize Inside</div>
-  		<a id="info" href="#" onclick="return false;"><i class="icon-info-sign"></i></a>
-  		<a id="appmobi" href="#" onclick="return false;"><i class="icon-mobile-phone"></i><span>Get The App!</span></a>
-    	<div class="clearfix"></div>
-  	</div>
-  	<a id="location" href="#" onclick="return false;">Location: <span></span></a>
-	<div id="overmap"></div>
-	<div id="geoModal" class="arrow_box">
+	
+	<!-- LOCATION NOT FOUND -->
+	<div id="geoModal" class="arrow_box float-panel">
 	  <div class="header">
-	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="$(this).parent().parent().fadeOut();"><img src="img/btn_close.png"/></button>
+	    <a class="close" onclick="$(this).parent().parent().fadeOut();"><i class="icon-remove"></i></a>
 	    <h3>Location Not Found</h3>
 	  </div>
 	  <div class="body">
 	    <p>Manually set your location by tapping the coordinates above. For the optimal experience, use a browser that is location aware and grant The Prize Inside access to your location.</p>
 	  	<p><a href="policy.html">Privacy Policy</a></p>
 	  </div>
-	  <!--<div class="modal-footer">
-	    <a href="#" class="btn" onclick="$('#geoModal').modal('hide');">Close</a>
-	    <a href="#" class="btn btn-primary" onclick="QueryLocation();">Get Location</a>
-	  </div>-->
 	</div>
+	
+	
+	<!-- INFO BOX -->
+	<div id="infobox" class="float-panel arrow_box info_box">
+		<a id="btncloseinfo" class="close" href="#" onclick="return false;"><i class="icon-remove"></i></a>
+		<h2 class="prize"></h2>
+		<div class="restaurant"></div> <div class="distance"></div>
+		<a class="extlink btn" href="http://www.wendys.com/kids_meal/" target="_blank"><i class="icon-globe"></i>&nbsp;Website</a>
+		<div class="address"></div>
+		<a class="directions btn" href="#" target="_blank"><i class="icon-road"></i>&nbsp;Driving Directions</a>
+		<div class="btn-group socialgroup">
+			<a id="twshare" href="#" class="btn" onclick="return:false;"><i class="icon-twitter"></i></a>
+			<a id="fbshare" href="#" class="btn" onclick="return:false;"><i class="icon-facebook"></i></a>
+			<a id="gpshare" href="#" class="btn" onclick="return:false;"><i class="icon-google-plus"></i></a>
+		</div>
+	</div>
+	
+	
+  	<div id="header">
+  		<img id="logo" src="img/logo.png"/>
+  		<div id="title">The Prize Inside</div>
+  		<a id="info" href="#" onclick="return false;" style="margin-right:0px;"><i class="icon-info-sign"></i></a>
+  		<a id="loc" href="#" onclick="return false;"><i class="icon-location-arrow"></i></a>
+  		<a id="appmobi" href="#" onclick="return false;"><i class="icon-mobile-phone"></i><span>Get The App!</span></a>
+    	<div class="clearfix"></div>
+  	</div>
+  	
+	<div id="overmap"></div>
 	<ul id="listlist" class="unstyled">
 		
 	</ul>
 	<div id="footer">
-		<div id="likegroup">
-      		<div class="fb-like" data-href="http://theprizeinside.com/" data-send="false" data-layout="button_count" data-width="90" data-show-faces="false"></div>
-			<g:plusone size="medium" href="http://theprizeinside.com/"></g:plusone>
-			<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://theprizeinside.com/" data-text="The Prize Inside - Choose your fast food by the prize inside." data-hashtags="fastfood">Tweet</a>
-    	</div>
     	<a id="gzlink" href="http://www.greenzeta.com" target="_blank">A GreenZeta Production</a>
     	<a id="policylink" href="policy.html">Privacy Policy</a>
    	</div>
-    <div id="fb-root"></div>
 	<div id="map"></div>
-    
-    <script type="text/javascript" src="https://connect.facebook.net/en_US/all.js"></script>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places&sensor=true"></script>
     <script src="http://code.jquery.com/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -152,8 +168,8 @@
 		$(document).ready(function(){
 			
 			//if( !isMobile ){
-				FB.init({appId: FBconfig.app.id, status : true, cookie: true, xfbml : true});
-				SetFrame();
+			//	FB.init({appId: FBconfig.app.id, status : true, cookie: true, xfbml : true});
+			//	SetFrame();
 			//}
 			
 			$('#btnlocsearch').click(function(){
@@ -190,13 +206,5 @@
 	  })();
 	
 	</script>
-	<script type="text/javascript">
-	  (function() {
-	    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-	    po.src = 'https://apis.google.com/js/plusone.js';
-	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-	  })();
-	</script>
-	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
   </body>
 </html>
