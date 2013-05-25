@@ -25,6 +25,13 @@
 	<meta property="fb:admins" content="631337813" />
 	<meta property="og:description" content="<?=$social['description']?>" />
 	
+	
+	<!-- Twitter App Card -->
+	<meta name="twitter:card" content="app">
+	<meta name="twitter:app:id:iphone" content="id650582612">
+	<meta name="twitter:app:id:ipad" content="id650582612">
+	<meta name="twitter:app:id:googleplay" content="com.greenzeta.greenzeta.theprizeinside">
+	
 	<!-- Twitter Summary Card -->
 	<meta name="twitter:card" content="summary">
 	<meta name="twitter:title" content="<?=$social['title']?>">
@@ -89,8 +96,8 @@
 			<p>Choose your fast food by the prize inside! Quickly find out what's in the kids' meal at nearby fast food restaurants. Click on each prize to zoom in the map and get the restaurant address or click on "Directions" for driving directions.</p>
 			<p>The Prize Inside was created by Internet software developer Matthew Wilber. For more information, visit <a href="http://www.mwilber.com" target="_blank">mwilber.com</a>.</p>
 			<strong>Mobile Users</strong>
-			<p>Android users can find The Prize Inside in the <a href="https://play.google.com/store/apps/details?id=com.greenzeta.greenzeta.theprizeinside" target="_blank">Google Play Store</a>.</p>
-			<p>iPhone users can use this site as a web app. First you must enable location awareness in mobile safari by going to Settings->Privacy->Location Services and turn on Safari. Then open safari and go to ThePrizeInside.com. When prompted, allow The Prize Inside to use your current location. Finally, install the web app by tapping the share button and selecting "Add to Home Screen"</p>
+			<p>Android users can find The Prize Inside for free in the <a href="https://play.google.com/store/apps/details?id=com.greenzeta.greenzeta.theprizeinside" target="_blank">Google Play Store</a>.</p>
+			<p>iPhone users can buy The Prize Inside in the <a href="https://itunes.apple.com/us/app/the-prize-inside/id650582612?ls=1&mt=8" target="_blank">app store</a>. Or, use this site for free as a web app: First you must enable location awareness in mobile safari by going to Settings->Privacy->Location Services and turn on Safari. Then open safari and go to ThePrizeInside.com. When prompted, allow The Prize Inside to use your current location. Finally, install the web app by tapping the share button and selecting "Add to Home Screen"</p>
 		</div>
 	</div>
 	
