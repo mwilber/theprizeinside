@@ -216,6 +216,13 @@ a, a:hover{
 	font-size:14px;
 }
 
+.float-panel.info_box{
+	display:block;
+	position:static;
+	border:none;
+	width:100%;
+}
+
 .jspVerticalBar
 {
 	background: transparent;
@@ -272,6 +279,18 @@ a, a:hover{
 	margin: 0px;
 	top:100px;
 	left:50px;
+}
+
+#listlist h3{
+	background-color: #362814;
+	color: #f6f0e7;
+	margin: 0px 0px;
+	padding: 0px 15px;
+	float: left;
+	width: 372px;
+	font-size: 16px;
+	height: 30px;
+	line-height: 30px;
 }
 
 #listlist .listing a, #listlist .listing a:hover{
@@ -349,7 +368,7 @@ a, a:hover{
 	cursor:pointer;
 }
 
-#infobox a.btn, #infobox a.btn:hover{
+.info_box a.btn, .info_box a.btn:hover{
 	float: left;
 	clear: left;
 	margin-top:7px;
@@ -360,7 +379,7 @@ a, a:hover{
 	
 }
 
-#infobox .socialgroup a, #infobox .socialgroup a:hover{
+.info_box .socialgroup a, .info_box .socialgroup a:hover{
 	clear: none;
 	margin-left: 1px;
 	width: 30px;
@@ -567,6 +586,10 @@ a, a:hover{
 		margin-left: -260px;
 	}
 	
+	.float-panel.info_box{
+		width:100%;
+	}
+	
 	.toolgroup{
 		clear:left;
 	}
@@ -607,6 +630,10 @@ a, a:hover{
 		top:auto;
 		bottom:40px;
 		left: 2%;
+	}
+	
+	#listlist h3{
+		width: 93%;
 	}
 	
 	.address {

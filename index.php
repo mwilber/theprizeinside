@@ -128,7 +128,7 @@
 	
 	<!-- INFO BOX -->
 	<div id="infobox" class="float-panel arrow_box info_box">
-		<a id="btncloseinfo" class="close" href="#" onclick="return false;"><i class="icon-remove"></i></a>
+		<a id="btncloseinfo" class="close" href="#" onclick="GetHome(); return false;"><i class="icon-remove"></i></a>
 		<h2 class="prize"></h2>
 		<div class="restaurant"></div> <div class="distance"></div>
 		<a class="extlink btn" href="http://www.wendys.com/kids_meal/" target="_blank"><i class="icon-globe"></i>&nbsp;Website</a>
@@ -161,6 +161,7 @@
    	</div>
 	<div id="map"></div>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places&sensor=true"></script>
+    <script src="js/infobubble-compiled.js"></script>
     <script src="http://code.jquery.com/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <!-- the mousewheel plugin -->
