@@ -1,5 +1,5 @@
 var serviceDirection = new google.maps.DirectionsService();
-var userLocation;
+var userLocation = new google.maps.LatLng(0,0);
 var restaurants;
 var prizes = new Array();
 var overmap;
@@ -23,6 +23,7 @@ var isMobi = false;
 var isMobile = false;
 var maxDistance = 30000;
 var listingCt = 0;
+var locationTimer;
 
 $(document).ready(function(){
 	
@@ -44,6 +45,7 @@ $(document).ready(function(){
 	$('#loc').click(function(){
 		CloseAllBoxes();
 		$('#locationbox').fadeIn();
+		$('#loctext').focus();
 		return false;
 	});
 	$('#btnclose').click(function(){$('#aboutbox').fadeOut();});
@@ -61,6 +63,8 @@ $(document).ready(function(){
 	$('#appmobi').click(function(){
 		$('#appModal').modal('show');
 	});
+	
+	locationTimer = window.setInterval(QueryLocation,10000);
 	
 });
 
@@ -95,6 +99,7 @@ function UpdateProgressBar(){
 
 function GetRest(){
 	clearOverlays();
+	PlaceUserLocMarker();
 	$('#listlist').empty();
 	$.get('reactor/srvlist/getnames',function(response){
 		console.log(response);
@@ -181,6 +186,34 @@ function GetDistance(pIdx){
 	});
 }
 
+function PlaceUserLocMarker(){
+	
+	var pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|ff0000",
+	        new google.maps.Size(21, 34),
+	        new google.maps.Point(0,0),
+	        new google.maps.Point(10, 34));
+	
+	var tmpMarker = new google.maps.Marker({
+        map: overmap, 
+        icon: pinImage,
+        position: userLocation,
+		title: "You Are Here",
+		ref: -1
+    });
+    
+    google.maps.event.addListener(tmpMarker, 'click', function(jdx) {
+    	//GetDetails(pIdx, jdx);
+    	$('#listlist').hide();
+    	overmap.setCenter(this.position);
+		overmap.panBy(mapXzoomOffset, -mapYzoomOffset);
+    	infoBubble.setContent("<h2>You Are Here.</h2>");
+    	infoBubble.open(overmap, this);
+    });
+    
+    markersArray.push(tmpMarker);
+	
+}
+
 function PlaceMarkers(pIdx){
 	for( jdx in restaurants[pIdx].locations ){
 		// Add map marker
@@ -193,17 +226,18 @@ function PlaceMarkers(pIdx){
 	        map: overmap, 
 	        icon: pinImage,
 	        position: restaurants[pIdx].locations[jdx].geometry.location,
-			title: restaurants[pIdx].restaurantAlias+" "+restaurants[pIdx].locations[jdx].distance
+			title: restaurants[pIdx].restaurantName+" ("+restaurants[pIdx].locations[jdx].distance+" mi.)",
+			ref: jdx
 	    });
 	    
 	    markersArray.push(tmpMarker);
 	    
-	    google.maps.event.addListener(tmpMarker, 'click', function() {
+	    google.maps.event.addListener(tmpMarker, 'click', function(jdx) {
         	//GetDetails(pIdx, jdx);
         	$('#listlist').hide();
         	overmap.setCenter(this.position);
 			overmap.panBy(mapXzoomOffset, -mapYzoomOffset);
-        	infoBubble.setContent(GetDetailContent(pIdx, jdx));
+        	infoBubble.setContent(GetDetailContent(pIdx, this.ref));
         	infoBubble.open(overmap, this);
         });
         if( jdx == 0 ){
@@ -265,6 +299,7 @@ function BuildListing(pIdx){
 			});
 			
 			// Set the map bounds
+			bounds.extend(userLocation);
 			if( listingCt == restaurants.length ){
 				for( idx=0; idx<3; idx++ ){
 					bounds.extend(restaurants[$(items[idx]).attr('listpos')].locations[0].geometry.location);
@@ -357,6 +392,7 @@ function CalcRoute(pEnd, pIdx, pCt) {
 }
 
 function clearOverlays() {
+	listingCt = 0;
   bounds = new google.maps.LatLngBounds();
   for (var i = 0; i < markersArray.length; i++ ) {
     markersArray[i].setMap(null);
@@ -454,6 +490,7 @@ function GetHome(){
 function HandleGeolocationErrors(error)  
 {  
 	$('#geoModal').fadeIn();
+	window.clearInterval(locationTimer);
  /*   switch(error.code)  
     {  
         case error.PERMISSION_DENIED: 
@@ -481,17 +518,24 @@ function HandleGeolocationErrors(error)
 }  
   
 function HandleGeolocationQuery(position){
-	userLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
-	DebugOut('user location set: '+position.coords.latitude+', '+position.coords.longitude);
-	$('#location span').html(position.coords.latitude.toString().substring(0,8)+', '+position.coords.longitude.toString().substring(0,8));
-	GetRest();
+	// Check against existing location before setting
+	if( CalcDistance(userLocation.lat(), userLocation.lng(),position.coords.latitude,position.coords.longitude) > 1){
+		userLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+		DebugOut('user location set: '+position.coords.latitude+', '+position.coords.longitude);
+		$('#location span').html(position.coords.latitude.toString().substring(0,8)+', '+position.coords.longitude.toString().substring(0,8));
+		GetRest();
+	}else{
+		DebugOut('User Location Unchanged');
+	}
 }
 
 function HandleGeolocationQueryMobi(position){
-	userLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
-	//alert('user location set: '+position.coords.latitude+', '+position.coords.longitude);
-	$('#location span').html(position.coords.latitude.toString().substring(0,8)+', '+position.coords.longitude.toString().substring(0,8));
-	GetRestMobi();
+	if( CalcDistance(userLocation.lat(), userLocation.lng(),position.coords.latitude,position.coords.longitude) > 1){
+		userLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+		DebugOut('user location set: '+position.coords.latitude+', '+position.coords.longitude);
+		$('#location span').html(position.coords.latitude.toString().substring(0,8)+', '+position.coords.longitude.toString().substring(0,8));
+		GetRest();
+	}
 }
 
 
