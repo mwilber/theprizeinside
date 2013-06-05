@@ -14,7 +14,7 @@ var mapthumb = {
 var mapDetailZoomLevel = 15;
 var mapYOffset = 0;
 var mapXOffset = 0;
-var mapYzoomOffset = 100;
+var mapYzoomOffset = 160;
 var mapXzoomOffset = 0;
 var bounds = new google.maps.LatLngBounds();
 var loadCt = 0;
@@ -59,6 +59,7 @@ $(document).ready(function(){
 			}
 		);
 	});
+	$('#listshow').click(ListShow);
 	
 	$('#appmobi').click(function(){
 		$('#appModal').modal('show');
@@ -102,7 +103,7 @@ function GetRest(){
 	PlaceUserLocMarker();
 	$('#listlist').empty();
 	$.get('reactor/srvlist/getnames',function(response){
-		console.log(response);
+		DebugOut(response);
 		restaurants = response;
 		loadMax = restaurants.length*2;
 		//GetDistance(0);
@@ -117,7 +118,7 @@ function GetRestMobi(){
 	clearOverlays();
 	$('#listlist').empty();
 	$.get('http://theprizeinside.com/reactor/srvlist/getnames',function(response){
-		console.log(response);
+		DebugOut(response);
 		
 		restaurants = jQuery.parseJSON(response);
 		loadMax = restaurants.length*2;
@@ -131,13 +132,6 @@ function GetRestMobi(){
 
 function GetDistance(pIdx){
 	DebugOut("Getting Distance for: "+restaurants[pIdx].restaurantName+" ("+restaurants[pIdx].restaurantAlias+")");
-	
-//	var restname = "";
-//	for( idx in restaurants ){
-//		if( restname != "" ) restname += " || "
-//		restname += '"'+restaurants[idx].restaurantName+'"';
-//		//restname += restaurants[idx].restaurantName+' ';
-//	}
 	
 	var searchRequest = {
 		location: userLocation,
@@ -153,34 +147,13 @@ function GetDistance(pIdx){
 	service = new google.maps.places.PlacesService(overmap);
 	service.nearbySearch(searchRequest, function (results, status) {
 		if (status == google.maps.places.PlacesServiceStatus.OK) {
-			console.log(results);
-			// Going with the first result because that's the closest
-			//CalcRoute(results[i].geometry.location.lat()+","+results[i].geometry.location.lng(), pIdx, results.length);
-//			for( jdx in results ){
-//				//console.log(results[jdx].name);
-//				for(kdx in restaurants){
-//					if( results[jdx].name.toLowerCase().indexOf(restaurants[kdx].restaurantName.toLowerCase()) > -1 ){
-//						//console.log('Found '+restaurants[kdx].restaurantName);
-//						//results[jdx].restaurant = restaurants[kdx];
-//						var prizeLoc = -1;
-//						for(ldx in prizes ) if( prizes[ldx].restaurantName == restaurants[kdx].restaurantName ) prizeLoc = ldx;
-//						if( prizeLoc == -1 ){
-//							prizeLoc = prizes.push(restaurants[kdx]);
-//							prizes[prizeLoc-1].closest = jdx;
-//							results[jdx].prize = prizeLoc-1;
-//						}else{
-//							results[jdx].prize = prizeLoc;
-//						}
-//					}
-//				}
-//			}
+			DebugOut(results);
 			restaurants[pIdx].locations = results;
 		}else{
 			
 		}
 		UpdateProgressBar();
-		console.log(restaurants);
-//		console.log(prizes);
+		DebugOut(restaurants);
 		PlaceMarkers(pIdx);
 		BuildListing(pIdx);
 	});
@@ -201,14 +174,13 @@ function PlaceUserLocMarker(){
 		ref: -1
     });
     
-    google.maps.event.addListener(tmpMarker, 'click', function(jdx) {
-    	//GetDetails(pIdx, jdx);
-    	$('#listlist').hide();
-    	overmap.setCenter(this.position);
-		overmap.panBy(mapXzoomOffset, -mapYzoomOffset);
-    	infoBubble.setContent("<h2>You Are Here.</h2>");
-    	infoBubble.open(overmap, this);
-    });
+//    google.maps.event.addListener(tmpMarker, 'click', function(jdx) {
+//    	ListHide();
+//    	overmap.setCenter(this.position);
+//		overmap.panBy(mapXzoomOffset, -mapYzoomOffset);
+//    	infoBubble.setContent("<h2>You Are Here.</h2>");
+//    	infoBubble.open(overmap, this);
+//    });
     
     markersArray.push(tmpMarker);
 	
@@ -234,7 +206,7 @@ function PlaceMarkers(pIdx){
 	    
 	    google.maps.event.addListener(tmpMarker, 'click', function(jdx) {
         	//GetDetails(pIdx, jdx);
-        	$('#listlist').hide();
+        	ListHide();
         	overmap.setCenter(this.position);
 			overmap.panBy(mapXzoomOffset, -mapYzoomOffset);
         	infoBubble.setContent(GetDetailContent(pIdx, this.ref));
@@ -254,8 +226,8 @@ function PlaceMarkers(pIdx){
 }
 
 function BuildListing(pIdx){
-		console.log('building '+restaurants[pIdx].restaurantAlias);
-		console.log(restaurants[pIdx].locations);
+		DebugOut('building '+restaurants[pIdx].restaurantAlias);
+		DebugOut(restaurants[pIdx].locations);
 		listingCt++;
 		if( restaurants[pIdx].locations != undefined ){
 			var tmpListing = $('<li/>').attr('id',restaurants[pIdx].restaurantAlias).attr('listpos',pIdx).attr('distance',restaurants[pIdx].locations[0].distance).addClass('listing');
@@ -272,7 +244,7 @@ function BuildListing(pIdx){
 				.append($('<img/>').attr('src','img/marker_legend.png').addClass('marker').css('backgroundColor','#'+restaurants[pIdx].restaurantColor))
 				.append(restaurants[pIdx].restaurantName+" - "+tmpName)
 				.click(function(){
-					$('#listlist').hide();
+					ListHide();
 					//overmap.setZoom(mapDetailZoomLevel);
 					overmap.setCenter(restaurants[pIdx].locations[0].geometry.location);
 					overmap.panBy(mapXzoomOffset, -mapYzoomOffset);
@@ -298,16 +270,21 @@ function BuildListing(pIdx){
 			  ul.append(li);
 			});
 			
-			// Set the map bounds
-			bounds.extend(userLocation);
-			if( listingCt == restaurants.length ){
-				for( idx=0; idx<3; idx++ ){
-					bounds.extend(restaurants[$(items[idx]).attr('listpos')].locations[0].geometry.location);
-				}
-				$("#listlist li:eq(0)").before($("<li><h3>Closest</h3></li>")).after($("<li><h3>Nearby</h3></li>"));
-				overmap.fitBounds(bounds);
-				overmap.panBy(mapXOffset, mapYOffset);
+			
+		}
+		// Set the map bounds
+		bounds.extend(userLocation);
+		DebugOut('CHECKING FOR FINAL PREP - '+listingCt+" : "+restaurants.length);
+		if( listingCt == restaurants.length ){
+			DebugOut('DOING FINAL PREP');
+			var finalitems = $('#listlist li').get();
+			for( idx=0; idx<3; idx++ ){
+				bounds.extend(restaurants[$(finalitems[idx]).attr('listpos')].locations[0].geometry.location);
 			}
+			$("#listlist li:eq(0)").before($("<li><h3>Closest</h3></li>")).after($("<li><h3>Nearby</h3></li>"));
+			$('#listlist').prepend($('<li/>').append($('<div/>').attr('id','listhead').append($('<h2/>').html('Prizes')).append($('<a/>').attr('href','#').attr('onclick','return false;').click(ListHide).append($('<img/>').attr('src','img/listshow.png')))));
+			overmap.fitBounds(bounds);
+			overmap.panBy(mapXOffset, mapYOffset);
 		}
 }
 
@@ -327,67 +304,8 @@ function CalcRoute(pEnd, pIdx, pCt) {
 				restaurants[pIdx].distance = result.routes[0].legs[0].distance.text;
 				restaurants[pIdx].address = result.routes[0].legs[0].end_address.replace(',','<br/>');
 				
-				restaurants[pIdx].imgurl = "http://maps.googleapis.com/maps/api/staticmap?center="+result.routes[0].legs[0].end_location.lat()+","+result.routes[0].legs[0].end_location.lng()+"&zoom="+mapthumb.zoom+"&size="+mapthumb.width+"x"+mapthumb.height+"&markers=color:0x"+restaurants[pIdx].restaurantColor+"%7Clabel:*%7C"+result.routes[0].legs[0].end_location.lat()+","+result.routes[0].legs[0].end_location.lng()+"&sensor=false";
-				restaurants[pIdx].maplink = 'http://maps.google.com/?saddr='+userLocation.lat()+","+userLocation.lng()+'&daddr='+result.routes[0].legs[0].end_address;
-				
-				var tmpListing = $('<li/>').attr('id',restaurants[pIdx].restaurantAlias).attr('distance',restaurants[pIdx].distance).addClass('listing');
-				
-				var tmpName = "";
-				for(idx=0; idx<restaurants[pIdx].prize.length; idx++){
-					if(idx > 0) tmpName += " / ";
-					tmpName += restaurants[pIdx].prize[idx].prizeName;
-				}
-				
-				tmpListing.append($('<a/>')
-					.attr('href','#')
-					.addClass('restaurant')
-					.append($('<img/>').attr('src','img/marker_legend.png').addClass('marker').css('backgroundColor','#'+restaurants[pIdx].restaurantColor))
-					.append(restaurants[pIdx].restaurantName+" - "+tmpName)
-					.click(function(){GetDetails(pIdx); return false;})
-				);
-				
-				$('#listlist').append(tmpListing);
-				
-				var items = $('#listlist li').get();
-				items.sort(function(a,b){
-				  var keyA = parseFloat($(a).attr('distance'));
-				  var keyB = parseFloat($(b).attr('distance'));
-				
-				  if (keyA < keyB) return -1;
-				  if (keyA > keyB) return 1;
-				  return 0;
-				});
-				var ul = $('#listlist');
-				$.each(items, function(i, li){
-				  ul.append(li);
-				});
-				
-				// Add map marker
-				
-				//give the marker a color
-			    var pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + restaurants[pIdx].restaurantColor,
-			        new google.maps.Size(21, 34),
-			        new google.maps.Point(0,0),
-			        new google.maps.Point(10, 34));
-				var tmpMarker = new google.maps.Marker({
-			        map: overmap, 
-			        icon: pinImage,
-			        position: restaurants[pIdx].location,
-					title: restaurants[pIdx].restaurantAlias
-			    });
-			    
-			    markersArray.push(tmpMarker);
-			    
-			    google.maps.event.addListener(tmpMarker, 'click', function() {
-		        	GetDetails(pIdx);
-		        });
-				bounds.extend(restaurants[pIdx].location);
-				overmap.fitBounds(bounds);
-				overmap.panBy(mapXOffset, mapYOffset);
-				
 			}
 		}
-		UpdateProgressBar();
 	});
 }
 
@@ -400,8 +318,6 @@ function clearOverlays() {
 }
 
 function GetDetailContent(pIdx, pJdx){
-
-		//$('#listlist').hide();
 		
 		var tmpName = "";
 		for(idx=0; idx<restaurants[pIdx].prize.length; idx++){
@@ -427,55 +343,12 @@ function GetDetailContent(pIdx, pJdx){
 			$('#fbshare').attr('onclick','fbsharemobi(restaurants['+pIdx+'].restaurantName,restaurants['+pIdx+'].prize[0].prizeName); return false;');
 			$('#gpshare').attr('onclick','gpsharemobi(restaurants['+pIdx+'].restaurantName,restaurants['+pIdx+'].prize[0].prizeName); return false;');
 		}else{
-			$('#twshare').click(function(){twshare(restaurants[pIdx].restaurantName,restaurants[pIdx].prize[0].prizeName);});
-			$('#fbshare').click(function(){fbshare(restaurants[pIdx].restaurantName,restaurants[pIdx].prize[0].prizeName);});
-			$('#gpshare').click(function(){gpshare(restaurants[pIdx].restaurantName,restaurants[pIdx].prize[0].prizeName);});
+			$('#twshare').attr('onclick','twshare(restaurants['+pIdx+'].restaurantName,restaurants['+pIdx+'].prize[0].prizeName); return false;');
+			$('#fbshare').attr('onclick','fbshare(restaurants['+pIdx+'].restaurantName,restaurants['+pIdx+'].prize[0].prizeName); return false;');
+			$('#gpshare').attr('onclick','gpshare(restaurants['+pIdx+'].restaurantName,restaurants['+pIdx+'].prize[0].prizeName); return false;');
 		}
-		
-		//$('#infobox').fadeIn(); 
-		//overmap.setZoom(mapDetailZoomLevel);
-		//overmap.setCenter(restaurants[pIdx].locations[pJdx].geometry.location);
-		//overmap.panBy(mapXzoomOffset, -($('#infobox').height()-mapYzoomOffset));
+
 		return $('#infobox').html();
-}
-
-function GetDetails(pIdx, pJdx){
-
-		$('#listlist').hide();
-		
-		var tmpName = "";
-		for(idx=0; idx<restaurants[pIdx].prize.length; idx++){
-			if(idx > 0) tmpName += " / ";
-			tmpName += restaurants[pIdx].prize[idx].prizeName;
-		}
-		
-		$('#infobox .prize').html(tmpName);
-		$('#infobox .restaurant').html(restaurants[pIdx].restaurantName);
-		$('#infobox .distance').html(Math.round( restaurants[pIdx].locations[pJdx].distance * 10 ) / 10);
-		$('#infobox .address').html(restaurants[pIdx].locations[pJdx].address);
-		
-		if( isMobi ){
-			$('#infobox .extlink').attr('onclick','AppMobi.device.launchExternal(\''+restaurants[pIdx].restaurantUrl+'\'); return false;');
-			$('#infobox .directions').attr('onclick','AppMobi.device.launchExternal(\''+restaurants[pIdx].locations[pJdx].maplink+'\'); return false;');
-		}else{
-			$('#infobox .extlink').attr('href',restaurants[pIdx].restaurantUrl).attr('target','_blank');
-			$('#infobox .directions').addClass('btn').attr('href',restaurants[pIdx].locations[pJdx].maplink).attr('target','_blank');
-		}
-		
-		if( isMobi ){
-			$('#twshare').attr('onclick','twsharemobi(restaurants['+pIdx+'].restaurantName,restaurants['+pIdx+'].prize[0].prizeName); return false;');
-			$('#fbshare').attr('onclick','fbsharemobi(restaurants['+pIdx+'].restaurantName,restaurants['+pIdx+'].prize[0].prizeName); return false;');
-			$('#gpshare').attr('onclick','gpsharemobi(restaurants['+pIdx+'].restaurantName,restaurants['+pIdx+'].prize[0].prizeName); return false;');
-		}else{
-			$('#twshare').click(function(){twshare(restaurants[pIdx].restaurantName,restaurants[pIdx].prize[0].prizeName);});
-			$('#fbshare').click(function(){fbshare(restaurants[pIdx].restaurantName,restaurants[pIdx].prize[0].prizeName);});
-			$('#gpshare').click(function(){gpshare(restaurants[pIdx].restaurantName,restaurants[pIdx].prize[0].prizeName);});
-		}
-		
-		$('#infobox').fadeIn(); 
-		overmap.setZoom(mapDetailZoomLevel);
-		overmap.setCenter(restaurants[pIdx].locations[pJdx].geometry.location);
-		overmap.panBy(mapXzoomOffset, -($('#infobox').height()-mapYzoomOffset));
 }
 
 function GetHome(){
@@ -483,7 +356,7 @@ function GetHome(){
 	overmap.panBy(mapXOffset, mapYOffset);
 	//$('#infobox').fadeOut();  
 	infoBubble.close();
-	$('#listlist').fadeIn(); 
+	//ListShow();
 	return false;
 }
 
@@ -573,7 +446,17 @@ function InitMap(){
 	});
 }
 
+function ListHide(){
+	$('#listlist').fadeOut();
+	$('#listshow').fadeIn();
+}
 
+function ListShow(){
+	GetHome();
+	$('#listlist').fadeIn();
+	$('#listshow').fadeOut();
+	
+}
 
 
 function fbshare(pTitle,pToy){
@@ -589,6 +472,7 @@ function fbsharemobi(pTitle,pToy){
 }
 
 function twshare(pTitle,pToy){
+	DebugOut('twshare');
 	var twurl = "http://twitter.com/home?status=";
 	
 	if( isMobile ){
@@ -662,7 +546,7 @@ while(curDate-date < millis);
 function DebugOut(newline){
 	try{
 		if (typeof console == "object"){ 
-			console.log(newline);
+			DebugOut(newline);
 		}
 	}catch(err){
 		
