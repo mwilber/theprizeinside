@@ -2,7 +2,7 @@
 
 	$social = array();
 	$social['title'] = "The Prize Inside";
-	$social['description'] = "Choose your fast food by the prize inside.";
+	$social['description'] = "When you're out on the road, The Prize Inside uses your phone's GPS to locate nearby restaurants that have kids' meal premiums. Toys are listed in order of distance along with alternate locations within 20 miles. Plan your stop around the prize your kids want most and The Prize inside provides driving directions to the location. Share with your finds on facebook, twitter, and now google plus! Make The Prize Inside part of your next road trip.";
 	$social['image'] = "http://theprizeinside.com/img/fb_icon.png";
 	$social['link'] = "http://theprizeinside.com/";
 
@@ -62,6 +62,8 @@
 		social['link'] = "http://theprizeinside.com/";
 		
 	</script>
+	
+	<script src="js/vendor/modernizr-2.6.2.min.js"></script>
 
   </head>
   <body>
@@ -93,11 +95,13 @@
 		<a id="btnclose" class="close" href="#" onclick="return false;"><i class="icon-remove"></i></a>
 		<h2>About The Prize Inside</h2>
 		<div id="about" class="scroll-pane">
-			<p>Choose your fast food by the prize inside! Quickly find out what's in the kids' meal at nearby fast food restaurants. Click on each prize to zoom in the map and get the restaurant address. Click on "Directions" for driving directions.</p>
+			<p>When a burger is a burger, and a burrito makes no difference, choose your fast food by The Prize Inside!</p>
+			<p>When you&rsquo;re out on the road, The Prize Inside uses your phone&rsquo;s GPS to locate nearby restaurants that have kids&rsquo; meal premiums. Toys are listed in order of distance along with alternate locations within 20 miles. Plan your stop around the prize your kids want most and The Prize inside provides driving directions to the location. Share with your finds on facebook, twitter, and now google plus! Make The Prize Inside part of your next road trip.</p>
 			<p>The Prize Inside was created by Internet software developer Matthew Wilber. For more information, visit <a href="http://www.mwilber.com" target="_blank">mwilber.com</a>.</p>
 			<strong>Mobile Users</strong>
-			<p>Android users can find The Prize Inside for free in the <a href="https://play.google.com/store/apps/details?id=com.greenzeta.greenzeta.theprizeinside" target="_blank">Google Play Store</a>.</p>
-			<p>iPhone users can buy The Prize Inside in the <a href="https://itunes.apple.com/us/app/the-prize-inside/id650582612?ls=1&mt=8" target="_blank">app store</a>. Or, use this site for free as a web app: First you must enable location awareness in mobile safari by going to Settings->Privacy->Location Services and turn on Safari. Then open safari and go to ThePrizeInside.com. When prompted, allow The Prize Inside to use your current location. Finally, install the web app by tapping the share button and selecting "Add to Home Screen"</p>
+			<p>Download the app linked above or use this site as a web app: </p>
+			<strong>iPhone/iPad</strong>
+			<p>First you must enable location awareness in mobile safari by going to Settings->Privacy->Location Services and turn on Safari. Then open safari and go to ThePrizeInside.com. When prompted, allow The Prize Inside to use your current location. Finally, install the web app by tapping the share button and selecting "Add to Home Screen"</p>
 		</div>
 	</div>
 	
@@ -121,14 +125,14 @@
 	  </div>
 	  <div class="body">
 	    <p>Manually set your location by tapping the navigation icon above. For the optimal experience, use a browser that is location aware and grant The Prize Inside access to your location.</p>
-	  	<p><a href="policy.html">Privacy Policy</a></p>
+	  	<p><a href="policy.html" onclick="gaq.push(['_trackEvent', 'No Location', 'policy', 'click']);">Privacy Policy</a></p>
 	  </div>
 	</div>
 	
 	
 	<!-- INFO BOX -->
 	<div id="infobox" class="float-panel arrow_box info_box">
-		<a id="btncloseinfo" class="close" href="#" onclick="infoBubble.close(); return false;"><i class="icon-remove"></i></a>
+		<a id="btncloseinfo" class="close" href="#" onclick="infoBubble.close(); _gaq.push(['_trackEvent', 'Detail', 'close', '']); return false;"><i class="icon-remove"></i></a>
 		<h2 class="prize"></h2>
 		<div class="restaurant"></div> <div class="distance"></div>
 		<a class="extlink btn" href="http://www.wendys.com/kids_meal/" target="_blank"><i class="icon-globe"></i>&nbsp;Website</a>
@@ -157,13 +161,13 @@
 		
 	</ul>
 	<div id="footer">
-    	<a id="gzlink" href="http://www.greenzeta.com" target="_blank">A GreenZeta Production</a>
-    	<a id="policylink" href="policy.html">Privacy Policy</a>
+    	<a id="gzlink" href="http://www.greenzeta.com" onclick="gaq.push(['_trackEvent', 'Footer', 'greenzeta', 'click']);" target="_blank">A GreenZeta Production</a>
+    	<a id="policylink" href="policy.html" onclick="gaq.push(['_trackEvent', 'Footer', 'policy', 'click']);">Privacy Policy</a>
    	</div>
 	<div id="map"></div>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places&sensor=true"></script>
     <script src="js/infobubble-compiled.js"></script>
-    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="js/vendor/jquery-1.9.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <!-- the mousewheel plugin -->
 	<script type="text/javascript" src="js/jquery.mousewheel.js"></script>
@@ -176,12 +180,8 @@
 		
 		$(document).ready(function(){
 			
-			//if( !isMobile ){
-			//	FB.init({appId: FBconfig.app.id, status : true, cookie: true, xfbml : true});
-			//	SetFrame();
-			//}
-			
 			$('#btnlocsearch').click(function(){
+				_gaq.push(['_trackEvent', 'Main Nav', 'location search', '']);
 				var searchloc = $('#loctext').val();
 				DebugOut('getting coords for: '+searchloc);
 				
@@ -201,9 +201,9 @@
 			
 		});
 	</script>
-    
-    <script type="text/javascript">
 	
+	<script type="text/javascript">
+
 	  var _gaq = _gaq || [];
 	  _gaq.push(['_setAccount', 'UA-76054-17']);
 	  _gaq.push(['_trackPageview']);

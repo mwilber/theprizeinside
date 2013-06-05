@@ -31,6 +31,19 @@ $(document).ready(function(){
 		isMobile = true;
 	}
 	
+	if (Modernizr.localstorage) { 
+		if( localStorage["firsttimer"] != "no" ){
+			_gaq.push(['_trackEvent', 'Load', 'about', 'autopop']);
+			$('#aboutbox').fadeIn();
+			$('.scroll-pane').jScrollPane(
+				{
+					showArrows: false,
+					verticalGutter: 15
+				}
+			);
+		}
+	}
+	
 	if( $('body').width() > 480 ){
 		mapYOffset = 50;
 	}
@@ -40,16 +53,24 @@ $(document).ready(function(){
 //		mapXOffset = -Math.floor($('body').width()/4);
 // 	}
 	
-	$('#btncloseloc').click(function(){$('#locationbox').fadeOut();});
+	$('#btncloseloc').click(function(){_gaq.push(['_trackEvent', 'Main Nav', 'location', 'close']); $('#locationbox').fadeOut();});
 	$('#btncloseinfo').click(GetHome);
 	$('#loc').click(function(){
+		_gaq.push(['_trackEvent', 'Main Nav', 'location', 'open']);
 		CloseAllBoxes();
 		$('#locationbox').fadeIn();
 		$('#loctext').focus();
 		return false;
 	});
-	$('#btnclose').click(function(){$('#aboutbox').fadeOut();});
+	$('#btnclose').click(function(){
+		_gaq.push(['_trackEvent', 'Main Nav', 'about', 'close']);
+		if (Modernizr.localstorage) { 
+			localStorage["firsttimer"] = "no";
+		}
+		$('#aboutbox').fadeOut();
+	});
 	$('#info').click(function(){
+		_gaq.push(['_trackEvent', 'Main Nav', 'about', 'open']);
 		CloseAllBoxes();
 		$('#aboutbox').fadeIn();
 		$('.scroll-pane').jScrollPane(
@@ -59,9 +80,12 @@ $(document).ready(function(){
 			}
 		);
 	});
-	$('#listshow').click(ListShow);
+	$('#listshow').click(function(){
+		ListShow();
+	});
 	
 	$('#appmobi').click(function(){
+		_gaq.push(['_trackEvent', 'Main Nav', 'app', 'open']);
 		$('#appModal').modal('show');
 	});
 	
@@ -188,6 +212,11 @@ function PlaceUserLocMarker(){
 
 function PlaceMarkers(pIdx){
 	for( jdx in restaurants[pIdx].locations ){
+		
+		restaurants[pIdx].locations[jdx].distance = CalcDistance(userLocation.lat(), userLocation.lng(),restaurants[pIdx].locations[jdx].geometry.location.lat(),restaurants[pIdx].locations[jdx].geometry.location.lng());
+		restaurants[pIdx].locations[jdx].maplink = 'http://maps.google.com/?saddr='+userLocation.lat()+","+userLocation.lng()+'&daddr='+restaurants[pIdx].locations[jdx].vicinity;
+		restaurants[pIdx].locations[jdx].address = restaurants[pIdx].locations[jdx].vicinity.replace(',','<br/>');
+		
 		// Add map marker
 		//give the marker a color
 	    var pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + restaurants[pIdx].restaurantColor,
@@ -198,13 +227,14 @@ function PlaceMarkers(pIdx){
 	        map: overmap, 
 	        icon: pinImage,
 	        position: restaurants[pIdx].locations[jdx].geometry.location,
-			title: restaurants[pIdx].restaurantName+" ("+restaurants[pIdx].locations[jdx].distance+" mi.)",
+			title: restaurants[pIdx].restaurantName+" ("+(Math.round( restaurants[pIdx].locations[jdx].distance * 10 ) / 10)+" mi.)",
 			ref: jdx
 	    });
 	    
 	    markersArray.push(tmpMarker);
 	    
 	    google.maps.event.addListener(tmpMarker, 'click', function(jdx) {
+	    	_gaq.push(['_trackEvent', 'Map', 'markerclick', this.title]);
         	//GetDetails(pIdx, jdx);
         	ListHide();
         	overmap.setCenter(this.position);
@@ -216,9 +246,6 @@ function PlaceMarkers(pIdx){
         	restaurants[pIdx].marker = tmpMarker;
         	//bounds.extend(restaurants[pIdx].locations[jdx].geometry.location);
         }
-        restaurants[pIdx].locations[jdx].distance = CalcDistance(userLocation.lat(), userLocation.lng(),restaurants[pIdx].locations[jdx].geometry.location.lat(),restaurants[pIdx].locations[jdx].geometry.location.lng());
-		restaurants[pIdx].locations[jdx].maplink = 'http://maps.google.com/?saddr='+userLocation.lat()+","+userLocation.lng()+'&daddr='+restaurants[pIdx].locations[jdx].vicinity;
-		restaurants[pIdx].locations[jdx].address = restaurants[pIdx].locations[jdx].vicinity.replace(',','<br/>');
 		
 		if( jdx > 5 ) break;
 	}
@@ -244,6 +271,7 @@ function BuildListing(pIdx){
 				.append($('<img/>').attr('src','img/marker_legend.png').addClass('marker').css('backgroundColor','#'+restaurants[pIdx].restaurantColor))
 				.append(restaurants[pIdx].restaurantName+" - "+tmpName)
 				.click(function(){
+					_gaq.push(['_trackEvent', 'List', 'itemclick', restaurants[pIdx].restaurantAlias]);
 					ListHide();
 					//overmap.setZoom(mapDetailZoomLevel);
 					overmap.setCenter(restaurants[pIdx].locations[0].geometry.location);
@@ -331,21 +359,21 @@ function GetDetailContent(pIdx, pJdx){
 		$('#infobox .address').html(restaurants[pIdx].locations[pJdx].address);
 		
 		if( isMobi ){
-			$('#infobox .extlink').attr('onclick','AppMobi.device.launchExternal(\''+restaurants[pIdx].restaurantUrl+'\'); return false;');
-			$('#infobox .directions').attr('onclick','AppMobi.device.launchExternal(\''+restaurants[pIdx].locations[pJdx].maplink+'\'); return false;');
+			$('#infobox .extlink').attr('onclick','_gaq.push([\'_trackEvent\', \'Detail\', \'websitemobi\', \''+restaurants[pIdx].restaurantAlias+'\']); '+'AppMobi.device.launchExternal(\''+restaurants[pIdx].restaurantUrl+'\'); return false;');
+			$('#infobox .directions').attr('onclick','_gaq.push([\'_trackEvent\', \'Detail\', \'directionsmobi\', \''+restaurants[pIdx].restaurantAlias+'\']); '+'AppMobi.device.launchExternal(\''+restaurants[pIdx].locations[pJdx].maplink+'\'); return false;');
 		}else{
-			$('#infobox .extlink').attr('href',restaurants[pIdx].restaurantUrl).attr('target','_blank');
-			$('#infobox .directions').addClass('btn').attr('href',restaurants[pIdx].locations[pJdx].maplink).attr('target','_blank');
+			$('#infobox .extlink').attr('onclick','_gaq.push([\'_trackEvent\', \'Detail\', \'website\', \''+restaurants[pIdx].restaurantAlias+'\']);').attr('href',restaurants[pIdx].restaurantUrl).attr('target','_blank');
+			$('#infobox .directions').attr('onclick','_gaq.push([\'_trackEvent\', \'Detail\', \'directions\', \''+restaurants[pIdx].restaurantAlias+'\']);').addClass('btn').attr('href',restaurants[pIdx].locations[pJdx].maplink).attr('target','_blank');
 		}
 		
 		if( isMobi ){
-			$('#twshare').attr('onclick','twsharemobi(restaurants['+pIdx+'].restaurantName,restaurants['+pIdx+'].prize[0].prizeName); return false;');
-			$('#fbshare').attr('onclick','fbsharemobi(restaurants['+pIdx+'].restaurantName,restaurants['+pIdx+'].prize[0].prizeName); return false;');
-			$('#gpshare').attr('onclick','gpsharemobi(restaurants['+pIdx+'].restaurantName,restaurants['+pIdx+'].prize[0].prizeName); return false;');
+			$('#twshare').attr('onclick','_gaq.push([\'_trackEvent\', \'Detail\', \'twsharemobi\', \''+restaurants[pIdx].restaurantAlias+'\']); '+'twsharemobi(restaurants['+pIdx+'].restaurantName,restaurants['+pIdx+'].prize[0].prizeName); return false;');
+			$('#fbshare').attr('onclick','_gaq.push([\'_trackEvent\', \'Detail\', \'fbsharemobi\', \''+restaurants[pIdx].restaurantAlias+'\']); '+'fbsharemobi(restaurants['+pIdx+'].restaurantName,restaurants['+pIdx+'].prize[0].prizeName); return false;');
+			$('#gpshare').attr('onclick','_gaq.push([\'_trackEvent\', \'Detail\', \'gpsharemobi\', \''+restaurants[pIdx].restaurantAlias+'\']); '+'gpsharemobi(restaurants['+pIdx+'].restaurantName,restaurants['+pIdx+'].prize[0].prizeName); return false;');
 		}else{
-			$('#twshare').attr('onclick','twshare(restaurants['+pIdx+'].restaurantName,restaurants['+pIdx+'].prize[0].prizeName); return false;');
-			$('#fbshare').attr('onclick','fbshare(restaurants['+pIdx+'].restaurantName,restaurants['+pIdx+'].prize[0].prizeName); return false;');
-			$('#gpshare').attr('onclick','gpshare(restaurants['+pIdx+'].restaurantName,restaurants['+pIdx+'].prize[0].prizeName); return false;');
+			$('#twshare').attr('onclick','_gaq.push([\'_trackEvent\', \'Detail\', \'twshare\', \''+restaurants[pIdx].restaurantAlias+'\']); '+'twshare(restaurants['+pIdx+'].restaurantName,restaurants['+pIdx+'].prize[0].prizeName); return false;');
+			$('#fbshare').attr('onclick','_gaq.push([\'_trackEvent\', \'Detail\', \'fbshare\', \''+restaurants[pIdx].restaurantAlias+'\']); '+'fbshare(restaurants['+pIdx+'].restaurantName,restaurants['+pIdx+'].prize[0].prizeName); return false;');
+			$('#gpshare').attr('onclick','_gaq.push([\'_trackEvent\', \'Detail\', \'gpshare\', \''+restaurants[pIdx].restaurantAlias+'\']); '+'gpshare(restaurants['+pIdx+'].restaurantName,restaurants['+pIdx+'].prize[0].prizeName); return false;');
 		}
 
 		return $('#infobox').html();
@@ -364,6 +392,9 @@ function HandleGeolocationErrors(error)
 {  
 	$('#geoModal').fadeIn();
 	window.clearInterval(locationTimer);
+	
+	_gaq.push(['_trackEvent', 'Load', 'location', 'fail']);
+	
  /*   switch(error.code)  
     {  
         case error.PERMISSION_DENIED: 
@@ -384,6 +415,7 @@ function HandleGeolocationErrors(error)
 	}*/
 	
 	if( testLocFallbackOn ){
+		_gaq.push(['_trackEvent', 'Load', 'location', 'setfallback']);
 		// Set a fallback location 40.7406941, -73.9905943 
 		// Location: 40.67857830000001, -73.5421847
 		HandleGeolocationQuery({coords:{latitude:40.67857830000001,longitude:-73.5421847}});
@@ -391,6 +423,9 @@ function HandleGeolocationErrors(error)
 }  
   
 function HandleGeolocationQuery(position){
+	
+	_gaq.push(['_trackEvent', 'Load', 'desktop', '']);
+	
 	// Check against existing location before setting
 	if( CalcDistance(userLocation.lat(), userLocation.lng(),position.coords.latitude,position.coords.longitude) > 1){
 		userLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
@@ -403,6 +438,9 @@ function HandleGeolocationQuery(position){
 }
 
 function HandleGeolocationQueryMobi(position){
+	
+	_gaq.push(['_trackEvent', 'Load', 'app', '']);
+	
 	if( CalcDistance(userLocation.lat(), userLocation.lng(),position.coords.latitude,position.coords.longitude) > 1){
 		userLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
 		DebugOut('user location set: '+position.coords.latitude+', '+position.coords.longitude);
@@ -441,17 +479,20 @@ function InitMap(){
 		disableAutoPan: true,
 		hideCloseButton: true,
 		arrowPosition: '50%',
+		zindex: 2000,
 		backgroundClassName: 'float-panel info_box',
 		arrowStyle: 0
 	});
 }
 
 function ListHide(){
+	_gaq.push(['_trackEvent', 'List', 'hide', 'header']);
 	$('#listlist').fadeOut();
 	$('#listshow').fadeIn();
 }
 
 function ListShow(){
+	_gaq.push(['_trackEvent', 'List', 'show', 'listshow']);
 	GetHome();
 	$('#listlist').fadeIn();
 	$('#listshow').fadeOut();
