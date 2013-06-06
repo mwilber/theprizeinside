@@ -31,7 +31,7 @@ $(document).ready(function(){
 	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ) {
 		isMobile = true;
 	}
-	locationTimer = window.setInterval(QueryLocationLoop,10000);
+	locationTimer = window.setInterval(QueryLocationLoop,30000);
 	
 	if (Modernizr.localstorage) { 
 		if( localStorage["firsttimer"] != "no" ){
@@ -437,9 +437,9 @@ function HandleGeolocationQuery(position){
 
 function HandleGeolocationQueryLoop(position){
 	// Check against existing location before setting
-	if( CalcDistance(userLocation.lat(), userLocation.lng(),position.coords.latitude,position.coords.longitude) < 1){
+	if( CalcDistance(userLocation.lat(), userLocation.lng(),position.coords.latitude,position.coords.longitude) < 0.5){
 		// User hasn't moved much
-	}else if( CalcDistance(userLocation.lat(), userLocation.lng(),position.coords.latitude,position.coords.longitude) > 1){
+	}else if( CalcDistance(userLocation.lat(), userLocation.lng(),position.coords.latitude,position.coords.longitude) > 0.5){
 		userLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
 		DebugOut('user location set: '+position.coords.latitude+', '+position.coords.longitude);
 		$('#location span').html(position.coords.latitude.toString().substring(0,8)+', '+position.coords.longitude.toString().substring(0,8));
