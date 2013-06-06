@@ -34,10 +34,10 @@
 	
 	<!-- Twitter Summary Card -->
 	<meta name="twitter:card" content="summary">
-	<meta name="twitter:site" content="@tpiapp">
+	<meta name="twitter:site" content="@greenzeta">
 	<meta name="twitter:title" content="<?=$social['title']?>">
-	<meta name="twitter:description" content="<?=$social['description']?>">
-	<meta name="twitter:creator" content="@greenzeta">
+	<meta name="twitter:description" content="When a burger is a burger, and a burrito makes no difference, choose your fast food by The Prize Inside!">
+	<meta name="twitter:creator" content="@tpiapp">
 	<meta name="twitter:image:src" content="<?=$social['image']?>">
 	<meta name="twitter:domain" content="theprizeinside.com">
 	
