@@ -26,12 +26,6 @@
 	<meta property="og:description" content="<?=$social['description']?>" />
 	
 	
-	<!-- Twitter App Card -->
-	<meta name="twitter:card" content="app">
-	<meta name="twitter:app:id:iphone" content="id650582612">
-	<meta name="twitter:app:id:ipad" content="id650582612">
-	<meta name="twitter:app:id:googleplay" content="com.greenzeta.greenzeta.theprizeinside">
-	
 	<!-- Twitter Summary Card -->
 	<meta name="twitter:card" content="summary">
 	<meta name="twitter:site" content="@greenzeta">
@@ -40,6 +34,12 @@
 	<meta name="twitter:creator" content="@tpiapp">
 	<meta name="twitter:image:src" content="<?=$social['image']?>">
 	<meta name="twitter:domain" content="theprizeinside.com">
+	
+	<!-- Twitter App Card -->
+	<meta name="twitter:card" content="app">
+	<meta name="twitter:app:id:iphone" content="id650582612">
+	<meta name="twitter:app:id:ipad" content="id650582612">
+	<meta name="twitter:app:id:googleplay" content="com.greenzeta.greenzeta.theprizeinside">
 	
 
 	<meta name="viewport" content="width=device-width">
