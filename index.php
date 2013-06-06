@@ -34,6 +34,7 @@
 	
 	<!-- Twitter Summary Card -->
 	<meta name="twitter:card" content="summary">
+	<meta name="twitter:site" content="@tpiapp">
 	<meta name="twitter:title" content="<?=$social['title']?>">
 	<meta name="twitter:description" content="<?=$social['description']?>">
 	<meta name="twitter:creator" content="@greenzeta">
@@ -151,6 +152,7 @@
   		<div id="title">The Prize Inside</div>
   		<a id="info" href="#" onclick="return false;" style="margin-right:0px;"><i class="icon-info-sign"></i></a>
   		<a id="loc" href="#" onclick="return false;"><i class="icon-location-arrow"></i></a>
+  		<a id="twitterfeed" href="http://www.twitter.com/tpiapp" onclick="" target="_blank"><i class="icon-twitter"></i></a>
   		<a id="appmobi" href="#" onclick="return false;"><i class="icon-mobile-phone"></i><span>Get The App!</span></a>
     	<div class="clearfix"></div>
   	</div>

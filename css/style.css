@@ -609,7 +609,7 @@ a, a:hover{
 	}
 	
 	#header #appmobi{
-		margin-right:2%;
+		
 	}
 	
 	#header #appmobi span{
@@ -660,6 +660,13 @@ a, a:hover{
 	}
 }
 
+@media screen and (max-width: 620px) {
+	#title{
+		display:none;
+		font-size: 55%;
+	}
+}
+
 @media screen and (max-width: 480px) {
  /* Add your styles for devices with a maximum width of 480 */
 
@@ -685,7 +692,7 @@ a, a:hover{
 	}
 	
 	#listlist{
-		width: 92%;
+		width: 95%;
 		margin: 0px;
 		top:auto;
 		bottom:100px;
@@ -693,11 +700,15 @@ a, a:hover{
 	}
 	
 	#listlist #listhead{
-		width: 93%;
+		width: 96%;
+		padding: 0px 2%;
+		border: solid 1px #362814;
 	}
 	
 	#listlist h3{
-		width: 93%;
+		width: 96%;
+		padding: 0px 2%;
+		border: solid 1px #362814;
 	}
 	
 	.address {

@@ -3,6 +3,7 @@ var userLocation = new google.maps.LatLng(0,0);
 var restaurants;
 var prizes = new Array();
 var overmap;
+var markerUser;
 var markersArray = [];
 
 var testLocFallbackOn = true
@@ -30,6 +31,7 @@ $(document).ready(function(){
 	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ) {
 		isMobile = true;
 	}
+	locationTimer = window.setInterval(QueryLocationLoop,10000);
 	
 	if (Modernizr.localstorage) { 
 		if( localStorage["firsttimer"] != "no" ){
@@ -89,12 +91,19 @@ $(document).ready(function(){
 		$('#appModal').modal('show');
 	});
 	
-	locationTimer = window.setInterval(QueryLocation,10000);
-	
 });
 
 function QueryLocation(){
 	window.navigator.geolocation.getCurrentPosition(HandleGeolocationQuery,HandleGeolocationErrors,{
+	  enableHighAccuracy: true,
+	  timeout: 5000,
+	  maximumAge: 0
+	});
+}
+
+function QueryLocationLoop(){
+	DebugOut('QueryLocationLoop');
+	window.navigator.geolocation.getCurrentPosition(HandleGeolocationQueryLoop,HandleGeolocationErrorsLoop,{
 	  enableHighAccuracy: true,
 	  timeout: 5000,
 	  maximumAge: 0
@@ -190,23 +199,13 @@ function PlaceUserLocMarker(){
 	        new google.maps.Point(0,0),
 	        new google.maps.Point(10, 34));
 	
-	var tmpMarker = new google.maps.Marker({
+	var markerUser = new google.maps.Marker({
         map: overmap, 
         icon: pinImage,
         position: userLocation,
 		title: "You Are Here",
 		ref: -1
     });
-    
-//    google.maps.event.addListener(tmpMarker, 'click', function(jdx) {
-//    	ListHide();
-//    	overmap.setCenter(this.position);
-//		overmap.panBy(mapXzoomOffset, -mapYzoomOffset);
-//    	infoBubble.setContent("<h2>You Are Here.</h2>");
-//    	infoBubble.open(overmap, this);
-//    });
-    
-    markersArray.push(tmpMarker);
 	
 }
 
@@ -391,7 +390,6 @@ function GetHome(){
 function HandleGeolocationErrors(error)  
 {  
 	$('#geoModal').fadeIn();
-	window.clearInterval(locationTimer);
 	
 	_gaq.push(['_trackEvent', 'Load', 'location', 'fail']);
 	
@@ -435,6 +433,30 @@ function HandleGeolocationQuery(position){
 	}else{
 		DebugOut('User Location Unchanged');
 	}
+}
+
+function HandleGeolocationQueryLoop(position){
+	// Check against existing location before setting
+	if( CalcDistance(userLocation.lat(), userLocation.lng(),position.coords.latitude,position.coords.longitude) < 1){
+		// User hasn't moved much
+	}else if( CalcDistance(userLocation.lat(), userLocation.lng(),position.coords.latitude,position.coords.longitude) > 1){
+		userLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+		DebugOut('user location set: '+position.coords.latitude+', '+position.coords.longitude);
+		$('#location span').html(position.coords.latitude.toString().substring(0,8)+', '+position.coords.longitude.toString().substring(0,8));
+		markerUser.setMap(null);
+		PlaceUserLocMarker();
+	}else if( CalcDistance(userLocation.lat(), userLocation.lng(),position.coords.latitude,position.coords.longitude) > 10){
+		//TODO: Check this against some other stored value
+		userLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+		DebugOut('user location set: '+position.coords.latitude+', '+position.coords.longitude);
+		$('#location span').html(position.coords.latitude.toString().substring(0,8)+', '+position.coords.longitude.toString().substring(0,8));
+		GetRest();
+	}
+}
+
+function HandleGeolocationErrorsLoop(error)  
+{ 
+	DebugOut('User Location Not Available');
 }
 
 function HandleGeolocationQueryMobi(position){
@@ -586,8 +608,8 @@ while(curDate-date < millis);
 // If the browser has a console, write to it.
 function DebugOut(newline){
 	try{
-		if (typeof console == "object"){ 
-			DebugOut(newline);
+		if (typeof console === "object"){ 
+			console.log(newline);
 		}
 	}catch(err){
 		
