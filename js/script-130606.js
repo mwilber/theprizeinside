@@ -31,7 +31,6 @@ $(document).ready(function(){
 	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ) {
 		isMobile = true;
 	}
-	locationTimer = window.setInterval(QueryLocationLoop,30000);
 	
 	if (Modernizr.localstorage) { 
 		if( localStorage["firsttimer"] != "no" ){

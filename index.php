@@ -97,7 +97,7 @@
 		<h2>About The Prize Inside</h2>
 		<div id="about" class="scroll-pane">
 			<p>When a burger is a burger, and a burrito makes no difference, choose your fast food by The Prize Inside!</p>
-			<p>When you&rsquo;re out on the road, The Prize Inside uses your phone&rsquo;s GPS to locate nearby restaurants that have kids&rsquo; meal premiums. Toys are listed in order of distance along with alternate locations within 20 miles. Plan your stop around the prize your kids want most and The Prize inside provides driving directions to the location. Share with your finds on facebook, twitter, and now google plus! Make The Prize Inside part of your next road trip.</p>
+			<p>When you&rsquo;re out on the road, The Prize Inside uses your phone&rsquo;s GPS to locate nearby restaurants that have kids&rsquo; meal premiums. Toys are listed in order of distance, along with alternate locations within 20 miles. Plan a meal stop around the prize your kids want most, and The Prize inside provides driving directions to the location. Share with your finds on facebook, twitter, and now google plus! Make The Prize Inside part of your next road trip.</p>
 			<p>The Prize Inside was created by Internet software developer Matthew Wilber. For more information, visit <a href="http://www.mwilber.com" target="_blank">mwilber.com</a>.</p>
 			<strong>Mobile Users</strong>
 			<p>Download the app linked above or use this site as a web app: </p>
@@ -200,6 +200,7 @@
 			
 			InitMap();
 			QueryLocation();
+			locationTimer = window.setInterval(QueryLocationLoop,30000);
 			
 		});
 	</script>
