@@ -15,7 +15,7 @@ var mapthumb = {
 var mapDetailZoomLevel = 15;
 var mapYOffset = 0;
 var mapXOffset = 0;
-var mapYzoomOffset = 160;
+var mapYzoomOffset = 180;
 var mapXzoomOffset = 0;
 var bounds = new google.maps.LatLngBounds();
 var loadCt = 0;
@@ -26,52 +26,27 @@ var maxDistance = 30000;
 var listingCt = 0;
 var locationTimer;
 
-$(document).ready(function(){
+function InitApp(){
 	
 	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ) {
 		isMobile = true;
 	}
 	
-	if (Modernizr.localstorage) { 
-		if( localStorage["firsttimer"] != "no" ){
-			_gaq.push(['_trackEvent', 'Load', 'about', 'autopop']);
-			$('#aboutbox').fadeIn();
-			$('.scroll-pane').jScrollPane(
-				{
-					showArrows: false,
-					verticalGutter: 15
-				}
-			);
-		}
-	}
-	
-	if( $('body').width() > 480 ){
-		mapYOffset = 50;
-	}
-	
-//	if( $('body').width() > 700 ){
-//		mapYOffset = 0;
-//		mapXOffset = -Math.floor($('body').width()/4);
-// 	}
-	
 	$('#btncloseloc').click(function(){_gaq.push(['_trackEvent', 'Main Nav', 'location', 'close']); $('#locationbox').fadeOut();});
 	$('#btncloseinfo').click(GetHome);
 	$('#loc').click(function(){
-		_gaq.push(['_trackEvent', 'Main Nav', 'location', 'open']);
+		//_gaq.push(['_trackEvent', 'Main Nav', 'location', 'open']);
 		CloseAllBoxes();
 		$('#locationbox').fadeIn();
 		$('#loctext').focus();
 		return false;
 	});
 	$('#btnclose').click(function(){
-		_gaq.push(['_trackEvent', 'Main Nav', 'about', 'close']);
-		if (Modernizr.localstorage) { 
-			localStorage["firsttimer"] = "no";
-		}
+		//_gaq.push(['_trackEvent', 'Main Nav', 'about', 'close']);
 		$('#aboutbox').fadeOut();
 	});
 	$('#info').click(function(){
-		_gaq.push(['_trackEvent', 'Main Nav', 'about', 'open']);
+		//_gaq.push(['_trackEvent', 'Main Nav', 'about', 'open']);
 		CloseAllBoxes();
 		$('#aboutbox').fadeIn();
 		$('.scroll-pane').jScrollPane(
@@ -90,7 +65,23 @@ $(document).ready(function(){
 		$('#appModal').modal('show');
 	});
 	
-});
+	$('#btnlocsearch').click(function(){
+		_gaq.push(['_trackEvent', 'Main Nav', 'location search', '']);
+		var searchloc = $('#loctext').val();
+		DebugOut('getting coords for: '+searchloc);
+		
+		var geocoder = new google.maps.Geocoder();
+		geocoder.geocode( { 'address': searchloc}, function(results, status) {
+        	if (status == google.maps.GeocoderStatus.OK) {
+        		$('#locationbox').fadeOut();
+        		HandleGeolocationQuery({coords:{latitude:results[0].geometry.location.lat(), longitude:results[0].geometry.location.lng()}});
+        	} else {
+        		alert('Could not find address: ' + status);
+        	}
+        });
+	});
+	
+}
 
 function QueryLocation(){
 	window.navigator.geolocation.getCurrentPosition(HandleGeolocationQuery,HandleGeolocationErrors,{
@@ -130,12 +121,21 @@ function UpdateProgressBar(){
 
 
 function GetRest(){
+	
+	var apiRoot = "reactor/";
+	if(isMobi){
+		apiRoot = "http://theprizeinside.com/reactor/";
+	}
 	clearOverlays();
 	PlaceUserLocMarker();
 	$('#listlist').empty();
-	$.get('reactor/srvlist/getnames',function(response){
+	$.get(apiRoot+'srvlist/getnames',function(response){
 		DebugOut(response);
-		restaurants = response;
+		if(isMobi){
+			restaurants = jQuery.parseJSON(response);
+		}else{
+			restaurants = response;
+		}
 		loadMax = restaurants.length*2;
 		//GetDistance(0);
 		for( idx in restaurants ){
@@ -162,7 +162,7 @@ function GetRestMobi(){
 
 
 function GetDistance(pIdx){
-	DebugOut("Getting Distance for: "+restaurants[pIdx].restaurantName+" ("+restaurants[pIdx].restaurantAlias+")");
+	//alert("Getting Distance for: "+restaurants[pIdx].restaurantName+" ("+restaurants[pIdx].restaurantAlias+")");
 	
 	var searchRequest = {
 		location: userLocation,
@@ -439,14 +439,14 @@ function HandleGeolocationQuery(position){
 		$('#location span').html(position.coords.latitude.toString().substring(0,8)+', '+position.coords.longitude.toString().substring(0,8));
 		GetRest();
 	}else{
-		DebugOut('User Location Unchanged');
+		alert('User Location Unchanged');
 	}
 }
 
 function HandleGeolocationQueryLoop(position){
 	DebugOut('Distance Change: '+CalcDistance(userLocation.lat(), userLocation.lng(),position.coords.latitude,position.coords.longitude));
 	// Check against existing location before setting
-	if( CalcDistance(userLocation.lat(), userLocation.lng(),position.coords.latitude,position.coords.longitude) < 1){
+	if( CalcDistance(userLocation.lat(), userLocation.lng(),position.coords.latitude,position.coords.longitude) < 0.5){
 		// User hasn't moved much
 		DebugOut('User Location Minimal Change');
 	}else if( CalcDistance(userLocation.lat(), userLocation.lng(),position.coords.latitude,position.coords.longitude) < 10){
@@ -497,7 +497,6 @@ function InitMap(){
     }  
     
     overmap = new google.maps.Map(document.getElementById("overmap"), myOptions);
-    
     infoBubble = new InfoBubble({
 		map: overmap,
 		minWidth:300,
@@ -564,6 +563,7 @@ function twsharemobi(pTitle,pToy){
 	var twcontent = 'https://mobile.twitter.com/compose/tweet?status='+escape('I found the '+pToy+' at '+pTitle+' thanks to ThePrizeInside http://theprizeinside.com');
 	//alert('launching external: '+twcontent);
 	AppMobi.device.launchExternal(twcontent);
+	//AppMobi.device.showRemoteSiteExt(twcontent,280,0,50,50);
 }
 
 function gpshare(pTitle, pToy){

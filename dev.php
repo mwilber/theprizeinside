@@ -52,7 +52,7 @@
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link href="css/style.css" rel="stylesheet" media="screen">
+    <link href="css/style-130606.css" rel="stylesheet" media="screen">
     
     <script type="text/javascript" src="js/config.js"></script>
 	<script type="text/javascript">
@@ -177,28 +177,13 @@
 	<!-- the jScrollPane script -->
 	<script type="text/javascript" src="js/jquery.jscrollpane.min.js"></script>
     <script src="js/fb.js"></script>
-    <script src="js/script.js"></script>
+    <script src="js/script-130606.js"></script>
     
     <script type="text/javascript">
 		
 		$(document).ready(function(){
 			
-			$('#btnlocsearch').click(function(){
-				_gaq.push(['_trackEvent', 'Main Nav', 'location search', '']);
-				var searchloc = $('#loctext').val();
-				DebugOut('getting coords for: '+searchloc);
-				
-				var geocoder = new google.maps.Geocoder();
-				geocoder.geocode( { 'address': searchloc}, function(results, status) {
-		        	if (status == google.maps.GeocoderStatus.OK) {
-		        		$('#locationbox').fadeOut();
-		        		HandleGeolocationQuery({coords:{latitude:results[0].geometry.location.lat(), longitude:results[0].geometry.location.lng()}});
-		        	} else {
-		        		alert('Could not find address: ' + status);
-		        	}
-		        });
-			});
-			
+			InitApp();
 			InitMap();
 			QueryLocation();
 			locationTimer = window.setInterval(QueryLocationLoop,30000);
@@ -209,7 +194,7 @@
 	<script type="text/javascript">
 
 	  var _gaq = _gaq || [];
-	  _gaq.push(['_setAccount', 'UA-76054-17']);
+	  _gaq.push(['_setAccount', 'UA-76054-17XX']);
 	  _gaq.push(['_trackPageview']);
 	
 	  (function() {

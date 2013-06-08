@@ -5,6 +5,15 @@ html, body {
 	min-height:100%;
 }
 
+/*** Prevent Android element highlighting ***/
+* {
+-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+/*** Prevent copy paste for all elements except text fields ***/
+* { -webkit-user-select: none; }
+input, textarea { -webkit-user-select:text; }
+
 a, a:hover{
 	color:#ffff78;
 }
@@ -695,7 +704,7 @@ a, a:hover{
 		width: 95%;
 		margin: 0px;
 		top:auto;
-		bottom:100px;
+		bottom:70px;
 		left: 2%;
 	}
 	
