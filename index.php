@@ -76,6 +76,7 @@
 	  </div>
 	  <div class="modal-body">
 	    <a style="float:left; width:auto;" href="https://play.google.com/store/apps/details?id=com.greenzeta.greenzeta.theprizeinside" target="_blank"><img src="img/playstore.png" style="height:55px;"/></a>
+	    <a style="float:left; width:auto;" href="http://www.amazon.com/GreenZeta-The-Prize-Inside/dp/B00DAFWEAG/" target="_blank"><img src="img/azstore.png" style="height:55px;"/></a>
 	    <a style="float:left; width:auto;" href="https://chrome.google.com/webstore/detail/the-prize-inside/dhifcjdhfplggpmnlfmgockjchmpcfkb" target="_blank"><img src="img/chromestore.png" style="height:55px;"/></a>
 	   	<a style="float:left; width:auto;" href="https://itunes.apple.com/us/app/the-prize-inside/id650582612?ls=1&mt=8" target="_blank"><img src="img/appstore.png" style="height:55px;"/></a>
 	  </div>
