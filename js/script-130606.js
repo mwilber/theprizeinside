@@ -606,12 +606,6 @@ function CalcDistance(lat2, lon2, lat1, lon1){
 	var dLat = x1.toRad();  
 	var x2 = roundNumber(lon2,7)-roundNumber(lon1,7);
 	var dLon = x2.toRad(); 
-	console.log(roundNumber(lat2,7));
-	console.log(lat2+"-"+lat1);
-	console.log(x1);
-	console.log(dLat);
-	console.log(x2);
-	console.log(dLon);
 	var a = Math.sin(dLat/2) * Math.sin(dLat/2) + 
 	                Math.cos(lat1.toRad()) * Math.cos(lat2.toRad()) * 
 	                Math.sin(dLon/2) * Math.sin(dLon/2);  
