@@ -178,28 +178,13 @@
 	<!-- the jScrollPane script -->
 	<script type="text/javascript" src="js/jquery.jscrollpane.min.js"></script>
     <script src="js/fb.js"></script>
-    <script src="js/script.js"></script>
+    <script src="js/script-130606.js"></script>
     
     <script type="text/javascript">
 		
 		$(document).ready(function(){
 			
-			$('#btnlocsearch').click(function(){
-				_gaq.push(['_trackEvent', 'Main Nav', 'location search', '']);
-				var searchloc = $('#loctext').val();
-				DebugOut('getting coords for: '+searchloc);
-				
-				var geocoder = new google.maps.Geocoder();
-				geocoder.geocode( { 'address': searchloc}, function(results, status) {
-		        	if (status == google.maps.GeocoderStatus.OK) {
-		        		$('#locationbox').fadeOut();
-		        		HandleGeolocationQuery({coords:{latitude:results[0].geometry.location.lat(), longitude:results[0].geometry.location.lng()}});
-		        	} else {
-		        		alert('Could not find address: ' + status);
-		        	}
-		        });
-			});
-			
+			InitApp();
 			InitMap();
 			QueryLocation();
 			locationTimer = window.setInterval(QueryLocationLoop,30000);
