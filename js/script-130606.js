@@ -592,14 +592,26 @@ Number.prototype.toRad = function() {
    return this * Math.PI / 180;
 }
 
+function roundNumber(number, digits) {
+    var multiple = Math.pow(10, digits);
+    var rndedNum = Math.round(number * multiple) / multiple;
+    return rndedNum;
+}
+
 function CalcDistance(lat2, lon2, lat1, lon1){
 	
 	var R = 6371; // km 
-	//has a problem with the .toRad() method below.
-	var x1 = lat2-lat1;
+	//var x1 = lat2-lat1;
+	var x1 = roundNumber(lat2,7)-roundNumber(lat1,7);
 	var dLat = x1.toRad();  
-	var x2 = lon2-lon1;
-	var dLon = x2.toRad();  
+	var x2 = roundNumber(lon2,7)-roundNumber(lon1,7);
+	var dLon = x2.toRad(); 
+	console.log(roundNumber(lat2,7));
+	console.log(lat2+"-"+lat1);
+	console.log(x1);
+	console.log(dLat);
+	console.log(x2);
+	console.log(dLon);
 	var a = Math.sin(dLat/2) * Math.sin(dLat/2) + 
 	                Math.cos(lat1.toRad()) * Math.cos(lat2.toRad()) * 
 	                Math.sin(dLon/2) * Math.sin(dLon/2);  
