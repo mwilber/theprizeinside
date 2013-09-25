@@ -4,7 +4,9 @@
     "description": "When you're out on the road, The Prize Inside uses your phone's GPS to locate nearby restaurants that have kids' meal premiums. Toys are listed in order of distance along with alternate locations within 20 miles. Plan your stop around the prize your kids want most and The Prize inside provides driving directions to the location. Share with your finds on facebook, twitter, and now google plus! Make The Prize Inside part of your next road trip.",
     "icons": {
         "16": "/gz_tpi_hosted/icon_16.png",
+        "30": "/gz_tpi_hosted/icon_30.png",
         "48": "/gz_tpi_hosted/icon_48.png",
+        "60": "/gz_tpi_hosted/icon_60.png",
         "128": "/gz_tpi_hosted/icon_128.png"
     },
     "developer": {
