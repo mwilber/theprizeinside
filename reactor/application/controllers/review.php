@@ -85,6 +85,8 @@ class Review extends CI_Controller
 		$data['fields'] = $this->$model_ref->_fields();
 		$data['pk'] = $this->$model_ref->_pk();
 		
+		//print_r($data);
+		
 		if($pFormat == "html"){
 			if( $this->session->userdata('userEmail') ){
 				$this->load->view('template/template_head');
