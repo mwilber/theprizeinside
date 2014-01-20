@@ -175,8 +175,8 @@ html, body{
 	left:0px;
 	width:100%;
 	min-height:100%;
-	/*border:solid 1px #ccc;*/
-	background:#3371bb url('../images/bkg_vignette.png') top left no-repeat;
+	border:solid 1px #ccc;
+	background:#3371bb;
 	padding:0px;
 	display: none;
 }

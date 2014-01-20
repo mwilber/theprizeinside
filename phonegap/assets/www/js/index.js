@@ -47,6 +47,8 @@
         // console.log('Received Event: ' + id);
     // }
 // };
+	
+	var apipath = "";
 
 // Store object refs for each UI panel.
 // Arr idx matches html id of panel
@@ -70,7 +72,7 @@ var app = {
     // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
-        //alert("Initing Map");
+		
         panel['registration'] = new Registration();
         panel['home'] = new Home();
 
