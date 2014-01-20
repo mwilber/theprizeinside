@@ -29,8 +29,6 @@ Registration.prototype.HandleRegData = function(self){
 };
 
 Registration.prototype.Show = function(pProfileId){
-	
-	alert("showing sir.");
     
     this.panel.Show();
     

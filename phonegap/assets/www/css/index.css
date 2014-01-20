@@ -70,7 +70,7 @@ body {
 }
 
 h1 {
-    font-size:24px;
+    font-size:40px;
     font-weight:normal;
     margin:0px;
     overflow:visible;
@@ -134,8 +134,9 @@ html, body{
 #header{
 	position: absolute;
 	z-index:4000;
-	background:transparent;
-	width: 100px;
+	background:#362814;
+	color:#ff0;
+	width: 100%;
 	height:50px;
 	text-align:right;
 	overflow:hidden;
@@ -158,7 +159,7 @@ html, body{
 	width:50px;
 	height:50px;
 	background:transparent;
-	color:#7cb0d4;
+	color:#ff0;
 	text-decoration:none;
 	margin: 0px;
 	font-size: 36px;
@@ -175,8 +176,7 @@ html, body{
 	left:0px;
 	width:100%;
 	min-height:100%;
-	border:solid 1px #ccc;
-	background:#3371bb;
+	background:#f6f0e7;
 	padding:0px;
 	display: none;
 }
