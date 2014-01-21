@@ -76,7 +76,7 @@ var app = {
         panel['registration'] = new Registration();
         panel['home'] = new Home();
 
-        panel['home'].Show();
+        panel['home'].Load();
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
