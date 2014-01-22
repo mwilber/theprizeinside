@@ -23,7 +23,7 @@ Home.prototype.Load = function(){
     // Real ajax call --
     //                 |
     //                \/
-    //$.get(apipath+'/tinderbox/speaker/json/event/'+pId+'/speaker',this.HandleSpeakerData(this));
+    //$.get(apipath+'/reactor/speaker/json/event/'+pId+'/speaker',this.HandlePrizeData(this));
     
     this.Show();  
 };
@@ -46,20 +46,23 @@ Home.prototype.HandlePrizeData = function(self){
                      $('<div/>').addClass('details fa fa-caret-right')
                  )
                  .append(
+                     $('<div/>').addClass('icon fa fa-trophy')
+                 )
+                 .append(
                      $('<div/>').addClass('restaurant').html(value.restaurantName)
                  )
                  .append(
                      $('<div/>').addClass('prize').html(prizes)
                  )
-                 .click(self.HandleSpeakerClick(self,value.speakerId))
+                 .click(self.HandlePrizeClick(self,value))
             ); 
          }
     };
 };
 
-Home.prototype.HandleSpeakerClick = function(self,pId){
+Home.prototype.HandlePrizeClick = function(self,pPrize){
 	return function(event){
-		panel['eventspeaker'].Load(pId,'eventspeakers');
+		panel['prize'].Load(pPrize);
         return false;
 	};
 };
