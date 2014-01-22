@@ -38,29 +38,31 @@
     <body>
     	
         <div id="header">
-        	<h1>TPI</h1>
-        	<a class="showsidemenu fa fa-bars" href="#"></a>
-        	<a class="showsidemenu fa fa-user" href="#"></a>
+        	<a class="showsidemenu headbutton fa fa-bars" href="#"></a>
+        	<a class="showprofile headbutton fa fa-user" href="#"></a>
         </div>
 
         <div id="container">
             
         	
 			<div id="home" class="panel">
-				<h1>Prizes</h1>
+				<h1>The Prize Inside</h1>
 				<ul class="prizes linearlist">
 					<!-- AJAX Data here -->
 				</ul>
 			</div>
 			
 			<div id="prize" class="panel">
-				<a class="back" href="#"><span class="fa fa-angle-left"></span> Tour Info</a>
+				<a class="back" href="#"><span class="fa fa-angle-left"></span> Home</a>
 				<h1 class="name"><!-- AJAX Data here --></h1>
-				<ul class="locations"></ul>
-				<p></p>
+				<div class="header">
+				  <a class="showcheckin">Checkin</a>
+				</div>
+				<h2>Locations Nearby</h2>
+				<ul class="locations linearlist"></ul>
 			</div>
         </div>
-        <script type="text/javascript" src="jsS/cordova.js"></script>
+        <script type="text/javascript" src="js/cordova.js"></script>
         <script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>
         <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=true"></script>
 

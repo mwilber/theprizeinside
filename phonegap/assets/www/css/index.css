@@ -135,6 +135,7 @@ html, body{
 	position: absolute;
 	z-index:4000;
 	background:#362814;
+	background:transparent;
 	color:#ff0;
 	width: 100%;
 	height:50px;
@@ -155,19 +156,21 @@ html, body{
 	left: 0px;
 }
 
-.showsidemenu{
+.headbutton{
 	width:50px;
 	height:50px;
 	background:transparent;
 	color:#ff0;
 	text-decoration:none;
-	margin: 0px;
-	font-size: 36px;
+	margin: 0px 15px 0px 0px;
+	font-size: 48px;
 	line-height: 48px;
 	text-align: center;
-	position: absolute;
+	/*position: absolute;
 	top: 10px;
-	right: 10px;
+	right: 10px;*/
+	position:relative;
+	float:right;
 }
 
 .panel{
@@ -188,8 +191,24 @@ html, body{
 	line-height: 48px;
 	padding: 10px 0px;
 	text-transform: uppercase;
-	font-size: 26px;
-	margin-top:70px;
+	font-size: 48px;
+	/*margin-top:70px;*/
+	background:#362814;
+	color:#ff0;
+	font-weight:bold;
+}
+
+.panel .header{
+  width:100%;
+  height:200px;
+  background-color:#efe;
+}
+
+.panel .header .showcheckin{
+  float:right;
+  width:200px;
+  height:100%;
+  background-color:rgba(255,255,255,0.8);
 }
 
 .panel h2{
@@ -215,14 +234,15 @@ a.back {
 	position: absolute;
 	background: transparent;
 	text-decoration: none;
-	font-size: 18px;
+	font-size: 48px;
 	padding: 0px;
-	margin: 16px 0px 0px 10px;
+	margin: 8px 0px 0px 10px;
 	z-index: 600;
 	vertical-align: middle;
-	line-height: 18px;
-	width:160px;
+	line-height: 48px;
+	width:auto;
 	text-transform: uppercase;
+	color:#ff0;
 }
 
 a.back span {
@@ -322,7 +342,7 @@ a.back span {
 	display:block;
 	padding: 10px 30px 10px 30px;
 	background:rgba(255,255,255,0.1);
-	min-height: 50px;
+	min-height: 70px;
 	font-size: 18px;
 }
 
@@ -337,6 +357,15 @@ a.back span {
 	float: right;
 	font-size: 70px;
 	margin-top: 5px;
+}
+
+.panel .linearlist li .icon{
+	display: block;
+	float: left;
+	font-size: 60px;
+	margin: 0px 10px 0px 0px;
+	padding:5px;
+	color:#f6f0e7;
 }
 
 .panel .linearlist li .restaurant{

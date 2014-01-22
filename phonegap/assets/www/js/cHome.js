@@ -46,7 +46,7 @@ Home.prototype.HandlePrizeData = function(self){
                      $('<div/>').addClass('details fa fa-caret-right')
                  )
                  .append(
-                     $('<div/>').addClass('icon fa fa-trophy')
+                     $('<div/>').addClass('icon fa fa-trophy').css('background-color','#'+value.restaurantColor)
                  )
                  .append(
                      $('<div/>').addClass('restaurant').html(value.restaurantName)

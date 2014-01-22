@@ -20,14 +20,12 @@ Prize.prototype.Load = function(pPrize){
     this.panel.elem.find('.name').empty();
     
     // Fill in the prize info
-    // TODO: Test aide error reporting
-    //self.panel.elem.find('.name').html(pPrize.restaurantName);
-    //var prizes = "";
-    //         for(jdx in value.prize){
-    //         	if( prizes != "" ) prizes += " / ";
-    //         	prizes += value.prize[jdx].prizeName;
-    //         }
-    this.panel.elem.find('.name').html(pPrize.restaurantName);
+    var prizes = "";
+             for(jdx in pPrize.prize){
+             	if( prizes != "" ) prizes += " / ";
+             	prizes += pPrize.prize[jdx].prizeName;
+             }
+    this.panel.elem.find('.name').html(prizes);
 
     // Simulate the ajax call for now
     DebugOut('Loading locations: '+pPrize.restaurantAlias);
@@ -44,6 +42,7 @@ Prize.prototype.Load = function(pPrize){
 Prize.prototype.HandleLocationData = function(self){
     return function(response, textStatus) {
         DebugOut(response);
+		self.panel.elem.find('.locations').empty();
         for( idx in response.response.venues ){
              var value = response.response.venues[idx];
 
@@ -53,6 +52,9 @@ Prize.prototype.HandleLocationData = function(self){
                  )
                  .append(
                      $('<div/>').addClass('address').html(value.location.address)
+                 )
+				 .append(
+                     $('<div/>').addClass('city').html(value.location.city+", "+value.location.state+" "+value.location.postalCode)
                  )
                  .click(self.HandleLocationClick(self,value))
             ); 
