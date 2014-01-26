@@ -230,6 +230,43 @@ html, body{
 	margin: 10px 40px;
 }
 
+.panel ul{
+  clear:both;
+}
+
+.panel .tabs{
+  float:left;
+  list-style:none;
+  width:100%;
+}
+
+.panel .tabs li{
+  float:left;
+  width:33%;
+}
+
+.panel .tabs li a{
+  width:100%;
+  height:75px;
+  font-size:36px;
+  text-decoration:none;
+  text-align:center;
+}
+
+.popup{
+    color:#362814;
+	position:absolute;
+	top:1%;
+	left:1%;
+	width:98%;
+	min-height:98%;
+	background:#f6f0e7;
+	padding:0px;
+	border: solid 1px #362814;
+	z-index:1000;
+	display:none;
+}
+
 a.back {
 	position: absolute;
 	background: transparent;
@@ -251,6 +288,22 @@ a.back span {
 	margin-right: 10px;
 	float: left;
 	margin-top: -19px;
+}
+
+a.close span{
+    float:right;
+    position: relative;
+	background: transparent;
+	text-decoration: none;
+	font-size: 60px;
+	padding: 0px;
+	margin: 0px 10px 0px 0px;
+	vertical-align: middle;
+	line-height: 60px;
+	width:auto;
+	text-transform: uppercase;
+	color:#362814;
+	
 }
 
 #sidemenu{

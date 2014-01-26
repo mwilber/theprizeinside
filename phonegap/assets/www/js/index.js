@@ -75,6 +75,7 @@ var app = {
 		
         panel['prize'] = new Prize();
         panel['home'] = new Home();
+		panel['checkin'] = new Checkin();
 
         panel['home'].Load();
     },

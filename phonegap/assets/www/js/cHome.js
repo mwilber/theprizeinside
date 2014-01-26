@@ -69,7 +69,7 @@ Home.prototype.HandlePrizeClick = function(self,pPrize){
 
 Home.prototype.Show = function(){
     
-    $('#header').show();
+    //$('#header').show();
     
     this.panel.Show();
     
