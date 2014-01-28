@@ -48,7 +48,7 @@
     // }
 // };
 	
-	var apipath = "";
+	var apipath = "http://theprizeinside.com";
 
 // Store object refs for each UI panel.
 // Arr idx matches html id of panel
@@ -76,6 +76,7 @@ var app = {
         panel['prize'] = new Prize();
         panel['home'] = new Home();
 		panel['checkin'] = new Checkin();
+		panel['location'] = new Location();
 
         panel['home'].Load();
     },

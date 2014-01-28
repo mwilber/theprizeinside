@@ -53,13 +53,13 @@
 			</div>
 			
 			<div id="prize" class="panel">
-				<a class="back" href="#"><span class="fa fa-angle-left"></span> Home</a>
+				<a class="back" href="#"><span class="fa fa-angle-left"></span></a>
 				<h1 class="name"><!-- AJAX Data here --></h1>
 				<div class="header">
-				  <a class="showcheckin">Checkin</a>
+				  <a class="showwebsite fa fa-external-link" target="_blank"></a>
 				</div>
 				<ul class="tabs">
-				  <li><a id="btnlocations" href="#">Locations Nearby</a></li>
+				  <li><a id="btnlocations" href="#">Locations</a></li>
 				  <li><a id="btnmap" href="#">Map</a></li>
 				  <li><a id="btncomments" href="#">Comments</a></li>
 				</ul>
@@ -74,13 +74,22 @@
 			  </div> 
 			</div>
 			
+			<div id="location" class="panel">
+				<a class="back" href="#"><span class="fa fa-angle-left"></span></a>
+				<h1 class="name"><!-- AJAX Data here --></h1>
+				<div class="header">
+				  <a class="showcheckin">Checkin</a>
+				</div>
+				<img id="staticmap" src=""/> 
+			</div>
+			
 			<div id="checkin" class="popup">
 			  <a class="close" href="#"><span class="fa fa-times"></span></a>
 			  <h1>Checkin</h1>
 			</div>
 			
         </div>
-        <script type="text/javascript" src="js/cordova.js"></script>
+        <script type="text/javascript" src="jss/cordova.js"></script>
         <script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>
         <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=true"></script>
 
@@ -88,6 +97,7 @@
 	    <script src="js/cPopup.js"></script>
 		<script src="js/cHome.js"></script>
 		<script src="js/cPrize.js"></script>
+		<script src="js/cLocation.js"></script>
 	    <script src="js/cCheckin.js"></script>
 		
 		<script type="text/javascript" src="js/util.js"></script>

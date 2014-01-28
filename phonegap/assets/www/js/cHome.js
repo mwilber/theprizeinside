@@ -18,12 +18,12 @@ Home.prototype.Load = function(){
     //alert('ajax call tooo: '+apipath+'/tinderbox/city/json/all');
     
     // Simulate the ajax call for now
-    var patsy = this.HandlePrizeData(this);
-    patsy(prizedata);
+    //var patsy = this.HandlePrizeData(this);
+    //patsy(prizedata);
     // Real ajax call --
     //                 |
     //                \/
-    //$.get(apipath+'/reactor/speaker/json/event/'+pId+'/speaker',this.HandlePrizeData(this));
+    $.get(apipath+'/reactor/srvlist/getnames',this.HandlePrizeData(this));
     
     this.Show();  
 };
