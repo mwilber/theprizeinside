@@ -129,6 +129,8 @@ Prize.prototype.HandleLocationData = function(self){
 
 Prize.prototype.HandleLocationClick = function(self,pPrize){
 	return function(event){
+	    alert('handling location');
+	    DebugOut(pPrize);
 		panel['location'].Load(pPrize);
         return false;
 	};
@@ -166,7 +168,7 @@ Prize.prototype.PlaceMarker = function(self, pLoc){
     // Add map marker
     //give the marker a color
     var pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|ff0000",
-        new google.maps.Size(21, 34),
+        new google.maps.Size(21, 84),
         new google.maps.Point(0,0),
         new google.maps.Point(10, 34));
     var tmpMarker = new google.maps.Marker({
@@ -185,10 +187,10 @@ Prize.prototype.PlaceMarker = function(self, pLoc){
     self.locmap.fitBounds(self.bounds);
     
     google.maps.event.addListener(tmpMarker, 'click', function(pLoc) {
-        //self.locmap.setCenter(this.position);
+        self.locmap.setCenter(this.position);
         //self.infowindow.setContent("<strong>"+this.title+"</strong><p>"+this.locaddress+"</p>"+"<p>"+this.locdescription+"</p>");
         //self.infowindow.open(self.locmap,this);
-        self.HandleLocationClick(self,this.location);
+        panel['prize'].HandleLocationClick(panel['prize'],this);
     });
 };
 
