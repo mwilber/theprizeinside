@@ -3,6 +3,7 @@ function Prize(){
     this.panel = new Panel('prize');
     this.backId = "home";
     
+    this.restaurantid = null;
     this.locmap = null;
     this.bounds = new google.maps.LatLngBounds();
     this.markersArray = [];
@@ -57,10 +58,14 @@ Prize.prototype.Load = function(pPrize){
 	this.panel.elem.find('#comments ul').empty().append($('<li/>').html('loading...'));
     this.panel.elem.find('.name').empty();
     this.panel.elem.find('.showwebsite').attr('href','');
+    this.restaurantid = null;
     
     // hide the tab panels
 	this.HideTabPanels();
     
+    
+    // Get the restaurant id
+    this.restaurantid = pPrize.restaurantAlias;
     
     // Fill in the prize info
     var prizes = "";
@@ -72,15 +77,6 @@ Prize.prototype.Load = function(pPrize){
     
     this.panel.elem.find('.showwebsite').attr('href',pPrize.restaurantUrl);
 
-    // Simulate the ajax call for now
-    //DebugOut('Loading locations: '+pPrize.restaurantAlias);
-    //var patsy = this.HandleLocationData(this);
-    //patsy(fsdata[pPrize.restaurantAlias]);
-    // Real ajax call --
-    //                 |
-    //                \/
-    $.get('https://api.foursquare.com/v2/venues/search?client_id=UMRUA4UFFY0RLEI1TKGXUT30JLQULNFRM3YVQWNCASQ3VE31&client_secret=4XSWL2PUIN02A3RNJY4GFRCLISF4RPC3URLVLHK2AOQD0EQ5&v=20130815&ll=38.00352,-77.5590&query='+pPrize.restaurantAlias,this.HandleLocationData(this));
-    
     this.Show(); 
     
     DebugOut('name: '+ this.panel.elem.find('.name').height());
@@ -94,6 +90,21 @@ Prize.prototype.Load = function(pPrize){
     // Size the map to fit the panel
     this.panel.elem.find('.tabpanel').css('width',this.panel.elem.width()+"px");
     this.panel.elem.find('.tabpanel').css('height',(this.panel.elem.height()-offsetheight)+"px");
+    
+    var patsy = this.HandleLocationData(this);
+    patsy(fsdata[pPrize.restaurantAlias]);
+};
+
+Prize.prototype.GetLocationDataB = function(){
+    // Simulate the ajax call for now
+    //DebugOut('Loading locations: '+pPrize.restaurantAlias);
+    var patsy = this.HandleLocationData(this);
+    patsy(fsdata[pPrize.restaurantAlias]);
+    // Real ajax call --
+    //                 |
+    //                \/
+    //$.get('https://api.foursquare.com/v2/venues/search?client_id=UMRUA4UFFY0RLEI1TKGXUT30JLQULNFRM3YVQWNCASQ3VE31&client_secret=4XSWL2PUIN02A3RNJY4GFRCLISF4RPC3URLVLHK2AOQD0EQ5&v=20130815&ll='+userLocation.lat()+','+userLocation.lng()+'&limit=10&query='+this.restaurantid,this.HandleLocationData(this));
+    
 };
 
 Prize.prototype.HandleLocationData = function(self){
@@ -129,12 +140,20 @@ Prize.prototype.HandleLocationData = function(self){
 
 Prize.prototype.HandleLocationClick = function(self,pPrize){
 	return function(event){
-	    alert('handling location');
-	    DebugOut(pPrize);
+	    //alert('handling location');
+	    //DebugOut(pPrize);
 		panel['location'].Load(pPrize);
         return false;
 	};
 };
+
+Prize.prototype.HandleMapClick = function(pPrize){
+    alert('handling location');
+    DebugOut(pPrize);
+    panel['location'].Load(pPrize);
+    return false;
+};
+
 
 Prize.prototype.InitMap = function(self){
     var latlng = new google.maps.LatLng(40.6687125,-73.5270709);
@@ -152,7 +171,8 @@ Prize.prototype.InitMap = function(self){
     self.ClearMarkers(self);
     for( idx in self.locationdata.venues ){
         var value = self.locationdata.venues[idx];
-        self.PlaceMarker(self, value);
+        if( value.location.address !== undefined )
+            self.PlaceMarker(self, value);
     }
 
 };
@@ -190,7 +210,7 @@ Prize.prototype.PlaceMarker = function(self, pLoc){
         self.locmap.setCenter(this.position);
         //self.infowindow.setContent("<strong>"+this.title+"</strong><p>"+this.locaddress+"</p>"+"<p>"+this.locdescription+"</p>");
         //self.infowindow.open(self.locmap,this);
-        panel['prize'].HandleLocationClick(panel['prize'],this);
+        panel['prize'].HandleMapClick(this.location);
     });
 };
 

@@ -13,25 +13,37 @@ function Home(){
 
 Home.prototype.Load = function(){
     
+    DebugOut("Loading Home...");
+    
     // Load panel data
     this.panel.elem.find('.prizes').empty().append($('<li/>').html('loading...'));
     //alert('ajax call tooo: '+apipath+'/tinderbox/city/json/all');
     
     // Simulate the ajax call for now
-    //var patsy = this.HandlePrizeData(this);
-    //patsy(prizedata);
-    // Real ajax call --
-    //                 |
-    //                \/
-    $.get(apipath+'/reactor/srvlist/getnames',this.HandlePrizeData(this));
+    var patsy = this.HandlePrizeData(this);
+    DebugOut(prizedata);
+    if( prizedata !== null ){
+        DebugOut('prize data not null');
+        patsy(prizedata);
+        // Real ajax call --
+        //                 |
+        //                \/
+        //$.get(apipath+'/reactor/srvlist/getnames',this.HandlePrizeData(this));
     
-    this.Show();  
+        this.Show();
+    }else{
+        DebugOut('setting timeout');
+        setTimeout(function(){panel['home'].Load();},3000);
+    }
 };
 
 Home.prototype.HandlePrizeData = function(self){
     return function(response, textStatus) {
     	DebugOut("prize data incoming...");
         DebugOut(response);
+        
+        //QueryLocation();
+        
         self.panel.elem.find('.prizes').empty();
          for( idx in response ){
              var value = response[idx];

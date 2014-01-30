@@ -29,12 +29,16 @@ Location.prototype.Load = function(pLocation){
     this.panel.elem.find('#staticmap').attr('src','');
     
     //Make the static map url
-    var mapurl = "http://maps.googleapis.com/maps/api/staticmap?zoom=13&size="+this.panel.elem.width()+"x"+Math.floor(this.panel.elem.height()/3)+"&maptype=roadmap&markers=color:red%7Clabel:C%7C"+pLocation.location.lat+","+pLocation.location.lng+"&sensor=false";
+    var mapurl = "http://maps.googleapis.com/maps/api/staticmap?zoom=13&size="+Math.floor(this.panel.elem.width()/2)+"x"+Math.floor(this.panel.elem.width()/2)+"&maptype=roadmap&markers=color:red%7Clabel:C%7C"+pLocation.location.lat+","+pLocation.location.lng+"&sensor=false";
+    var streeturl = "http://maps.googleapis.com/maps/api/streetview?location="+pLocation.location.address+","+pLocation.location.postalCode+"&size="+this.panel.elem.width()+"x"+Math.floor(this.panel.elem.find('.header').height())+"&sensor=false";
     DebugOut('mapurl: '+mapurl);
     
     // Fill in the Location info
     this.panel.elem.find('.name').html(pLocation.name);
+    this.panel.elem.find('.showdirections').attr('href', 'http://maps.google.com/?saddr='+userLocation.lat()+","+userLocation.lng()+'&daddr='+pLocation.location.address+","+pLocation.location.postalCode);
     this.panel.elem.find('#staticmap').attr('src',mapurl);
+    this.panel.elem.find('#streetview').attr('src',streeturl);
+    //this.panel.elem.find('.header').css('background',"transparent url('"+streeturl+"') center center repeat");
     
     DebugOut(pLocation);
     

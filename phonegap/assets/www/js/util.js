@@ -2,6 +2,65 @@
 //  Utility Functions
 /////////////////////////////////////////////////////////////////////////////
 
+function QueryLocation(){
+    window.navigator.geolocation.getCurrentPosition(HandleGeolocationQuery,HandleGeolocationErrors,{
+      enableHighAccuracy: true,
+      timeout: 5000,
+      maximumAge: 0
+    });
+}
+
+function HandleGeolocationQuery(position){
+    
+    //_gaq.push(['_trackEvent', 'Load', 'desktop', '']);
+    
+    // Check against existing location before setting
+    //if( CalcDistance(userLocation.lat(), userLocation.lng(),position.coords.latitude,position.coords.longitude) > 1){
+        userLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+        DebugOut('user location set: '+position.coords.latitude+', '+position.coords.longitude);
+        //GetLocationData();
+        GetFSData();
+        //$('#location span').html(position.coords.latitude.toString().substring(0,8)+', '+position.coords.longitude.toString().substring(0,8));
+    //}else{
+    //    DebugOut('User Location Unchanged');
+    //}
+}
+
+function HandleGeolocationErrors(error)  
+{  
+    //$('#geoModal').fadeIn();
+    
+    //_gaq.push(['_trackEvent', 'Load', 'location', 'fail']);
+    
+ /*   switch(error.code)  
+    {  
+        case error.PERMISSION_DENIED: 
+            alert("user did not share geolocation data");  
+            break;  
+  
+        case error.POSITION_UNAVAILABLE: 
+            alert("could not detect current position");  
+            break;  
+  
+        case error.TIMEOUT: 
+            alert("retrieving position timed out");  
+            break;  
+  
+        default: 
+            alert("unknown error");  
+            break;  
+    }*/
+    
+    if( testLocFallbackOn ){
+        DebugOut('location error');
+        //_gaq.push(['_trackEvent', 'Load', 'location', 'setfallback']);
+        // Set a fallback location 40.7406941, -73.9905943 
+        // Location: 40.67857830000001, -73.5421847
+        HandleGeolocationQuery({coords:{latitude:40.67857830000001,longitude:-73.5421847}});
+        //HandleGeolocationQueryLoop({coords:{latitude:38.021558,longitude:-77.51307}});
+    }
+} 
+
 function fbshare(pTitle, pDescription){
     
     var fbcontent = "https://www.facebook.com/dialog/feed?app_id=567792933313140&link="+escape(social['link'])+"&picture="+escape(social['image'])+"&name="+escape(pTitle)+"&caption="+escape(pTitle)+"&description="+escape(pDescription)+"&redirect_uri=https://facebook.com/";
