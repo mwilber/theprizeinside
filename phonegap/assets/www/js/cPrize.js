@@ -3,6 +3,14 @@ function Prize(){
     this.panel = new Panel('prize');
     this.backId = "home";
     
+    this.locmap = null;
+    this.bounds = new google.maps.LatLngBounds();
+    this.markersArray = [];
+    this.infowindow = new google.maps.InfoWindow({
+        content: "this is a test"
+    });
+    this.locationdata = null;
+    
     this.panel.elem.find('.back').click(this.Back(this));
 	this.panel.elem.find('#btnlocations').click(this.ShowLocations(this));
 	this.panel.elem.find('#btnmap').click(this.ShowMap(this));
@@ -29,6 +37,7 @@ Prize.prototype.ShowMap = function(self){
    return function(){
        self.HideTabPanels();
 	   self.panel.elem.find('#map').show();
+	   if( !self.locmap ) self.InitMap(self); 
        return false;
    };
 };
@@ -42,15 +51,16 @@ Prize.prototype.ShowComments = function(self){
 };
 
 Prize.prototype.Load = function(pPrize){
-	
-	// hide the tab panels
-	this.HideTabPanels();
     
     // Clear out panel fields
     this.panel.elem.find('#locations ul').empty().append($('<li/>').html('loading...'));
 	this.panel.elem.find('#comments ul').empty().append($('<li/>').html('loading...'));
     this.panel.elem.find('.name').empty();
     this.panel.elem.find('.showwebsite').attr('href','');
+    
+    // hide the tab panels
+	this.HideTabPanels();
+    
     
     // Fill in the prize info
     var prizes = "";
@@ -71,29 +81,47 @@ Prize.prototype.Load = function(pPrize){
     //                \/
     $.get('https://api.foursquare.com/v2/venues/search?client_id=UMRUA4UFFY0RLEI1TKGXUT30JLQULNFRM3YVQWNCASQ3VE31&client_secret=4XSWL2PUIN02A3RNJY4GFRCLISF4RPC3URLVLHK2AOQD0EQ5&v=20130815&ll=38.00352,-77.5590&query='+pPrize.restaurantAlias,this.HandleLocationData(this));
     
-    this.Show();  
+    this.Show(); 
+    
+    DebugOut('name: '+ this.panel.elem.find('.name').height());
+    DebugOut('tabs: '+ this.panel.elem.find('.tabs').height());
+    DebugOut('header: '+ this.panel.elem.find('.header').height());
+    
+    var offsetheight =  this.panel.elem.find('.header').height()+this.panel.elem.find('.tabs').height()+this.panel.elem.find('.name').height()+(parseInt(this.panel.elem.find('.name').css('padding-top'))*2);
+    
+    DebugOut('offsetheight: '+offsetheight);
+    
+    // Size the map to fit the panel
+    this.panel.elem.find('.tabpanel').css('width',this.panel.elem.width()+"px");
+    this.panel.elem.find('.tabpanel').css('height',(this.panel.elem.height()-offsetheight)+"px");
 };
 
 Prize.prototype.HandleLocationData = function(self){
     return function(response, textStatus) {
         DebugOut(response);
+        
+        self.locationdata = response.response;
+        
 		self.panel.elem.find('#locations').show();
 		self.panel.elem.find('#locations ul').empty();
+		
         for( idx in response.response.venues ){
-             var value = response.response.venues[idx];
-
-             self.panel.elem.find('#locations ul').append($('<li>')
-                 .append(
-                     $('<div/>').addClass('details fa fa-caret-right')
-                 )
-                 .append(
-                     $('<div/>').addClass('address').html(value.location.address)
-                 )
-				 .append(
-                     $('<div/>').addClass('city').html(value.location.city+", "+value.location.state+" "+value.location.postalCode)
-                 )
-                 .click(self.HandleLocationClick(self,value))
-            ); 
+            var value = response.response.venues[idx];
+			
+			if( value.location.address !== undefined ){
+	            self.panel.elem.find('#locations ul').append($('<li>')
+	                 .append(
+	                     $('<div/>').addClass('details fa fa-caret-right')
+	                 )
+	                 .append(
+	                     $('<div/>').addClass('address').html(value.location.address)
+	                 )
+					 .append(
+	                     $('<div/>').addClass('city').html(value.location.city+", "+value.location.state+" "+value.location.postalCode)
+	                 )
+	                 .click(self.HandleLocationClick(self,value))
+	            );
+           	}
          }
 		 
     };
@@ -104,6 +132,64 @@ Prize.prototype.HandleLocationClick = function(self,pPrize){
 		panel['location'].Load(pPrize);
         return false;
 	};
+};
+
+Prize.prototype.InitMap = function(self){
+    var latlng = new google.maps.LatLng(40.6687125,-73.5270709);
+    var myOptions = {
+      zoom: 15,
+      center: latlng,
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+      scrollwheel: true,
+      streetViewControl: false,
+      disableDefaultUI: true
+    };
+    
+    self.locmap = new google.maps.Map(document.getElementById("map"), myOptions);
+    
+    self.ClearMarkers(self);
+    for( idx in self.locationdata.venues ){
+        var value = self.locationdata.venues[idx];
+        self.PlaceMarker(self, value);
+    }
+
+};
+
+Prize.prototype.ClearMarkers = function(self) {
+    self.bounds = new google.maps.LatLngBounds();
+    for (var i = 0; i < self.markersArray.length; i++ ) {
+        self.markersArray[i].setMap(null);
+    }
+};
+
+Prize.prototype.PlaceMarker = function(self, pLoc){
+    // Add map marker
+    //give the marker a color
+    var pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|ff0000",
+        new google.maps.Size(21, 34),
+        new google.maps.Point(0,0),
+        new google.maps.Point(10, 34));
+    var tmpMarker = new google.maps.Marker({
+        map: self.locmap, 
+        icon: pinImage,
+        position: new google.maps.LatLng(pLoc.location.lat,pLoc.location.lng),
+        title: pLoc.name,
+        //locaddress: pLoc.locationAddress,
+        //locdescription: pLoc.locationDescription,
+        location: pLoc
+    });
+    
+    self.markersArray.push(tmpMarker);
+    
+    self.bounds.extend(tmpMarker.getPosition());
+    self.locmap.fitBounds(self.bounds);
+    
+    google.maps.event.addListener(tmpMarker, 'click', function(pLoc) {
+        //self.locmap.setCenter(this.position);
+        //self.infowindow.setContent("<strong>"+this.title+"</strong><p>"+this.locaddress+"</p>"+"<p>"+this.locdescription+"</p>");
+        //self.infowindow.open(self.locmap,this);
+        self.HandleLocationClick(self,this.location);
+    });
 };
 
 Prize.prototype.HideTabPanels = function()
