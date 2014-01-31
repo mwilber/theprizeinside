@@ -53,6 +53,8 @@ class Checkin extends CI_Controller
 	        // Validation passes
 	        $nId = $this->$model_ref->Add($_POST);
 	        
+	        //TODO: Social Media Post here
+	        
 			if($pFormat == "html"){
 				if($nId)
 		        {
@@ -68,7 +70,12 @@ class Checkin extends CI_Controller
 				// TODO: see if we can redirect with flash
 				//redirect($this->uri->segment(1)."/details/xml/".$nId);
 				
-				echo "success";
+				$response = new stdClass();
+				$response->status = 1;
+				$response->id = $nId;
+				
+				header('Content-Type: application/json');
+				echo json_encode($response);
 			}
 	    }else{
 	    	$this->load->view('template/template_head');
