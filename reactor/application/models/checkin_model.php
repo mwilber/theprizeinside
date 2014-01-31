@@ -160,7 +160,7 @@ class Checkin_Model extends CI_Model
 		}
 	}
 	
-	function manageFile64($pData, $pPath, $pPrefix){
+	function manageFile64($pData, $pPath){
 		
 		$filename = date("U")."_".rand(100, 999).".jpg";
 		
