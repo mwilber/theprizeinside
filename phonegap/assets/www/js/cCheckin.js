@@ -5,6 +5,20 @@ function Checkin(){
 	this.panel.elem.find('.close').click(this.Close(this));
 	
 	this.panel.elem.find('#setpic').click(this.TakePhoto(this));
+	
+	this.panel.elem.find('#btnCheckin').click(this.DoCheckin(this));
+	
+	this.postData = {
+		checkinLocation: '',
+		checkinLat: '',
+		checkinLng: '',
+		checkinComment: '',
+		checkinPhoto: '',
+		checkinAnonymous: '',
+		profileId: '',
+		restaurantId: '',
+		prizeId: ''
+	};
     
     //this.panel.elem.find('.tourhome').click(
     //    function(){
@@ -32,20 +46,27 @@ Checkin.prototype.TakePhoto = function(self){
 };
 
 Checkin.prototype.onSuccess = function(imageData) {
+	
+	panel['checkin'].postData.checkinPhoto = imageData;
+	
     var image = document.getElementById('myImage');
-    image.src = "data:image/jpeg;base64," + imageData;
-	DebugOut('ABOUT TO POST');
-	$.post(apipath+'/reactor/checkin/add',{
-		checkinLocation:'zzz',
-		checkinPhoto:imageData
-	},function(response){DebugOut('POST CALLBACK'); DebugOut(response);});
-	DebugOut('POST OUT');
+    image.src = "data:image/jpeg;base64," + panel['checkin'].postData.checkinPhoto;
+	
+	
 };
 
-Checkin.prototype.HandleCheckinResponse = function(){
-	//return function(){
-		alert('done');
-	//};
+Checkin.prototype.DoCheckin = function(self){
+	return function(){
+		DebugOut('ABOUT TO POST');
+		$.post(apipath+'/reactor/checkin/add/json',self.postData,function(response){alert(response);});
+		DebugOut('POST OUT');
+	};
+};
+
+Checkin.prototype.HandleCheckinResponse = function(self){
+	return function(){
+		self.Close();
+	};
 };
 
 Checkin.prototype.onFail = function(message) {
@@ -59,7 +80,13 @@ Checkin.prototype.Close = function(self){
    };
 };
 
-Checkin.prototype.Load = function(){
+Checkin.prototype.Load = function(pPrize, pLocation){
+	
+	//alert(pLocation.name);
+	this.postData.checkinLocation = pLocation.id;
+	this.postData.checkinLat = pLocation.location.lat;
+	this.postData.checkinLng = pLocation.location.lng;
+	this.postData.profileId = '1';
     
     // Load panel data
     //this.panel.elem.find('.prizes').empty().append($('<li/>').html('loading...'));

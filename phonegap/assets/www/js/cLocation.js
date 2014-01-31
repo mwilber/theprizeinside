@@ -4,7 +4,7 @@ function Location(){
     this.backId = "prize";
     
     this.panel.elem.find('.back').click(this.Back(this));
-	this.panel.elem.find('.showcheckin').click(this.Checkin(this));
+	//this.panel.elem.find('.showcheckin').click(this.Checkin(this));
 	
 }
 
@@ -15,9 +15,9 @@ Location.prototype.Back = function(self){
    };
 };
 
-Location.prototype.Checkin = function(self){
+Location.prototype.Checkin = function(self,pPrize,pLocation){
    return function(){
-       panel['checkin'].Show();
+       panel['checkin'].Load(pPrize,pLocation);
        return false;
    };
 };
@@ -51,6 +51,9 @@ Location.prototype.Load = function(pLocation){
     this.panel.elem.find('.postal-code').html(pLocation.location.postalCode);
     this.panel.elem.find('.country-name').html(pLocation.location.country);
     //this.panel.elem.find('.tel').html(pLocation);
+	
+	this.panel.elem.find('.showcheckin').off('click');
+	this.panel.elem.find('.showcheckin').click(this.Checkin(this,null,pLocation));
     
     DebugOut(pLocation);
     
