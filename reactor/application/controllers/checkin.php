@@ -45,7 +45,7 @@ class Checkin extends CI_Controller
 				
 			$this->load->library('s3');
 				
-			$_POST['checkinPhoto'] = $this->s3->upload(UPLOAD_DIR.$imageData, $imageData);
+			$_POST['checkinPhoto'] = $this->s3->upload(UPLOAD_DIR."/".$imageData, $imageData);
 	    	
 			
 	        // Validation passes
