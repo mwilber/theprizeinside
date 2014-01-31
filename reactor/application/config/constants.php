@@ -74,7 +74,7 @@ define('FOPEN_READ_WRITE_CREATE_STRICT', 'x+b');
 define('SHOW_DEBUG_BACKTRACE', TRUE);
 
 
-define('UPLOAD_DIR','../uploads');
+define('UPLOAD_DIR','../../uploads');
 
 
 /* End of file constants.php */
