@@ -22,9 +22,9 @@ Checkin.prototype.TakePhoto = function(self){
 	        destinationType: destinationType.DATA_URL,
 			correctOrientation: true,
 			encodingType: Camera.EncodingType.JPEG,
-  targetWidth: 1024,
-  targetHeight: 1024,
-  saveToPhotoAlbum: false
+  			targetWidth: 1024,
+  			targetHeight: 1024,
+  			saveToPhotoAlbum: false
     	    });
 	};
 	 
@@ -34,6 +34,18 @@ Checkin.prototype.TakePhoto = function(self){
 Checkin.prototype.onSuccess = function(imageData) {
     var image = document.getElementById('myImage');
     image.src = "data:image/jpeg;base64," + imageData;
+	DebugOut('ABOUT TO POST');
+	$.post(apipath+'/reactor/checkin/add',{
+		checkinLocation:'zzz',
+		checkinPhoto:imageData
+	},function(response){DebugOut('POST CALLBACK'); DebugOut(response);});
+	DebugOut('POST OUT');
+};
+
+Checkin.prototype.HandleCheckinResponse = function(){
+	//return function(){
+		alert('done');
+	//};
 };
 
 Checkin.prototype.onFail = function(message) {

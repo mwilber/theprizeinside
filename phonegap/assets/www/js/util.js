@@ -51,14 +51,14 @@ function HandleGeolocationErrors(error)
             break;  
     }*/
     
-    if( testLocFallbackOn ){
+    //if( testLocFallbackOn ){
         DebugOut('location error');
         //_gaq.push(['_trackEvent', 'Load', 'location', 'setfallback']);
         // Set a fallback location 40.7406941, -73.9905943 
         // Location: 40.67857830000001, -73.5421847
         HandleGeolocationQuery({coords:{latitude:40.67857830000001,longitude:-73.5421847}});
         //HandleGeolocationQueryLoop({coords:{latitude:38.021558,longitude:-77.51307}});
-    }
+    //}
 } 
 
 function fbshare(pTitle, pDescription){
