@@ -3,6 +3,8 @@ function Checkin(){
     this.panel = new Popup('checkin');
 	
 	this.panel.elem.find('.close').click(this.Close(this));
+	
+	this.panel.elem.find('#setpic').click(this.TakePhoto());
     
     //this.panel.elem.find('.tourhome').click(
     //    function(){
@@ -12,6 +14,22 @@ function Checkin(){
     //);
     
 }
+
+Checkin.prototype.TakePhoto = function(){
+	navigator.camera.getPicture(this.onSuccess, this.onFail, { quality: 50,
+	    destinationType: destinationType.DATA_URL
+	 }); 
+
+};
+
+Checkin.prototype.onSuccess = function(imageData) {
+    var image = document.getElementById('myImage');
+    image.src = "data:image/jpeg;base64," + imageData;
+};
+
+Checkin.prototype.onFail = function(message) {
+    alert('Failed because: ' + message);
+};
 
 Checkin.prototype.Close = function(self){
    return function(){
