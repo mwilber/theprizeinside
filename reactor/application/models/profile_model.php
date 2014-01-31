@@ -5,11 +5,11 @@ class Profile_Model extends CI_Model
 	var $table = "tblProfile";
 	var $pk = "profileId";
 	var $ds = "profileTimeStamp";  //Default sortby field 
-	var $rq = "profileLName";		//Required field (you'll need to mod the form validation if there isn't one)
+	var $rq = "addressStreet";		//Required field (you'll need to mod the form validation if there isn't one)
 	var $fields = array(
-		 'profileLName' => array('label'=>'Last Name','type'=>'varchar','constraint'=>50),
-		 'profileFName' => array('label'=>'First Name','type'=>'varchar','constraint'=>50),
-		 'profileEmail' => array('label'=>'Email','type'=>'varchar','constraint'=>50),
+		 'profileNickname' => array('label'=>'Nickname','type'=>'varchar','constraint'=>50),
+		 'profileFullname' => array('label'=>'Full Name','type'=>'varchar','constraint'=>50),
+		 'profilePicture' => array('label'=>'Picture','type'=>'varchar','constraint'=>200)
 		);
 
 	 	 	 	
