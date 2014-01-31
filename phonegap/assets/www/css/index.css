@@ -495,9 +495,30 @@ a.close span{
 	margin-top:200px;
 }
 
+#location .content #staticmap{
+	margin: 2%;
+}
+
+#location .content .vcard{
+	float:left;
+	margin:2%;
+	padding:2%;
+	width: 92%;
+	color:#000;
+	background:#fff;
+	border:solid 1px #ccc;
+	-webkit-border-radius: 5px 5px 5px 5px;
+	border-radius: 5px 5px 5px 5px;
+}
+
+#location .content .vcard p{
+	margin: 0px 5px;
+	font-size: 12px;
+}
+
 /* Smartphones (portrait) ----------- */
 @media only screen 
-	and (max-width : 320px) {
+	and (max-width : 321px) {
 	/* Styles */
 	.panel h1 {
 		font-size: 14px;
@@ -529,10 +550,12 @@ a.close span{
 		margin-top: -13px;
 	}
 	.panel .header a {
-		width: 120px;
+		width: 55px;
 		font-size: 30px;
 		line-height: 50px;
-		padding-right: 10px;
+	}
+	#location .header a.showdirections{
+		margin-right:55px;
 	}
 	.panel .header {
 		height: 50px;

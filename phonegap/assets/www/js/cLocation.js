@@ -27,18 +27,30 @@ Location.prototype.Load = function(pLocation){
     // Clear out panel fields
     this.panel.elem.find('.name').empty();
     this.panel.elem.find('#staticmap').attr('src','');
-    
+    this.panel.elem.find('.fn').empty();
+    this.panel.elem.find('.street-address').empty();
+    this.panel.elem.find('.region').empty();
+    this.panel.elem.find('.postal-code').empty();
+    this.panel.elem.find('.country-name').empty();
+    this.panel.elem.find('.tel').empty();
+        
     //Make the static map url
-    var mapurl = "http://maps.googleapis.com/maps/api/staticmap?zoom=13&size="+Math.floor(this.panel.elem.width()/2)+"x"+Math.floor(this.panel.elem.width()/2)+"&maptype=roadmap&markers=color:red%7Clabel:C%7C"+pLocation.location.lat+","+pLocation.location.lng+"&sensor=false";
+    var mapurl = "http://maps.googleapis.com/maps/api/staticmap?zoom=13&size="+Math.floor(this.panel.elem.width()*0.96)+"x"+Math.floor(this.panel.elem.height()/2)+"&maptype=roadmap&markers=color:red%7Clabel:C%7C"+pLocation.location.lat+","+pLocation.location.lng+"&sensor=false";
     var streeturl = "http://maps.googleapis.com/maps/api/streetview?location="+pLocation.location.address+","+pLocation.location.postalCode+"&size="+this.panel.elem.width()+"x"+Math.floor(this.panel.elem.find('.header').height())+"&sensor=false";
-    DebugOut('mapurl: '+mapurl);
     
     // Fill in the Location info
     this.panel.elem.find('.name').html(pLocation.name);
-    this.panel.elem.find('.showdirections').attr('href', 'http://maps.google.com/?saddr='+userLocation.lat()+","+userLocation.lng()+'&daddr='+pLocation.location.address+","+pLocation.location.postalCode);
+    this.panel.elem.find('.showdirections, .mapdirections').attr('href', 'http://maps.google.com/?saddr='+userLocation.lat()+","+userLocation.lng()+'&daddr='+pLocation.location.address+","+pLocation.location.postalCode);
     this.panel.elem.find('#staticmap').attr('src',mapurl);
     this.panel.elem.find('#streetview').attr('src',streeturl);
-    //this.panel.elem.find('.header').css('background',"transparent url('"+streeturl+"') center center repeat");
+    
+    this.panel.elem.find('.fn').html(pLocation.name);
+    this.panel.elem.find('.street-address').html(pLocation.location.address);
+    this.panel.elem.find('.city').html(pLocation.location.city);
+    this.panel.elem.find('.region').html(pLocation.location.state);
+    this.panel.elem.find('.postal-code').html(pLocation.location.postalCode);
+    this.panel.elem.find('.country-name').html(pLocation.location.country);
+    //this.panel.elem.find('.tel').html(pLocation);
     
     DebugOut(pLocation);
     

@@ -82,10 +82,8 @@ var app = {
         panel['home'] = new Home();
 		panel['checkin'] = new Checkin();
 		panel['location'] = new Location();
-		
-		$.get(apipath+'/reactor/srvlist/getnames',HandlePrizeResponse);
 
-        //panel['home'].Load();
+        panel['home'].Load();
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
@@ -99,13 +97,6 @@ var app = {
         console.log('Received Event: ' + id);
     }
 };
-
-function HandlePrizeResponse(response){
-    prizedata = response;
-    panel['home'].Load();
-    
-    QueryLocation();
-}
 
 function GetFSData(){
     DebugOut('getting fs data: ');

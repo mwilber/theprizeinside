@@ -20,21 +20,14 @@ Home.prototype.Load = function(){
     //alert('ajax call tooo: '+apipath+'/tinderbox/city/json/all');
     
     // Simulate the ajax call for now
-    var patsy = this.HandlePrizeData(this);
-    DebugOut(prizedata);
-    if( prizedata !== null ){
-        DebugOut('prize data not null');
-        patsy(prizedata);
-        // Real ajax call --
-        //                 |
-        //                \/
-        //$.get(apipath+'/reactor/srvlist/getnames',this.HandlePrizeData(this));
-    
-        this.Show();
-    }else{
-        DebugOut('setting timeout');
-        setTimeout(function(){panel['home'].Load();},3000);
-    }
+    //var patsy = this.HandlePrizeData(this);
+    //patsy(prizedata);
+    // Real ajax call --
+    //                 |
+    //                \/
+    $.get(apipath+'/reactor/srvlist/getnames',this.HandlePrizeData(this));
+
+    this.Show();
 };
 
 Home.prototype.HandlePrizeData = function(self){
@@ -42,7 +35,8 @@ Home.prototype.HandlePrizeData = function(self){
     	DebugOut("prize data incoming...");
         DebugOut(response);
         
-        //QueryLocation();
+        prizedata = response;
+        QueryLocation();
         
         self.panel.elem.find('.prizes').empty();
          for( idx in response ){
