@@ -18,6 +18,7 @@ function HandleGeolocationQuery(position){
     //if( CalcDistance(userLocation.lat(), userLocation.lng(),position.coords.latitude,position.coords.longitude) > 1){
         userLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
         DebugOut('user location set: '+position.coords.latitude+', '+position.coords.longitude);
+        panel['userlocation'].panel.elem.find('.location span').html(userLocation.lat()+", "+userLocation.lng());
         //GetLocationData();
         GetFSData();
         //$('#location span').html(position.coords.latitude.toString().substring(0,8)+', '+position.coords.longitude.toString().substring(0,8));

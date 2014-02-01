@@ -4,6 +4,8 @@ function Prize(){
     this.backId = "home";
     
     this.restaurantid = null;
+    this.restaurantalias = null;
+    this.prizeid = null;
     this.locmap = null;
     this.bounds = new google.maps.LatLngBounds();
     this.markersArray = [];
@@ -13,11 +15,19 @@ function Prize(){
     this.locationdata = null;
     
     this.panel.elem.find('.back').click(this.Back(this));
+    this.panel.elem.find('.showuserlocation').click(this.ShowUserLocation(this));
 	this.panel.elem.find('#btnlocations').click(this.ShowLocations(this));
 	this.panel.elem.find('#btnmap').click(this.ShowMap(this));
 	this.panel.elem.find('#btncomments').click(this.ShowComments(this));
 	
 }
+
+Prize.prototype.ShowUserLocation = function(self){
+   return function(){
+       panel['userlocation'].Load();
+       return false;
+   };
+};
 
 Prize.prototype.Back = function(self){
    return function(){
@@ -65,7 +75,9 @@ Prize.prototype.Load = function(pPrize){
     
     
     // Get the restaurant id
-    this.restaurantid = pPrize.restaurantAlias;
+    this.restaurantid = pPrize.restaurantId;
+    this.restaurantalias = pPrize.restaurantAlias;
+    this.prizeid = pPrize.prize[0].prizeId;
     
     // Fill in the prize info
     var prizes = "";
@@ -92,7 +104,7 @@ Prize.prototype.Load = function(pPrize){
     this.panel.elem.find('.tabpanel').css('height',(this.panel.elem.height()-offsetheight)+"px");
     
     var patsy = this.HandleLocationData(this);
-    patsy(fsdata[pPrize.restaurantAlias]);
+    patsy(fsdata[this.restaurantalias]);
 };
 
 Prize.prototype.GetLocationDataB = function(){

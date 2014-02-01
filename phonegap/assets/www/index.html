@@ -56,7 +56,8 @@
 				<a class="back" href="#"><span class="fa fa-angle-left"></span></a>
 				<h1 class="name"><!-- AJAX Data here --></h1>
 				<div class="header">
-				  <a class="showwebsite fa fa-external-link" target="_blank"></a>
+					<a class="showuserlocation fa fa-location-arrow" target="_blank"></a>
+				  	<a class="showwebsite fa fa-external-link" target="_blank"></a>
 				</div>
 				<ul class="tabs">
 				  <li><a id="btnlocations" href="#">Locations</a></li>
@@ -97,11 +98,26 @@
 			</div>
 			
 			<div id="checkin" class="popup">
-			  <a class="close" href="#"><span class="fa fa-times"></span></a>
-			  <h1>Checkin</h1>
-			  <a id="setpic" href="#">Take Pic</a>
-			  <img id="myImage" src="" width="50%"/>
-				<a id="btnCheckin" href="#">Checkin</a>
+				<a class="close" href="#"><span class="fa fa-times"></span></a>
+				<h1>Checkin</h1>
+				<label>Message</label>
+				<textarea id="checkinComment"></textarea>
+				<label>Add A Photo</label>
+				<a id="setpic" href="#"><img id="myImage" src="img/add_photo.png" width="100%"/></a>
+				<div>
+					<input type="checkbox" id="checkinAnonymous"/> Anonymous
+				</div>
+				<a id="btnCheckin" href="#" class="button">Checkin</a>
+			</div>
+			
+			<div id="userlocation" class="popup">
+				<a class="close" href="#"><span class="fa fa-times"></span></a>
+				<h1>Set Your Location</h1>
+				<a class="location" href="#" onclick="return false;">Location: <span></span></a>
+				<h2>Change Location</h2>
+				<p>Enter an address to search:</p>
+					<input id="loctext" value=""/>
+					<a id="btnlocsearch" href="#" class="btn" onclick="return false;">Search</a>
 			</div>
 			
         </div>
@@ -115,6 +131,7 @@
 		<script src="js/cPrize.js"></script>
 		<script src="js/cLocation.js"></script>
 	    <script src="js/cCheckin.js"></script>
+	    <script src="js/cUserLocation.js"></script>
 		
 		<script type="text/javascript" src="js/util.js"></script>
         <script type="text/javascript" src="js/index.js"></script>

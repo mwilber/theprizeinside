@@ -84,6 +84,7 @@ var app = {
         panel['home'] = new Home();
 		panel['checkin'] = new Checkin();
 		panel['location'] = new Location();
+		panel['userlocation'] = new UserLocation();
 
         panel['home'].Load();
     },
@@ -115,6 +116,8 @@ function HandleFSData(pRest){
         //DebugOut(response);
         fsdata[pRest.restaurantAlias] = response;
         DebugOut(fsdata);
+        var patsy = panel['prize'].HandleLocationData(panel['prize']);
+    	patsy(fsdata[panel['prize'].restaurantalias]);
     };
     
 }

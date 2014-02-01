@@ -20,13 +20,6 @@ function Checkin(){
 		prizeId: ''
 	};
     
-    //this.panel.elem.find('.tourhome').click(
-    //    function(){
-    //        panel['tourhome'].Show();
-    //        return false;
-    //    }
-    //);
-    
 }
 
 Checkin.prototype.TakePhoto = function(self){
@@ -57,9 +50,15 @@ Checkin.prototype.onSuccess = function(imageData) {
 
 Checkin.prototype.DoCheckin = function(self){
 	return function(){
-		DebugOut('ABOUT TO POST');
+		
+		self.postData.checkinComment = self.panel.elem.find('#checkinComment').val();
+		if(self.panel.elem.find('#checkinAnonymous').prop('checked')){
+			self.postData.checkinAnonymous = 1;
+		}else{
+			self.postData.checkinAnonymous = 0;
+		}
+		
 		$.post(apipath+'/reactor/checkin/add/json',self.postData,function(response){alert(response);});
-		DebugOut('POST OUT');
 	};
 };
 
@@ -82,23 +81,17 @@ Checkin.prototype.Close = function(self){
 
 Checkin.prototype.Load = function(pPrize, pLocation){
 	
-	//alert(pLocation.name);
+	this.panel.elem.find('#myImage').attr('src','img/add_photo.png');
+	
 	this.postData.checkinLocation = pLocation.id;
 	this.postData.checkinLat = pLocation.location.lat;
 	this.postData.checkinLng = pLocation.location.lng;
-	this.postData.profileId = '1';
+	this.postData.profileId = parseInt('1');
+	this.postData.prizeId = parseInt(panel['prize'].prizeid);
+	this.postData.restaurantId = parseInt(panel['prize'].restaurantid);
     
-    // Load panel data
-    //this.panel.elem.find('.prizes').empty().append($('<li/>').html('loading...'));
-    //alert('ajax call tooo: '+apipath+'/tinderbox/city/json/all');
-    
-    // Simulate the ajax call for now
-    //var patsy = this.HandlePrizeData(this);
-    //patsy(prizedata);
-    // Real ajax call --
-    //                 |
-    //                \/
-    //$.get(apipath+'/reactor/speaker/json/event/'+pId+'/speaker',this.HandlePrizeData(this));
+    DebugOut(panel['prize']);
+    DebugOut(this.postData);
     
     this.Show();  
 };
