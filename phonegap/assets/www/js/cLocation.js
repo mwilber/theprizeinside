@@ -36,7 +36,7 @@ Location.prototype.Load = function(pLocation){
         
     //Make the static map url
     var mapurl = "http://maps.googleapis.com/maps/api/staticmap?zoom=13&size="+Math.floor(this.panel.elem.width()*0.96)+"x"+Math.floor(this.panel.elem.height()/2)+"&maptype=roadmap&markers=color:red%7Clabel:C%7C"+pLocation.location.lat+","+pLocation.location.lng+"&sensor=false";
-    var streeturl = "http://maps.googleapis.com/maps/api/streetview?location="+pLocation.location.address+","+pLocation.location.postalCode+"&size="+this.panel.elem.width()+"x"+Math.floor(this.panel.elem.find('.header').height())+"&sensor=false";
+    var streeturl = "http://maps.googleapis.com/maps/api/streetview?location="+pLocation.location.address+","+pLocation.location.postalCode+"&size="+this.panel.elem.width()+"x"+Math.floor(this.panel.elem.find('.header').height()+200)+"&sensor=false";
     
     // Fill in the Location info
     this.panel.elem.find('.name').html(pLocation.name);

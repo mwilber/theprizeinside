@@ -68,6 +68,7 @@ Prize.prototype.Load = function(pPrize){
 	this.panel.elem.find('#comments ul').empty().append($('<li/>').html('loading...'));
     this.panel.elem.find('.name').empty();
     this.panel.elem.find('.showwebsite').attr('href','');
+    this.panel.elem.find('#prizephoto').attr('src','');
     this.restaurantid = null;
     
     // hide the tab panels
@@ -77,7 +78,13 @@ Prize.prototype.Load = function(pPrize){
     // Get the restaurant id
     this.restaurantid = pPrize.restaurantId;
     this.restaurantalias = pPrize.restaurantAlias;
-    this.prizeid = pPrize.prize[0].prizeId;
+    try{
+    	this.prizeid = pPrize.prize[0].prizeId;
+    	this.panel.elem.find('#prizephoto').attr('src',pPrize.checkins[0][0].checkinPhoto);
+    }catch(e){
+    	this.prizeid = 0;
+    	this.panel.elem.find('#prizephoto').attr('src','');
+    }
     
     // Fill in the prize info
     var prizes = "";
