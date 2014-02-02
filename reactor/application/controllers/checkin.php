@@ -71,10 +71,10 @@ class Checkin extends CI_Controller
 						case 'Facebook':
 							$attachment =  array(
 								'access_token' => $authRec->authToken,
-								'message' => $_POST['checkinComment'],
+								'message' => urlencode($_POST['checkinComment']),
 								'name' => $prizeName,
 								'link' => "http://theprizeinside.com?ck=".$nId,
-								'description' => 'When a burger is a burger, and a burrito makes no difference, choose your fast food by The Prize Inside!',
+								'description' => urlencode('When a burger is a burger, and a burrito makes no difference, choose your fast food by The Prize Inside!'),
 								'picture'=>$_POST['checkinPhoto'],
 								//'actions' => json_encode(array('name' => $action_name,'link' => $action_link))
 								);
