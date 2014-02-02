@@ -89,6 +89,11 @@ class Checkin extends CI_Controller
 							$result = curl_exec($ch);
 							curl_close ($ch);
 							
+							echo "result: ";
+							print_r($result);
+							
+							die;
+							
 							break;
 							
 						case 'Twitter':
