@@ -79,6 +79,8 @@ class Checkin extends CI_Controller
 								//'actions' => json_encode(array('name' => $action_name,'link' => $action_link))
 								);
 							
+							print_r($attachment);
+							
 							$ch = curl_init();
 							curl_setopt($ch, CURLOPT_URL,'https://graph.facebook.com/1057805234/feed');
 							curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
