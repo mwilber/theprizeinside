@@ -104,8 +104,10 @@ class Oauth extends CI_Controller {
 			
 		}
 		
-		header('Content-type: application/json');
-		echo json_encode($result);
+		//header('Content-type: application/json');
+		
+		//echo json_encode($result);
+		$this->load->view('oauth/oauth_profile');
 	}
 
 	public function twpost(){

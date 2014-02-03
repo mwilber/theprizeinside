@@ -490,7 +490,7 @@ a.close span{
 	background: rgba(0,0,0,0.4);
 }
 
-.panel .header a.showdirections, .panel .header a.showuserlocation{
+.panel .header a.showdirections, .panel .header a.showuserlocation, .panel .header a.showuserlogin{
 	margin-right:200px;
 }
 
@@ -604,7 +604,7 @@ a.close span{
 		font-size: 40px;
 		line-height: 70px;
 	}
-	.panel .header a.showdirections, .panel .header a.showuserlocation{
+	.panel .header a.showdirections, .panel .header a.showuserlocation, .panel .header a.showuserlogin{
 		margin-right:75px;
 	}
 	.panel .header {
