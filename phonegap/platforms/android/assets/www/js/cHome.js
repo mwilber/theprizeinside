@@ -3,12 +3,20 @@ function Home(){
     this.panel = new Panel('home');
     
     this.panel.elem.find('.showuserprofile').click(this.ShowUserProfile(this));
+    this.panel.elem.find('.showuserlogin').click(this.ShowUserLogin(this));
     
 }
 
 Home.prototype.ShowUserProfile = function(self){
    return function(){
        panel['userprofile'].Load();
+       return false;
+   };
+};
+
+Home.prototype.ShowUserLogin = function(self){
+   return function(){
+       panel['userlogin'].Load();
        return false;
    };
 };

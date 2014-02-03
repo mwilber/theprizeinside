@@ -34,11 +34,14 @@
 /Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/css/index.css \
 /Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/css/font-awesome.min.css \
 /Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/plugins/org.apache.cordova.camera \
+/Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/plugins/org.apache.cordova.inappbrowser \
 /Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/plugins/org.apache.cordova.camera/www \
 /Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/plugins/org.apache.cordova.camera/www/CameraPopoverHandle.js \
 /Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/plugins/org.apache.cordova.camera/www/CameraConstants.js \
 /Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/plugins/org.apache.cordova.camera/www/Camera.js \
 /Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/plugins/org.apache.cordova.camera/www/CameraPopoverOptions.js \
+/Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/plugins/org.apache.cordova.inappbrowser/www \
+/Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/plugins/org.apache.cordova.inappbrowser/www/InAppBrowser.js \
 /Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/res/screen \
 /Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/res/icon \
 /Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/res/screen/android \
@@ -104,6 +107,7 @@
 /Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/img/add_photo.png \
 /Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/js/cPanel.js \
 /Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/js/cordova.js \
+/Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/js/cUserLogin.js \
 /Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/js/cHome.js \
 /Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/js/cCheckin.js \
 /Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/js/index.js \

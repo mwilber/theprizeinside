@@ -1,4 +1,17 @@
 /Volumes/www/theprizeinside/phonegap/platforms/android/bin/classes.dex : \
+/Volumes/www/theprizeinside/phonegap/platforms/android/bin/classes/org/apache/cordova/inappbrowser/InAppBrowser.class \
+/Volumes/www/theprizeinside/phonegap/platforms/android/bin/classes/org/apache/cordova/inappbrowser/InAppBrowser$3.class \
+/Volumes/www/theprizeinside/phonegap/platforms/android/bin/classes/org/apache/cordova/inappbrowser/InAppBrowser$5$1.class \
+/Volumes/www/theprizeinside/phonegap/platforms/android/bin/classes/org/apache/cordova/inappbrowser/InAppBrowser$4.class \
+/Volumes/www/theprizeinside/phonegap/platforms/android/bin/classes/org/apache/cordova/inappbrowser/InAppBrowser$5$2.class \
+/Volumes/www/theprizeinside/phonegap/platforms/android/bin/classes/org/apache/cordova/inappbrowser/InAppBrowser$1.class \
+/Volumes/www/theprizeinside/phonegap/platforms/android/bin/classes/org/apache/cordova/inappbrowser/InAppBrowser$2.class \
+/Volumes/www/theprizeinside/phonegap/platforms/android/bin/classes/org/apache/cordova/inappbrowser/InAppChromeClient.class \
+/Volumes/www/theprizeinside/phonegap/platforms/android/bin/classes/org/apache/cordova/inappbrowser/InAppBrowser$5$3.class \
+/Volumes/www/theprizeinside/phonegap/platforms/android/bin/classes/org/apache/cordova/inappbrowser/InAppBrowser$5$5.class \
+/Volumes/www/theprizeinside/phonegap/platforms/android/bin/classes/org/apache/cordova/inappbrowser/InAppBrowser$InAppBrowserClient.class \
+/Volumes/www/theprizeinside/phonegap/platforms/android/bin/classes/org/apache/cordova/inappbrowser/InAppBrowser$5.class \
+/Volumes/www/theprizeinside/phonegap/platforms/android/bin/classes/org/apache/cordova/inappbrowser/InAppBrowser$5$4.class \
 /Volumes/www/theprizeinside/phonegap/platforms/android/bin/classes/org/apache/cordova/camera/FileHelper.class \
 /Volumes/www/theprizeinside/phonegap/platforms/android/bin/classes/org/apache/cordova/camera/CameraLauncher.class \
 /Volumes/www/theprizeinside/phonegap/platforms/android/bin/classes/org/apache/cordova/camera/ExifHelper.class \
