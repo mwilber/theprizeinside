@@ -13,9 +13,7 @@ function UserLogin(){
 
 UserLogin.prototype.DoLogin = function(self,pPlatform){
 	return function(){
-		
-		
-		
+
 		switch(pPlatform){
 			case 'fb':
 				ref = window.open('http://theprizeinside.com/reactor/oauth/login/facebook', '_blank', 'location=yes');
@@ -23,16 +21,15 @@ UserLogin.prototype.DoLogin = function(self,pPlatform){
 				//var ref = window.open('http://theprizeinside.com/reactor/oauth/profile/31', '_blank', 'location=yes');
 				break;
 			case 'tw':
-				alert('tw login here');
+				ref = window.open('http://theprizeinside.com/reactor/oauth/login/twitter', '_blank', 'location=yes');
 				break;
 			case 'fs':
-				alert('fs login here');
+				ref = window.open('http://theprizeinside.com/reactor/oauth/login/foursquare', '_blank', 'location=yes');
 				break;
 		}
 
 		self.ref.addEventListener('loadstop', self.HandleAuthPopup);
-		
-		
+
 	};
 };
 
