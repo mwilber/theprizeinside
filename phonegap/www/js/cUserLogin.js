@@ -29,14 +29,14 @@ UserLogin.prototype.DoLogin = function(self,pPlatform){
 		}
 		
 		ref.addEventListener('loadstop', function(event){ 
-			var aviam= event.url; //.split("username"); 
-			alert(aviam); 
-			//alert(event.document.innerHTML());
-			var idx;
-			for(idx in event){
-				this.panel.elem.find('#logout').append(idx);
+			
+			if( event.url.indexOf('oauth/profile' ) > 0 ){
+				var aviam= event.url.split("/");
+				if( !isNaN(parseInt(aviam[aviam.length-1])) ){
+					alert("Profile found: "+aviam[aviam.length-1]); 
+					ref.close();
+				}
 			}
-			ref.close(); 
 		});
 	};
 };
