@@ -101,13 +101,15 @@ class Oauth extends CI_Controller {
 		if( $pId > 0 ){
 			$this->load->model('profile_model'); 
 			$result->profile = $this->profile_model->Get(array('profileId'=>$pId));
-			
+			if( isset($result->profile->profileId) ){
+				$this->load->model('auth_model');
+				$result->profile->auth = $this->auth_model->Get(array('profileId'=>$result->profile->profileId));
+			}
 		}
 		
 		//header('Content-type: application/json');
-		
 		//echo json_encode($result);
-		$this->load->view('oauth/oauth_profile');
+		//$this->load->view('oauth/oauth_profile');
 	}
 
 	public function twpost(){

@@ -33,6 +33,25 @@ class SrvList extends CI_Controller {
 		echo json_encode($data);
 	}
 	
+	public function getprofile($pId = 0)
+	{
+		$result = new stdClass();
+		$result->status = 0;
+		
+		if( $pId > 0 ){
+			$this->load->model('profile_model'); 
+			$result->profile = $this->profile_model->Get(array('profileId'=>$pId));
+			if( isset($result->profile->profileId) ){
+				$this->load->model('auth_model');
+				$result->profile->auth = $this->auth_model->GetClean(array('profileId'=>$result->profile->profileId));
+				
+			}
+		}
+		
+		header('Content-type: application/json');
+		echo json_encode($result);
+	}
+	
 }
 
 /* End of file welcome.php */
