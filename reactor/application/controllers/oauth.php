@@ -15,8 +15,11 @@ class Oauth extends CI_Controller {
         echo("</ul>");
 	}
     
-    public function login(){
+    public function login($pStrategy="",$pId=0){
         //Comprobate if the user request a strategy
+        if($pId != 0){
+        	$this->session->set_userdata('profileId',$pId);
+        }
         if($this->uri->segment(3)!=''){
             //Run login
             $this->load->library('Opauth/Opauth', $this->config->item('opauth_config'), false);
@@ -76,8 +79,13 @@ class Oauth extends CI_Controller {
         		// Redirect to profile
         		redirect('oauth/profile/'.$rsAuth[0]->profileId);
         	}else{
-        		// Make a new profile 
-        		$profileId = $this->profile_model->Add($arrProfile);
+        		if( $this->session->userdata('profileId') ){
+        			$profileId = $this->session->userdata('profileId');
+        		}else{
+        			// Make a new profile 
+        			$profileId = $this->profile_model->Add($arrProfile);
+        		}
+        		
 				// Attach the auth record
 				$arrAuth['profileId'] = $profileId;
 				$authId = $this->auth_model->Add($arrAuth);
@@ -109,7 +117,7 @@ class Oauth extends CI_Controller {
 		
 		//header('Content-type: application/json');
 		//echo json_encode($result);
-		//$this->load->view('oauth/oauth_profile');
+		$this->load->view('oauth/oauth_profile');
 	}
 
 	public function twpost(){

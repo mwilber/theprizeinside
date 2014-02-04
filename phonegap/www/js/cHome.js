@@ -16,7 +16,10 @@ Home.prototype.ShowUserProfile = function(self){
 
 Home.prototype.ShowUserLogin = function(self){
    return function(){
-       panel['userlogin'].Load();
+       //panel['userlogin'].Load();
+       // For testing, clear out userid val
+       lsUserId = 0;
+       localStorage["userid"] = 0;
        return false;
    };
 };

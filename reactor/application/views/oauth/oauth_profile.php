@@ -1,5 +1,6 @@
 <html>
 <script type="text/javascript">
-	window.opener.HandleLogin(31);
+	window.opener.panel['userlogin'].HandleAuthPopup({url:window.location});
+	//window.close();
 </script>
 </html>

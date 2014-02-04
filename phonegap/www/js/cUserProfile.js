@@ -25,9 +25,12 @@ UserProfile.prototype.Close = function(self){
 
 UserProfile.prototype.Load = function(){
 	
-	
-    
-    this.Show();  
+	if( lsUserId > 0 ){
+	    
+	    this.Show();  
+	}else{
+	    panel['userlogin'].Load();
+	}
 };
 
 
