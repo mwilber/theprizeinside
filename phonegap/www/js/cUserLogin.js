@@ -28,22 +28,25 @@ UserLogin.prototype.DoLogin = function(self,pPlatform){
 				break;
 		}
 
-		self.ref.addEventListener('loadstop', self.HandleAuthPopup);
+		self.ref.addEventListener('loadstop', self.HandleAuthPopup(self));
 
 	};
 };
 
-UserLogin.prototype.HandleAuthPopup = function(event){
+UserLogin.prototype.HandleAuthPopup = function(self){
+	return function(event){
+	alert('url: '+event.url);
     if( String(event.url).indexOf('oauth/profile' ) > 0 ){
         var aviam= String(event.url).split("/");
         if( !isNaN(parseInt(aviam[aviam.length-1])) ){
             alert("Profile found: "+aviam[aviam.length-1]); 
             lsUserId = parseInt(aviam[aviam.length-1]);
             localStorage["userid"] = parseInt(aviam[aviam.length-1]);
-            this.ref.close();
+            self.ref.close();
             panel['userlogin'].panel.Hide();
         }
     }
+	};
 };
 
 UserLogin.prototype.Close = function(self){

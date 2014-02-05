@@ -590,6 +590,11 @@ a.close span{
 	clear:right;
 }
 
+#userprofile .profileid{
+	font-size:48px;
+	color:#000;
+}
+
 #userprofile #btnlogout{
 	clear:both;
 	margin:20px auto 0px auto;
