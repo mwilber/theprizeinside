@@ -49,29 +49,32 @@ UserProfile.prototype.DoLogin = function(self,pPlatform){
                 self.ref = window.open('http://theprizeinside.com/reactor/oauth/login/facebook/%20/'+lsUserId, '_blank', 'location=yes');
                 break;
             case 'tw':
-                ref = window.open('http://theprizeinside.com/reactor/oauth/login/twitter/%20/'+lsUserId, '_blank', 'location=yes');
+                self.ref = window.open('http://theprizeinside.com/reactor/oauth/login/twitter/%20/'+lsUserId, '_blank', 'location=yes');
                 break;
             case 'fs':
-                ref = window.open('http://theprizeinside.com/reactor/oauth/login/foursquare/%20/'+lsUserId, '_blank', 'location=yes');
+                self.ref = window.open('http://theprizeinside.com/reactor/oauth/login/foursquare/%20/'+lsUserId, '_blank', 'location=yes');
                 break;
         }
 
-        self.ref.addEventListener('loadstop', self.HandleAuthPopup);
+        self.ref.addEventListener('loadstop', self.HandleAuthPopup(self));
 
     };
 };
 
-UserProfile.prototype.HandleAuthPopup = function(event){
+UserProfile.prototype.HandleAuthPopup = function(self){
+	return function(event){
+	alert('url: '+event.url);
     if( String(event.url).indexOf('oauth/profile' ) > 0 ){
         var aviam= String(event.url).split("/");
         if( !isNaN(parseInt(aviam[aviam.length-1])) ){
-            DebugOut("Profile found: "+aviam[aviam.length-1]); 
+            alert("Profile found: "+aviam[aviam.length-1]); 
             lsUserId = parseInt(aviam[aviam.length-1]);
             localStorage["userid"] = parseInt(aviam[aviam.length-1]);
-            this.ref.close();
+            self.ref.close();
             panel['userprofile'].Load();
         }
     }
+	};
 };
 
 UserProfile.prototype.DoProfileSave = function(self){
