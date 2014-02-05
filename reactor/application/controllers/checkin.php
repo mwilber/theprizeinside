@@ -82,7 +82,7 @@ class Checkin extends CI_Controller
 							print_r($attachment);
 							
 							$ch = curl_init();
-							curl_setopt($ch, CURLOPT_URL,'https://graph.facebook.com/1057805234/feed');
+							curl_setopt($ch, CURLOPT_URL,'https://graph.facebook.com/$authRec->authServiceId/feed');
 							curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
 							curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
 							curl_setopt($ch, CURLOPT_POST, true);
