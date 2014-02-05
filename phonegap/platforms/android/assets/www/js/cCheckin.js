@@ -81,19 +81,24 @@ Checkin.prototype.Close = function(self){
 
 Checkin.prototype.Load = function(pPrize, pLocation){
 	
-	this.panel.elem.find('#myImage').attr('src','img/add_photo.png');
 	
-	this.postData.checkinLocation = pLocation.id;
-	this.postData.checkinLat = pLocation.location.lat;
-	this.postData.checkinLng = pLocation.location.lng;
-	this.postData.profileId = parseInt('1');
-	this.postData.prizeId = parseInt(panel['prize'].prizeid);
-	this.postData.restaurantId = parseInt(panel['prize'].restaurantid);
-    
-    DebugOut(panel['prize']);
-    DebugOut(this.postData);
-    
-    this.Show();  
+	if( lsUserId > 0 ){
+		this.panel.elem.find('#myImage').attr('src','img/add_photo.png');
+		
+		this.postData.checkinLocation = pLocation.id;
+		this.postData.checkinLat = pLocation.location.lat;
+		this.postData.checkinLng = pLocation.location.lng;
+		this.postData.profileId = lsUserId;
+		this.postData.prizeId = parseInt(panel['prize'].prizeid);
+		this.postData.restaurantId = parseInt(panel['prize'].restaurantid);
+	    
+	    DebugOut(panel['prize']);
+	    DebugOut(this.postData);
+	    
+	    this.Show(); 
+	}else{
+	    panel['userlogin'].Load();
+	} 
 };
 
 

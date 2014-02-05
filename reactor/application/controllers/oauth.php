@@ -117,7 +117,12 @@ class Oauth extends CI_Controller {
 		
 		//header('Content-type: application/json');
 		//echo json_encode($result);
-		$this->load->view('oauth/oauth_profile');
+		
+		if( $this->session->userdata('profileId') == $pId ){
+			$this->load->view('oauth/oauth_profile');
+		}else{
+			$this->load->view('oauth/oauth_userlogin');
+		}
 	}
 
 	public function twpost(){

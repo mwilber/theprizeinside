@@ -566,6 +566,36 @@ a.close span{
 	font-size:14px;
 }
 
+#userprofile #editprofile, #userprofile #viewprofile, #userprofile #authprofile{
+	float:left;
+	width:100%;
+}
+
+#userprofile #authprofile{
+	margin:20px 0px;	
+}
+
+#userprofile #editprofile{
+	display:none;
+}
+
+#userprofile .name, #userprofile .nickname, #userprofile #showedit{
+	float:left;
+	clear:left;
+	margin:0px 0px 10px 0px;
+}
+
+#userprofile .avatar, #userprofile .profileid{
+	float:right;
+	clear:right;
+}
+
+#userprofile #btnlogout{
+	clear:both;
+	margin:20px auto 0px auto;
+	display: block;
+}
+
 /* Smartphones (portrait) ----------- */
 @media only screen 
 	and (max-width : 480px) {

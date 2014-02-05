@@ -132,9 +132,23 @@
 			<div id="userprofile" class="popup">
 				<a class="close" href="#"><span class="fa fa-times"></span></a>
 				<h1>Profile</h1>
-				<a id="btnsave" href="#" class="btn" onclick="return false;">Save</a>
-				<a id="addfacebook" href="#" class="btn fa fa-facebook-square" onclick="return false;"> facebook</a>
-				<a id="addtwitter" href="#" class="btn fa fa-twitter-square" onclick="return false;"> twitter</a>
+				<div id="viewprofile">
+					<img class="avatar" src=""/>
+					<h2 class="name"></h2>
+					<h3 class="nickname"></h3>
+					<p class="profileid"></p>
+					<a id="showedit" href="#">Edit</a>
+				</div>
+				<div id="editprofile">
+					<a id="showview" href="#" class="button">Cancel</a>
+					<a id="btnsave" href="#" class="button" onclick="return false;">Save</a>
+				</div>
+				<div id="authprofile">
+					<a id="addfacebook" href="#" class="button fa fa-facebook-square" onclick="return false;"> facebook</a>
+					<a id="addtwitter" href="#" class="button fa fa-twitter-square" onclick="return false;"> twitter</a>
+				</div>
+				
+				<a id="btnlogout" href="#" class="button" onclick="return false;">Log Out</a>
 			</div>
 			
 			<div id="userlogin" class="popup">

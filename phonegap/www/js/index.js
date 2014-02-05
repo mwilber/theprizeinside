@@ -82,7 +82,7 @@ var app = {
         
         if( supports_html5_storage() ){
             if(localStorage["userid"] != undefined){
-                lsUserId = localStorage["userid"];
+                lsUserId = parseInt(localStorage["userid"]);
             }
         }
         
