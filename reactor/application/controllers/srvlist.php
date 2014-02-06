@@ -33,6 +33,24 @@ class SrvList extends CI_Controller {
 		echo json_encode($data);
 	}
 	
+	public function getprizes()
+	{
+		$response = new stdClass();
+		
+		$this->load->model('restaurant_model');
+		$this->load->model('prize_model');
+		$this->load->model('checkin_model');
+		$data = $this->prize_model->Get(array('prizeActive'=>1,'sortBy'=>'prizeTimeStamp'));
+		
+		foreach ($data as $prize) {
+			$prize->restaurant = $this->restaurant_model->Get(array('restaurantId'=>$prize->restaurantId));
+			$prize->checkins = $this->checkin_model->Get(array('prizeId'=>$prize->prizeId, 'limit'=>10));
+		}
+		
+		header('Content-type: application/json');
+		echo json_encode($data);
+	}
+	
 	public function getprofile($pId = 0)
 	{
 		$result = new stdClass();
