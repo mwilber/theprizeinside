@@ -76,25 +76,27 @@ Prize.prototype.Load = function(pPrize){
     
     
     // Get the restaurant id
-    this.restaurantid = pPrize.restaurantId;
-    this.restaurantalias = pPrize.restaurantAlias;
+    this.restaurantid = pPrize.restaurant.restaurantId;
+    this.restaurantalias = pPrize.restaurant.restaurantAlias;
     try{
-    	this.prizeid = pPrize.prize[0].prizeId;
-    	this.panel.elem.find('#prizephoto').attr('src',pPrize.checkins[0][0].checkinPhoto);
+    	this.prizeid = pPrize.prizeId;
+    	for( idx in pPrize.checkins ){
+    		DebugOut("Checkin Photo: "+pPrize.checkins[idx].checkinPhoto);
+    		if( pPrize.checkins[idx].checkinPhoto != "" ){
+    			this.panel.elem.find('#prizephoto').attr('src',pPrize.checkins[idx].checkinPhoto);
+    			break;
+    		}
+    	}
     }catch(e){
     	this.prizeid = 0;
     	this.panel.elem.find('#prizephoto').attr('src','');
     }
     
     // Fill in the prize info
-    var prizes = "";
-             for(jdx in pPrize.prize){
-             	if( prizes != "" ) prizes += " / ";
-             	prizes += pPrize.prize[jdx].prizeName;
-             }
-    this.panel.elem.find('.name').html(prizes);
+
+    this.panel.elem.find('.name').html(pPrize.prizeName);
     
-    this.panel.elem.find('.showwebsite').attr('href',pPrize.restaurantUrl);
+    this.panel.elem.find('.showwebsite').attr('href',pPrize.restaurant.restaurantUrl);
 
     this.Show(); 
     
@@ -118,7 +120,7 @@ Prize.prototype.GetLocationDataB = function(){
     // Simulate the ajax call for now
     //DebugOut('Loading locations: '+pPrize.restaurantAlias);
     var patsy = this.HandleLocationData(this);
-    patsy(fsdata[pPrize.restaurantAlias]);
+    patsy(fsdata[pPrize.restaurant.restaurantAlias]);
     // Real ajax call --
     //                 |
     //                \/

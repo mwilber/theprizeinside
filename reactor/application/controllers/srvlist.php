@@ -40,7 +40,7 @@ class SrvList extends CI_Controller {
 		$this->load->model('restaurant_model');
 		$this->load->model('prize_model');
 		$this->load->model('checkin_model');
-		$data = $this->prize_model->Get(array('prizeActive'=>1,'sortBy'=>'prizeTimeStamp'));
+		$data = $this->prize_model->Get(array('prizeActive'=>1,'sortBy'=>'prizeTimeStamp','sortDirection'=>'DESC'));
 		
 		foreach ($data as $prize) {
 			$prize->restaurant = $this->restaurant_model->Get(array('restaurantId'=>$prize->restaurantId));

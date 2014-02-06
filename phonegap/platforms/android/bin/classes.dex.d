@@ -15,6 +15,11 @@
 /Volumes/www/theprizeinside/phonegap/platforms/android/bin/classes/org/apache/cordova/camera/FileHelper.class \
 /Volumes/www/theprizeinside/phonegap/platforms/android/bin/classes/org/apache/cordova/camera/CameraLauncher.class \
 /Volumes/www/theprizeinside/phonegap/platforms/android/bin/classes/org/apache/cordova/camera/ExifHelper.class \
+/Volumes/www/theprizeinside/phonegap/platforms/android/bin/classes/org/apache/cordova/geolocation/GeoBroker.class \
+/Volumes/www/theprizeinside/phonegap/platforms/android/bin/classes/org/apache/cordova/geolocation/CordovaLocationListener$LocationTimeoutTask.class \
+/Volumes/www/theprizeinside/phonegap/platforms/android/bin/classes/org/apache/cordova/geolocation/NetworkListener.class \
+/Volumes/www/theprizeinside/phonegap/platforms/android/bin/classes/org/apache/cordova/geolocation/CordovaLocationListener.class \
+/Volumes/www/theprizeinside/phonegap/platforms/android/bin/classes/org/apache/cordova/geolocation/GPSListener.class \
 /Volumes/www/theprizeinside/phonegap/platforms/android/bin/classes/com/greenzeta/greenzeta/theprizeinside/R$string.class \
 /Volumes/www/theprizeinside/phonegap/platforms/android/bin/classes/com/greenzeta/greenzeta/theprizeinside/R$xml.class \
 /Volumes/www/theprizeinside/phonegap/platforms/android/bin/classes/com/greenzeta/greenzeta/theprizeinside/R$attr.class \

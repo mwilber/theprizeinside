@@ -41,7 +41,7 @@ Home.prototype.Load = function(){
     // Real ajax call --
     //                 |
     //                \/
-    $.get(apipath+'/reactor/srvlist/getnames',this.HandlePrizeData(this));
+    $.get(apipath+'/reactor/srvlist/getprizes',this.HandlePrizeData(this));
 
     this.Show();
 };
@@ -57,24 +57,24 @@ Home.prototype.HandlePrizeData = function(self){
         self.panel.elem.find('.prizes').empty();
          for( idx in response ){
              var value = response[idx];
-             var prizes = "";
-             for(jdx in value.prize){
-             	if( prizes != "" ) prizes += " / ";
-             	prizes += value.prize[jdx].prizeName;
-             }
-             prizes += "&nbsp;";
+             //var prizes = "";
+             //for(jdx in value.prize){
+             //	if( prizes != "" ) prizes += " / ";
+             //	prizes += value.prize[jdx].prizeName;
+             //}
+             //prizes += "&nbsp;";
              self.panel.elem.find('.prizes').append($('<li>')
                  .append(
                      $('<div/>').addClass('details fa fa-caret-right')
                  )
                  .append(
-                     $('<div/>').addClass('icon fa fa-trophy').css('background-color','#'+value.restaurantColor)
+                     $('<div/>').addClass('icon fa fa-trophy').css('background-color','#'+value.restaurant.restaurantColor)
                  )
                  .append(
-                     $('<div/>').addClass('restaurant').html(value.restaurantName)
+                     $('<div/>').addClass('restaurant').html(value.restaurant.restaurantName)
                  )
                  .append(
-                     $('<div/>').addClass('prize').html(prizes)
+                     $('<div/>').addClass('prize').html(value.prizeName)
                  )
                  .click(self.HandlePrizeClick(self,value))
             ); 
