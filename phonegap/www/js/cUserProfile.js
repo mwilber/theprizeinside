@@ -86,10 +86,15 @@ UserProfile.prototype.DoProfileSave = function(self){
             profileId: self.panel.elem.find('.profileid').html(),
             profileFullname: self.panel.elem.find('input.name').val(),
             profileNickname: self.panel.elem.find('input.nickname').val()
-        },function(){
-            
-        });
+        },self.HandleProfileSave(self));
 	};
+};
+
+UserProfile.prototype.HandleProfileSave = function(self){
+   return function(){
+       self.Load();
+       return false;
+   };
 };
 
 UserProfile.prototype.Close = function(self){
@@ -107,9 +112,14 @@ UserProfile.prototype.Load = function(){
 		this.panel.elem.find('.nickname').html("");
 		this.panel.elem.find('.profileid').html("");
 		this.panel.elem.find('.avatar').attr('src','');
+		$('#authprofile a.button').show();
+		$('#authprofile #authed').empty();
 		
 	    $.get(apipath+'/reactor/srvlist/getprofile/'+lsUserId,this.HandleProfileData(this));
-	    this.Show();  
+	    this.Show();
+	    var patsy = this.ShowProfileView(this);
+	    patsy();
+	    
 	}else{
 	    panel['userlogin'].Load();
 	}
