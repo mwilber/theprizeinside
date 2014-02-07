@@ -12,8 +12,8 @@ if(isset($_GET['ck'])){
 	  or die("Could not select examples");
 	}
 	
-	$checkin = mysql_query("SELECT * FROM tblCheckin WHERE checkinId=".$_GET['ck']);
-
+	$checkinRS = mysql_query("SELECT checkinLat,checkinLng,checkinComment,checkinPhoto,checkinTimeStamp,restaurantName,prizeName,profileNickname,profilePicture FROM tblCheckin INNER JOIN tblRestaurant ON tblCheckin.restaurantId=tblRestaurant.restaurantId INNER JOIN tblPrize ON tblCheckin.prizeId=tblPrize.prizeId INNER JOIN tblProfile ON tblCheckin.profileId=tblProfile.profileId WHERE checkinId=".$_GET['ck']);
+	$checkin = mysql_fetch_assoc($checkinRS)
 ?>
 <!DOCTYPE html>
 <html>
@@ -61,7 +61,14 @@ if(isset($_GET['ck'])){
   		<div class="shade"></div>
   		<div class="page">
   			<h1>Checkin</h1>
-  			<p><?php print_r(mysql_fetch_array($checkin)); ?></p>
+  			<img class="profilepicture" src="<?=$checkin['profilePicture']?>"/>
+  			<h2 class="nickname"><?=$checkin['profileNickname']?></h2>
+  			<h1 class="prizename"><?=$checkin['prizeName']?></h1>
+  			<p class="date"><?=date('F/j/Y',strtotime($checkin['checkinTimeStamp']))?></p>
+  			<p class="comment"><?=$checkin['checkinComment']?></p>
+  			<img class="photo" src="<?=$checkin['checkinPhoto']?>"/>
+  			<h2 class="restaurant"><?=$checkin['restaurantName']?></h2>
+  			<img class="map" src="http://maps.googleapis.com/maps/api/staticmap?zoom=13&size=250x175&maptype=roadmap&markers=color:red%7Clabel:C%7C<?=$checkin['checkinLat']?>,<?=$checkin['checkinLng']?>&sensor=false"/>
   		</div>
   	</div>
   	<?php endif; ?>
