@@ -134,18 +134,26 @@
 				<h1>Profile</h1>
 				<div id="viewprofile">
 					<img class="avatar" src=""/>
-					<h2 class="name"></h2>
-					<h3 class="nickname"></h3>
+					<h2 class="nickname"></h2>
+					<h3 class="name"></h3>
 					<p class="profileid"></p>
 					<a id="showedit" href="#">Edit</a>
 				</div>
 				<div id="editprofile">
+					<label>Nickname:</label> <input id="nickname" class="nickname" />
+					<br/>
+					<label>Name:</label> <input id="name" class="name" />
+					<br/>
 					<a id="showview" href="#" class="button">Cancel</a>
 					<a id="btnsave" href="#" class="button" onclick="return false;">Save</a>
 				</div>
 				<div id="authprofile">
-					<a id="addfacebook" href="#" class="button fa fa-facebook-square" onclick="return false;"> facebook</a>
-					<a id="addtwitter" href="#" class="button fa fa-twitter-square" onclick="return false;"> twitter</a>
+					<p>Currently signed in with:</p>
+					<div id="authed"></div>
+					<p>Add services to share:</p>
+					<a id="addfacebook" href="#" class="button fa fa-facebook-square" onclick="return false;"></a>
+					<a id="addtwitter" href="#" class="button fa fa-twitter-square" onclick="return false;"></a>
+					<a id="addfoursquare" href="#" class="button fa fa-foursquare" onclick="return false;"></a>
 				</div>
 				
 				<a id="btnlogout" href="#" class="button" onclick="return false;">Log Out</a>
@@ -177,6 +185,12 @@
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript">
             app.initialize();
+            if( navigator.camera == undefined ){
+            	// Working out of phonegap here
+            	lsUserId = 1;
+            	AppInit();
+            	panel['userprofile'].Load();
+            }
         </script>
     </body>
 </html>

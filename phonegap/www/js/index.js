@@ -105,6 +105,7 @@ var app = {
 };
 
 function AppInit(){
+    DebugOut('initing app');
 	panel['prize'] = new Prize();
     panel['home'] = new Home();
 	panel['checkin'] = new Checkin();
@@ -139,6 +140,7 @@ function HandleFSData(pRest){
 
 function HandleLogin(pProfile){
 	alert("got it");
+	
 	DebugOut(pProfile);
 }
 
