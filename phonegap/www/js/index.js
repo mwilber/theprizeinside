@@ -48,8 +48,8 @@
     // }
 // };
 
-	var apipath = "http://theprizeinside.com";
-	//var apipath = "http://gibson.loc/theprizeinside";
+	//var apipath = "http://theprizeinside.com";
+	var apipath = "http://gibson.loc/theprizeinside";
 	var userLocation = new google.maps.LatLng(0,0);
 	var lsUserId = 0;
 	var prizedata = null;

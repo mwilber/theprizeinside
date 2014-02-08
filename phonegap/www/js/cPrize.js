@@ -115,6 +115,9 @@ Prize.prototype.Load = function(pPrize){
     DebugOut('Loading alias: '+this.restaurantalias);
     var patsy = this.HandleLocationData(this);
     patsy(fsdata[this.restaurantalias]);
+    
+    // Get the checkin comments
+    $.get(apipath+'/reactor/srvlist/getcheckinsbyprize/'+pPrize.prizeId,this.HandleCheckinData(this));
 };
 
 // Prize.prototype.GetLocationDataB = function(){
@@ -128,6 +131,37 @@ Prize.prototype.Load = function(pPrize){
     // //$.get('https://api.foursquare.com/v2/venues/search?client_id=UMRUA4UFFY0RLEI1TKGXUT30JLQULNFRM3YVQWNCASQ3VE31&client_secret=4XSWL2PUIN02A3RNJY4GFRCLISF4RPC3URLVLHK2AOQD0EQ5&v=20130815&ll='+userLocation.lat()+','+userLocation.lng()+'&limit=10&query='+this.restaurantid,this.HandleLocationData(this));
 //     
 // };
+
+Prize.prototype.HandleCheckinData = function(self){
+    return function(response) {
+    	DebugOut("checkin data incoming...");
+        DebugOut(response);
+        
+        self.panel.elem.find('.checkins').empty();
+         for( idx in response.checkins ){
+             var value = response.checkins[idx];
+             self.panel.elem.find('.checkins').append($('<li>')
+                 .append(
+                     $('<div/>').addClass('details fa fa-caret-right')
+                 )
+                 .append(
+                     $('<div/>').addClass('icon').append($('<img/>').attr('src',value.checkinPhoto))
+                 )
+                 .append(
+                     $('<div/>').addClass('comment').html(value.checkinComment)
+                 )
+                 .click(self.HandleCheckinClick(self,value))
+            ); 
+         }
+    };
+};
+
+Prize.prototype.HandleCheckinClick = function(self,pCheckin){
+	return function(event){
+		panel['checkindetail'].Load(pCheckin);
+        return false;
+	};
+};
 
 Prize.prototype.HandleLocationData = function(self){
     return function(response) {

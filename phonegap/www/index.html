@@ -37,8 +37,8 @@
     </head>
     <body>
         <div id="header">
-        	<a class="showsidemenu headbutton fa fa-bars" href="#"></a>
-        	<a class="showprofile headbutton fa fa-user" href="#"></a>
+        	<a class="showsidemenu headbutton fa fa-bars" href="#"> </a>
+        	<a class="showprofile headbutton fa fa-user" href="#"> </a>
         </div>
 
         <div id="container">
@@ -48,8 +48,8 @@
 				<h1 class="name">The Prize Inside</h1>
 				<div class="header">
 					<img id="homeview" src=""/>
-					<a class="showuserprofile fa fa-user" target="_blank"></a>
-					<a class="showuserlogin fa fa-lock" target="_blank"></a>
+					<a class="showuserprofile fa fa-user" target="_blank"> </a>
+					<a class="showuserlogin fa fa-lock" target="_blank"> </a>
 				</div>
 				<div class="content">
 				<ul class="prizes linearlist">
@@ -59,12 +59,12 @@
 			</div>
 			
 			<div id="prize" class="panel">
-				<a class="back" href="#"><span class="fa fa-angle-left"></span></a>
+				<a class="back" href="#"><span class="fa fa-angle-left"> </span></a>
 				<h1 class="name"><!-- AJAX Data here --></h1>
 				<div class="header">
 					<img id="prizephoto" src=""/>
-					<a class="showuserlocation fa fa-location-arrow" target="_blank"></a>
-				  	<a class="showwebsite fa fa-globe" target="_blank"></a>
+					<a class="showuserlocation fa fa-location-arrow" target="_blank"> </a>
+				  	<a class="showwebsite fa fa-globe" target="_blank"> </a>
 				</div>
 				<div class="content">
 				<ul class="tabs">
@@ -79,7 +79,7 @@
 				Google Map Here
 			  </div>
 			  <div id="comments" class="tabpanel">
-				<ul class="linearlist"><!-- AJAX Data here --></ul>
+				<ul class="checkins linearlist"><!-- AJAX Data here --></ul>
 			  </div> 
 			  </div>
 			</div>
@@ -115,17 +115,17 @@
 				<a id="setpic" href="#"><img id="myImage" src="img/add_photo.png" width="100%" height="100%"/></a>
 				<div>
 					<div id="checkinAnonymous" class="button toggle">Anonymous</div>
-					<div id="checkinTwitter" class="button share toggle selected fa fa-twitter-square"></div>
-					<div id="checkinFacebook" class="button share toggle selected fa fa-facebook-square"></div>
-					<div id="checkinFoursquare" class="button share toggle selected fa fa-foursquare"></div>
+					<div id="checkinTwitter" class="button share toggle selected fa fa-twitter-square"> </div>
+					<div id="checkinFacebook" class="button share toggle selected fa fa-facebook-square"> </div>
+					<div id="checkinFoursquare" class="button share toggle selected fa fa-foursquare"> </div>
 				</div>
 				<a id="btnCheckin" href="#" class="button">Checkin</a>
 			</div>
 			
 			<div id="userlocation" class="popup">
-				<a class="close" href="#"><span class="fa fa-times"></span></a>
+				<a class="close" href="#"><span class="fa fa-times"> </span></a>
 				<h1>Set Your Location</h1>
-				<a class="location" href="#" onclick="return false;">Location: <span></span></a>
+				<a class="location" href="#" onclick="return false;">Location: <span> </span></a>
 				<h2>Change Location</h2>
 				<p>Enter an address to search:</p>
 					<input id="loctext" value=""/>
@@ -135,7 +135,7 @@
 			</div>
 			
 			<div id="userprofile" class="popup">
-				<a class="close" href="#"><span class="fa fa-times"></span></a>
+				<a class="close" href="#"><span class="fa fa-times"> </span></a>
 				<h1>Profile</h1>
 				<div id="viewprofile">
 					<img class="avatar" src=""/>
@@ -160,7 +160,12 @@
 					<a id="addtwitter" href="#" class="button fa fa-twitter-square" onclick="return false;"></a>
 					<a id="addfoursquare" href="#" class="button fa fa-foursquare" onclick="return false;"></a>
 				</div>
-				
+				<p>History:</p>
+				<div id="ckprofile">
+					<ul class="checkins linearlist">
+						<!-- AJAX Data here -->
+					</ul>
+				</div>
 				<a id="btnlogout" href="#" class="button" onclick="return false;">Log Out</a>
 			</div>
 			

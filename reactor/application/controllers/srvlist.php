@@ -70,6 +70,32 @@ class SrvList extends CI_Controller {
 		echo json_encode($result);
 	}
 	
+	public function getcheckinsbyuser($pId = 0){
+		$result = new stdClass();
+		$result->status = 0;
+		
+		if( $pId > 0 ){
+			$this->load->model('checkin_model'); 
+			$result->checkins = $this->checkin_model->Get(array('profileId'=>$pId,'sortBy'=>'checkinTimeStamp','sortDirection'=>'DESC'));
+		}
+		
+		header('Content-type: application/json');
+		echo json_encode($result);
+	}
+	
+	public function getcheckinsbyprize($pId = 0){
+		$result = new stdClass();
+		$result->status = 0;
+		
+		if( $pId > 0 ){
+			$this->load->model('checkin_model'); 
+			$result->checkins = $this->checkin_model->Get(array('prizeId'=>$pId,'sortBy'=>'checkinTimeStamp','sortDirection'=>'DESC'));
+		}
+		
+		header('Content-type: application/json');
+		echo json_encode($result);
+	}
+	
 }
 
 /* End of file welcome.php */

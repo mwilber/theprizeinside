@@ -415,13 +415,13 @@ a.close span{
 	overflow: hidden;
 }
 
-.panel .linearlist{
+.panel .linearlist, .popup .linearlist{
 	list-style:none;
 	margin: 0px;
 	padding: 0px;
 }
 
-.panel .linearlist li{
+.panel .linearlist li, .popup .linearlist li{
 	border-bottom: solid 1px #161008;	
 	margin-top: 0px;
 	display:block;
@@ -431,20 +431,20 @@ a.close span{
 	font-size: 18px;
 }
 
-.panel .linearlist li a{
+.panel .linearlist li a, .popup .linearlist li a{
 	color:#7CB0D4;
 	text-decoration: none;
 	font-size: 24px;
 }
 
-.panel .linearlist li .details{
+.panel .linearlist li .details, .popup .linearlist li .details{
 	display: block;
 	float: right;
 	font-size: 70px;
 	margin-top: 5px;
 }
 
-.panel .linearlist li .icon{
+.panel .linearlist li .icon, .popup .linearlist li .icon{
 	display: block;
 	float: left;
 	font-size: 60px;
@@ -652,6 +652,45 @@ a.close span{
 #userprofile #authprofile .button{
 	font-size:36px;
 	margin:10px;
+}
+
+#userprofile #ckprofile{
+	width:96%;
+	height:150px;
+	overflow-x:hidden;
+	overflow-y:auto;
+	margin:5px 2% 10px 2%;
+	border:solid 1px #161008;
+}
+
+#userprofile #ckprofile .checkins{
+	width: 100%;
+	list-style:none;
+}
+
+#userprofile #ckprofile .checkins li{
+	float:left;
+	clear:both;
+	width: 96%;
+	margin: 5px 2%;
+	padding: 0px;
+}
+
+#userprofile #ckprofile .checkins .icon, #comments .checkins .icon{
+	float:left;
+	width:50px;
+	height:50px;
+	margin: 0px 5px 0px 0px;
+	padding: 0px;
+}
+
+#userprofile #ckprofile .checkins .comment, #comments .checkins .comment{
+	float:left;
+}
+
+#userprofile #ckprofile .checkins .icon img, #comments .checkins .icon img{
+	width:100%;
+	height:100%;
 }
 
 #userlogin li{
