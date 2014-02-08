@@ -64,6 +64,8 @@ class Checkin extends CI_Controller
 	        	if( isset($prizeRec->prizeName) ){
 	        		$prizeName = $prizeRec->prizeName;
 	        	}
+	        	
+	        	$prizeUrl = "http://theprizeinside.com/ck/".$nId;
 	        	//print_r($authRecs);
 	        	//die;
 	        	foreach ($authRecs as $authRec) {
@@ -73,7 +75,7 @@ class Checkin extends CI_Controller
 								'access_token' => $authRec->authToken,
 								'message' => $_POST['checkinComment'],
 								'name' => $prizeName,
-								'link' => "http://theprizeinside.com?ck=".$nId,
+								'link' => $prizeUrl,
 								'description' => 'When a burger is a burger, and a burrito makes no difference, choose your fast food by The Prize Inside!',
 								'picture'=>$_POST['checkinPhoto'],
 								//'actions' => json_encode(array('name' => $action_name,'link' => $action_link))
@@ -91,7 +93,7 @@ class Checkin extends CI_Controller
 							$result = curl_exec($ch);
 							curl_close ($ch);
 							
-							echo "result: ";
+							echo "|||result: ";
 							print_r($result);
 							
 							die;
@@ -100,7 +102,7 @@ class Checkin extends CI_Controller
 							
 						case 'Twitter':
 							
-							$twitterTxt = "I just found the ".$prizeName." with The Prize Inside";
+							$twitterTxt = "Check out my ".$prizeName." on The Prize Inside";
 							if( $_POST['checkinComment'] != "" ) $twitterTxt = $_POST['checkinComment'];
 							
 							// Set tmhOAuth config object
@@ -119,7 +121,7 @@ class Checkin extends CI_Controller
 								   'https://api.twitter.com/1.1/statuses/update.json',
 								   array(
 						 //		    'media[]'  => "@{$outFile};type=image/jpeg;filename={$outFile}",
-								     'status'   => $twitterTxt.": http://theprizeinside.com?ck=".$nId
+								     'status'   => $twitterTxt.": ".$prizeUrl
 								   ),
 								   true, // use auth
 								   true  // multipart

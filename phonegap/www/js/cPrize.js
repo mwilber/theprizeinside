@@ -112,6 +112,7 @@ Prize.prototype.Load = function(pPrize){
     this.panel.elem.find('.tabpanel').css('width',this.panel.elem.width()+"px");
     this.panel.elem.find('.tabpanel').css('height',(this.panel.elem.height()-offsetheight)+"px");
     
+    DebugOut('Loading alias: '+this.restaurantalias);
     var patsy = this.HandleLocationData(this);
     patsy(fsdata[this.restaurantalias]);
 };
@@ -129,7 +130,7 @@ Prize.prototype.GetLocationDataB = function(){
 };
 
 Prize.prototype.HandleLocationData = function(self){
-    return function(response, textStatus) {
+    return function(response) {
         DebugOut(response);
         
         self.locationdata = response.response;

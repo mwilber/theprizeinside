@@ -12,7 +12,7 @@ if(isset($_GET['ck'])){
 	  or die("Could not select examples");
 	}
 	
-	$checkinRS = mysql_query("SELECT checkinLat,checkinLng,checkinComment,checkinPhoto,checkinTimeStamp,restaurantName,prizeName,profileNickname,profilePicture FROM tblCheckin INNER JOIN tblRestaurant ON tblCheckin.restaurantId=tblRestaurant.restaurantId INNER JOIN tblPrize ON tblCheckin.prizeId=tblPrize.prizeId INNER JOIN tblProfile ON tblCheckin.profileId=tblProfile.profileId WHERE checkinId=".$_GET['ck']);
+	$checkinRS = mysql_query("SELECT tblCheckin.checkinId,checkinLat,checkinLng,checkinComment,checkinPhoto,checkinTimeStamp,restaurantName,prizeName,profileNickname,profilePicture FROM tblCheckin INNER JOIN tblRestaurant ON tblCheckin.restaurantId=tblRestaurant.restaurantId INNER JOIN tblPrize ON tblCheckin.prizeId=tblPrize.prizeId INNER JOIN tblProfile ON tblCheckin.profileId=tblProfile.profileId WHERE checkinId=".$_GET['ck']);
 	$checkin = mysql_fetch_assoc($checkinRS)
 ?>
 <!DOCTYPE html>
@@ -24,10 +24,10 @@ if(isset($_GET['ck'])){
 	<title>The Prize Inside</title>
 	<meta name="description" content="Choose your fast food by the prize inside.">
 	<meta name="author" content="Matthew Wilber">
-	<meta property="og:title" content="The Prize Inside" />
+	<meta property="og:title" content="<?=(isset($checkin['prizeName']))?$checkin['prizeName']:"The Prize Inside"?>" />
 	<meta property="og:type" content="website" />
-	<meta property="og:url" content="http://theprizeinside.com/policy.html" />
-	<meta property="og:image" content="http://theprizeinside.com/img/fb_icon.png" />
+	<meta property="og:url" content="http://theprizeinside.com/<?=(isset($checkin['checkinId']))?"ck/".$checkin['checkinId']:""?>" />
+	<meta property="og:image" content="<?=(isset($checkin['checkinPhoto']))?$checkin['checkinPhoto']:"http://theprizeinside.com/img/fb_icon.png"?>" />
 	<meta property="og:site_name" content="The Prize Inside" />
 	<meta property="fb:admins" content="631337813" />
 	<meta property="og:description" content="Choose your fast food by the prize inside." />
