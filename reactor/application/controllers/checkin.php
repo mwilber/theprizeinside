@@ -48,6 +48,26 @@ class Checkin extends CI_Controller
 	    	}
 	    	
 	    	//print_r($_POST);
+	    	
+	    	$share = array();
+	    	
+	    	if( isset($_POST['checkinTwitter']) ){
+	    		if($_POST['checkinTwitter'] == 1){
+	    			$share['Twitter'] = 1;
+	    		}
+	    	}
+	    	if( isset($_POST['checkinFacebook']) ){
+	    		if($_POST['checkinFacebook'] == 1){
+	    			$share['Facebook'] = 1;
+	    		}
+	    	}
+	    	if( isset($_POST['checkinFoursquare']) ){
+	    		if($_POST['checkinFoursquare'] == 1){
+	    			$share['Foursquare'] = 1;
+	    		}
+	    	}
+	    		
+	    		
 			
 	        // Validation passes
 	        $nId = $this->$model_ref->Add($_POST);
@@ -69,7 +89,7 @@ class Checkin extends CI_Controller
 	        	//print_r($authRecs);
 	        	//die;
 	        	foreach ($authRecs as $authRec) {
-	        		if( isset($_POST['checkin'.$authRec->authService]) ){
+	        		if( isset($share[$authRec->authService]) ){
 						switch ($authRec->authService) {
 							case 'Facebook':
 								$attachment =  array(
