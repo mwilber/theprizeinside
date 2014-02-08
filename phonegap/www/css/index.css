@@ -566,6 +566,16 @@ a.close span{
 	font-size:14px;
 }
 
+.button.toggle{
+	color:#ccc;
+	border-color:#ccc;
+}
+
+.button.toggle.selected{
+	color: #161008;
+	border-color: #161008;
+}
+
 #userprofile #editprofile, #userprofile #viewprofile, #userprofile #authprofile{
 	float:left;
 	width:96%;

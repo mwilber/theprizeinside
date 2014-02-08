@@ -2,6 +2,14 @@
 //  Utility Functions
 /////////////////////////////////////////////////////////////////////////////
 
+function DoToggle(self){
+	return function(elem){
+		DebugOut(elem);
+		$(elem.target).toggleClass('selected');
+	};
+	
+};
+
 function supports_html5_storage() {
   try {
     return 'localStorage' in window && window['localStorage'] !== null;

@@ -8,6 +8,8 @@ function Checkin(){
 	
 	this.panel.elem.find('#btnCheckin').click(this.DoCheckin(this));
 	
+	this.panel.elem.find('.button.toggle').click(DoToggle(this));
+	
 	this.postData = {
 		checkinLocation: '',
 		checkinLat: '',
@@ -15,6 +17,9 @@ function Checkin(){
 		checkinComment: '',
 		checkinPhoto: '',
 		checkinAnonymous: '',
+		checkinTwitter: '',
+		checkinFacebook: '',
+		checkinFoursquare: '',
 		profileId: '',
 		restaurantId: '',
 		prizeId: ''
@@ -52,11 +57,28 @@ Checkin.prototype.DoCheckin = function(self){
 	return function(){
 		
 		self.postData.checkinComment = self.panel.elem.find('#checkinComment').val();
-		if(self.panel.elem.find('#checkinAnonymous').prop('checked')){
+		if(self.panel.elem.find('#checkinAnonymous').hasClass('selected')){
 			self.postData.checkinAnonymous = 1;
 		}else{
 			self.postData.checkinAnonymous = 0;
 		}
+		
+		if(self.panel.elem.find('#checkinTwitter').hasClass('selected')){
+			self.postData.checkinTwitter = 1;
+		}else{
+			self.postData.checkinTwitter = 0;
+		}
+		if(self.panel.elem.find('#checkinFacebook').hasClass('selected')){
+			self.postData.checkinFacebook = 1;
+		}else{
+			self.postData.checkinFacebook = 0;
+		}
+		if(self.panel.elem.find('#checkinFoursquare').hasClass('selected')){
+			self.postData.checkinFoursquare = 1;
+		}else{
+			self.postData.checkinFoursquare = 0;
+		}
+		
 		
 		$.post(apipath+'/reactor/checkin/add/json',self.postData,function(response){alert(response);});
 	};

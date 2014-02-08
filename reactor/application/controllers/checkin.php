@@ -52,7 +52,7 @@ class Checkin extends CI_Controller
 	        // Validation passes
 	        $nId = $this->$model_ref->Add($_POST);
 	        
-	        //TODO: Social Media Post here
+	        //Social Media Post here
 	        if($nId > 0){
 	        	$this->load->model('auth_model');
 	        	$this->load->model('prize_model');
@@ -69,72 +69,74 @@ class Checkin extends CI_Controller
 	        	//print_r($authRecs);
 	        	//die;
 	        	foreach ($authRecs as $authRec) {
-					switch ($authRec->authService) {
-						case 'Facebook':
-							$attachment =  array(
-								'access_token' => $authRec->authToken,
-								'message' => $_POST['checkinComment'],
-								'name' => $prizeName,
-								'link' => $prizeUrl,
-								'description' => 'When a burger is a burger, and a burrito makes no difference, choose your fast food by The Prize Inside!',
-								'picture'=>$_POST['checkinPhoto'],
-								//'actions' => json_encode(array('name' => $action_name,'link' => $action_link))
+	        		if( isset($_POST['checkin'.$authRec->authService]) )
+						switch ($authRec->authService) {
+							case 'Facebook':
+								$attachment =  array(
+									'access_token' => $authRec->authToken,
+									'message' => $_POST['checkinComment'],
+									'name' => $prizeName,
+									'link' => $prizeUrl,
+									'description' => 'When a burger is a burger, and a burrito makes no difference, choose your fast food by The Prize Inside!',
+									'picture'=>$_POST['checkinPhoto'],
+									//'actions' => json_encode(array('name' => $action_name,'link' => $action_link))
+									);
+								
+								print_r($attachment);
+								
+								$ch = curl_init();
+								curl_setopt($ch, CURLOPT_URL,'https://graph.facebook.com/me/feed');
+								curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+								curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
+								curl_setopt($ch, CURLOPT_POST, true);
+								curl_setopt($ch, CURLOPT_POSTFIELDS, $attachment);
+								curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);  //to suppress the curl output 
+								$result = curl_exec($ch);
+								curl_close ($ch);
+								
+								echo "|||result: ";
+								print_r($result);
+								
+								die;
+								
+								break;
+								
+							case 'Twitter':
+								
+								$twitterTxt = "Check out my ".$prizeName." on The Prize Inside";
+								if( $_POST['checkinComment'] != "" ) $twitterTxt = $_POST['checkinComment'];
+								
+								// Set tmhOAuth config object
+								$tmhOAuthConfig = array(
+								  'consumer_key'    => 'G21e48OkiD1A4JP098XNMg',
+								  'consumer_secret' => 'J0KPTsPr8RUU54owDIk1IvBV9YzLOCz11mChxZg90AQ',
+								  'user_token'      => $authRec->authToken,
+								  'user_secret'     => $authRec->authSecret,
 								);
-							
-							print_r($attachment);
-							
-							$ch = curl_init();
-							curl_setopt($ch, CURLOPT_URL,'https://graph.facebook.com/me/feed');
-							curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
-							curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
-							curl_setopt($ch, CURLOPT_POST, true);
-							curl_setopt($ch, CURLOPT_POSTFIELDS, $attachment);
-							curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);  //to suppress the curl output 
-							$result = curl_exec($ch);
-							curl_close ($ch);
-							
-							echo "|||result: ";
-							print_r($result);
-							
-							die;
-							
-							break;
-							
-						case 'Twitter':
-							
-							$twitterTxt = "Check out my ".$prizeName." on The Prize Inside";
-							if( $_POST['checkinComment'] != "" ) $twitterTxt = $_POST['checkinComment'];
-							
-							// Set tmhOAuth config object
-							$tmhOAuthConfig = array(
-							  'consumer_key'    => 'G21e48OkiD1A4JP098XNMg',
-							  'consumer_secret' => 'J0KPTsPr8RUU54owDIk1IvBV9YzLOCz11mChxZg90AQ',
-							  'user_token'      => $authRec->authToken,
-							  'user_secret'     => $authRec->authSecret,
-							);
-							
-							$this->load->library('TmhOAuth', $tmhOAuthConfig);
-							$code="0";
-							//echo '<br/>Making call: '.$code.'<br/>';
-							$code = $this->tmhoauth->request(
-								   'POST',
-								   'https://api.twitter.com/1.1/statuses/update.json',
-								   array(
-						 //		    'media[]'  => "@{$outFile};type=image/jpeg;filename={$outFile}",
-								     'status'   => $twitterTxt.": ".$prizeUrl
-								   ),
-								   true, // use auth
-								   true  // multipart
-								 );
-					
-							//echo "<br/>code: ".$code."---";
-							//print_r($this->tmhoauth->response);
-		
-							break;
+								
+								$this->load->library('TmhOAuth', $tmhOAuthConfig);
+								$code="0";
+								//echo '<br/>Making call: '.$code.'<br/>';
+								$code = $this->tmhoauth->request(
+									   'POST',
+									   'https://api.twitter.com/1.1/statuses/update.json',
+									   array(
+							 //		    'media[]'  => "@{$outFile};type=image/jpeg;filename={$outFile}",
+									     'status'   => $twitterTxt.": ".$prizeUrl
+									   ),
+									   true, // use auth
+									   true  // multipart
+									 );
 						
-						default:
+								//echo "<br/>code: ".$code."---";
+								//print_r($this->tmhoauth->response);
+			
+								break;
 							
-							break;
+							default:
+								
+								break;
+						}
 					}
 				}
 	        }
