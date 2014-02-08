@@ -79,7 +79,6 @@ Checkin.prototype.DoCheckin = function(self){
 			self.postData.checkinFoursquare = 0;
 		}
 		
-		
 		$.post(apipath+'/reactor/checkin/add/json',self.postData,function(response){alert(response);});
 	};
 };
@@ -117,10 +116,25 @@ Checkin.prototype.Load = function(pPrize, pLocation){
 	    DebugOut(panel['prize']);
 	    DebugOut(this.postData);
 	    
+	    this.panel.elem.find('.button.share').hide();
+	    
+	    $.get(apipath+'/reactor/srvlist/getprofile/'+lsUserId,this.HandleProfileData(this));
+	    
 	    this.Show(); 
 	}else{
 	    panel['userlogin'].Load();
 	} 
+};
+
+Checkin.prototype.HandleProfileData = function(self){
+    return function(response, textStatus) {
+		
+		for( idx in response.profile.auth ){
+			
+			$('#checkin'+response.profile.auth[idx].authService).show();
+			
+		}
+    };
 };
 
 

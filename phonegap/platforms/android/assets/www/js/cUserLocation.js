@@ -5,6 +5,7 @@ function UserLocation(){
 	this.panel.elem.find('.close').click(this.Close(this));
 	
 	this.panel.elem.find('#btnlocsearch').click(this.DoLocationSearch(this));
+	this.panel.elem.find('#btngpssearch').click(this.DoGPSSearch(this));
 
 }
 
@@ -25,6 +26,13 @@ UserLocation.prototype.DoLocationSearch = function(self){
         		alert('Could not find address: ' + status);
         	}
         });
+	};
+};
+
+UserLocation.prototype.DoGPSSearch = function(self){
+	return function(){
+		
+		alert('FPO');
 	};
 };
 

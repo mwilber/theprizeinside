@@ -48,7 +48,7 @@ Prize.prototype.ShowMap = function(self){
    return function(){
        self.HideTabPanels();
 	   self.panel.elem.find('#map').show();
-	   if( !self.locmap ) self.InitMap(self); 
+	   if( !self.locmap ) self.InitMap(self); else self.PlaceVenueMarkers(self);
        return false;
    };
 };
@@ -117,17 +117,17 @@ Prize.prototype.Load = function(pPrize){
     patsy(fsdata[this.restaurantalias]);
 };
 
-Prize.prototype.GetLocationDataB = function(){
-    // Simulate the ajax call for now
-    //DebugOut('Loading locations: '+pPrize.restaurantAlias);
-    var patsy = this.HandleLocationData(this);
-    patsy(fsdata[pPrize.restaurant.restaurantAlias]);
-    // Real ajax call --
-    //                 |
-    //                \/
-    //$.get('https://api.foursquare.com/v2/venues/search?client_id=UMRUA4UFFY0RLEI1TKGXUT30JLQULNFRM3YVQWNCASQ3VE31&client_secret=4XSWL2PUIN02A3RNJY4GFRCLISF4RPC3URLVLHK2AOQD0EQ5&v=20130815&ll='+userLocation.lat()+','+userLocation.lng()+'&limit=10&query='+this.restaurantid,this.HandleLocationData(this));
-    
-};
+// Prize.prototype.GetLocationDataB = function(){
+    // // Simulate the ajax call for now
+    // //DebugOut('Loading locations: '+pPrize.restaurantAlias);
+    // var patsy = this.HandleLocationData(this);
+    // patsy(fsdata[pPrize.restaurant.restaurantAlias]);
+    // // Real ajax call --
+    // //                 |
+    // //                \/
+    // //$.get('https://api.foursquare.com/v2/venues/search?client_id=UMRUA4UFFY0RLEI1TKGXUT30JLQULNFRM3YVQWNCASQ3VE31&client_secret=4XSWL2PUIN02A3RNJY4GFRCLISF4RPC3URLVLHK2AOQD0EQ5&v=20130815&ll='+userLocation.lat()+','+userLocation.lng()+'&limit=10&query='+this.restaurantid,this.HandleLocationData(this));
+//     
+// };
 
 Prize.prototype.HandleLocationData = function(self){
     return function(response) {
@@ -190,13 +190,17 @@ Prize.prototype.InitMap = function(self){
     
     self.locmap = new google.maps.Map(document.getElementById("map"), myOptions);
     
+    self.PlaceVenueMarkers(self);
+
+};
+
+Prize.prototype.PlaceVenueMarkers = function(self) {
     self.ClearMarkers(self);
     for( idx in self.locationdata.venues ){
         var value = self.locationdata.venues[idx];
         if( value.location.address !== undefined )
             self.PlaceMarker(self, value);
     }
-
 };
 
 Prize.prototype.ClearMarkers = function(self) {
@@ -210,12 +214,12 @@ Prize.prototype.PlaceMarker = function(self, pLoc){
     // Add map marker
     //give the marker a color
     var pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|ff0000",
-        new google.maps.Size(21, 84),
+        new google.maps.Size(40, 120),
         new google.maps.Point(0,0),
-        new google.maps.Point(10, 34));
+        new google.maps.Point(20, 60));
     var tmpMarker = new google.maps.Marker({
         map: self.locmap, 
-        icon: pinImage,
+        //icon: pinImage,
         position: new google.maps.LatLng(pLoc.location.lat,pLoc.location.lng),
         title: pLoc.name,
         //locaddress: pLoc.locationAddress,

@@ -566,13 +566,39 @@ a.close span{
 	font-size:14px;
 }
 
-#userprofile #editprofile, #userprofile #viewprofile, #userprofile #authprofile{
-	float:left;
-	width:100%;
+.button.toggle{
+	color:#ccc;
+	border-color:#ccc;
 }
 
-#userprofile #authprofile{
-	margin:20px 0px;	
+.button.toggle.selected{
+	color: #161008;
+	border-color: #161008;
+}
+
+#userprofile #editprofile, #userprofile #viewprofile, #userprofile #authprofile{
+	float:left;
+	width:96%;
+	margin:20px 2% 0px 2%;
+}
+
+#userprofile #editprofile label, #userprofile #editprofile input{
+	float:left;
+}
+
+#userprofile #editprofile .button{
+	float:left;
+	margin-left:20px;
+	font-size:24px;
+}
+
+#userprofile #editprofile label, #userprofile #editprofile #showview{
+	clear:left;
+}
+
+#userprofile #authprofile p{
+	margin:0px;
+	font-size: 18px;
 }
 
 #userprofile #editprofile{
@@ -590,15 +616,42 @@ a.close span{
 	clear:right;
 }
 
+#userprofile .avatar{
+	width:150px;
+	height:150px;
+}
+
 #userprofile .profileid{
-	font-size:48px;
+	display:none;
+	font-size:18px;
 	color:#000;
 }
 
 #userprofile #btnlogout{
-	clear:both;
-	margin:20px auto 0px auto;
+	clear: both;
+	margin: 20px 25% 0px 25%;
 	display: block;
+	float: left;
+	width: 50%;
+	font-size:24px;
+}
+
+#userprofile .nickname{
+	font-size:48px;
+}
+
+#userprofile .name{
+	font-size:24px;
+}
+
+#userprofile #authed div{
+	font-size:48px;
+	margin:10px;
+}
+
+#userprofile #authprofile .button{
+	font-size:36px;
+	margin:10px;
 }
 
 /* Smartphones (portrait) ----------- */

@@ -80,8 +80,21 @@ UserProfile.prototype.HandleAuthPopup = function(self){
 UserProfile.prototype.DoProfileSave = function(self){
 	return function(){
 		
-		alert('FPO');
+		//self.panel.elem.find('input.name').val(response.profile.profileFullname);
+        //self.panel.elem.find('input.nickname').val(response.profile.profileNickname);
+        $.post(apipath+'/reactor/profile/edit/'+self.panel.elem.find('.profileid').html(),{
+            profileId: self.panel.elem.find('.profileid').html(),
+            profileFullname: self.panel.elem.find('input.name').val(),
+            profileNickname: self.panel.elem.find('input.nickname').val()
+        },self.HandleProfileSave(self));
 	};
+};
+
+UserProfile.prototype.HandleProfileSave = function(self){
+   return function(){
+       self.Load();
+       return false;
+   };
 };
 
 UserProfile.prototype.Close = function(self){
@@ -99,9 +112,14 @@ UserProfile.prototype.Load = function(){
 		this.panel.elem.find('.nickname').html("");
 		this.panel.elem.find('.profileid').html("");
 		this.panel.elem.find('.avatar').attr('src','');
+		$('#authprofile a.button').show();
+		$('#authprofile #authed').empty();
 		
 	    $.get(apipath+'/reactor/srvlist/getprofile/'+lsUserId,this.HandleProfileData(this));
-	    this.Show();  
+	    this.Show();
+	    var patsy = this.ShowProfileView(this);
+	    patsy();
+	    
 	}else{
 	    panel['userlogin'].Load();
 	}
@@ -113,9 +131,28 @@ UserProfile.prototype.HandleProfileData = function(self){
         DebugOut(response);
 
         self.panel.elem.find('.name').html(response.profile.profileFullname);
+        self.panel.elem.find('input.name').val(response.profile.profileFullname);
 		self.panel.elem.find('.nickname').html(response.profile.profileNickname);
+		self.panel.elem.find('input.nickname').val(response.profile.profileNickname);
 		self.panel.elem.find('.avatar').attr('src',response.profile.profilePicture);
 		self.panel.elem.find('.profileid').html(response.profile.profileId);
+		
+		for( idx in response.profile.auth ){
+		  var tmpAuthMarker = $('<div/>').addClass('fa');
+		  
+		  switch(response.profile.auth[idx].authService){
+		      case 'Facebook':
+		          tmpAuthMarker.addClass('fa-facebook-square');
+		          $('#addfacebook').hide();
+		          break;
+		      case 'Twitter':
+                  tmpAuthMarker.addClass('fa-twitter-square');
+                  $('#addtwitter').hide();
+                  break;
+		  }
+		
+		  self.panel.elem.find('#authed').append(tmpAuthMarker);
+		}
     };
 };
 
