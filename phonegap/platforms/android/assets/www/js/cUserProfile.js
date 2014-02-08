@@ -10,8 +10,8 @@ function UserProfile(){
 	this.panel.elem.find('#btnlogout').click(this.DoLogout(this));
 	
 	this.panel.elem.find('#addfacebook').click(this.DoLogin(this,'fb'));
-	
 	this.panel.elem.find('#addtwitter').click(this.DoLogin(this,'tw'));
+	this.panel.elem.find('#addfoursquare').click(this.DoLogin(this,'fs'));
 	
 	this.ref = null;
 }
@@ -108,6 +108,7 @@ UserProfile.prototype.Load = function(){
 
 	if( lsUserId > 0 ){
 		
+		this.panel.elem.find('.checkins').html("Loading...");
 		this.panel.elem.find('.name').html("Loading...");
 		this.panel.elem.find('.nickname').html("");
 		this.panel.elem.find('.profileid').html("");
@@ -116,6 +117,7 @@ UserProfile.prototype.Load = function(){
 		$('#authprofile #authed').empty();
 		
 	    $.get(apipath+'/reactor/srvlist/getprofile/'+lsUserId,this.HandleProfileData(this));
+	    $.get(apipath+'/reactor/srvlist/getcheckinsbyuser/'+lsUserId,this.HandleCheckinData(this));
 	    this.Show();
 	    var patsy = this.ShowProfileView(this);
 	    patsy();
@@ -149,11 +151,46 @@ UserProfile.prototype.HandleProfileData = function(self){
                   tmpAuthMarker.addClass('fa-twitter-square');
                   $('#addtwitter').hide();
                   break;
+              case 'Foursquare':
+                  tmpAuthMarker.addClass('fa-foursquare');
+                  $('#addfoursquare').hide();
+                  break;
 		  }
 		
 		  self.panel.elem.find('#authed').append(tmpAuthMarker);
 		}
     };
+};
+
+UserProfile.prototype.HandleCheckinData = function(self){
+    return function(response) {
+    	DebugOut("checkin data incoming...");
+        DebugOut(response);
+        
+        self.panel.elem.find('.checkins').empty();
+         for( idx in response.checkins ){
+             var value = response.checkins[idx];
+             self.panel.elem.find('.checkins').append($('<li>')
+                 .append(
+                     $('<div/>').addClass('details fa fa-caret-right')
+                 )
+                 .append(
+                     $('<div/>').addClass('icon').append($('<img/>').attr('src',value.checkinPhoto))
+                 )
+                 .append(
+                     $('<div/>').addClass('comment').html(value.checkinComment)
+                 )
+                 .click(self.HandleCheckinClick(self,value))
+            ); 
+         }
+    };
+};
+
+UserProfile.prototype.HandleCheckinClick = function(self,pCheckin){
+	return function(event){
+		panel['checkindetail'].Load(pCheckin);
+        return false;
+	};
 };
 
 

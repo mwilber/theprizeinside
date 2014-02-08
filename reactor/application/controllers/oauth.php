@@ -78,8 +78,8 @@ class Oauth extends CI_Controller {
 			
 			// For users that logged in under another service already. 
 			// Make sure the auth isn't attached to another profile.
-			if( count($rsAuth) > 0 ){
-				if( $rsAuth[0]->profileId != $this->session->userdata('profileId') ){
+			if( count($rsAuth) > 0 && $this->session->userdata('profileId') ){
+				if( $rsAuth[0]->profileId != $this->session->userdata('profileId') && $this->session->userdata('profileId') != 0 ){
 					$this->auth_model->Update(array('authId'=>$rsAuth[0]->authId, 'profileId'=>$this->session->userdata('profileId')));
 					$rsAuth = $this->auth_model->Get(array('authServiceId'=>$arrAuth['authServiceId']));
 				}
