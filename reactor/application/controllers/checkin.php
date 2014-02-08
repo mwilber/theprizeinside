@@ -69,7 +69,7 @@ class Checkin extends CI_Controller
 	        	//print_r($authRecs);
 	        	//die;
 	        	foreach ($authRecs as $authRec) {
-	        		if( isset($_POST['checkin'.$authRec->authService]) )
+	        		if( isset($_POST['checkin'.$authRec->authService]) ){
 						switch ($authRec->authService) {
 							case 'Facebook':
 								$attachment =  array(
