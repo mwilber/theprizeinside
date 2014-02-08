@@ -563,7 +563,7 @@ a.close span{
 	-webkit-border-radius: 5px 5px 5px 5px;
 	border-radius: 5px 5px 5px 5px;
 	text-align: center;
-	font-size:14px;
+	font-size:18px;
 }
 
 .button.toggle{
@@ -652,6 +652,10 @@ a.close span{
 #userprofile #authprofile .button{
 	font-size:36px;
 	margin:10px;
+}
+
+#userlogin li{
+	margin-bottom:20px;
 }
 
 /* Smartphones (portrait) ----------- */

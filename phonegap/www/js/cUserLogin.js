@@ -5,6 +5,8 @@ function UserLogin(){
 	this.panel.elem.find('.close').click(this.Close(this));
 	
 	this.panel.elem.find('#btnfacebook').click(this.DoLogin(this,'fb'));
+	this.panel.elem.find('#btntwitter').click(this.DoLogin(this,'tw'));
+	this.panel.elem.find('#btnfoursquare').click(this.DoLogin(this,'fs'));
 	
 	this.ref = null;
 
