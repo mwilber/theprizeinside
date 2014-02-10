@@ -113,6 +113,7 @@ function AppInit(){
 	panel['userlocation'] = new UserLocation();
 	panel['userprofile'] = new UserProfile();
 	panel['userlogin'] = new UserLogin();
+	panel['info'] = new Info();
 
     panel['home'].Load();
 }

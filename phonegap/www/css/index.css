@@ -41,7 +41,7 @@ body {
     height:100%;
     margin:0px;
     padding:0px;
-    text-transform:uppercase;
+    /*text-transform:uppercase;*/
     width:100%;
 }
 
@@ -477,7 +477,7 @@ a.close span{
 	position: absolute;
 }
 
-.panel .header #streetview, .panel .header #prizephoto{
+.panel .header #streetview, .panel .header #prizephoto, .panel .header #homeview{
 	width: 100%;
 	top: -100px;
 }
@@ -490,7 +490,7 @@ a.close span{
 	background: rgba(0,0,0,0.4);
 }
 
-.panel .header a.showdirections, .panel .header a.showuserlocation, .panel .header a.showuserlogin{
+.panel .header a.showdirections, .panel .header a.showuserlocation, .panel .header a.showinfo{
 	margin-right:200px;
 }
 
@@ -697,6 +697,52 @@ a.close span{
 	margin-bottom:20px;
 }
 
+#aboutbox{
+	overflow-x: hidden;
+	overflow-y: scroll;
+	height: 85%;
+	width: 92%;
+	margin: 0px 4%;
+}
+
+#footer a.gz {
+	position:absolute;
+	width: auto;
+	height: 22px;
+	right:0px;
+	bottom:0px;
+	color: #fff;
+	line-height: 2.5em;
+	text-align: left;
+	font-weight: bold;
+	font-size: 0.75em;
+	background: rgba(0,0,0,0.8);
+	padding: 0px 10px;
+	text-decoration: none;
+}
+
+#footer a.gz .badge {
+	width: 22px;
+	height: 22px;
+	color: #fff;
+	text-align: center;
+	font-weight: normal;
+	font-size: 1.5em;
+	float: left;
+	margin-left: -10px;
+	margin-right: 10px;
+
+	background: #7cb750;
+	line-height: 1.5em;
+	font-family: serif;
+}
+
+/* Colors */
+.panel, .popup, a.close span {
+	color: #333;
+	background: #fafafa;
+}
+
 /* Smartphones (portrait) ----------- */
 @media only screen 
 	and (max-width : 480px) {
@@ -735,7 +781,7 @@ a.close span{
 		font-size: 40px;
 		line-height: 70px;
 	}
-	.panel .header a.showdirections, .panel .header a.showuserlocation, .panel .header a.showuserlogin{
+	.panel .header a.showdirections, .panel .header a.showuserlocation, .panel .header a.showinfo{
 		margin-right:75px;
 	}
 	.panel .header {

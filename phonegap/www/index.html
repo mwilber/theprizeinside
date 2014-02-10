@@ -47,9 +47,9 @@
 			<div id="home" class="panel">
 				<h1 class="name">The Prize Inside</h1>
 				<div class="header">
-					<img id="homeview" src=""/>
+					<img id="homeview" src="img/homebanner.jpg"/>
 					<a class="showuserprofile fa fa-user" target="_blank"> </a>
-					<a class="showuserlogin fa fa-lock" target="_blank"> </a>
+					<a class="showinfo fa fa-info-circle" target="_blank"> </a>
 				</div>
 				<div class="content">
 				<ul class="prizes linearlist">
@@ -179,7 +179,24 @@
 				</ul>
 			</div>
 			
+			<div id="info" class="popup">
+				<a class="close" href="#"><span class="fa fa-times"></span></a>
+				<h1>About</h1>
+				<div id="aboutbox">
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec rhoncus mollis quam. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed vel pellentesque nulla. Integer ac ullamcorper mi. Mauris non elit egestas, rhoncus nisi in, auctor ligula. Integer ante lectus, luctus vitae sem a, tempus pellentesque dolor. Fusce sed orci ornare, sodales orci vitae, viverra quam. Praesent a placerat tellus, ut convallis diam.</p>
+					<p>Donec tempor felis nec congue molestie. Nullam condimentum ac sem ut venenatis. Proin accumsan accumsan odio at fermentum. Quisque placerat, erat non pulvinar blandit, ante eros dapibus turpis, vitae fringilla nisi diam eu libero. Maecenas iaculis massa eu eros euismod, quis gravida augue consequat. Maecenas ornare erat id neque auctor, vitae luctus lorem aliquet. Quisque viverra hendrerit aliquet. Maecenas vestibulum ipsum ac vestibulum porttitor. Morbi sollicitudin sagittis erat vel sagittis. Fusce fermentum, nisl nec adipiscing ultricies, massa est sagittis elit, quis aliquam odio nisi sit amet quam.</p>
+				</div>
+			</div>
+			
         </div>
+        
+        <div id="footer">
+        	<a href="http://www.greenzeta.com" target="_blank" class="gz">
+				<div class="badge">&zeta;</div>
+				A GreenZeta Production
+			</a>
+        </div>
+        
         <script type="text/javascript" src="phonegap.js"></script>
         <script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>
         <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=true"></script>
@@ -193,6 +210,7 @@
 	    <script src="js/cUserLocation.js"></script>
 	    <script src="js/cUserProfile.js"></script>
 	    <script src="js/cUserLogin.js"></script>
+	    <script src="js/cInfo.js"></script>
 		
 		<script type="text/javascript" src="js/util.js"></script>
         <script type="text/javascript" src="js/index.js"></script>

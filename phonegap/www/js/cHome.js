@@ -3,7 +3,7 @@ function Home(){
     this.panel = new Panel('home');
     
     this.panel.elem.find('.showuserprofile').click(this.ShowUserProfile(this));
-    this.panel.elem.find('.showuserlogin').click(this.ShowUserLogin(this));
+    this.panel.elem.find('.showinfo').click(this.ShowInfo(this));
     
 }
 
@@ -14,12 +14,9 @@ Home.prototype.ShowUserProfile = function(self){
    };
 };
 
-Home.prototype.ShowUserLogin = function(self){
+Home.prototype.ShowInfo = function(self){
    return function(){
-       //panel['userlogin'].Load();
-       // For testing, clear out userid val
-       lsUserId = 0;
-       localStorage["userid"] = 0;
+       panel['info'].Load();
        return false;
    };
 };
