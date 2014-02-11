@@ -36,12 +36,13 @@ body {
         color-stop(0.51, #E4E4E4)
     );
     background-attachment:fixed;
-    font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+    /*font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;*/
+    font-family: 'Open Sans', sans-serif;
     font-size:12px;
     height:100%;
     margin:0px;
     padding:0px;
-    text-transform:uppercase;
+    /*text-transform:uppercase;*/
     width:100%;
 }
 
@@ -278,6 +279,10 @@ html, body{
 	padding: 10px 0px;
 }
 
+.panel .tabs li.selected a {
+font-weight: bold;
+}
+
 .panel .tabpanel{
 	clear:both;
 	height:100%;
@@ -477,7 +482,7 @@ a.close span{
 	position: absolute;
 }
 
-.panel .header #streetview, .panel .header #prizephoto{
+.panel .header #streetview, .panel .header #prizephoto, .panel .header #homeview{
 	width: 100%;
 	top: -100px;
 }
@@ -490,7 +495,7 @@ a.close span{
 	background: rgba(0,0,0,0.4);
 }
 
-.panel .header a.showdirections, .panel .header a.showuserlocation, .panel .header a.showuserlogin{
+.panel .header a.showdirections, .panel .header a.showuserlocation, .panel .header a.showinfo{
 	margin-right:200px;
 }
 
@@ -501,6 +506,10 @@ a.close span{
 #home .content{
 	overflow-x: hidden;
 	overflow-y: scroll;
+}
+
+#prize .checkins li{
+	min-height: 50px;
 }
 
 #location .content #staticmap{
@@ -686,6 +695,7 @@ a.close span{
 
 #userprofile #ckprofile .checkins .comment, #comments .checkins .comment{
 	float:left;
+	width: 75%;
 }
 
 #userprofile #ckprofile .checkins .icon img, #comments .checkins .icon img{
@@ -696,6 +706,97 @@ a.close span{
 #userlogin li{
 	margin-bottom:20px;
 }
+
+#aboutbox{
+	overflow-x: hidden;
+	overflow-y: scroll;
+	height: 85%;
+	width: 92%;
+	margin: 0px 4%;
+}
+
+#footer a.gz {
+	position:absolute;
+	width: auto;
+	height: 22px;
+	right:0px;
+	bottom:0px;
+	color: #fff;
+	line-height: 2.5em;
+	text-align: left;
+	font-weight: bold;
+	font-size: 0.75em;
+	background: rgba(0,0,0,0.8);
+	padding: 0px 10px;
+	text-decoration: none;
+}
+
+#footer a.gz .badge {
+	width: 22px;
+	height: 22px;
+	color: #fff;
+	text-align: center;
+	font-weight: normal;
+	font-size: 1.5em;
+	float: left;
+	margin-left: -10px;
+	margin-right: 10px;
+
+	background: #7cb750;
+	line-height: 1.5em;
+	font-family: serif;
+}
+
+/* Colors */
+
+.panel h1{
+	background: rgb(22,16,8); /* Old browsers */
+background: -moz-linear-gradient(top,  rgba(22,16,8,1) 0%, rgba(54,40,20,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(22,16,8,1)), color-stop(100%,rgba(54,40,20,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  rgba(22,16,8,1) 0%,rgba(54,40,20,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  rgba(22,16,8,1) 0%,rgba(54,40,20,1) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  rgba(22,16,8,1) 0%,rgba(54,40,20,1) 100%); /* IE10+ */
+background: linear-gradient(to bottom,  rgba(22,16,8,1) 0%,rgba(54,40,20,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#161008', endColorstr='#362814',GradientType=0 ); /* IE6-9 */
+
+
+background: rgb(54,40,20); /* Old browsers */
+background: -moz-linear-gradient(top,  rgba(54,40,20,1) 0%, rgba(22,16,8,1) 97%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(54,40,20,1)), color-stop(97%,rgba(22,16,8,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  rgba(54,40,20,1) 0%,rgba(22,16,8,1) 97%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  rgba(54,40,20,1) 0%,rgba(22,16,8,1) 97%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  rgba(54,40,20,1) 0%,rgba(22,16,8,1) 97%); /* IE10+ */
+background: linear-gradient(to bottom,  rgba(54,40,20,1) 0%,rgba(22,16,8,1) 97%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#362814', endColorstr='#161008',GradientType=0 ); /* IE6-9 */
+
+
+}
+
+.panel, .popup, a.close span {
+	color: #333;
+	background: #fafafa;
+}
+
+.panel .linearlist li, .popup .linearlist li {
+	border-color: #ddd;
+}
+
+.panel .tabs li {
+	background-color: #aaa;
+}
+
+.panel .tabs li a {
+	color: #fff;
+}
+
+.panel .tabs li.selected {
+	background-color: #fafafa;
+}
+
+.panel .tabs li.selected a {
+	color: #333;
+}
+
 
 /* Smartphones (portrait) ----------- */
 @media only screen 
@@ -735,7 +836,7 @@ a.close span{
 		font-size: 40px;
 		line-height: 70px;
 	}
-	.panel .header a.showdirections, .panel .header a.showuserlocation, .panel .header a.showuserlogin{
+	.panel .header a.showdirections, .panel .header a.showuserlocation, .panel .header a.showinfo{
 		margin-right:75px;
 	}
 	.panel .header {

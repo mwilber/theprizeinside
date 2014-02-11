@@ -39,6 +39,7 @@ Prize.prototype.Back = function(self){
 Prize.prototype.ShowLocations = function(self){
    return function(){
        self.HideTabPanels();
+       self.panel.elem.find('.tablocations').addClass('selected');
 	   self.panel.elem.find('#locations').show();
        return false;
    };
@@ -47,6 +48,7 @@ Prize.prototype.ShowLocations = function(self){
 Prize.prototype.ShowMap = function(self){
    return function(){
        self.HideTabPanels();
+       self.panel.elem.find('.tabmap').addClass('selected');
 	   self.panel.elem.find('#map').show();
 	   if( !self.locmap ) self.InitMap(self); else self.PlaceVenueMarkers(self);
        return false;
@@ -56,6 +58,7 @@ Prize.prototype.ShowMap = function(self){
 Prize.prototype.ShowComments = function(self){
    return function(){
        self.HideTabPanels();
+       self.panel.elem.find('.tabcomments').addClass('selected');
 	   self.panel.elem.find('#comments').show();
        return false;
    };
@@ -170,6 +173,7 @@ Prize.prototype.HandleLocationData = function(self){
         self.locationdata = response.response;
         
 		self.panel.elem.find('#locations').show();
+		self.panel.elem.find('.tablocations').addClass('selected');
 		self.panel.elem.find('#locations ul').empty();
 		
         for( idx in response.response.venues ){
@@ -277,6 +281,7 @@ Prize.prototype.PlaceMarker = function(self, pLoc){
 Prize.prototype.HideTabPanels = function()
 {
 	this.panel.elem.find('.tabpanel').hide();
+	this.panel.elem.find('.tabs li').removeClass('selected');
 };
 
 Prize.prototype.Show = function(){

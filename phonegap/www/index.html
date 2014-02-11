@@ -22,6 +22,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="format-detection" content="telephone=no" />
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, target-densitydpi=device-dpi" />
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=latin,greek' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="css/font-awesome.min.css">
         <link rel="stylesheet" type="text/css" href="css/index.css" />
         <title>The Prize Inside</title>
@@ -68,9 +69,9 @@
 				</div>
 				<div class="content">
 				<ul class="tabs">
-				  <li><a id="btnlocations" href="#">Locations</a></li>
-				  <li><a id="btnmap" href="#">Map</a></li>
-				  <li><a id="btncomments" href="#">Comments</a></li>
+				  <li class="tablocations selected"><a id="btnlocations" href="#">Locations</a></li>
+				  <li class="tabmap"><a id="btnmap" href="#">Map</a></li>
+				  <li class="tabcomments"><a id="btncomments" href="#">Comments</a></li>
 				</ul>
 				<div id="locations" class="tabpanel">
 				  <ul class="linearlist"><!-- AJAX Data here --></ul>
@@ -191,7 +192,7 @@
         </div>
         
         <div id="footer">
-        	<a href="http://www.greenzeta.com" target="_blank" class="gz">
+        	<a href="http://www.greenzeta.com/home/listing/product" target="_blank" class="gz">
 				<div class="badge">&zeta;</div>
 				A GreenZeta Production
 			</a>

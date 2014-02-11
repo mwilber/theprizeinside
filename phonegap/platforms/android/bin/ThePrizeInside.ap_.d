@@ -109,6 +109,7 @@
 /Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/res/icon/bada-wac/icon-48-type5.png \
 /Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/res/icon/bada-wac/icon-80-type4.png \
 /Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/res/icon/bada-wac/icon-50-type3.png \
+/Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/img/homebanner.jpg \
 /Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/img/logo.png \
 /Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/img/add_photo.png \
 /Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/js/cPanel.js \
@@ -123,6 +124,7 @@
 /Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/js/cLocation.js \
 /Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/js/cPrize.js \
 /Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/js/util.js \
+/Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/js/cInfo.js \
 /Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/js/cUserProfile.js \
 /Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/js/cLSGatekeeper.js \
 /Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/spec/helper.js \
