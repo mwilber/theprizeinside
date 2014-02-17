@@ -95,13 +95,23 @@ class Checkin extends CI_Controller
 	        		if( isset($share[$authRec->authService]) ){
 						switch ($authRec->authService) {
 							case 'Facebook':
+								// $attachment =  array(
+									// 'access_token' => $authRec->authToken,
+									// 'message' => $_POST['checkinComment'],
+									// 'name' => $prizeName,
+									// 'link' => $prizeUrl,
+									// 'description' => 'When a burger is a burger, and a burrito makes no difference, choose your fast food by The Prize Inside!',
+									// 'picture'=>$_POST['checkinPhoto'],
+									// //'actions' => json_encode(array('name' => $action_name,'link' => $action_link))
+									// );
+									
 								$attachment =  array(
 									'access_token' => $authRec->authToken,
 									'message' => $_POST['checkinComment'],
-									'name' => $prizeName,
+									'name' => 'testname',
 									'link' => $prizeUrl,
-									'description' => 'When a burger is a burger, and a burrito makes no difference, choose your fast food by The Prize Inside!',
-									'picture'=>$_POST['checkinPhoto'],
+									'description' => 'testdescription',
+									'picture'=>'',
 									//'actions' => json_encode(array('name' => $action_name,'link' => $action_link))
 									);
 								
