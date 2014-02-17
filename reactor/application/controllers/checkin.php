@@ -77,6 +77,10 @@ class Checkin extends CI_Controller
 	        
 	        //Social Media Post here
 	        if($nId > 0){
+	        	
+	        	// Verify the record is there
+	        	$data['record'] = $this->$model_ref->Get(array($this->$model_ref->_pk() => $nId));
+	        	
 	        	$this->load->model('auth_model');
 	        	$this->load->model('prize_model');
 	        	$authRecs = $this->auth_model->Get(array('profileId'=>$_POST['profileId']));
@@ -95,25 +99,15 @@ class Checkin extends CI_Controller
 	        		if( isset($share[$authRec->authService]) ){
 						switch ($authRec->authService) {
 							case 'Facebook':
-								// $attachment =  array(
-									// 'access_token' => $authRec->authToken,
-									// 'message' => $_POST['checkinComment'],
-									// 'name' => $prizeName,
-									// 'link' => $prizeUrl,
-									// 'description' => 'When a burger is a burger, and a burrito makes no difference, choose your fast food by The Prize Inside!',
-									// 'picture'=>$_POST['checkinPhoto'],
-									// //'actions' => json_encode(array('name' => $action_name,'link' => $action_link))
-									// );
-									
-								$attachment =  array(
-									'access_token' => $authRec->authToken,
-									'message' => $_POST['checkinComment'],
-									'name' => 'testname',
-									'link' => 'http://theprizeinside.com/ck/700',
-									'description' => 'testdescription',
-									'picture'=>'',
-									//'actions' => json_encode(array('name' => $action_name,'link' => $action_link))
-									);
+								 $attachment =  array(
+									 'access_token' => $authRec->authToken,
+									 'message' => $_POST['checkinComment'],
+									 'name' => $prizeName,
+									 'link' => $prizeUrl,
+									 'description' => 'When a burger is a burger, and a burrito makes no difference, choose your fast food by The Prize Inside!',
+									 'picture'=>$_POST['checkinPhoto'],
+									 //'actions' => json_encode(array('name' => $action_name,'link' => $action_link))
+									 );
 								
 								print_r($attachment);
 								
