@@ -44,7 +44,7 @@ class SrvList extends CI_Controller {
 		
 		foreach ($data as $prize) {
 			$prize->restaurant = $this->restaurant_model->Get(array('restaurantId'=>$prize->restaurantId));
-			$prize->checkins = $this->checkin_model->Get(array('prizeId'=>$prize->prizeId, 'limit'=>10));
+			$prize->checkins = $this->checkin_model->Get(array('prizeId'=>$prize->prizeId, 'limit'=>10, 'sortBy'=>'checkinTimeStamp','sortDirection'=>'DESC'));
 		}
 		
 		header('Content-type: application/json');
