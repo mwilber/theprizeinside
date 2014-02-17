@@ -5,7 +5,20 @@
 function DoToggle(self){
 	return function(elem){
 		DebugOut(elem);
-		$(elem.target).toggleClass('selected');
+		
+		if( $(elem.target).attr('id') == "checkinAnonymous" ){
+			if( $(elem.target).hasClass('fa-square-o') ){
+				$(elem.target).removeClass('fa-square-o');
+				$(elem.target).addClass('fa-check-square-o');
+				//$('#msgAnonymous').html(lang.en.checkinAnonymous);
+			}else{
+				$(elem.target).addClass('fa-square-o');
+				$(elem.target).removeClass('fa-check-square-o');
+				//$('#msgAnonymous').html(lang.en.checkinPublic);
+			}
+		}else{
+			$(elem.target).toggleClass('selected');
+		}
 	};
 	
 };

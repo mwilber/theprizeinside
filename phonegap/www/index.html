@@ -109,18 +109,20 @@
 			
 			<div id="checkin" class="popup">
 				<a class="close" href="#"><span class="fa fa-times"></span></a>
-				<h1>Checkin</h1>
-				<label>Message</label>
-				<textarea id="checkinComment"></textarea>
-				<label>Add A Photo</label>
-				<a id="setpic" href="#"><img id="myImage" src="img/add_photo.png" width="100%" height="100%"/></a>
-				<div>
-					<div id="checkinAnonymous" class="button toggle">Anonymous</div>
-					<div id="checkinTwitter" class="button share toggle selected fa fa-twitter-square"> </div>
-					<div id="checkinFacebook" class="button share toggle selected fa fa-facebook-square"> </div>
+				<h1>Share</h1>
+				<p class="prizename"></p><a id="setpic" href="#"><img id="myImage" src="img/add_photo.png"/></a>
+				<textarea id="checkinComment">Comment</textarea>
+				
+				<div style="margin-left:4%;">
+					<div id="checkinAnonymous" class="button toggle fa fa-square-o"></div>
+					<label id="msgAnonymous">Do not post my name and location on The Prize Inside website.</label>
+					<div class="clearfix"></div>
+					<div id="checkinTwitter" class="button share toggle selected fa fa-twitter"> </div>
+					<div id="checkinFacebook" class="button share toggle selected fa fa-facebook"> </div>
 					<div id="checkinFoursquare" class="button share toggle selected fa fa-foursquare"> </div>
 				</div>
-				<a id="btnCheckin" href="#" class="button">Checkin</a>
+				<div class="clearfix"></div>
+				<a id="btnCheckin" href="#" class="button">Share</a>
 			</div>
 			
 			<div id="userlocation" class="popup">

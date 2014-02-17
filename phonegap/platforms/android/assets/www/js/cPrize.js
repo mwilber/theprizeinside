@@ -6,6 +6,7 @@ function Prize(){
     this.restaurantid = null;
     this.restaurantalias = null;
     this.prizeid = null;
+    this.prizeName = "";
     this.locmap = null;
     this.bounds = new google.maps.LatLngBounds();
     this.markersArray = [];
@@ -83,6 +84,7 @@ Prize.prototype.Load = function(pPrize){
     this.restaurantalias = pPrize.restaurant.restaurantAlias;
     try{
     	this.prizeid = pPrize.prizeId;
+    	this.prizeName = pPrize.prizeName;
     	for( idx in pPrize.checkins ){
     		DebugOut("Checkin Photo: "+pPrize.checkins[idx].checkinPhoto);
     		if( pPrize.checkins[idx].checkinPhoto != "" ){
@@ -262,7 +264,8 @@ Prize.prototype.PlaceMarker = function(self, pLoc){
         title: pLoc.name,
         //locaddress: pLoc.locationAddress,
         //locdescription: pLoc.locationDescription,
-        location: pLoc
+        location: pLoc,
+        optimized: false
     });
     
     self.markersArray.push(tmpMarker);

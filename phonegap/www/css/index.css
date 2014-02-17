@@ -115,6 +115,10 @@ h1 {
     -webkit-animation:fade 3000ms infinite;
 }
 
+.clearfix{
+	clear:both;
+}
+
 
 /*
 	App specific styles here
@@ -151,7 +155,7 @@ html, body{
 #container{
 	width: 100%;
 	min-height: 100%;
-	overflow-x: hidden;
+	overflow: hidden;
 	position: absolute;
 	top: 0px;
 	left: 0px;
@@ -302,6 +306,17 @@ font-weight: bold;
 	border: solid 1px #161008;
 	z-index:1000;
 	display:none;
+	-webkit-box-shadow: 0 0 25px 1px rgba(0,0,0,1);
+	box-shadow: 0 0 25px 1px rgba(0,0,0,1);
+}
+
+.popup h1{
+	font-size:40px;
+    font-weight:bold;
+    margin:0px;
+    padding:0px;
+    text-align:center;
+    text-transform: uppercase;
 }
 
 a.back {
@@ -336,7 +351,7 @@ a.close span{
 	padding: 0px;
 	margin: 0px 10px 0px 0px;
 	vertical-align: middle;
-	line-height: 60px;
+	line-height: 52px;
 	width:auto;
 	text-transform: uppercase;
 	color:#161008;
@@ -433,7 +448,7 @@ a.close span{
 	padding: 10px 30px 10px 30px;
 	background:rgba(255,255,255,0.1);
 	min-height: 70px;
-	font-size: 18px;
+	font-size: 24px;
 }
 
 .panel .linearlist li a, .popup .linearlist li a{
@@ -508,10 +523,6 @@ a.close span{
 	overflow-y: scroll;
 }
 
-#prize .checkins li{
-	min-height: 50px;
-}
-
 #location .content #staticmap{
 	margin: 2%;
 }
@@ -530,7 +541,14 @@ a.close span{
 
 #location .content .vcard p{
 	margin: 0px 5px;
-	font-size: 12px;
+	font-size: 24px;
+}
+
+#checkin .prizename{
+	width: 50%;
+	float: left;
+	font-size: 24px;
+	margin: 0px 0px 4% 4%;
 }
 
 #checkin textarea{
@@ -543,24 +561,54 @@ a.close span{
 
 #checkin label{
 	width: 100%;
-	font-size: 18px;
+	font-size: 24px;
 	display: block;
-	margin: 10px;
+	margin: 10px 20px;
 }
 
 #checkin a#setpic{
-	margin: 0px 4%;
-	width: 90%;
-	height: 33%;
+	margin: 5px 4%;
 	display: block;
 	overflow: hidden;
+	float: right;
+	border: solid 1px #aaa;
 }
 
 #checkin #btnCheckin{
 	display: block;
-	width: 50%;
-	margin-top: 20px;
+	width: 90%;
+	margin: 10px 4%;
+	padding: 10px 0px;
+	text-transform: uppercase;
+	color: #161008;
+	border-color: #161008;
 }
+
+#checkin #checkinAnonymous {
+	width: auto;
+	float: left;
+	margin: 5px;
+	color: #161008;
+	border: none;
+	padding: 10px;
+}
+
+#checkin #msgAnonymous {
+	font-size: 18px;
+	line-height: 24px;
+	padding: 5px;
+	margin-right: 4%;
+	display: block;
+	width: auto;
+}
+
+#checkin .button.toggle.share{
+	width: auto;
+	float: left;
+	margin: 10px 5px;
+	font-size: 24px;
+}
+
 
 .button{
 	padding:10px 25px;
@@ -716,34 +764,33 @@ a.close span{
 }
 
 #footer a.gz {
-	position:absolute;
+	position: absolute;
 	width: auto;
-	height: 22px;
-	right:0px;
-	bottom:0px;
+	height: 36px;
+	right: 0px;
+	bottom: 0px;
 	color: #fff;
-	line-height: 2.5em;
+	line-height: 33px;
 	text-align: left;
 	font-weight: bold;
-	font-size: 0.75em;
+	font-size: 24px;
 	background: rgba(0,0,0,0.8);
 	padding: 0px 10px;
 	text-decoration: none;
 }
 
 #footer a.gz .badge {
-	width: 22px;
-	height: 22px;
+	width: 36px;
+	height: 36px;
 	color: #fff;
 	text-align: center;
 	font-weight: normal;
-	font-size: 1.5em;
+	font-size: 32px;
 	float: left;
 	margin-left: -10px;
 	margin-right: 10px;
-
 	background: #7cb750;
-	line-height: 1.5em;
+	line-height: 33px;
 	font-family: serif;
 }
 
@@ -772,8 +819,21 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#362814', end
 
 }
 
-.panel, .popup, a.close span {
+.popup h1{
+    background: #362814;
+    color: #FFFFB2;
+}
+
+.panel, .popup {
 	color: #333;
+}
+
+a.close span {
+	color: #72695B;
+}
+
+
+.panel, .popup {
 	background: #fafafa;
 }
 
@@ -845,7 +905,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#362814', end
 	.panel .tabs li a {
 		font-size: 14px;
 	}
-	.panel .linearlist li {
+	.panel .linearlist li, .popup .linearlist li {
 		font-size: 14px;
 	}
 	
@@ -860,6 +920,37 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#362814', end
 		font-size: 20px;
 		line-height: 45px;
 	}
+	
+	#prize .checkins li{
+		min-height: 50px;
+	}
+	
+	#location .content .vcard p {
+		margin: 0px 5px;
+		font-size: 12px;
+	}
+	
+	#checkin #msgAnonymous {
+		font-size: 14px;
+		line-height: 18px;
+	}
+	
+	#footer a.gz {
+		height: 22px;
+		line-height: 2.5em;
+		font-size: 0.75em;
+	}
+	
+	#footer a.gz .badge {
+		width: 22px;
+		height: 22px;
+		font-size: 1.5em;
+		margin-left: -10px;
+		margin-right: 10px;
+		line-height: 1.5em;
+	}
+	
+
 }
 
 
