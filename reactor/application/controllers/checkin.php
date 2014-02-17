@@ -395,4 +395,36 @@ class Checkin extends CI_Controller
 	    $this->session->set_flashdata('flashConfirm', 'The user has been successfully deleted.');
 	    redirect($this->uri->segment(1));
 	}
+	
+	public function fbpost(){
+		// TODO: Get profileid from POST
+		$profileId = 2;
+		
+		$attachment =  array(
+		'access_token' => "CAAEeMG4lZCK8BAAZBZAtfZB4WFIRJKQlvPtuTsVZC0VZCOz8ZAcMoZCi1fAlt0L1dI4SV1cLeGYCgyekZB55WFjtJ3jybOH7quZAn0VeCg0Ijt8aJWWgqZArKpKOupZAkvl79pmSkKlZBuZAPpDFOveKH3qtiGnoznuYCc1RAt0n7YwxyR5dw14wfUFLMv",
+		'message' => "I'm Batman!!!!",
+		'name' => "Lego Movie Cups",
+		'link' => "http://theprizeinside.com/ck/591",
+		'description' => 'When a burger is a burger, and a burrito makes no difference, choose your fast food by The Prize Inside!',
+		'picture'=>""
+		//'actions' => json_encode(array('name' => $action_name,'link' => $action_link))
+		);
+		
+		print_r($attachment);
+		
+		echo "-- about to send --";
+		
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL,'https://graph.facebook.com/1057805234/feed');
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
+		curl_setopt($ch, CURLOPT_POST, true);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $attachment);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);  //to suppress the curl output 
+		$result = curl_exec($ch);
+		curl_close ($ch);
+		
+		echo "result: ";
+		print_r($result);
+	}
 }
