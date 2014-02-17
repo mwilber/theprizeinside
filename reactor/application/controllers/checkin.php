@@ -109,7 +109,7 @@ class Checkin extends CI_Controller
 									'access_token' => $authRec->authToken,
 									'message' => $_POST['checkinComment'],
 									'name' => 'testname',
-									'link' => $prizeUrl,
+									'link' => 'http://theprizeinside.com/ck/591',
 									'description' => 'testdescription',
 									'picture'=>'',
 									//'actions' => json_encode(array('name' => $action_name,'link' => $action_link))
