@@ -76,6 +76,11 @@ Home.prototype.HandlePrizeData = function(self){
                  .click(self.HandlePrizeClick(self,value))
             ); 
          }
+         ////////////////////////////////////////////
+	    // For Testing
+	    ////////////////////////////////////////////
+	    panel['prize'].Load(response[1]);
+	    ////////////////////////////////////////////
     };
 };
 

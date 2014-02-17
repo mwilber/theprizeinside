@@ -196,7 +196,11 @@ Prize.prototype.HandleLocationData = function(self){
 	            );
            	}
          }
-		 
+		 ////////////////////////////////////////////
+	    // For Testing
+	    ////////////////////////////////////////////
+	    panel['location'].Load(response.response.venues[1]);
+	    ////////////////////////////////////////////
     };
 };
 

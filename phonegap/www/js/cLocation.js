@@ -57,6 +57,12 @@ Location.prototype.Load = function(pLocation){
     
     DebugOut(pLocation);
     
+    ////////////////////////////////////////////
+    // For Testing
+    ////////////////////////////////////////////
+    panel['checkin'].Load(null,pLocation);
+    ////////////////////////////////////////////
+    
     this.Show();  
 };
 
