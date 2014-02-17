@@ -60,7 +60,7 @@ Location.prototype.Load = function(pLocation){
     ////////////////////////////////////////////
     // For Testing
     ////////////////////////////////////////////
-    panel['checkin'].Load(null,pLocation);
+    //panel['checkin'].Load(null,pLocation);
     ////////////////////////////////////////////
     
     this.Show();  
