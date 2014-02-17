@@ -13,7 +13,15 @@ if(isset($_GET['ck'])){
 	}
 	
 	$checkinRS = mysql_query("SELECT tblCheckin.checkinId,checkinLat,checkinLng,checkinComment,checkinPhoto,checkinTimeStamp,restaurantName,prizeName,profileNickname,profilePicture FROM tblCheckin INNER JOIN tblRestaurant ON tblCheckin.restaurantId=tblRestaurant.restaurantId INNER JOIN tblPrize ON tblCheckin.prizeId=tblPrize.prizeId INNER JOIN tblProfile ON tblCheckin.profileId=tblProfile.profileId WHERE checkinId=".$_GET['ck']);
-	$checkin = mysql_fetch_assoc($checkinRS)
+	$checkin = mysql_fetch_assoc($checkinRS);
+	
+	if( $checkin['prizeName'] == "" ){
+		$checkin['prizeName']="The Prize Inside";
+	}
+	
+	if( $checkin['checkinPhoto'] == "" ){
+		$checkin['checkinPhoto']="http://theprizeinside.com/img/fb_icon.png";
+	}
 ?>
 <!DOCTYPE html>
 <html>
