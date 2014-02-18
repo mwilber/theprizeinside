@@ -90,7 +90,7 @@
 				<h1 class="name"><!-- AJAX Data here --></h1>
 				<div class="header">
 					<img id="streetview" src=""/>
-					<a class="showdirections fa fa-road" target="_blank"></a>
+					<a class="showdirections fa fa-road"></a>
 					<a class="showcheckin fa fa-thumbs-up"></a>
 				</div>
 				<div class="content">
@@ -113,7 +113,7 @@
 				<p class="prizename"></p><a id="setpic" href="#"><img id="myImage" src="img/add_photo.png"/></a>
 				<textarea id="checkinComment">Comment</textarea>
 				
-				<div style="margin-left:4%;">
+				<div style="margin: 1% 5%;">
 					<div id="checkinAnonymous" class="button toggle fa fa-square-o"></div>
 					<label id="msgAnonymous">Do not post my name and location on The Prize Inside website.</label>
 					<div class="clearfix socialbreak"></div>
@@ -127,14 +127,15 @@
 			
 			<div id="userlocation" class="popup">
 				<a class="close" href="#"><span class="fa fa-times"> </span></a>
-				<h1>Set Your Location</h1>
-				<a class="location" href="#" onclick="return false;">Location: <span> </span></a>
-				<h2>Change Location</h2>
-				<p>Enter an address to search:</p>
+				<h1>Set Location</h1>
+				<div id="locsearchbox">
+					<p>Enter an address to search:</p>
 					<input id="loctext" value=""/>
 					<a id="btnlocsearch" href="#" class="button" onclick="return false;">Search</a>
-					<br/><br/>
-					<a id="btngpssearch" href="#" class="button" onclick="return false;">USE GPS</a>
+					<a id="btngpssearch" href="#" class="button fa fa-crosshairs" onclick="return false;"></a>
+				</div>
+				<img class="locationmap" src="" />
+				<a class="location" href="#" onclick="return false;">Location: <span> </span></a>
 			</div>
 			
 			<div id="userprofile" class="popup">
@@ -194,7 +195,7 @@
         </div>
         
         <div id="footer">
-        	<a href="http://www.greenzeta.com/home/listing/product" target="_blank" class="gz">
+        	<a href="#" onclick="window.open('http://www.greenzeta.com/home/listing/product', '_system'); return false;" class="gz">
 				<div class="badge">&zeta;</div>
 				A GreenZeta Production
 			</a>

@@ -33,14 +33,27 @@ Location.prototype.Load = function(pLocation){
     this.panel.elem.find('.postal-code').empty();
     this.panel.elem.find('.country-name').empty();
     this.panel.elem.find('.tel').empty();
+    
+    var offsetheight =  this.panel.elem.find('.header').height()+this.panel.elem.find('.tabs').height()+this.panel.elem.find('.name').height()+(parseInt(this.panel.elem.find('.name').css('padding-top'))*2);
+    
+    DebugOut('offsetheight: '+offsetheight);
+    
+    // Size the map to fit the panel
+    var mapHeight = 640;
+    var mapWidth = Math.floor(640*(this.panel.elem.width()/(this.panel.elem.height()-offsetheight)));
+    //this.panel.elem.find('.tabpanel').css('width',this.panel.elem.width()+"px");
+    //this.panel.elem.find('.tabpanel').css('height',(this.panel.elem.height()-offsetheight)+"px");
         
     //Make the static map url
-    var mapurl = "http://maps.googleapis.com/maps/api/staticmap?zoom=13&size="+Math.floor(this.panel.elem.width()*0.96)+"x"+Math.floor(this.panel.elem.height()/2)+"&maptype=roadmap&markers=color:red%7Clabel:C%7C"+pLocation.location.lat+","+pLocation.location.lng+"&sensor=false";
+    var mapurl = "http://maps.googleapis.com/maps/api/staticmap?zoom=13&size="+mapWidth+"x"+mapHeight+"&maptype=roadmap&markers=color:red%7Clabel:C%7C"+pLocation.location.lat+","+pLocation.location.lng+"&sensor=false";
     var streeturl = "http://maps.googleapis.com/maps/api/streetview?location="+pLocation.location.address+","+pLocation.location.postalCode+"&size="+this.panel.elem.width()+"x"+Math.floor(this.panel.elem.find('.header').height()+200)+"&sensor=false";
     
     // Fill in the Location info
     this.panel.elem.find('.name').html(pLocation.name);
-    this.panel.elem.find('.showdirections, .mapdirections').attr('href', 'http://maps.google.com/?saddr='+userLocation.lat()+","+userLocation.lng()+'&daddr='+pLocation.location.address+","+pLocation.location.postalCode);
+    this.panel.elem.find('.showdirections, .mapdirections').click(function(){
+    	window.open('http://maps.google.com/?saddr='+userLocation.lat()+','+userLocation.lng()+'&daddr='+pLocation.location.address+','+pLocation.location.postalCode, '_system');
+    	return false;
+    });
     this.panel.elem.find('#staticmap').attr('src',mapurl);
     this.panel.elem.find('#streetview').attr('src',streeturl);
     

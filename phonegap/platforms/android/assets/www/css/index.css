@@ -273,6 +273,10 @@ html, body{
   text-align: center;
 }
 
+.panel .tabs li:last-child{
+	width:34%;
+}
+
 .panel .tabs li a{
   width:100%;
   height:auto;
@@ -339,7 +343,7 @@ a.back span {
 	vertical-align: middle;
 	margin-right: 10px;
 	float: left;
-	margin-top: -19px;
+	margin-top: -17px;
 }
 
 a.close{
@@ -444,7 +448,7 @@ a.close{
 	border-bottom: solid 1px #161008;	
 	margin-top: 0px;
 	display:block;
-	padding: 10px 30px 10px 30px;
+	padding: 20px 30px 20px 30px;
 	background:rgba(255,255,255,0.1);
 	min-height: 70px;
 	font-size: 24px;
@@ -523,14 +527,16 @@ a.close{
 }
 
 #location .content #staticmap{
-	margin: 2%;
+	margin: 0%;
+	width: 100%;
+	height: 100%;
 }
 
 #location .content .vcard{
-	float:left;
-	margin:2%;
-	padding:2%;
-	width: 92%;
+	position:absolute;
+	margin: 10% 2%;
+	padding: 5% 4%;
+	width: 88%;
 	color:#000;
 	background:#fff;
 	border:solid 1px #ccc;
@@ -588,15 +594,15 @@ a.close{
 #checkin #checkinAnonymous {
 	width: auto;
 	float: left;
-	margin: 0px;
+	margin: 0px 10px 0px 0px;
 	color: #161008;
 	border: none;
-	padding: 10px 20px;
+	padding: 15px 20px;
 }
 
 #checkin #msgAnonymous {
 	font-size: 18px;
-	line-height: 24px;
+	line-height: 32px;
 	padding: 5px;
 	margin: 0px 4% 0px 0px;
 	display: block;
@@ -604,7 +610,7 @@ a.close{
 }
 
 #checkin .socialbreak{
-	margin:10%;
+	margin:6%;
 }
 
 #checkin .button.toggle.share{
@@ -612,7 +618,7 @@ a.close{
 	float: left;
 	margin: 10px 5px;
 	font-size: 24px;
-	padding: 20px 30px;
+	padding: 10px 20px;
 }
 
 
@@ -842,8 +848,12 @@ a.close span {
 }
 
 
-.panel, .popup {
+.panel {
 	background: #fafafa;
+}
+
+.popup {
+	background:#F5F2ED;
 }
 
 .panel .linearlist li, .popup .linearlist li {
@@ -864,6 +874,12 @@ a.close span {
 
 .panel .tabs li.selected a {
 	color: #333;
+}
+
+#checkin #btnCheckin {
+	color: #FFFFee;
+	border-color: #85673E;
+	background: #85673E;
 }
 
 
