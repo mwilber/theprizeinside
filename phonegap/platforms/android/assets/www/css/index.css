@@ -305,13 +305,14 @@ font-weight: bold;
 	left: 2%;
 	width: 96%;
 	height: auto;
+	min-height:200px;
 	background:#FAF6F1;
 	padding:0px;
 	border: solid 1px #161008;
 	z-index:1000;
 	display:none;
-	-webkit-box-shadow: 0 0 100px 50px rgba(155,155,155,0.8);
-	box-shadow: 0 0 100px 50px rgba(155,155,155,0.8);
+	-webkit-box-shadow: 0 0 50px 30px rgba(210,210,200,0.8);
+	box-shadow: 0 0 50px 30px rgba(210,210,200,0.8);
 }
 
 .popup h1{
@@ -659,12 +660,13 @@ a.close{
 }
 
 #userprofile #editprofile .button{
-	float:left;
-	margin-left:20px;
-	font-size:24px;
+	float: left;
+	margin: 0px 0px 0px 10px;
+	font-size: 38px;
 }
 
-#userprofile #editprofile label, #userprofile #editprofile #showview{
+#userprofile #editprofile label{
+	font-size:18px;
 	clear:left;
 }
 
@@ -677,20 +679,41 @@ a.close{
 	display:none;
 }
 
+#userprofile input.nickname{
+	width:50%;
+}
+
 #userprofile .name, #userprofile .nickname, #userprofile #showedit{
 	float:left;
 	clear:left;
-	margin:0px 0px 10px 0px;
+	margin:0px 0px 5px 0px;
 }
 
 #userprofile .avatar, #userprofile .profileid{
 	float:right;
-	clear:right;
+}
+
+#userprofile #checkincount{
+	float:right;
+	width:75px;
+	height:65px;
+	margin:0px 15px;
+	padding:5px;
+	border: solid 1px #aaa;
+	text-align: center;
+}
+
+#userprofile #checkincount .number{
+	font-size: 50px;
+	line-height: 50px;
+	font-weight: bold;
 }
 
 #userprofile .avatar{
-	width:150px;
-	height:150px;
+	width: 75px;
+	height: 75px;
+	float: left;
+	margin-right:15px;
 }
 
 #userprofile .profileid{
@@ -700,20 +723,24 @@ a.close{
 }
 
 #userprofile #btnlogout{
-	clear: both;
-	margin: 20px 25% 0px 25%;
 	display: block;
-	float: left;
-	width: 50%;
-	font-size:24px;
+	width: 92%;
+	margin: 10% 4% 8% 4%;
+	padding: 20px 0px;
+	text-transform: uppercase;
+	color: #161008;
+	border-color: #161008;
+	font-size: 24px;
 }
 
 #userprofile .nickname{
-	font-size:48px;
+	font-size: 48px;
+	line-height: 35px;
 }
 
 #userprofile .name{
-	font-size:24px;
+	font-size:14px;
+	line-height:14px;
 }
 
 #userprofile #authed div{
@@ -726,9 +753,21 @@ a.close{
 	margin:10px;
 }
 
+#userprofile #addservicecopy{
+	display:none;
+}
+
+#userprofile .historytitle{
+	font-size: 24px;
+	margin: 25px 0px 5px 15px;
+	width: 100%;
+	float: left;
+	font-weight: bold;
+}
+
 #userprofile #ckprofile{
 	width:96%;
-	height:150px;
+	height:300px;
 	overflow-x:hidden;
 	overflow-y:auto;
 	margin:5px 2% 10px 2%;
@@ -749,10 +788,10 @@ a.close{
 }
 
 #userprofile #ckprofile .checkins .icon, #comments .checkins .icon{
-	float:left;
-	width:50px;
-	height:50px;
-	margin: 0px 5px 0px 0px;
+	float: left;
+	width: 65px;
+	height: 65px;
+	margin: 0px 10px 0px 0px;
 	padding: 0px;
 }
 
@@ -764,6 +803,44 @@ a.close{
 #userprofile #ckprofile .checkins .icon img, #comments .checkins .icon img{
 	width:100%;
 	height:100%;
+	float:left;
+}
+
+#userlocation #loctext{
+	font-size: 24px;
+	padding: 5px;
+	margin: 3px 10px 10px 0px;
+	display: block;
+	float: left;
+}
+
+#userlocation .location{
+	display:none;
+}
+
+#userlocation .locationmap{
+	float: right;
+	margin: 15px 15px 15px 0px;
+	border: solid 1px #aaa;
+}
+
+#userlocation #locsearchbox{
+	float:left;
+	margin-left: 15px;
+	font-size:18px;
+}
+
+#userlocation #locsearchbox a{
+	float:left;
+}
+
+#userlocation #locsearchbox #btnlocsearch{
+	display:block;
+	margin-right:5px;
+}
+
+#userlocation #locsearchbox #btngpssearch{
+	font-size:24px;
 }
 
 #userlogin li{
@@ -876,7 +953,7 @@ a.close span {
 	color: #333;
 }
 
-#checkin #btnCheckin {
+#checkin #btnCheckin, #userprofile #btnlogout {
 	color: #FFFFee;
 	border-color: #85673E;
 	background: #85673E;

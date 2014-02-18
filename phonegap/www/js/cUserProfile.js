@@ -159,6 +159,10 @@ UserProfile.prototype.HandleProfileData = function(self){
 		
 		  self.panel.elem.find('#authed').append(tmpAuthMarker);
 		}
+		
+		if(self.panel.elem.find('.addservice').length > response.profile.auth.length){
+			self.panel.elem.find('#addservicecopy').show();
+		}
     };
 };
 
@@ -166,6 +170,8 @@ UserProfile.prototype.HandleCheckinData = function(self){
     return function(response) {
     	DebugOut("checkin data incoming...");
         DebugOut(response);
+        
+        self.panel.elem.find('#checkincount .number').html(response.checkins.length);
         
         self.panel.elem.find('.checkins').empty();
          for( idx in response.checkins ){

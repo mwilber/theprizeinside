@@ -20,7 +20,7 @@ UserLocation.prototype.DoLocationSearch = function(self){
 		var geocoder = new google.maps.Geocoder();
 		geocoder.geocode( { 'address': searchloc}, function(results, status) {
         	if (status == google.maps.GeocoderStatus.OK) {
-        		$('#locationbox').fadeOut();
+        		//$('#locationbox').fadeOut();
         		HandleGeolocationQuery({coords:{latitude:results[0].geometry.location.lat(), longitude:results[0].geometry.location.lng()}});
         	} else {
         		alert('Could not find address: ' + status);
@@ -31,9 +31,15 @@ UserLocation.prototype.DoLocationSearch = function(self){
 
 UserLocation.prototype.DoGPSSearch = function(self){
 	return function(){
-		
-		alert('FPO');
+		QueryLocation();
 	};
+};
+
+UserLocation.prototype.Update = function(){
+	var mapurl = "http://maps.googleapis.com/maps/api/staticmap?zoom=13&size=200x200&maptype=roadmap&markers=color:red%7Clabel:C%7C"+userLocation.lat()+","+userLocation.lng()+"&sensor=false";
+	this.panel.elem.find('.locationmap').attr('src',mapurl);
+	
+	this.panel.elem.find('.location span').html(userLocation.lat()+", "+userLocation.lng());
 };
 
 UserLocation.prototype.Close = function(self){
@@ -45,7 +51,8 @@ UserLocation.prototype.Close = function(self){
 
 UserLocation.prototype.Load = function(){
 	
-	this.panel.elem.find('.location span').html(userLocation.lat()+", "+userLocation.lng());
+	//this.SetMap();
+	//this.panel.elem.find('.location span').html(userLocation.lat()+", "+userLocation.lng());
     
     this.Show();  
 };

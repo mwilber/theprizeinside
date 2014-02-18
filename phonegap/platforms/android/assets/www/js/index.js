@@ -125,6 +125,7 @@ function AppInit(){
 	panel['info'] = new Info();
 
     panel['home'].Load();
+    panel['userprofile'].Load();
 }
 
 function GetFSData(){

@@ -142,29 +142,38 @@
 				<a class="close" href="#"><span class="fa fa-times"> </span></a>
 				<h1>Profile</h1>
 				<div id="viewprofile">
+					<div id="checkincount">
+						<div class="number">&nbsp;</div>
+						<span>Prizes</span>
+					</div>
 					<img class="avatar" src=""/>
-					<h2 class="nickname"></h2>
-					<h3 class="name"></h3>
-					<p class="profileid"></p>
-					<a id="showedit" href="#">Edit</a>
+					<div style="float:left;">
+						<h2 class="nickname"></h2>
+						<h3 class="name"></h3>
+						<p class="profileid"></p>
+						<a id="showedit" href="#">Edit</a>
+					</div>
 				</div>
 				<div id="editprofile">
 					<label>Nickname:</label> <input id="nickname" class="nickname" />
+					<a id="showview" href="#" class="button fa fa-times"></a>
+					<a id="btnsave" href="#" class="button fa fa-check" onclick="return false;"></a>
 					<br/>
 					<label>Name:</label> <input id="name" class="name" />
-					<br/>
-					<a id="showview" href="#" class="button">Cancel</a>
-					<a id="btnsave" href="#" class="button" onclick="return false;">Save</a>
 				</div>
 				<div id="authprofile">
+					<div style="float:left; width:50%;">
 					<p>Currently signed in with:</p>
 					<div id="authed"></div>
-					<p>Add services to share:</p>
-					<a id="addfacebook" href="#" class="button fa fa-facebook-square" onclick="return false;"></a>
-					<a id="addtwitter" href="#" class="button fa fa-twitter-square" onclick="return false;"></a>
-					<a id="addfoursquare" href="#" class="button fa fa-foursquare" onclick="return false;"></a>
+					</div>
+					<div style="float:left;">
+					<p id="addservicecopy">Add services to share:</p>
+					<a id="addfacebook" href="#" class="button addservice fa fa-facebook-square" onclick="return false;"></a>
+					<a id="addtwitter" href="#" class="button addservice fa fa-twitter-square" onclick="return false;"></a>
+					<a id="addfoursquare" href="#" class="button addservice fa fa-foursquare" onclick="return false;"></a>
+					</div>
 				</div>
-				<p>History:</p>
+				<p class="historytitle">History</p>
 				<div id="ckprofile">
 					<ul class="checkins linearlist">
 						<!-- AJAX Data here -->
