@@ -812,6 +812,7 @@ a.close{
 	margin: 3px 10px 10px 0px;
 	display: block;
 	float: left;
+	width: 40%;
 }
 
 #userlocation .location{
