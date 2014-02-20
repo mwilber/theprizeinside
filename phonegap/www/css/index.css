@@ -134,6 +134,7 @@ h1 {
 html, body{
 	/*overflow:hidden;*/
 	color:#fff;
+	font-size:24px;
 }
 
 #header{
@@ -478,8 +479,9 @@ a.close{
 }
 
 .panel .linearlist li .restaurant{
-	font-weight:normal;
-	font-size: 14px;
+	font-weight: normal;
+	font-size: 18px;
+	line-height: 20px;
 }
 
 .panel .linearlist li .prize{
@@ -689,6 +691,14 @@ a.close{
 	margin:0px 0px 5px 0px;
 }
 
+#userprofile #showedit{
+	color:#333;
+}
+
+#userprofile .name{
+	margin: 0px;	
+}
+
 #userprofile .avatar, #userprofile .profileid{
 	float:right;
 }
@@ -705,13 +715,20 @@ a.close{
 
 #userprofile #checkincount .number{
 	font-size: 50px;
-	line-height: 50px;
+	line-height: 32px;
+	font-weight: bold;
+	margin-top: 5px;
+}
+
+#userprofile #checkincount span{
+	font-size: 14px;
+	line-height: 14px;
 	font-weight: bold;
 }
 
 #userprofile .avatar{
-	width: 75px;
-	height: 75px;
+	width: 85px;
+	height: 85px;
 	float: left;
 	margin-right:15px;
 }
