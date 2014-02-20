@@ -130,6 +130,7 @@ class SrvList extends CI_Controller {
 		$result->prize = $this->prize_model->Get(array($this->prize_model->_pk()=>$result->checkin->prizeId));
 		$result->restaurant = $this->restaurant_model->Get(array($this->restaurant_model->_pk()=>$result->checkin->restaurantId));
 		$result->profile = $this->profile_model->Get(array($this->profile_model->_pk()=>$result->checkin->profileId));
+		$result->profile->count = $this->checkin_model->Get(array('profileId'=>$result->profile->profileId,'count' => true));
 		
 		unset($result->profile->profileId);
 		unset($result->checkin->profileId);

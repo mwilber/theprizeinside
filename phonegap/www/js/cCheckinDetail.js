@@ -16,6 +16,11 @@ CheckinDetail.prototype.Close = function(self){
 
 CheckinDetail.prototype.Load = function(pId){
 	
+	this.panel.elem.find('#prizeimage').attr('src','');
+	this.panel.elem.find('#prizeimage').hide();
+	//TODO: Need default image here
+	this.panel.elem.find('#prizecomment').html('');
+	
 	$.get(apipath+'/reactor/srvlist/getcheckindetail/'+pId,this.HandleCheckinData(this));
     
     this.Show();  
@@ -25,13 +30,13 @@ CheckinDetail.prototype.HandleCheckinData = function(self){
     return function(response) {
     	DebugOut("checkin data incoming...");
         DebugOut(response);
-
-        self.panel.elem.find('.name').html(response.profile.profileFullname);
-        self.panel.elem.find('input.name').val(response.profile.profileFullname);
-		self.panel.elem.find('.nickname').html(response.profile.profileNickname);
-		self.panel.elem.find('input.nickname').val(response.profile.profileNickname);
-		self.panel.elem.find('.avatar').attr('src',response.profile.profilePicture);
-		self.panel.elem.find('.profileid').html(response.profile.profileId);
+        
+        if( response.checkin.checkinPhoto != "" ){
+        	self.panel.elem.find('#prizeimage').attr('src',response.checkin.checkinPhoto);
+        	self.panel.elem.find('#prizeimage').show();
+        }
+        
+		self.panel.elem.find('#prizecomment').html(response.checkin.checkinComment);
     };
 };
 
