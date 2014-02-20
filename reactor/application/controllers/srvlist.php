@@ -79,6 +79,16 @@ class SrvList extends CI_Controller {
 			$result->checkins = $this->checkin_model->Get(array('profileId'=>$pId,'sortBy'=>'checkinTimeStamp','sortDirection'=>'DESC'));
 		}
 		
+		// Sanetize anonymous postings
+		foreach($result->checkins as $checkin){
+			unset($checkin->profileId);
+			if( $checkin->checkinAnonymous == 1 ){
+				$checkin->checkinLocation = "";
+				$checkin->checkinLat = "";
+				$checkin->checkinLng = "";
+			}
+		}
+		
 		header('Content-type: application/json');
 		echo json_encode($result);
 	}
@@ -90,6 +100,16 @@ class SrvList extends CI_Controller {
 		if( $pId > 0 ){
 			$this->load->model('checkin_model'); 
 			$result->checkins = $this->checkin_model->Get(array('prizeId'=>$pId,'sortBy'=>'checkinTimeStamp','sortDirection'=>'DESC'));
+		}
+
+		// Sanetize anonymous postings
+		foreach($result->checkins as $checkin){
+			unset($checkin->profileId);
+			if( $checkin->checkinAnonymous == 1 ){
+				$checkin->checkinLocation = "";
+				$checkin->checkinLat = "";
+				$checkin->checkinLng = "";
+			}
 		}
 		
 		header('Content-type: application/json');
@@ -110,6 +130,19 @@ class SrvList extends CI_Controller {
 		$result->prize = $this->prize_model->Get(array($this->prize_model->_pk()=>$result->checkin->prizeId));
 		$result->restaurant = $this->restaurant_model->Get(array($this->restaurant_model->_pk()=>$result->checkin->restaurantId));
 		$result->profile = $this->profile_model->Get(array($this->profile_model->_pk()=>$result->checkin->profileId));
+		
+		unset($result->profile->profileId);
+		unset($result->checkin->profileId);
+		
+		// Sanetize anonymous postings
+		if( $result->checkin->checkinAnonymous == 1 ){
+			$result->checkin->checkinLocation = "";
+			$result->checkin->checkinLat = "";
+			$result->checkin->checkinLng = "";
+		}
+		if( $result->checkin->checkinAnonymous == 1 ){
+			$result->profile->profileFullname = "";
+		}
 		
 		header('Content-type: application/json');
 		echo json_encode($result);

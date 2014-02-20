@@ -14,11 +14,25 @@ CheckinDetail.prototype.Close = function(self){
    };
 };
 
-CheckinDetail.prototype.Load = function(){
+CheckinDetail.prototype.Load = function(pId){
 	
-	
+	$.get(apipath+'/reactor/srvlist/getcheckindetail/'+pId,this.HandleCheckinData(this));
     
     this.Show();  
+};
+
+CheckinDetail.prototype.HandleCheckinData = function(self){
+    return function(response) {
+    	DebugOut("checkin data incoming...");
+        DebugOut(response);
+
+        self.panel.elem.find('.name').html(response.profile.profileFullname);
+        self.panel.elem.find('input.name').val(response.profile.profileFullname);
+		self.panel.elem.find('.nickname').html(response.profile.profileNickname);
+		self.panel.elem.find('input.nickname').val(response.profile.profileNickname);
+		self.panel.elem.find('.avatar').attr('src',response.profile.profilePicture);
+		self.panel.elem.find('.profileid').html(response.profile.profileId);
+    };
 };
 
 

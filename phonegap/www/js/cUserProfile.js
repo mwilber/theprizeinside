@@ -194,7 +194,7 @@ UserProfile.prototype.HandleCheckinData = function(self){
 
 UserProfile.prototype.HandleCheckinClick = function(self,pCheckin){
 	return function(event){
-		panel['checkindetail'].Load(pCheckin);
+		panel['checkindetail'].Load(pCheckin.checkinId);
         return false;
 	};
 };
