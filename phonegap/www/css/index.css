@@ -1015,6 +1015,58 @@ a.close span {
 	background: #85673E;
 }
 
+#checkindetail .prizecomment{
+	float: left;
+	width: 92%;
+	margin: 20px 4%;
+	font-size: 40px;
+}
+
+#checkindetail .prizeimage{
+	width:40%;
+	height:auto;
+	float:right;
+	clear:left;
+	margin-right:5%;
+}
+
+#checkindetail .prizename{
+	width: 40%;
+	float: left;
+	clear: left;
+	margin: 20px 0% 0% 5%;
+	color: #666;
+}
+#checkindetail .restaurantname{
+	width: 40%;
+	float: left;
+	clear: left;
+	margin: 0% 0% 0% 5%;
+	color: #666;
+}
+
+#checkindetail .profile{
+	clear: both;
+	margin: 25px 2%;
+	width: 96%;
+}
+
+#checkindetail .profile .avatar{
+	float:left;
+	width:75px;
+	height:75px;	
+}
+
+#checkindetail .profile .nickname{
+	float:left;
+	width:100%;
+}
+
+#checkindetail .profile .checkincount{
+	float:left;
+	width:100%;
+}
+
 
 /* Smartphones (portrait) ----------- */
 @media only screen 
