@@ -163,7 +163,7 @@ Prize.prototype.HandleCheckinData = function(self){
 
 Prize.prototype.HandleCheckinClick = function(self,pCheckin){
 	return function(event){
-		panel['checkindetail'].Load(pCheckin);
+		panel['checkindetail'].Load(pCheckin.checkinId);
         return false;
 	};
 };

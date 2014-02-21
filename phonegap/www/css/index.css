@@ -196,7 +196,7 @@ html, body{
 	width:100%;
 	font-weight: normal;
 	line-height: 36px;
-	padding: 10px 0px;
+	padding: 25px 0px;
 	text-transform: uppercase;
 	font-size: 36px;
 	/*margin-top:70px;*/
@@ -312,8 +312,8 @@ font-weight: bold;
 	border: solid 1px #161008;
 	z-index:1000;
 	display:none;
-	-webkit-box-shadow: 0 0 50px 30px rgba(210,210,200,0.8);
-	box-shadow: 0 0 50px 30px rgba(210,210,200,0.8);
+	-webkit-box-shadow: 0px 0px 100px 50px rgba(255,250,240,0.8);
+	box-shadow: 0px 0px 100px 50px rgba(255,250,240,0.8);
 }
 
 .popup h1{
@@ -330,7 +330,7 @@ a.back {
 	background: transparent;
 	text-decoration: none;
 	font-size: 48px;
-	padding: 0px;
+	padding: 15px;
 	margin: 8px 0px 0px 10px;
 	z-index: 600;
 	vertical-align: middle;
@@ -540,7 +540,6 @@ a.close{
 	margin: 10% 2%;
 	padding: 5% 4%;
 	width: 88%;
-	color:#000;
 	background:#fff;
 	border:solid 1px #ccc;
 	-webkit-border-radius: 5px 5px 5px 5px;
@@ -609,7 +608,7 @@ a.close{
 	padding: 5px;
 	margin: 0px 4% 0px 0px;
 	display: block;
-	width: auto;
+	width: 50%;
 }
 
 #checkin .socialbreak{
@@ -622,6 +621,84 @@ a.close{
 	margin: 10px 5px;
 	font-size: 24px;
 	padding: 10px 20px;
+}
+
+#checkin .locationmap{
+	float: right;
+	margin: 15px 4% 0px 0%;
+	border: solid 1px #aaa;
+}
+
+#checkindetail{
+	top:0px;
+	-webkit-box-shadow: 0px 0px 350px 350px rgba(255,250,240,0.9);
+	box-shadow: 0px 0px 350px 350px rgba(255,250,240,0.9);
+}
+
+#checkindetail .prizecomment{
+	float: left;
+	width: 92%;
+	margin: 20px 4%;
+	font-size: 40px;
+}
+
+#checkindetail .prizeimage{
+	width:40%;
+	height:auto;
+	float:right;
+	clear:left;
+	margin-right:5%;
+}
+
+#checkindetail .prizename{
+	width: 40%;
+	float: left;
+	clear: left;
+	margin: 0px 0% 0% 5%;
+	color: #666;
+}
+#checkindetail .restaurantname{
+	width: 40%;
+	float: left;
+	clear: left;
+	margin: 0% 0% 0% 5%;
+	color: #666;
+}
+
+#checkindetail .locationmap{
+	float: left;
+	margin: 15px 0% 0px 5%;
+	border: solid 1px #aaa;
+}
+
+#checkindetail .profile{
+	clear: both;
+	margin: 50px 2% 20px 2%;
+	width: 96%;
+	float: left;
+}
+
+#checkindetail .profile .avatar{
+	float: left;
+	width: 45px;
+	height: 45px;
+	margin: 0px 10px;	
+}
+
+#checkindetail .profile .nickname{
+	float: left;
+	width: auto;
+	margin: 0%;
+	font-size: 30px;
+	line-height: 24px;
+	letter-spacing: 1px;
+}
+
+#checkindetail .profile .checkincount{
+	float: left;
+	width: auto;
+	clear: left;
+	font-size: 18px;
 }
 
 
@@ -1013,58 +1090,6 @@ a.close span {
 	color: #FFFFee;
 	border-color: #85673E;
 	background: #85673E;
-}
-
-#checkindetail .prizecomment{
-	float: left;
-	width: 92%;
-	margin: 20px 4%;
-	font-size: 40px;
-}
-
-#checkindetail .prizeimage{
-	width:40%;
-	height:auto;
-	float:right;
-	clear:left;
-	margin-right:5%;
-}
-
-#checkindetail .prizename{
-	width: 40%;
-	float: left;
-	clear: left;
-	margin: 20px 0% 0% 5%;
-	color: #666;
-}
-#checkindetail .restaurantname{
-	width: 40%;
-	float: left;
-	clear: left;
-	margin: 0% 0% 0% 5%;
-	color: #666;
-}
-
-#checkindetail .profile{
-	clear: both;
-	margin: 25px 2%;
-	width: 96%;
-}
-
-#checkindetail .profile .avatar{
-	float:left;
-	width:75px;
-	height:75px;	
-}
-
-#checkindetail .profile .nickname{
-	float:left;
-	width:100%;
-}
-
-#checkindetail .profile .checkincount{
-	float:left;
-	width:100%;
 }
 
 

@@ -72,9 +72,9 @@ Checkin.prototype.onSuccess = function(imageData) {
 	if(img.width > img.height){
 		$('#myImage').css('height', $('#setpic').height()+"px");
 		$('#myImage').css('margin-left', -(  ((img.width*($('#setpic').height()/img.height))-$('#setpic').width())/2  )+"px");
-	}else{
+	}else{		
+		$('#myImage').css('margin-top', Math.floor(-(  ((img.height*($('#setpic').width()/img.width))-$('#setpic').height())/2  ))+"px");
 		$('#myImage').css('width', $('#setpic').width()+"px");
-		$('#myImage').css('margin-top', -(  ((img.height*($('#setpic').width()/img.width))-$('#setpic').height())/2  )+"px");
 	}
 	
 	
@@ -83,7 +83,12 @@ Checkin.prototype.onSuccess = function(imageData) {
 Checkin.prototype.DoCheckin = function(self){
 	return function(){
 		
-		self.postData.checkinComment = self.panel.elem.find('#checkinComment').val();
+		if( self.panel.elem.find('#checkinComment').val() == "Comment" ){
+			self.postData.checkinComment = "";
+		}else{
+			self.postData.checkinComment = self.panel.elem.find('#checkinComment').val();
+		}
+			
 		if(self.panel.elem.find('#checkinAnonymous').hasClass('fa-check-square-o')){
 			self.postData.checkinAnonymous = 1;
 		}else{
@@ -138,6 +143,12 @@ Checkin.prototype.Load = function(pPrize, pLocation){
 		this.postData.profileId = lsUserId;
 		this.postData.prizeId = parseInt(panel['prize'].prizeid);
 		this.postData.restaurantId = parseInt(panel['prize'].restaurantid);
+		
+		if( pLocation.location.lat != "" && pLocation.location.lng != "" ){
+        	var mapurl = "http://maps.googleapis.com/maps/api/staticmap?zoom=13&size="+Math.floor(this.panel.elem.width()*.30)+"x"+Math.floor(this.panel.elem.width()*.30)+"&maptype=roadmap&markers=color:red%7Clabel:C%7C"+pLocation.location.lat+","+pLocation.location.lng+"&sensor=false";
+			this.panel.elem.find('.locationmap').attr('src',mapurl);
+			this.panel.elem.find('.locationmap').show();
+		}
 	    
 	    //DebugOut(panel['prize']);
 	    //DebugOut(this.postData);

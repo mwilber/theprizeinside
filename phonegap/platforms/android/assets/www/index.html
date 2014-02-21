@@ -115,8 +115,9 @@
 				<textarea id="checkinComment">Comment</textarea>
 				
 				<div style="margin: 1% 5%;">
+					<img class="locationmap" src="" />
 					<div id="checkinAnonymous" class="button toggle fa fa-square-o"></div>
-					<label id="msgAnonymous">Do not post my name and location on The Prize Inside website.</label>
+					<label id="msgAnonymous">Do not post this location on The Prize Inside website.</label>
 					<div class="clearfix socialbreak"></div>
 					<div id="checkinTwitter" class="button share toggle selected fa fa-twitter"> </div>
 					<div id="checkinFacebook" class="button share toggle selected fa fa-facebook"> </div>
@@ -205,8 +206,20 @@
 			<div id="checkindetail" class="popup">
 				<a class="close" href="#"><span class="fa fa-times"></span></a>
 				<h1>Prize</h1>
-				<img id="prizeimage" src="" />
-				<p id="prizecomment"></p>
+				<p class="prizecomment"></p>
+				<img class="prizeimage" src="" />
+				<h2 class="prizename"></h2>
+				<h3 class="restaurantname"></h3>
+				<img class="locationmap" src="" />
+				<div class="profile">
+					<img class="avatar" src=""/>
+					<div style="float:left;">
+						<h2 class="nickname"></h2>
+						<div class="checkincount">
+							<span class="number">&nbsp;</span> Prizes
+						</div>
+					</div>
+				</div>
 			</div>
 			
         </div>
