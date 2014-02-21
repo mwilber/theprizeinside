@@ -208,15 +208,15 @@ Prize.prototype.HandleLocationClick = function(self,pPrize){
 	return function(event){
 	    //alert('handling location');
 	    //DebugOut(pPrize);
-		panel['location'].Load(pPrize);
+		panel['locationoptions'].Load(pPrize);
         return false;
 	};
 };
 
 Prize.prototype.HandleMapClick = function(pPrize){
-    alert('handling location');
-    DebugOut(pPrize);
-    panel['location'].Load(pPrize);
+	//alert('handling location');
+    //DebugOut(pPrize);
+	panel['locationoptions'].Load(pPrize);
     return false;
 };
 

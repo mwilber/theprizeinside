@@ -124,6 +124,7 @@ function AppInit(){
 	panel['userprofile'] = new UserProfile();
 	panel['userlogin'] = new UserLogin();
 	panel['info'] = new Info();
+	panel['locationoptions'] = new LocationOptions();
 
     panel['home'].Load();
 }

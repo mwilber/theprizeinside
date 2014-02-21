@@ -166,7 +166,7 @@ Checkin.prototype.Load = function(pPrize, pLocation){
 	    ////////////////////////////////////////////
 	    // Dummy image for testing
 	    ////////////////////////////////////////////
-	    this.onSuccess(this.dummyphoto);
+	    //this.onSuccess(this.dummyphoto);
 	    ////////////////////////////////////////////
 	    
 	    this.Show(); 

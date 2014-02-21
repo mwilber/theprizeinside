@@ -145,10 +145,10 @@ class Checkin extends CI_Controller
 								$result = curl_exec($ch);
 								curl_close ($ch);
 								
-								echo "|||result: ";
+								echo "|||facebook|||result: ";
 								print_r($result);
 								
-								die;
+								//die;
 								
 								break;
 								
@@ -182,6 +182,33 @@ class Checkin extends CI_Controller
 								//echo "<br/>code: ".$code."---";
 								//print_r($this->tmhoauth->response);
 			
+								break;
+								
+							case 'Foursquare':
+								 $attachment =  array(
+									 'oauth_token' => $authRec->authToken,
+									 'shout' => $_POST['checkinComment'],
+									 'venueId' => $_POST['checkinLocation'],
+									 //'actions' => json_encode(array('name' => $action_name,'link' => $action_link))
+									 );
+								
+								print_r($attachment);
+								
+								$ch = curl_init();
+								curl_setopt($ch, CURLOPT_URL,'https://api.foursquare.com/v2/checkins/add');
+								curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+								curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
+								curl_setopt($ch, CURLOPT_POST, true);
+								curl_setopt($ch, CURLOPT_POSTFIELDS, $attachment);
+								curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);  //to suppress the curl output 
+								$result = curl_exec($ch);
+								curl_close ($ch);
+								
+								echo "|||foursquare|||result: ";
+								print_r($result);
+								
+								//die;
+								
 								break;
 							
 							default:
