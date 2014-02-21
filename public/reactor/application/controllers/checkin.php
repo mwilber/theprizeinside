@@ -71,7 +71,7 @@ class Checkin extends CI_Controller
 	    	//$_POST['checkinPhoto'] = "http://s3.amazonaws.com/tpiapp/1392656042_243.jpg";
 	    	////////////////////////////////////////////////////
 	    	
-	    	//print_r($_POST);
+	    	print_r($_POST);
 	    	
 	    	$share = array();
 	    	
