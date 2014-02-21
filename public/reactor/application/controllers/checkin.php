@@ -189,6 +189,7 @@ class Checkin extends CI_Controller
 									 'oauth_token' => $authRec->authToken,
 									 'shout' => $_POST['checkinComment'],
 									 'venueId' => $_POST['checkinLocation'],
+									 'v' => '20140128',
 									 //'actions' => json_encode(array('name' => $action_name,'link' => $action_link))
 									 );
 								
