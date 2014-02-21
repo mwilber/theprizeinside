@@ -118,6 +118,7 @@ function AppInit(){
 	panel['prize'] = new Prize();
     panel['home'] = new Home();
 	panel['checkin'] = new Checkin();
+	panel['checkindetail'] = new CheckinDetail();
 	panel['location'] = new Location();
 	panel['userlocation'] = new UserLocation();
 	panel['userprofile'] = new UserProfile();

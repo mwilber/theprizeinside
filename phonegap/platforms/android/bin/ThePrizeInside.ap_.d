@@ -31,6 +31,7 @@
 /Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/fonts/fontawesome-webfont.svg \
 /Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/fonts/FontAwesome.otf \
 /Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/fonts/fontawesome-webfont.ttf \
+/Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/css/jquery.jscrollpane.css \
 /Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/css/index.css \
 /Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/css/font-awesome.min.css \
 /Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/plugins/org.apache.cordova.camera \
@@ -119,11 +120,14 @@
 /Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/js/cCheckin.js \
 /Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/js/index.js \
 /Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/js/cPopup.js \
+/Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/js/jquery.mousewheel.js \
 /Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/js/cUserLocation.js \
 /Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/js/jquery-1.10.1.min.js \
 /Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/js/cLocation.js \
 /Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/js/cPrize.js \
+/Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/js/jquery.jscrollpane.min.js \
 /Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/js/util.js \
+/Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/js/cCheckinDetail.js \
 /Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/js/cInfo.js \
 /Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/js/cUserProfile.js \
 /Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/js/cLSGatekeeper.js \

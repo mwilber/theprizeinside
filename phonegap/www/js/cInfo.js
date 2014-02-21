@@ -28,5 +28,12 @@ Info.prototype.Show = function(){
     
     this.panel.Show();
     
+    $('#info .scroll-pane').jScrollPane(
+        {
+            showArrows: false,
+            verticalGutter: 15
+        }
+    );
+    
     return true;
 };
