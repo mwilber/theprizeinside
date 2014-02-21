@@ -94,7 +94,7 @@ class Checkin extends CI_Controller
 	    		unset($_POST['checkinFoursquare']);
 	    	}
 	    		
-	    		
+	    	unset($_POST['decoy']);	
 			
 	        // Validation passes
 	        $nId = $this->$model_ref->Add($_POST);

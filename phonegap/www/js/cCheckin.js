@@ -27,7 +27,8 @@ function Checkin(){
 		checkinFoursquare: '',
 		profileId: '',
 		restaurantId: '',
-		prizeId: ''
+		prizeId: '',
+		decoy: 'nothinghere',
 	};
     
 }
