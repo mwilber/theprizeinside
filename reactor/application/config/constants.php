@@ -75,6 +75,9 @@ define('SHOW_DEBUG_BACKTRACE', TRUE);
 
 
 define('UPLOAD_DIR','../uploads');
+define('CREATE_FOLDERS',true);
+define('BACKGROUND_COLOR',null);
+define('JPEG_IMAGE_QUALITY',80);
 
 
 /* End of file constants.php */
