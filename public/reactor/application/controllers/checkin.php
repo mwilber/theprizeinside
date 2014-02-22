@@ -189,7 +189,7 @@ class Checkin extends CI_Controller
 									
 									 $attachment =  array(
 										 'oauth_token' => $authRec->authToken,
-										 'shout' => $_POST['checkinComment'],
+										 'shout' => $_POST['checkinComment']." ".$prizeUrl,
 										 'venueId' => $_POST['checkinLocation'],
 										 'v' => '20140128',
 										 //'actions' => json_encode(array('name' => $action_name,'link' => $action_link))
