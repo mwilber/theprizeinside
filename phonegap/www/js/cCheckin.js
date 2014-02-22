@@ -139,18 +139,27 @@ Checkin.prototype.Load = function(pPrize, pLocation){
 	if( lsUserId > 0 ){
 		this.panel.elem.find('#myImage').attr('src','img/add_photo.png');
 		
-		this.postData.checkinLocation = pLocation.id;
-		this.postData.checkinLat = pLocation.location.lat;
-		this.postData.checkinLng = pLocation.location.lng;
+		if( pLocation != null ){
+			this.postData.checkinLocation = pLocation.id;
+			this.postData.checkinLat = pLocation.location.lat;
+			this.postData.checkinLng = pLocation.location.lng;
+			if( pLocation.location.lat != "" && pLocation.location.lng != "" ){
+	        	var mapurl = "http://maps.googleapis.com/maps/api/staticmap?zoom=13&size="+Math.floor(this.panel.elem.width()*.30)+"x"+Math.floor(this.panel.elem.width()*.30)+"&maptype=roadmap&markers=color:red%7Clabel:C%7C"+pLocation.location.lat+","+pLocation.location.lng+"&sensor=false";
+				this.panel.elem.find('.locationmap').attr('src',mapurl);
+				this.panel.elem.find('.locationmap').show();
+				this.panel.elem.find('#checkinAnonymous').show();
+				this.panel.elem.find('#msgAnonymous').show();
+			}
+		}else{	
+			this.panel.elem.find('.locationmap').hide();
+			this.panel.elem.find('#checkinAnonymous').hide();
+			this.panel.elem.find('#msgAnonymous').hide();
+		}
 		this.postData.profileId = lsUserId;
 		this.postData.prizeId = parseInt(panel['prize'].prizeid);
 		this.postData.restaurantId = parseInt(panel['prize'].restaurantid);
 		
-		if( pLocation.location.lat != "" && pLocation.location.lng != "" ){
-        	var mapurl = "http://maps.googleapis.com/maps/api/staticmap?zoom=13&size="+Math.floor(this.panel.elem.width()*.30)+"x"+Math.floor(this.panel.elem.width()*.30)+"&maptype=roadmap&markers=color:red%7Clabel:C%7C"+pLocation.location.lat+","+pLocation.location.lng+"&sensor=false";
-			this.panel.elem.find('.locationmap').attr('src',mapurl);
-			this.panel.elem.find('.locationmap').show();
-		}
+		
 	    
 	    //DebugOut(panel['prize']);
 	    //DebugOut(this.postData);

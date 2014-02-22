@@ -5,7 +5,7 @@ class Checkin_Model extends CI_Model
 	var $table = "tblCheckin";
 	var $pk = "checkinId";
 	var $ds = "checkinTimeStamp";  //Default sortby field 
-	var $rq = "checkinLocation";		//Required field (you'll need to mod the form validation if there isn't one)
+	var $rq = "prizeId";		//Required field (you'll need to mod the form validation if there isn't one)
 	var $fields = array(
 		 'checkinLocation' => array('label'=>'Location','type'=>'varchar','constraint'=>200),
 		 'checkinLat' => array('label'=>'Lat','type'=>'float','constraint'=>'10,6'),

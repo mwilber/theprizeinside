@@ -536,8 +536,11 @@ a.close{
 	background: rgba(0,0,0,0.4);
 }
 
-.panel .header a.showdirections, .panel .header a.showuserlocation, .panel .header a.showinfo{
+.panel .header a.showdirections, .panel .header a.showwebsite, .panel .header a.showinfo{
 	margin-right:200px;
+}
+.panel .header a.showuserlocation{
+	margin-right:400px;
 }
 
 .panel .content{
@@ -1187,9 +1190,13 @@ a.close span {
 		font-size: 40px;
 		line-height: 70px;
 	}
-	.panel .header a.showdirections, .panel .header a.showuserlocation, .panel .header a.showinfo{
+	.panel .header a.showdirections, .panel .header a.showwebsite, .panel .header a.showinfo{
 		margin-right:75px;
 	}
+	.panel .header a.showuserlocation{
+		margin-right:150px;
+	}
+	
 	.panel .header {
 		height: 75px;
 	}
