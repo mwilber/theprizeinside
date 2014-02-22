@@ -13,6 +13,9 @@ function UserLocation(){
 UserLocation.prototype.DoLocationSearch = function(self){
 	return function(){
 		
+		// Disable the gps refresh
+		window.clearInterval(locationTimer);
+		
 		var searchloc = self.panel.elem.find('#loctext').val();
 		
 		DebugOut('getting coords for: '+searchloc);
@@ -31,7 +34,10 @@ UserLocation.prototype.DoLocationSearch = function(self){
 
 UserLocation.prototype.DoGPSSearch = function(self){
 	return function(){
+		window.clearInterval(locationTimer);
+		userLocation = new google.maps.LatLng(0,0);
 		QueryLocation();
+		locationTimer = window.setInterval(QueryLocation,LOCATION_CK_INTERVAL);
 	};
 };
 

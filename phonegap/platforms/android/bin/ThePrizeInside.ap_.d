@@ -115,6 +115,7 @@
 /Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/img/add_photo.png \
 /Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/js/cPanel.js \
 /Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/js/cordova.js \
+/Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/js/cLocationOptions.js \
 /Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/js/cUserLogin.js \
 /Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/js/cHome.js \
 /Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/js/cCheckin.js \
@@ -130,6 +131,7 @@
 /Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/js/cCheckinDetail.js \
 /Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/js/cInfo.js \
 /Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/js/cUserProfile.js \
+/Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/js/cMessageBox.js \
 /Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/js/cLSGatekeeper.js \
 /Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/spec/helper.js \
 /Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/spec/lib \

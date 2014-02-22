@@ -17,6 +17,7 @@ function Prize(){
     
     this.panel.elem.find('.back').click(this.Back(this));
     this.panel.elem.find('.showuserlocation').click(this.ShowUserLocation(this));
+    this.panel.elem.find('.showcheckin').click(this.Checkin(this,null,null));
 	this.panel.elem.find('#btnlocations').click(this.ShowLocations(this));
 	this.panel.elem.find('#btnmap').click(this.ShowMap(this));
 	this.panel.elem.find('#btncomments').click(this.ShowComments(this));
@@ -26,6 +27,13 @@ function Prize(){
 Prize.prototype.ShowUserLocation = function(self){
    return function(){
        panel['userlocation'].Load();
+       return false;
+   };
+};
+
+Prize.prototype.Checkin = function(self,pPrize,pLocation){
+   return function(){
+       panel['checkin'].Load(pPrize,pLocation);
        return false;
    };
 };
@@ -208,15 +216,15 @@ Prize.prototype.HandleLocationClick = function(self,pPrize){
 	return function(event){
 	    //alert('handling location');
 	    //DebugOut(pPrize);
-		panel['location'].Load(pPrize);
+		panel['locationoptions'].Load(pPrize);
         return false;
 	};
 };
 
 Prize.prototype.HandleMapClick = function(pPrize){
-    alert('handling location');
-    DebugOut(pPrize);
-    panel['location'].Load(pPrize);
+	//alert('handling location');
+    //DebugOut(pPrize);
+	panel['locationoptions'].Load(pPrize);
     return false;
 };
 

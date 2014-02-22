@@ -363,6 +363,26 @@ a.close{
 	
 }
 
+.messagebox{
+    color: #161008;
+	position: absolute;
+	top: 40%;
+	left: 5%;
+	width: 90%;
+	height: auto;
+	min-height: 200px;
+	background: #FAF6F1;
+	padding: 0px;
+	border: solid 5px #161008;
+	-webkit-border-radius: 15px;
+	border-radius: 15px;
+	z-index: 1000;
+	display:none;
+	/*-webkit-box-shadow: 0px 0px 100px 50px rgba(255,250,240,0.8);
+	box-shadow: 0px 0px 100px 50px rgba(255,250,240,0.8);*/
+}
+
+
 #sidemenu{
 	position:fixed;
 	top:0px;
@@ -516,8 +536,11 @@ a.close{
 	background: rgba(0,0,0,0.4);
 }
 
-.panel .header a.showdirections, .panel .header a.showuserlocation, .panel .header a.showinfo{
+.panel .header a.showdirections, .panel .header a.showwebsite, .panel .header a.showinfo{
 	margin-right:200px;
+}
+.panel .header a.showuserlocation{
+	margin-right:400px;
 }
 
 .panel .content{
@@ -638,7 +661,7 @@ a.close{
 #checkindetail .prizecomment{
 	float: left;
 	width: 92%;
-	margin: 20px 4%;
+	margin: 40px 4% 50px 4%;
 	font-size: 40px;
 }
 
@@ -656,19 +679,24 @@ a.close{
 	clear: left;
 	margin: 0px 0% 0% 5%;
 	color: #666;
+	font-size: 30px;
+	line-height: 28px;
 }
 #checkindetail .restaurantname{
 	width: 40%;
 	float: left;
 	clear: left;
-	margin: 0% 0% 0% 5%;
+	margin: 5px 0% 0% 5%;
 	color: #666;
+	font-size: 18px;
+	line-height: 18px;
 }
 
 #checkindetail .locationmap{
 	float: left;
 	margin: 15px 0% 0px 5%;
 	border: solid 1px #aaa;
+	clear: left;
 }
 
 #checkindetail .profile{
@@ -988,6 +1016,37 @@ a.close{
 	background: transparent;
 }
 
+#locationoptions{
+	background-repeat: no-repeat;
+	background-position: 50% 70%;
+	background-size: 100%;
+}
+
+#locationoptions #streetview{
+	display:none;
+}
+
+#locationoptions .vcard{
+	width: 90%;
+	margin: 10px 5%;
+	padding: 25px 0px;
+	font-size: 36px;
+	border-width: 5px;
+}
+
+#locationoptions .vcard p{
+	margin: 0px 5px;
+	font-size: 24px;
+}
+
+#locationoptions .button{
+	width: 90%;
+	margin: 10px 5%;
+	padding: 25px 0px;
+	font-size: 36px;
+	border-width: 5px;
+}
+
 #footer a.gz {
 	position: absolute;
 	width: auto;
@@ -1131,9 +1190,13 @@ a.close span {
 		font-size: 40px;
 		line-height: 70px;
 	}
-	.panel .header a.showdirections, .panel .header a.showuserlocation, .panel .header a.showinfo{
+	.panel .header a.showdirections, .panel .header a.showwebsite, .panel .header a.showinfo{
 		margin-right:75px;
 	}
+	.panel .header a.showuserlocation{
+		margin-right:150px;
+	}
+	
 	.panel .header {
 		height: 75px;
 	}

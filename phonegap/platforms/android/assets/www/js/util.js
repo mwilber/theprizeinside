@@ -2,6 +2,33 @@
 //  Utility Functions
 /////////////////////////////////////////////////////////////////////////////
 
+Number.prototype.toRad = function() {
+   return this * Math.PI / 180;
+};
+
+function roundNumber(number, digits) {
+    var multiple = Math.pow(10, digits);
+    var rndedNum = Math.round(number * multiple) / multiple;
+    return rndedNum;
+}
+
+function CalcDistance(lat2, lon2, lat1, lon1){
+	
+	var R = 6371; // km 
+	//var x1 = lat2-lat1;
+	var x1 = roundNumber(lat2,7)-roundNumber(lat1,7);
+	var dLat = x1.toRad();  
+	var x2 = roundNumber(lon2,7)-roundNumber(lon1,7);
+	var dLon = x2.toRad(); 
+	var a = Math.sin(dLat/2) * Math.sin(dLat/2) + 
+	                Math.cos(lat1.toRad()) * Math.cos(lat2.toRad()) * 
+	                Math.sin(dLon/2) * Math.sin(dLon/2);  
+	var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+	var d = R * c; 
+	
+	return d;
+}
+
 function DoToggle(self){
 	return function(elem){
 		DebugOut(elem);
@@ -44,16 +71,41 @@ function HandleGeolocationQuery(position){
     //_gaq.push(['_trackEvent', 'Load', 'desktop', '']);
     
     // Check against existing location before setting
-    //if( CalcDistance(userLocation.lat(), userLocation.lng(),position.coords.latitude,position.coords.longitude) > 1){
+    DebugOut("Distance: "+CalcDistance(userLocation.lat(), userLocation.lng(),position.coords.latitude,position.coords.longitude));
+    if( CalcDistance(userLocation.lat(), userLocation.lng(),position.coords.latitude,position.coords.longitude) > DISTANCE_CHANGE_REFRESH_THRESHOLD){
         userLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
         DebugOut('user location set: '+position.coords.latitude+', '+position.coords.longitude);
         panel['userlocation'].Update();
         //GetLocationData();
         GetFSData();
         //$('#location span').html(position.coords.latitude.toString().substring(0,8)+', '+position.coords.longitude.toString().substring(0,8));
-    //}else{
-    //    DebugOut('User Location Unchanged');
-    //}
+    }else{
+        DebugOut('User Location Unchanged');
+    }
+    
+    //See how close we are to all the venues
+    for( idx in fsdata ){
+    	for(jdx in fsdata[idx].response.venues){
+    		var tmpvenue = fsdata[idx].response.venues[jdx];
+    		if( CalcDistance(position.coords.latitude,position.coords.longitude,tmpvenue.location.lat,tmpvenue.location.lng) < CHECKIN_NOTIFICATION_THRESHOLD ){
+    			if( tmpvenue.location.lat != autoCkLocation.lat() && tmpvenue.location.lng != autoCkLocation.lng() ){
+    				DebugOut("Distance ("+tmpvenue.name+"): "+CalcDistance(position.coords.latitude,position.coords.longitude,tmpvenue.location.lat,tmpvenue.location.lng));
+					// Set the sentinal location 
+					autoCkLocation = new google.maps.LatLng(tmpvenue.location.lat,tmpvenue.location.lng);
+					// Get the prize for the current location
+					DebugOut('Checking for: '+idx);
+					for( kdx in prizedata ){
+						if( prizedata[kdx].restaurant.restaurantAlias == idx ){
+							// Pop the checkin 
+							panel['prize'].Load(prizedata[kdx]);
+							panel['checkin'].Load(null,tmpvenue);
+						}
+					}
+					
+				}
+    		}
+    	}
+    }
 }
 
 function HandleGeolocationErrors(error)  
