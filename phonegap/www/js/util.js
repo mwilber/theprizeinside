@@ -92,6 +92,16 @@ function HandleGeolocationQuery(position){
     				DebugOut("Distance ("+tmpvenue.name+"): "+CalcDistance(position.coords.latitude,position.coords.longitude,tmpvenue.location.lat,tmpvenue.location.lng));
 					// Set the sentinal location 
 					autoCkLocation = new google.maps.LatLng(tmpvenue.location.lat,tmpvenue.location.lng);
+					// Get the prize for the current location
+					DebugOut('Checking for: '+idx);
+					for( kdx in prizedata ){
+						if( prizedata[kdx].restaurant.restaurantAlias == idx ){
+							// Pop the checkin 
+							panel['prize'].Load(prizedata[kdx]);
+							panel['checkin'].Load(null,tmpvenue);
+						}
+					}
+					
 				}
     		}
     	}

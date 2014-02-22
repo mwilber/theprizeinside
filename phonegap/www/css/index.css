@@ -658,7 +658,7 @@ a.close{
 #checkindetail .prizecomment{
 	float: left;
 	width: 92%;
-	margin: 20px 4%;
+	margin: 40px 4% 50px 4%;
 	font-size: 40px;
 }
 
@@ -676,19 +676,24 @@ a.close{
 	clear: left;
 	margin: 0px 0% 0% 5%;
 	color: #666;
+	font-size: 30px;
+	line-height: 28px;
 }
 #checkindetail .restaurantname{
 	width: 40%;
 	float: left;
 	clear: left;
-	margin: 0% 0% 0% 5%;
+	margin: 5px 0% 0% 5%;
 	color: #666;
+	font-size: 18px;
+	line-height: 18px;
 }
 
 #checkindetail .locationmap{
 	float: left;
 	margin: 15px 0% 0px 5%;
 	border: solid 1px #aaa;
+	clear: left;
 }
 
 #checkindetail .profile{
