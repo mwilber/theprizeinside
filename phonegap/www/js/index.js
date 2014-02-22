@@ -48,9 +48,15 @@
     // }
 // };
 
+	var LOCATION_CK_INTERVAL = 5000;
+	var DISTANCE_CHANGE_REFRESH_THRESHOLD = 10;
+	var CHECKIN_NOTIFICATION_THRESHOLD = 0.05;
+
 	var apipath = "http://theprizeinside.com";
 	//var apipath = "http://gibson.loc/theprizeinside";
 	var userLocation = new google.maps.LatLng(0,0);
+	var autoCkLocation = new google.maps.LatLng(0,0);
+	var locationTimer;
 	var lsUserId = 0;
 	var prizedata = null;
 	var fsdata = new Array();
