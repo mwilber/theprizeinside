@@ -208,7 +208,7 @@ class Checkin extends CI_Controller
 									$result = curl_exec($ch);
 									curl_close ($ch);
 
-									$this->foursquare->response = $result;
+									$response->foursquare->response = $result;
 								
 								}
 								
