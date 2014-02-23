@@ -48,7 +48,7 @@
     // }
 // };
 
-	var LOCATION_CK_INTERVAL = 5000;
+	var LOCATION_CK_INTERVAL = 15000;
 	var DISTANCE_CHANGE_REFRESH_THRESHOLD = 10;
 	var CHECKIN_NOTIFICATION_THRESHOLD = 0.05;
 
@@ -104,6 +104,7 @@ var app = {
         pictureSource=navigator.camera.PictureSourceType;
         destinationType=navigator.camera.DestinationType;
 		AppInit();
+		AdInit();
         
     },
     // Update DOM on a Received Event
@@ -133,6 +134,40 @@ function AppInit(){
 	panel['locationoptions'] = new LocationOptions();
 
     panel['home'].Load();
+}
+
+function AdInit(){
+	admob.createBannerView(
+    	{
+    		'publisherId': 'ca-app-pub-9860806024628930/2903343809',
+    		'adSize': admob.AD_SIZE.BANNER
+    	},
+    	HandleAdSuccess,
+    	HandleAdFail
+	);
+}
+
+function HandleAdSuccess(){
+	DebugOut('ad init success.');
+	admob.requestAd(
+	     {
+	       'isTesting': false,
+	       'extras': {
+	         'color_bg': 'AAAAFF',
+	         'color_bg_top': 'FFFFFF',
+	         'color_border': 'FFFFFF',
+	         'color_link': '000080',
+	         'color_text': '808080',
+	         'color_url': '008000'
+	       },
+	     },
+	     function(){DebugOut('handle ad success!');},
+	     function(){DebugOut('handle ad fail');}
+	 );
+}
+
+function HandleAdFail(){
+	DebugOut('ad init failed.');
 }
 
 function GetFSData(){

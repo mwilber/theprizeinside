@@ -25,9 +25,6 @@ Home.prototype.Load = function(){
     
     DebugOut("Loading Home...");
     
-    var offsetheight =  this.panel.elem.find('.header').height()+this.panel.elem.find('.name').height()+(parseInt(this.panel.elem.find('.name').css('padding-top'))*4);
-    this.panel.elem.find('.content').css('height',(this.panel.elem.height()-offsetheight)+"px");
-    
     // Load panel data
     this.panel.elem.find('.prizes').empty().append($('<li/>').html('loading...'));
     //alert('ajax call tooo: '+apipath+'/tinderbox/city/json/all');
@@ -95,6 +92,8 @@ Home.prototype.HandlePrizeClick = function(self,pPrize){
 Home.prototype.Show = function(){
     
     //$('#header').show();
+    var offsetheight =  this.panel.elem.find('.header').height()+this.panel.elem.find('.name').height()+(parseInt(this.panel.elem.find('.name').css('padding-top'))*4);
+    this.panel.elem.find('.content').css('height',(this.panel.elem.height()-offsetheight-75)+"px");
     
     this.panel.Show();
     

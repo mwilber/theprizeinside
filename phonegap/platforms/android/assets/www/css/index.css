@@ -1047,35 +1047,37 @@ a.close{
 	border-width: 5px;
 }
 
-#footer a.gz {
+#footer{
 	position: absolute;
+	float:right;
 	width: auto;
-	height: 36px;
 	right: 0px;
 	bottom: 0px;
+	overflow: hidden;
+}
+
+#footer a.gz {
+	width: auto;
 	color: #fff;
-	line-height: 33px;
+	line-height: 50px;
 	text-align: left;
 	font-weight: bold;
 	font-size: 24px;
 	background: rgba(0,0,0,0.8);
-	padding: 0px 10px;
+	padding: 20px 15px 20px 0px;
 	text-decoration: none;
+	overflow: hidden;
 }
 
 #footer a.gz .badge {
-	width: 36px;
-	height: 36px;
 	color: #fff;
 	text-align: center;
 	font-weight: normal;
-	font-size: 32px;
-	float: left;
-	margin-left: -10px;
-	margin-right: 10px;
+	font-size: 36px;
 	background: #7cb750;
-	line-height: 33px;
+	line-height: 36px;
 	font-family: serif;
+	padding: 4px 18px;
 }
 
 /* Colors */

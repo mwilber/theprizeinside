@@ -20,6 +20,13 @@
 /Volumes/www/theprizeinside/phonegap/platforms/android/bin/classes/org/apache/cordova/geolocation/NetworkListener.class \
 /Volumes/www/theprizeinside/phonegap/platforms/android/bin/classes/org/apache/cordova/geolocation/CordovaLocationListener.class \
 /Volumes/www/theprizeinside/phonegap/platforms/android/bin/classes/org/apache/cordova/geolocation/GPSListener.class \
+/Volumes/www/theprizeinside/phonegap/platforms/android/bin/classes/com/google/cordova/plugin/AdMobPlugin$BannerListener.class \
+/Volumes/www/theprizeinside/phonegap/platforms/android/bin/classes/com/google/cordova/plugin/AdMobPlugin$5.class \
+/Volumes/www/theprizeinside/phonegap/platforms/android/bin/classes/com/google/cordova/plugin/AdMobPlugin.class \
+/Volumes/www/theprizeinside/phonegap/platforms/android/bin/classes/com/google/cordova/plugin/AdMobPlugin$2.class \
+/Volumes/www/theprizeinside/phonegap/platforms/android/bin/classes/com/google/cordova/plugin/AdMobPlugin$3.class \
+/Volumes/www/theprizeinside/phonegap/platforms/android/bin/classes/com/google/cordova/plugin/AdMobPlugin$4.class \
+/Volumes/www/theprizeinside/phonegap/platforms/android/bin/classes/com/google/cordova/plugin/AdMobPlugin$1.class \
 /Volumes/www/theprizeinside/phonegap/platforms/android/bin/classes/com/greenzeta/greenzeta/theprizeinside/R$string.class \
 /Volumes/www/theprizeinside/phonegap/platforms/android/bin/classes/com/greenzeta/greenzeta/theprizeinside/R$xml.class \
 /Volumes/www/theprizeinside/phonegap/platforms/android/bin/classes/com/greenzeta/greenzeta/theprizeinside/R$attr.class \
@@ -28,3 +35,4 @@
 /Volumes/www/theprizeinside/phonegap/platforms/android/bin/classes/com/greenzeta/greenzeta/theprizeinside/BuildConfig.class \
 /Volumes/www/theprizeinside/phonegap/platforms/android/bin/classes/com/greenzeta/greenzeta/theprizeinside/R$drawable.class \
 /Volumes/www/theprizeinside/phonegap/platforms/android/bin/dexedLibs/cordova-3.1.0-655cbcda373ad0202b4a8bbad5904c8e.jar \
+/Volumes/www/theprizeinside/phonegap/platforms/android/bin/dexedLibs/GoogleAdMobAdsSdk-6.4.1-673a7f492713ff64fae41471c2f0e410.jar \

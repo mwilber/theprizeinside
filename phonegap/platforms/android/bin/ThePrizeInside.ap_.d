@@ -35,6 +35,7 @@
 /Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/css/index.css \
 /Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/css/font-awesome.min.css \
 /Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/plugins/org.apache.cordova.camera \
+/Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/plugins/com.google.cordova.plugin.AdMobPlugin \
 /Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/plugins/org.apache.cordova.inappbrowser \
 /Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/plugins/org.apache.cordova.geolocation \
 /Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/plugins/org.apache.cordova.camera/www \
@@ -42,6 +43,8 @@
 /Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/plugins/org.apache.cordova.camera/www/CameraConstants.js \
 /Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/plugins/org.apache.cordova.camera/www/Camera.js \
 /Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/plugins/org.apache.cordova.camera/www/CameraPopoverOptions.js \
+/Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/plugins/com.google.cordova.plugin.AdMobPlugin/www \
+/Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/plugins/com.google.cordova.plugin.AdMobPlugin/www/AdMobPlugin.js \
 /Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/plugins/org.apache.cordova.inappbrowser/www \
 /Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/plugins/org.apache.cordova.inappbrowser/www/InAppBrowser.js \
 /Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/plugins/org.apache.cordova.geolocation/www \

@@ -62,6 +62,13 @@ module.exports = [
         "clobbers": [
             "navigator.geolocation"
         ]
+    },
+    {
+        "file": "plugins/com.google.cordova.plugin.AdMobPlugin/www/AdMobPlugin.js",
+        "id": "com.google.cordova.plugin.AdMobPlugin.AdMob",
+        "clobbers": [
+            "window.admob"
+        ]
     }
 ]
 });

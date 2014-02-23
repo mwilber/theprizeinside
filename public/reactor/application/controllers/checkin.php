@@ -11,6 +11,10 @@ class Checkin extends CI_Controller
 	{
 		$model_ref = $this->profile['model'];
 		$this->load->model($model_ref); 
+		
+		$response = new stdClass();
+		$response->status = 1;
+		
 	    
 		
 		$data['format'] = $pFormat;
@@ -71,7 +75,7 @@ class Checkin extends CI_Controller
 	    	//$_POST['checkinPhoto'] = "http://s3.amazonaws.com/tpiapp/1392656042_243.jpg";
 	    	////////////////////////////////////////////////////
 	    	
-	    	print_r($_POST);
+	    	//print_r($_POST);
 	    	
 	    	$share = array();
 	    	
@@ -98,6 +102,7 @@ class Checkin extends CI_Controller
 			
 	        // Validation passes
 	        $nId = $this->$model_ref->Add($_POST);
+			$response->id = $nId;
 	        
 	        //Social Media Post here
 	        if($nId > 0){
@@ -117,8 +122,7 @@ class Checkin extends CI_Controller
 	        	}
 	        	
 	        	$prizeUrl = "http://theprizeinside.com/ck/".$nId;
-	        	//print_r($authRecs);
-	        	//die;
+
 	        	foreach ($authRecs as $authRec) {
 	        		if( isset($share[$authRec->authService]) ){
 						switch ($authRec->authService) {
@@ -133,7 +137,7 @@ class Checkin extends CI_Controller
 									 //'actions' => json_encode(array('name' => $action_name,'link' => $action_link))
 									 );
 								
-								print_r($attachment);
+								$response->facebook->attachment = $attachment;
 								
 								$ch = curl_init();
 								curl_setopt($ch, CURLOPT_URL,'https://graph.facebook.com/me/feed');
@@ -145,10 +149,7 @@ class Checkin extends CI_Controller
 								$result = curl_exec($ch);
 								curl_close ($ch);
 								
-								echo "|||facebook|||result: ";
-								print_r($result);
-								
-								//die;
+								$response->facebook->result = $result;
 								
 								break;
 								
@@ -179,8 +180,8 @@ class Checkin extends CI_Controller
 									   true  // multipart
 									 );
 						
-								//echo "<br/>code: ".$code."---";
-								//print_r($this->tmhoauth->response);
+								$response->twitter->code = $code;
+								$response->twitter->response = $this->tmhoauth->response;
 			
 								break;
 								
@@ -206,9 +207,8 @@ class Checkin extends CI_Controller
 									curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);  //to suppress the curl output 
 									$result = curl_exec($ch);
 									curl_close ($ch);
-									
-									echo "|||foursquare|||result: ";
-									print_r($result);
+
+									$this->foursquare->response = $result;
 								
 								}
 								
@@ -236,10 +236,6 @@ class Checkin extends CI_Controller
 			}elseif($pFormat == "json"){
 				// TODO: see if we can redirect with flash
 				//redirect($this->uri->segment(1)."/details/xml/".$nId);
-				
-				$response = new stdClass();
-				$response->status = 1;
-				$response->id = $nId;
 				
 				header('Content-Type: application/json');
 				echo json_encode($response);
