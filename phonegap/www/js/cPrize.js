@@ -289,7 +289,7 @@ Prize.prototype.Show = function(){
     
     // Size the map to fit the panel
     this.panel.elem.find('.tabpanel').css('width',this.panel.elem.width()+"px");
-    this.panel.elem.find('.tabpanel').css('height',(this.panel.elem.height()-offsetheight)+"px");
+    this.panel.elem.find('.tabpanel').css('height',(this.panel.elem.height()-offsetheight-75)+"px");
     
     return true;
 };

@@ -15,8 +15,6 @@ class Checkin extends CI_Controller
 		$response = new stdClass();
 		$response->status = 1;
 		
-	    
-		
 		$data['format'] = $pFormat;
 		$data['fields'] = $this->$model_ref->_fields();
 		$data['lookups'] = array();
@@ -127,6 +125,7 @@ class Checkin extends CI_Controller
 	        		if( isset($share[$authRec->authService]) ){
 						switch ($authRec->authService) {
 							case 'Facebook':
+								$response->facebook = new stdClass();
 								 $attachment =  array(
 									 'access_token' => $authRec->authToken,
 									 'message' => $_POST['checkinComment'],
@@ -154,7 +153,7 @@ class Checkin extends CI_Controller
 								break;
 								
 							case 'Twitter':
-								
+								$response->twitter = new stdClass();
 								$twitterTxt = "Check out my ".$prizeName." on The Prize Inside";
 								if( $_POST['checkinComment'] != "" ) $twitterTxt = $_POST['checkinComment'];
 								
@@ -186,6 +185,7 @@ class Checkin extends CI_Controller
 								break;
 								
 							case 'Foursquare':
+								$response->foursquare = new stdClass();
 								if( $_POST['checkinLocation'] != "" ){
 									
 									 $attachment =  array(
@@ -195,8 +195,8 @@ class Checkin extends CI_Controller
 										 'v' => '20140128',
 										 //'actions' => json_encode(array('name' => $action_name,'link' => $action_link))
 										 );
-									
-									print_r($attachment);
+
+									$response->foursquare->attachment = $attachment;
 									
 									$ch = curl_init();
 									curl_setopt($ch, CURLOPT_URL,'https://api.foursquare.com/v2/checkins/add');
