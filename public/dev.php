@@ -2,7 +2,11 @@
 
 if(isset($_GET['ck'])){
 	
+	include('reactor/application/config/constants.php');
 	include('reactor/application/config/database.php');
+	include('reactor/application/helpers/idobfuscator_helper.php');
+	
+	$_GET['ck'] = IdObfuscator::decode($_GET['ck']);
 	
 	$conn = mysql_connect($db['default']['hostname'], $db['default']['username'], $db['default']['password']) 
   		or die("Unable to connect to MySQL");
@@ -22,6 +26,8 @@ if(isset($_GET['ck'])){
 	if( $checkin['checkinPhoto'] == "" ){
 		$checkin['checkinPhoto']="http://theprizeinside.com/img/fb_icon.png";
 	}
+
+	
 ?>
 <!DOCTYPE html>
 <html>

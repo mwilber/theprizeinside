@@ -119,7 +119,7 @@ class Checkin extends CI_Controller
 	        		$prizeName = $prizeRec->prizeName;
 	        	}
 	        	
-	        	$prizeUrl = "http://theprizeinside.com/ck/".$nId;
+	        	$prizeUrl = "http://theprizeinside.com/ck/".IdObfuscator::encode($nId);
 
 	        	foreach ($authRecs as $authRec) {
 	        		if( isset($share[$authRec->authService]) ){

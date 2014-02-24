@@ -1,4 +1,4 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php //if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * CodeIgniter
  *
@@ -78,6 +78,8 @@ define('UPLOAD_DIR','../uploads');
 define('CREATE_FOLDERS',true);
 define('BACKGROUND_COLOR',null);
 define('JPEG_IMAGE_QUALITY',80);
+
+define('CRYPT_SALT','polloloco');
 
 
 /* End of file constants.php */

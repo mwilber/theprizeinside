@@ -106,6 +106,9 @@ function HandleGeolocationQuery(position){
     		}
     	}
     }
+    
+    // Show the use gps button
+    $('#btngpssearch').show();
 }
 
 function HandleGeolocationErrors(error)  
@@ -141,6 +144,9 @@ function HandleGeolocationErrors(error)
         HandleGeolocationQuery({coords:{latitude:40.67857830000001,longitude:-73.5421847}});
         //HandleGeolocationQueryLoop({coords:{latitude:38.021558,longitude:-77.51307}});
     //}
+    
+    // Hide the use gps button
+    $('#btngpssearch').hide();
 } 
 
 function fbshare(pTitle, pDescription){
