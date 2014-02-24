@@ -109,6 +109,7 @@ function HandleGeolocationQuery(position){
     
     // Show the use gps button
     $('#btngpssearch').show();
+    $('.gpserror').hide();
 }
 
 function HandleGeolocationErrors(error)  
@@ -147,6 +148,13 @@ function HandleGeolocationErrors(error)
     
     // Hide the use gps button
     $('#btngpssearch').hide();
+    $('.gpserror').show();
+    
+    // auto-pop the location search box
+    panel['userlocation'].Load();
+    
+    // Kill the querylocation loop
+    window.clearInterval(locationTimer);
 } 
 
 function fbshare(pTitle, pDescription){

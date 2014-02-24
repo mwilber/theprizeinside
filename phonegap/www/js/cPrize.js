@@ -118,7 +118,12 @@ Prize.prototype.Load = function(pPrize){
     patsy(fsdata[this.restaurantalias]);
     
     // Get the checkin comments
-    $.get(apipath+'/reactor/srvlist/getcheckinsbyprize/'+pPrize.prizeId,this.HandleCheckinData(this));
+    this.LoadCheckinData();
+};
+
+Prize.prototype.LoadCheckinData = function(){
+	this.panel.elem.find('#comments ul').empty().append($('<li/>').html('loading...'));
+	$.get(apipath+'/reactor/srvlist/getcheckinsbyprize/'+this.prizeid,this.HandleCheckinData(this));
 };
 
 Prize.prototype.HandleCheckinData = function(self){

@@ -125,6 +125,8 @@ Checkin.prototype.HandleCheckinResponse = function(self){
 		DebugOut(response);
 		$('#btnCheckin').html('Share');
 		self.panel.Hide();
+		// Refresh the checkins
+		panel['prize'].LoadCheckinData();
        	return false;
 	};
 };
