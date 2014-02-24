@@ -110,6 +110,7 @@ class Checkin extends CI_Controller
 	        	
 	        	$this->load->model('auth_model');
 	        	$this->load->model('prize_model');
+				$this->load->helpers('idobfuscator_helper');
 	        	$authRecs = $this->auth_model->Get(array('profileId'=>$_POST['profileId']));
 	        	$prizeRec = $this->prize_model->Get(array('prizeId'=>$_POST['prizeId']));
 	        	
