@@ -80,7 +80,7 @@ Prize.prototype.Load = function(pPrize){
 	this.panel.elem.find('#comments ul').empty().append($('<li/>').html('loading...'));
     this.panel.elem.find('.name').empty();
     this.panel.elem.find('.showwebsite').attr('href','');
-    this.panel.elem.find('#prizephoto').attr('src','');
+    this.panel.elem.find('#prizephoto').attr('src','img/homebanner.jpg');
     this.restaurantid = null;
     
     // hide the tab panels
@@ -102,7 +102,7 @@ Prize.prototype.Load = function(pPrize){
     	}
     }catch(e){
     	this.prizeid = 0;
-    	this.panel.elem.find('#prizephoto').attr('src','');
+    	//this.panel.elem.find('#prizephoto').attr('src','');
     }
     
     // Fill in the prize info

@@ -79,6 +79,9 @@ Home.prototype.HandlePrizeData = function(self){
 	    ////////////////////////////////////////////
 	    //panel['prize'].Load(response[1]);
 	    ////////////////////////////////////////////
+	    
+	    // Call show() again to make sure everything is sized right
+	    self.Show();
     };
 };
 

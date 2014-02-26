@@ -41,7 +41,7 @@ UserLogin.prototype.HandleAuthPopup = function(self){
     if( String(event.url).indexOf('oauth/profile' ) > 0 ){
         var aviam= String(event.url).split("/");
         if( !isNaN(parseInt(aviam[aviam.length-1])) ){
-            alert("Profile found: "+aviam[aviam.length-1]); 
+            //alert("Profile found: "+aviam[aviam.length-1]); 
             lsUserId = parseInt(aviam[aviam.length-1]);
             localStorage["userid"] = parseInt(aviam[aviam.length-1]);
             panel['userlogin'].ref.close();
