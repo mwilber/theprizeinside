@@ -56,62 +56,63 @@ class Oauth extends CI_Controller {
         echo ($response['auth']['info']['image']);
         echo ("<br/>");
         echo ($response['auth']['info']['nickname']);*/
-        echo($response['error']['message']);
-        echo("<pre>");
-        print_r($response);
-        echo("</pre>");
+        //echo($response['error']['message']);
+        //echo("<pre>");
+        //print_r($response);
+        //echo("</pre>");
 		
-		die;
-        
-		// TODO: Handle erroros from auth response
-		
-        $arrAuth['authService'] = $response['auth']['provider'];
-        $arrAuth['authServiceId'] = $response['auth']['uid'];
-        $arrAuth['authToken'] = $response['auth']['credentials']['token'];
-		if( isset($response['auth']['credentials']['secret']) )
-			$arrAuth['authSecret'] = $response['auth']['credentials']['secret'];
-        
-        $arrProfile['profileNickname'] = $response['auth']['info']['nickname'];
-        $arrProfile['profileFullname'] = $response['auth']['info']['name'];
-        $arrProfile['profilePicture'] = $response['auth']['info']['image'];
-        
-        if( $arrAuth['authServiceId'] != "" ){
-        	// Look for an existing auth record
-        	$rsAuth = $this->auth_model->Get(array('authServiceId'=>$arrAuth['authServiceId']));
-			
-			// For users that logged in under another service already. 
-			// Make sure the auth isn't attached to another profile.
-			if( count($rsAuth) > 0 && $this->session->userdata('profileId') ){
-				if( $rsAuth[0]->profileId != $this->session->userdata('profileId') && $this->session->userdata('profileId') != 0 ){
-					$this->auth_model->Update(array('authId'=>$rsAuth[0]->authId, 'profileId'=>$this->session->userdata('profileId')));
-					$rsAuth = $this->auth_model->Get(array('authServiceId'=>$arrAuth['authServiceId']));
+		if( isset($response['error']) ){
+        	// if oauth fails, redirect to profile 0
+        	redirect('oauth/profile/0');
+        }else{
+	        $arrAuth['authService'] = $response['auth']['provider'];
+	        $arrAuth['authServiceId'] = $response['auth']['uid'];
+	        $arrAuth['authToken'] = $response['auth']['credentials']['token'];
+			if( isset($response['auth']['credentials']['secret']) )
+				$arrAuth['authSecret'] = $response['auth']['credentials']['secret'];
+	        
+	        $arrProfile['profileNickname'] = $response['auth']['info']['nickname'];
+	        $arrProfile['profileFullname'] = $response['auth']['info']['name'];
+	        $arrProfile['profilePicture'] = $response['auth']['info']['image'];
+	        
+	        if( $arrAuth['authServiceId'] != "" ){
+	        	// Look for an existing auth record
+	        	$rsAuth = $this->auth_model->Get(array('authServiceId'=>$arrAuth['authServiceId']));
+				
+				// For users that logged in under another service already. 
+				// Make sure the auth isn't attached to another profile.
+				if( count($rsAuth) > 0 && $this->session->userdata('profileId') ){
+					if( $rsAuth[0]->profileId != $this->session->userdata('profileId') && $this->session->userdata('profileId') != 0 ){
+						$this->auth_model->Update(array('authId'=>$rsAuth[0]->authId, 'profileId'=>$this->session->userdata('profileId')));
+						$rsAuth = $this->auth_model->Get(array('authServiceId'=>$arrAuth['authServiceId']));
+					}
 				}
-			}
-			
-        	if( count($rsAuth) > 0 ){
-        		// Redirect to profile
-        		redirect('oauth/profile/'.$rsAuth[0]->profileId);
-        	}else{
-        		if( $this->session->userdata('profileId') ){
-        			$profileId = $this->session->userdata('profileId');
-        		}else{
-        			// Make a new profile 
-        			$profileId = $this->profile_model->Add($arrProfile);
-        		}
-        		
-				// Attach the auth record
-				$arrAuth['profileId'] = $profileId;
-				$authId = $this->auth_model->Add($arrAuth);
-				echo "new profile created";
-				$rsAuth = $this->auth_model->Get(array('authServiceId'=>$arrAuth['authServiceId']));
-				if( count($rsAuth) > 0 ){
+				
+	        	if( count($rsAuth) > 0 ){
 	        		// Redirect to profile
 	        		redirect('oauth/profile/'.$rsAuth[0]->profileId);
 	        	}else{
-	        		// TODO: Handle error on auth record add
-				}
-        	}
-        }
+	        		if( $this->session->userdata('profileId') ){
+	        			$profileId = $this->session->userdata('profileId');
+	        		}else{
+	        			// Make a new profile 
+	        			$profileId = $this->profile_model->Add($arrProfile);
+	        		}
+	        		
+					// Attach the auth record
+					$arrAuth['profileId'] = $profileId;
+					$authId = $this->auth_model->Add($arrAuth);
+					echo "new profile created";
+					$rsAuth = $this->auth_model->Get(array('authServiceId'=>$arrAuth['authServiceId']));
+					if( count($rsAuth) > 0 ){
+		        		// Redirect to profile
+		        		redirect('oauth/profile/'.$rsAuth[0]->profileId);
+		        	}else{
+		        		// TODO: Handle error on auth record add
+					}
+	        	}
+	        }
+		}
     }
 
 	public function profile($pId = 0){
