@@ -731,7 +731,7 @@ a.close{
 
 
 .button{
-	padding:10px 25px;
+	padding:15px 25px;
 	margin:auto;
 	text-decoration: none;
 	color: #161008;
@@ -740,7 +740,8 @@ a.close{
 	-webkit-border-radius: 5px 5px 5px 5px;
 	border-radius: 5px 5px 5px 5px;
 	text-align: center;
-	font-size:18px;
+	font-size:28px;
+	line-height: 38px;
 }
 
 .button.toggle{
@@ -941,8 +942,8 @@ a.close{
 }
 
 #userlocation #loctext{
-	font-size: 24px;
-	padding: 5px;
+	font-size: 28px;
+	padding: 15px;
 	margin: 3px 10px 10px 0px;
 	display: block;
 	float: left;
@@ -975,11 +976,23 @@ a.close{
 }
 
 #userlocation #locsearchbox #btngpssearch{
-	font-size:24px;
+	/*font-size:24px;*/
+}
+
+#userlogin ul{
+	list-style: none;
+	margin: 50px 0px;
+	padding: 0px;
 }
 
 #userlogin li{
 	margin-bottom:20px;
+}
+
+#userlogin .button{
+	width: 90%;
+	margin: 0px 5%;
+	padding: 15px 0px;
 }
 
 #aboutbox{

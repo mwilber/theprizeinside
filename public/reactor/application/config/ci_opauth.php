@@ -14,7 +14,7 @@ $config['opauth_config'] = array(
         'Facebook' => array(
             'app_id' => '314668331957423',
             'app_secret' => '6697bdeeba7f1c36e03e854dec1d7c29',
-            'scope' => 'publish_stream,user_photos,friends_photos'
+            'scope' => 'publish_stream,user_photos'
         ),
         'Foursquare' => array(
 		    'client_id' => 'UMRUA4UFFY0RLEI1TKGXUT30JLQULNFRM3YVQWNCASQ3VE31',

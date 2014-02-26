@@ -928,6 +928,18 @@ a.close{
 	float:left;
 }
 
+#userlocation .gpserror{
+	color: #c00;
+	font-weight: bold;
+	margin: 15px 0px 0px 0px;
+	font-size: 28px;
+	display:none;
+}
+
+#userlocation .locmessage{
+	margin: 5px 0px 15px 0px;
+}
+
 #userlocation #loctext{
 	font-size: 24px;
 	padding: 5px;
@@ -950,7 +962,7 @@ a.close{
 #userlocation #locsearchbox{
 	float:left;
 	margin-left: 15px;
-	font-size:18px;
+	font-size:24px;
 }
 
 #userlocation #locsearchbox a{

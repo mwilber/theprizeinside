@@ -113,37 +113,18 @@ Prize.prototype.Load = function(pPrize){
 
     this.Show(); 
     
-    DebugOut('name: '+ this.panel.elem.find('.name').height());
-    DebugOut('tabs: '+ this.panel.elem.find('.tabs').height());
-    DebugOut('header: '+ this.panel.elem.find('.header').height());
-    
-    var offsetheight =  this.panel.elem.find('.header').height()+this.panel.elem.find('.tabs').height()+this.panel.elem.find('.name').height()+(parseInt(this.panel.elem.find('.name').css('padding-top'))*2);
-    
-    DebugOut('offsetheight: '+offsetheight);
-    
-    // Size the map to fit the panel
-    this.panel.elem.find('.tabpanel').css('width',this.panel.elem.width()+"px");
-    this.panel.elem.find('.tabpanel').css('height',(this.panel.elem.height()-offsetheight)+"px");
-    
     DebugOut('Loading alias: '+this.restaurantalias);
     var patsy = this.HandleLocationData(this);
     patsy(fsdata[this.restaurantalias]);
     
     // Get the checkin comments
-    $.get(apipath+'/reactor/srvlist/getcheckinsbyprize/'+pPrize.prizeId,this.HandleCheckinData(this));
+    this.LoadCheckinData();
 };
 
-// Prize.prototype.GetLocationDataB = function(){
-    // // Simulate the ajax call for now
-    // //DebugOut('Loading locations: '+pPrize.restaurantAlias);
-    // var patsy = this.HandleLocationData(this);
-    // patsy(fsdata[pPrize.restaurant.restaurantAlias]);
-    // // Real ajax call --
-    // //                 |
-    // //                \/
-    // //$.get('https://api.foursquare.com/v2/venues/search?client_id=UMRUA4UFFY0RLEI1TKGXUT30JLQULNFRM3YVQWNCASQ3VE31&client_secret=4XSWL2PUIN02A3RNJY4GFRCLISF4RPC3URLVLHK2AOQD0EQ5&v=20130815&ll='+userLocation.lat()+','+userLocation.lng()+'&limit=10&query='+this.restaurantid,this.HandleLocationData(this));
-//     
-// };
+Prize.prototype.LoadCheckinData = function(){
+	this.panel.elem.find('#comments ul').empty().append($('<li/>').html('loading...'));
+	$.get(apipath+'/reactor/srvlist/getcheckinsbyprize/'+this.prizeid,this.HandleCheckinData(this));
+};
 
 Prize.prototype.HandleCheckinData = function(self){
     return function(response) {
@@ -302,5 +283,18 @@ Prize.prototype.HideTabPanels = function()
 Prize.prototype.Show = function(){
     
     this.panel.Show();
+    
+    DebugOut('name: '+ this.panel.elem.find('.name').height());
+    DebugOut('tabs: '+ this.panel.elem.find('.tabs').height());
+    DebugOut('header: '+ this.panel.elem.find('.header').height());
+    
+    var offsetheight =  this.panel.elem.find('.header').height()+this.panel.elem.find('.tabs').height()+this.panel.elem.find('.name').height()+(parseInt(this.panel.elem.find('.name').css('padding-top'))*2);
+    
+    DebugOut('offsetheight: '+offsetheight);
+    
+    // Size the map to fit the panel
+    this.panel.elem.find('.tabpanel').css('width',this.panel.elem.width()+"px");
+    this.panel.elem.find('.tabpanel').css('height',(this.panel.elem.height()-offsetheight-75)+"px");
+    
     return true;
 };

@@ -85,6 +85,8 @@ Checkin.prototype.onSuccess = function(imageData) {
 Checkin.prototype.DoCheckin = function(self){
 	return function(){
 		
+		$('#btnCheckin').html('Sending...');
+		
 		if( self.panel.elem.find('#checkinComment').val() == "Comment" ){
 			self.postData.checkinComment = "";
 		}else{
@@ -113,13 +115,19 @@ Checkin.prototype.DoCheckin = function(self){
 			self.postData.checkinFoursquare = 0;
 		}
 		
-		$.post(apipath+'/reactor/checkin/add/json',self.postData,function(response){alert(response);});
+		$.post(apipath+'/reactor/checkin/add/json',self.postData,self.HandleCheckinResponse(self));
 	};
 };
 
 Checkin.prototype.HandleCheckinResponse = function(self){
-	return function(){
-		self.Close();
+	return function(response){
+		DebugOut(JSON.stringify(response));
+		DebugOut(response);
+		$('#btnCheckin').html('Share');
+		self.panel.Hide();
+		// Refresh the checkins
+		panel['prize'].LoadCheckinData();
+       	return false;
 	};
 };
 
@@ -135,6 +143,8 @@ Checkin.prototype.Close = function(self){
 };
 
 Checkin.prototype.Load = function(pPrize, pLocation){
+	
+	$('#btnCheckin').html('Share');
 
 	if( lsUserId > 0 ){
 		this.panel.elem.find('#myImage').attr('src','img/add_photo.png');
