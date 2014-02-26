@@ -56,9 +56,12 @@ class Oauth extends CI_Controller {
         echo ($response['auth']['info']['image']);
         echo ("<br/>");
         echo ($response['auth']['info']['nickname']);*/
+        echo($response['error']['message']);
         echo("<pre>");
         print_r($response);
         echo("</pre>");
+		
+		die;
         
 		// TODO: Handle erroros from auth response
 		
