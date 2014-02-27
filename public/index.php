@@ -1,209 +1,286 @@
-<?php
-
-	$social = array();
-	$social['title'] = "The Prize Inside";
-	$social['description'] = "When you're out on the road, The Prize Inside uses your phone's GPS to locate nearby restaurants that have kids' meal premiums. Toys are listed in order of distance along with alternate locations within 20 miles. Plan your stop around the prize your kids want most and The Prize inside provides driving directions to the location. Share with your finds on facebook, twitter, and now google plus! Make The Prize Inside part of your next road trip.";
-	$social['image'] = "http://theprizeinside.com/img/fb_icon.png";
-	$social['link'] = "http://theprizeinside.com/";
-
-?>
-
 <!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
 <html>
-  <head>
-    <meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-
-	<title><?=$social['title']?></title>
-	<meta name="description" content="<?=$social['description']?>">
-	<meta name="author" content="Matthew Wilber">
-	<meta property="og:title" content="<?=$social['title']?>" />
-	<meta property="og:type" content="website" />
-	<meta property="og:url" content="<?=$social['link']?>" />
-	<meta property="og:image" content="<?=$social['image']?>" />
-	<meta property="og:site_name" content="<?=$social['title']?>" />
-	<meta property="fb:admins" content="631337813" />
-	<meta property="og:description" content="<?=$social['description']?>" />
-	
-	
-	<!-- Twitter Summary Card -->
-	<meta name="twitter:card" content="summary">
-	<meta name="twitter:site" content="@greenzeta">
-	<meta name="twitter:title" content="<?=$social['title']?>">
-	<meta name="twitter:description" content="When a burger is a burger, and a burrito makes no difference, choose your fast food by The Prize Inside!">
-	<meta name="twitter:creator" content="@tpiapp">
-	<meta name="twitter:image:src" content="<?=$social['image']?>">
-	<meta name="twitter:domain" content="theprizeinside.com">
-	
-	<!-- Twitter App Card -->
-	<meta name="twitter:card" content="app">
-	<meta name="twitter:app:id:iphone" content="id650582612">
-	<meta name="twitter:app:id:ipad" content="id650582612">
-	<meta name="twitter:app:id:googleplay" content="com.greenzeta.greenzeta.theprizeinside">
-	
-
-	<meta name="viewport" content="width=device-width">
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<link rel="apple-touch-startup-image" href="/startup.png">
-	<link href='http://fonts.googleapis.com/css?family=Coustard:900' rel='stylesheet' type='text/css'>
-	<link href='https://fonts.googleapis.com/css?family=Anton' rel='stylesheet' type='text/css'>
-
-	<link type="text/css" href="css/jquery.jscrollpane.css" rel="stylesheet" media="all" />
-    <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link href="css/style.css" rel="stylesheet" media="screen">
-    
-    <script type="text/javascript" src="js/config.js"></script>
-	<script type="text/javascript">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, target-densitydpi=device-dpi" />
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=latin,greek' rel='stylesheet' type='text/css'>
+		<link type="text/css" href="css/jquery.jscrollpane.css" rel="stylesheet" media="all" />
+        <link rel="stylesheet" href="css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <link rel="stylesheet" type="text/css" href="css/index_desktop.css" />
+        <title>The Prize Inside</title>
+        
+        <script type="text/javascript">
 		var social = [];
-		social['title'] = "The Prize Inside";
-		social['description'] = "Choose your fast food by the prize inside.";
-		social['image'] = "http://theprizeinside.com/img/fb_icon.png";
-		social['link'] = "http://theprizeinside.com/";
-		
-	</script>
-	
-	<script src="js/vendor/modernizr-2.6.2.min.js"></script>
-
-  </head>
-  <body>
-  	<img src="img/pinshot.png" style="position: absolute; top:0px; left:-9999px;"/>
-  	<div id="appModal" class="modal hide fade">
-	  <div class="modal-header">
-	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-	    <h3>The Prize Inside Apps</h3>
-	  </div>
-	  <div class="modal-body">
-	    <a style="float:left; width:auto;" href="https://play.google.com/store/apps/details?id=com.greenzeta.greenzeta.theprizeinside" target="_blank"><img src="img/playstore.png" style="height:55px;"/></a>
-	    <a style="float:left; width:auto;" href="http://www.amazon.com/GreenZeta-The-Prize-Inside/dp/B00DAFWEAG/" target="_blank"><img src="img/azstore.png" style="height:55px;"/></a>
-	    <a style="float:left; width:auto;" href="https://chrome.google.com/webstore/detail/the-prize-inside/dhifcjdhfplggpmnlfmgockjchmpcfkb" target="_blank"><img src="img/chromestore.png" style="height:55px;"/></a>
-	   	<a style="float:left; width:auto;" href="https://itunes.apple.com/us/app/the-prize-inside/id650582612?ls=1&mt=8" target="_blank"><img src="img/appstore.png" style="height:55px;"/></a>
-	  </div>
-	  <!--<div class="modal-footer">
-	    <a href="#" class="btn" onclick="$('#geoModal').modal('hide');">Close</a>
-	    <a href="#" class="btn btn-primary" onclick="QueryLocation();">Get Location</a>
-	  </div>-->
-	</div>
-  	<div id="loader">
-  		<h1>Loading...</h1>
-  		<div class="progress progress-warning">
-			<div class="bar" style="width: 0%;"></div>
-		</div>
-		<div class="message">Getting prizes</div>
-  	</div>
-  	
-  	<!-- BOUT BOX -->
-  	<div id="aboutbox" class="float-panel">
-		<a id="btnclose" class="close" href="#" onclick="return false;"><i class="icon-remove"></i></a>
-		<h2>About The Prize Inside</h2>
-		<div id="about" class="scroll-pane">
-			<p>When a burger is a burger, and a burrito makes no difference, choose your fast food by The Prize Inside!</p>
-			<p>When you&rsquo;re out on the road, The Prize Inside uses your phone&rsquo;s GPS to locate nearby restaurants that have kids&rsquo; meal premiums. Toys are listed in order of distance, along with alternate locations within 20 miles. Plan a meal stop around the prize your kids want most, and The Prize inside provides driving directions to the location. Share with your finds on facebook, twitter, and now google plus! Make The Prize Inside part of your next road trip.</p>
-			<p>The Prize Inside was created by Internet software developer Matthew Wilber. For more information, visit <a href="http://www.mwilber.com" target="_blank">mwilber.com</a>.</p>
-			<strong>Mobile Users</strong>
-			<p>Download the app linked above or use this site as a web app: </p>
-			<strong>iPhone/iPad</strong>
-			<p>First you must enable location awareness in mobile safari by going to Settings->Privacy->Location Services and turn on Safari. Then open safari and go to ThePrizeInside.com. When prompted, allow The Prize Inside to use your current location. Finally, install the web app by tapping the share button and selecting "Add to Home Screen"</p>
-		</div>
-	</div>
-	
-	<!-- LOCATION BOX -->
-	<div id="locationbox" class="float-panel">
-		<a id="btncloseloc" class="close" href="#" onclick="return false;"><i class="icon-remove"></i></a>
-		<a id="location" href="#" onclick="return false;">Location: <span></span></a>
-		<h2>Change Location</h2>
-		<p>Enter an address to search:</p>
-		<form id="setloc" onsubmit="$('#btnlocsearch').trigger('click'); return false;">
-			<input id="loctext" value=""/>
-			<a id="btnlocsearch" href="#" class="btn" onclick="return false;">Search</a>
-		</div>
-	</div>
-	
-	<!-- LOCATION NOT FOUND -->
-	<div id="geoModal" class="arrow_box float-panel">
-	  <div class="header">
-	    <a class="close" onclick="$(this).parent().parent().fadeOut();"><i class="icon-remove"></i></a>
-	    <h3>Location Not Found</h3>
-	  </div>
-	  <div class="body">
-	    <p>Manually set your location by tapping the navigation icon above. For the optimal experience, use a browser that is location aware and grant The Prize Inside access to your location.</p>
-	  	<p><a href="policy.html" onclick="gaq.push(['_trackEvent', 'No Location', 'policy', 'click']);">Privacy Policy</a></p>
-	  </div>
-	</div>
-	
-	
-	<!-- INFO BOX -->
-	<div id="infobox" class="float-panel arrow_box info_box">
-		<a id="btncloseinfo" class="close" href="#" onclick="infoBubble.close(); _gaq.push(['_trackEvent', 'Detail', 'close', '']); return false;"><i class="icon-remove"></i></a>
-		<h2 class="prize"></h2>
-		<div class="restaurant"></div> <div class="distance"></div>
-		<a class="extlink btn" href="http://www.wendys.com/kids_meal/" target="_blank"><i class="icon-globe"></i>&nbsp;Website</a>
-		<div class="address"></div>
-		<a class="directions btn" href="#" target="_blank"><i class="icon-road"></i>&nbsp;Driving Directions</a>
-		<div class="btn-group socialgroup">
-			<a id="twshare" href="#" class="btn" onclick="return:false;"><i class="icon-twitter"></i></a>
-			<a id="fbshare" href="#" class="btn" onclick="return:false;"><i class="icon-facebook"></i></a>
-			<a id="gpshare" href="#" class="btn" onclick="return:false;"><i class="icon-google-plus"></i></a>
-		</div>
-	</div>
-	
-	
-  	<div id="header">
-  		<img id="logo" src="img/logo.png"/>
-  		<div id="title">The Prize Inside</div>
-  		<a id="info" href="#" onclick="return false;" style="margin-right:0px;"><i class="icon-info-sign"></i></a>
-  		<a id="loc" href="#" onclick="return false;"><i class="icon-location-arrow"></i></a>
-  		<a id="twitterfeed" href="http://www.twitter.com/tpiapp" onclick="" target="_blank"><i class="icon-twitter"></i></a>
-  		<a id="appmobi" href="#" onclick="return false;"><i class="icon-mobile-phone"></i><span>Get The App!</span></a>
-    	<div class="clearfix"></div>
-  	</div>
-  	
-	<div id="overmap"></div>
-	<a id="listshow" href="#" onclick="return false;"><img src="img/listshow.png"></a>
-	<ul id="listlist" class="unstyled">
-		
-	</ul>
-	<div id="footer">
-    	<a id="gzlink" href="http://www.greenzeta.com" onclick="gaq.push(['_trackEvent', 'Footer', 'greenzeta', 'click']);" target="_blank">A GreenZeta Production</a>
-    	<a id="policylink" href="policy.html" onclick="gaq.push(['_trackEvent', 'Footer', 'policy', 'click']);">Privacy Policy</a>
-   	</div>
-	<div id="map"></div>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places&sensor=true"></script>
-    <script src="js/infobubble-compiled.js"></script>
-    <script src="js/vendor/jquery-1.9.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <!-- the mousewheel plugin -->
-	<script type="text/javascript" src="js/jquery.mousewheel.js"></script>
-	<!-- the jScrollPane script -->
-	<script type="text/javascript" src="js/jquery.jscrollpane.min.js"></script>
-    <script src="js/fb.js"></script>
-    <script src="js/script-130606.js"></script>
-    
-    <script type="text/javascript">
-		
-		$(document).ready(function(){
+			social['title'] = "The Prize Inside";
+			social['description'] = "Choose your fast food by the prize inside.";
+			social['image'] = "http://theprizeinside.com/img/fb_icon.png";
+			social['link'] = "http://theprizeinside.com/";
 			
-			InitApp();
-			InitMap();
-			QueryLocation();
-			locationTimer = window.setInterval(QueryLocationLoop,30000);
-			
-		});
-	</script>
-	
-	<script type="text/javascript">
+		</script>
+    </head>
+    <body>
+        <div id="header" class="header">
+        	<img id="homeview" src="img/homebanner.jpg"/>
+			<a class="showuserlocation fa fa-location-arrow" target="_blank"> </a>
+			<a class="showinfo fa fa-info-circle" target="_blank"> </a>
+        </div>
+        
+        <div id="wallmap">google map here</div>
 
-	  var _gaq = _gaq || [];
-	  _gaq.push(['_setAccount', 'UA-76054-17']);
-	  _gaq.push(['_trackPageview']);
-	
-	  (function() {
-	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-	  })();
-	
-	</script>
-  </body>
+        <div id="container">
+            
+        	
+			<div id="home" class="panel">
+				<h1 class="name">The Prize Inside</h1>
+				<div class="header">
+					<img id="homeview" src="img/homebanner.jpg"/>
+					<a class="showuserprofile fa fa-user" target="_blank"> </a>
+					<a class="showinfo fa fa-info-circle" target="_blank"> </a>
+				</div>
+				<div class="content">
+				<ul class="prizes linearlist">
+					<!-- AJAX Data here -->
+				</ul>
+				</div>
+			</div>
+			
+			<div id="prize" class="panel">
+				<a class="back" href="#"><span class="fa fa-angle-left"> </span></a>
+				<h1 class="name"><!-- AJAX Data here --></h1>
+				<div class="header">
+					<img id="prizephoto" src=""/>
+					<a class="showuserlocation fa fa-location-arrow" target="_blank"> </a>
+				  	<a class="showwebsite fa fa-globe" target="_blank"> </a>
+				  	<a class="showcheckin fa fa-thumbs-up"></a>
+				</div>
+				<div class="content">
+				<ul class="tabs">
+				  <li class="tablocations selected"><a id="btnlocations" href="#">Locations</a></li>
+				  <li class="tabmap"><a id="btnmap" href="#">Map</a></li>
+				  <li class="tabcomments"><a id="btncomments" href="#">Comments</a></li>
+				</ul>
+				<div id="locations" class="tabpanel">
+				  <ul class="linearlist"><!-- AJAX Data here --></ul>
+				</div>
+			  <div id="map" class="tabpanel">
+				Google Map Here
+			  </div>
+			  <div id="comments" class="tabpanel">
+				<ul class="checkins linearlist"><!-- AJAX Data here --></ul>
+			  </div> 
+			  </div>
+			</div>
+			
+			<div id="location" class="panel">
+				<a class="back" href="#"><span class="fa fa-angle-left"></span></a>
+				<h1 class="name"><!-- AJAX Data here --></h1>
+				<div class="header">
+					<img id="streetview" src=""/>
+					<a class="showdirections fa fa-road"></a>
+					<a class="showcheckin fa fa-thumbs-up"></a>
+				</div>
+				<div class="content">
+					<div class="vcard">
+						<p class="fn"><p>
+						<p class="adr">
+						<span class="street-address"></span> <span class="city"></span>, <span class="region"></span> <span class="postal-code"></span>
+						<br>
+						<span class="country-name"></span>
+						</p>
+						<p class="tel"></p>
+					</div>
+					<a class="mapdirections" href="#" target="_blank"><img id="staticmap" src=""/></a>
+				</div>
+			</div>
+			
+			<div id="checkin" class="popup">
+				<a class="close" href="#"><span class="fa fa-times"></span></a>
+				<h1>Share</h1>
+				<p class="prizename"></p><a id="setpic" href="#"><img id="myImage" src="img/add_photo.png"/></a>
+				<textarea id="checkinComment">Comment</textarea>
+				
+				<div style="margin: 1% 5%;">
+					<img class="locationmap" src="" />
+					<div id="checkinAnonymous" class="button toggle fa fa-square-o"></div>
+					<label id="msgAnonymous">Do not post this location on The Prize Inside website.</label>
+					<div class="clearfix socialbreak"></div>
+					<div id="checkinTwitter" class="button share toggle selected fa fa-twitter"> </div>
+					<div id="checkinFacebook" class="button share toggle selected fa fa-facebook"> </div>
+					<div id="checkinFoursquare" class="button share toggle selected fa fa-foursquare"> </div>
+				</div>
+				<div class="clearfix"></div>
+				<a id="btnCheckin" href="#" class="button">Share</a>
+			</div>
+			
+			<div id="userlocation" class="popup">
+				<a class="close" href="#"><span class="fa fa-times"> </span></a>
+				<h1>Set Location</h1>
+				<div id="locsearchbox">
+					<p class="gpserror">No GPS location found.</p>
+					<p class="locmessage">Enter an address to search:</p>
+					<input id="loctext" value=""/>
+					<a id="btnlocsearch" href="#" class="button" onclick="return false;">Search</a>
+					<a id="btngpssearch" href="#" class="button fa fa-crosshairs" onclick="return false;"></a>
+				</div>
+				<img class="locationmap" src="" />
+				<a class="location" href="#" onclick="return false;">Location: <span> </span></a>
+			</div>
+			
+			<div id="userprofile" class="popup">
+				<a class="close" href="#"><span class="fa fa-times"> </span></a>
+				<h1>Profile</h1>
+				<div id="viewprofile">
+					<div id="checkincount">
+						<div class="number">&nbsp;</div>
+						<span>Prizes</span>
+					</div>
+					<img class="avatar" src=""/>
+					<div style="float:left;">
+						<h2 class="nickname"></h2>
+						<h3 class="name"></h3>
+						<p class="profileid"></p>
+						<a id="showedit" href="#">Edit</a>
+					</div>
+				</div>
+				<div id="editprofile">
+					<label>Nickname:</label> <input id="nickname" class="nickname" />
+					<a id="showview" href="#" class="button fa fa-times"></a>
+					<a id="btnsave" href="#" class="button fa fa-check" onclick="return false;"></a>
+					<br/>
+					<label>Name:</label> <input id="name" class="name" />
+				</div>
+				<div id="authprofile">
+					<div style="float:left; width:50%;">
+					<p>Currently signed in with:</p>
+					<div id="authed"></div>
+					</div>
+					<div style="float:left;">
+					<p id="addservicecopy">Add services to share:</p>
+					<a id="addfacebook" href="#" class="button addservice fa fa-facebook-square" onclick="return false;"></a>
+					<a id="addtwitter" href="#" class="button addservice fa fa-twitter-square" onclick="return false;"></a>
+					<a id="addfoursquare" href="#" class="button addservice fa fa-foursquare" onclick="return false;"></a>
+					</div>
+				</div>
+				<p class="historytitle">History</p>
+				<div id="ckprofile">
+					<ul class="checkins linearlist">
+						<!-- AJAX Data here -->
+					</ul>
+				</div>
+				<a id="btnlogout" href="#" class="button" onclick="return false;">Log Out</a>
+			</div>
+			
+			<div id="userlogin" class="popup">
+				<a class="close" href="#"><span class="fa fa-times"></span></a>
+				<h1>Login</h1>
+				<ul>
+					<li><a id="btnfacebook" href="#" class="button fa fa-facebook-square" onclick="return false;"> facebook</a></li>
+					<li><a id="btntwitter" href="#" class="button fa fa-twitter-square" onclick="return false;"> twitter</a></li>
+					<li><a id="btnfoursquare" href="#" class="button fa fa-foursquare" onclick="return false;"> foursquare</a></li>
+				</ul>
+			</div>
+			
+			<div id="info" class="popup">
+				<a class="close" href="#"><span class="fa fa-times"></span></a>
+				<h1>About</h1>
+				<div id="aboutbox" class="scroll-pane">
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec rhoncus mollis quam. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed vel pellentesque nulla. Integer ac ullamcorper mi. Mauris non elit egestas, rhoncus nisi in, auctor ligula. Integer ante lectus, luctus vitae sem a, tempus pellentesque dolor. Fusce sed orci ornare, sodales orci vitae, viverra quam. Praesent a placerat tellus, ut convallis diam.</p>
+					<p>Donec tempor felis nec congue molestie. Nullam condimentum ac sem ut venenatis. Proin accumsan accumsan odio at fermentum. Quisque placerat, erat non pulvinar blandit, ante eros dapibus turpis, vitae fringilla nisi diam eu libero. Maecenas iaculis massa eu eros euismod, quis gravida augue consequat. Maecenas ornare erat id neque auctor, vitae luctus lorem aliquet. Quisque viverra hendrerit aliquet. Maecenas vestibulum ipsum ac vestibulum porttitor. Morbi sollicitudin sagittis erat vel sagittis. Fusce fermentum, nisl nec adipiscing ultricies, massa est sagittis elit, quis aliquam odio nisi sit amet quam.</p>
+				</div>
+			</div>
+			
+			<div id="checkindetail" class="popup">
+				<a class="close" href="#"><span class="fa fa-times"></span></a>
+				<h1>Prize</h1>
+				<p class="prizecomment"></p>
+				<img class="prizeimage" src="" />
+				<h2 class="prizename"></h2>
+				<h3 class="restaurantname"></h3>
+				<img class="locationmap" src="" />
+				<div class="profile">
+					<img class="avatar" src=""/>
+					<div style="float:left;">
+						<h2 class="nickname"></h2>
+						<div class="checkincount">
+							<span class="number">&nbsp;</span> Prizes
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div id="locationoptions" class="messagebox">
+				<a class="close" href="#"><span class="fa fa-times"></span></a>
+				<img id="streetview" src=""/>
+				<div class="vcard">
+					<p class="fn"><p>
+					<p class="adr">
+					<span class="street-address"></span> <span class="city"></span>, <span class="region"></span> <span class="postal-code"></span>
+					<br>
+					<span class="country-name"></span>
+					</p>
+					<p class="tel"></p>
+				</div>
+				
+				<a class="showdirections fa fa-road button">&nbsp;&nbsp;Driving Directions</a>
+				<a class="showcheckin fa fa-thumbs-up button">&nbsp;&nbsp;Share</a>
+			</div>
+			
+        </div>
+        
+        <div id="footer">
+        	<a href="#" onclick="window.open('http://www.greenzeta.com/home/listing/product', '_system'); return false;" class="gz">
+				<span class="badge">&zeta;</span>
+				&nbsp;&nbsp;A GreenZeta Production
+			</a>
+        </div>
+        
+        <script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>
+        <script type="text/javascript" src="js/jquery.mousewheel.js"></script>
+        <script type="text/javascript" src="js/jquery.jscrollpane.min.js"></script>
+        <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=true"></script>
+
+		<script src="js/cPanel.js"></script>
+	    <script src="js/cPopup.js"></script>
+	    <script src="js/cMessageBox.js"></script>
+		<script src="js/cHome.js"></script>
+		<script src="js/cPrize.js"></script>
+		<script src="js/cLocation.js"></script>
+	    <script src="js/cCheckin.js"></script>
+	    <script src="js/cCheckinDetail.js"></script>
+	    <script src="js/cUserLocation.js"></script>
+	    <script src="js/cUserProfile.js"></script>
+	    <script src="js/cUserLogin.js"></script>
+	    <script src="js/cInfo.js"></script>
+	    <script src="js/cLocationOptions.js"></script>
+		
+		<script type="text/javascript" src="js/util.js"></script>
+        <script type="text/javascript" src="js/index_desktop.js"></script>
+        <script type="text/javascript">
+        	$(document).ready(function(){
+        		AppInit();
+				//AdInit();
+				if($(window).width() > 600) WallMapInit();
+        	});
+        </script>
+    </body>
 </html>
