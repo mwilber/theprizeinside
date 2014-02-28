@@ -1003,8 +1003,24 @@ a.close{
 	margin: 0px 4%;
 }
 
+#app ul{
+	list-style: none;
+	float: left;
+	width: 100%;
+	margin: 10px 0px;
+	padding: 0px;
+}
+
+#app ul li{
+	float: left;
+	text-align: center;
+	margin: 5px 0px;
+	width: 50%;
+}
+
 #info.popup{
 	height:90%;
+	display:block;
 }
 
 #info .scroll-pane
@@ -1039,6 +1055,15 @@ a.close{
 {
 	display: block;
 	background: transparent;
+}
+
+#info #aboutbox p{
+	margin: 0px 0px 25px 0px;
+}
+
+#info #aboutbox p a{
+	color:#000;
+	font-weight:bold;
 }
 
 #locationoptions{
@@ -1086,25 +1111,29 @@ a.close{
 #footer a.gz {
 	width: auto;
 	color: #fff;
-	line-height: 50px;
+	line-height: 18px;
 	text-align: left;
 	font-weight: bold;
-	font-size: 24px;
+	font-size: 18px;
 	background: rgba(0,0,0,0.8);
-	padding: 20px 15px 20px 0px;
+	padding: 0px 15px 0px 0px;
 	text-decoration: none;
 	overflow: hidden;
+	margin: 0px 0px;
+	display: block;
+	float: left;
 }
 
 #footer a.gz .badge {
 	color: #fff;
 	text-align: center;
 	font-weight: normal;
-	font-size: 36px;
+	font-size: 30px;
 	background: #7cb750;
 	line-height: 36px;
 	font-family: serif;
-	padding: 4px 18px;
+	padding: 0px 15px 4px 15px;
+	margin: 0px;
 }
 
 /* Colors */
@@ -1203,7 +1232,7 @@ a.close span {
 		line-height: 14px;
 	}
 	.panel .linearlist li .prize {
-		font-size: 28px;
+		font-size: 24px;
 		line-height: 24px;
 	}
 	.panel .linearlist li {
@@ -1320,7 +1349,7 @@ a.close span {
 		font-size: 22px;
 		margin-left: 0px;
 		margin-right: 0px;
-		line-height: 32px;
+		line-height: 20px;
 		padding: 4px 15px;
 	}
 	

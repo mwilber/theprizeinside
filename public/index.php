@@ -1,26 +1,45 @@
+<?php
+
+	$social = array();
+	$social['title'] = "The Prize Inside";
+	$social['description'] = "When you're out on the road, The Prize Inside uses your location to find nearby restaurants that have kids meal premiums. Plan a meal stop around the prize you want most. The Prize inside provides driving directions to the location. Share with your finds on The Prize Inside website! Make The Prize Inside part of your next road trip.";
+	$social['image'] = "http://theprizeinside.com/img/fb_icon.png";
+	$social['link'] = "http://theprizeinside.com/";
+
+?>
 <!DOCTYPE html>
-<!--
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
--->
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <meta name="format-detection" content="telephone=no" />
+    <head>       
+	    <meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	
+		<title><?=$social['title']?></title>
+		<meta name="description" content="<?=$social['description']?>">
+		<meta name="author" content="Matthew Wilber">
+		<meta property="og:title" content="<?=$social['title']?>" />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="<?=$social['link']?>" />
+		<meta property="og:image" content="<?=$social['image']?>" />
+		<meta property="og:site_name" content="<?=$social['title']?>" />
+		<meta property="fb:admins" content="631337813" />
+		<meta property="og:description" content="<?=$social['description']?>" />
+		
+		
+		<!-- Twitter Summary Card -->
+		<meta name="twitter:card" content="summary">
+		<meta name="twitter:site" content="@greenzeta">
+		<meta name="twitter:title" content="<?=$social['title']?>">
+		<meta name="twitter:description" content="When a burger is a burger, choose your fast food by The Prize Inside!">
+		<meta name="twitter:creator" content="@tpiapp">
+		<meta name="twitter:image:src" content="<?=$social['image']?>">
+		<meta name="twitter:domain" content="theprizeinside.com">
+		
+		<!-- Twitter App Card -->
+		<meta name="twitter:card" content="app">
+		<meta name="twitter:app:id:iphone" content="id650582612">
+		<meta name="twitter:app:id:ipad" content="id650582612">
+		<meta name="twitter:app:id:googleplay" content="com.greenzeta.greenzeta.theprizeinside">
+        
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, target-densitydpi=device-dpi" />
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=latin,greek' rel='stylesheet' type='text/css'>
 		<link type="text/css" href="css/jquery.jscrollpane.css" rel="stylesheet" media="all" />
@@ -41,16 +60,40 @@
     <body>
         <div id="header" class="header">
         	<img id="homeview" src="img/homebanner.jpg"/>
+        	<img id="logo" src="img/logo.png">
+        	<a class="showapp fa fa-mobile-phone" style="right:300px; width: auto;" target="_blank"> <span style="font-size:18px;">Get the App!</span></a>
+        	<a class="showtweeter fa fa-twitter" href="#" onclick="window.open('http://www.twitter.com/tpiapp', '_system'); return false;" style="right:200px;"> </a>
 			<a class="showuserlocation fa fa-location-arrow" target="_blank"> </a>
 			<a class="showinfo fa fa-info-circle" target="_blank"> </a>
         </div>
         
-        <div id="wallmap">google map here</div>
+        <div id="wallmap"></div>
+        
+        <div id="info" class="popup">
+			<a class="close" href="#"><span class="fa fa-times"></span></a>
+			<h1>About</h1>
+			<div id="aboutbox" class="scroll-pane">
+				<p>When a burger is a burger, choose your fast food by The Prize Inside!</p>
+				<p>When you&rsquo;re out on the road, The Prize Inside uses your location to find nearby restaurants that have kids&rsquo; meal premiums. Plan a meal stop around the prize you want most. The Prize inside provides driving directions to the location. Share with your finds on The Prize Inside website! Make The Prize Inside part of your next road trip.</p>
+				<p>The Prize Inside was created by Internet software developer Matthew Wilber. For more information, visit <a href="http://www.mwilber.com" target="_blank">mwilber.com</a>.</p>			
+			</div>
+		</div>
+		
+		<div id="app" class="popup">
+			<a class="close" href="#"><span class="fa fa-times"></span></a>
+			<h1>APPs</h1>
+			<ul>
+				<li><a href="https://play.google.com/store/apps/details?id=com.greenzeta.greenzeta.theprizeinside" target="_blank"><img src="img/playstore.png" style="height:55px;"/></a></li>
+	    		<li><a href="http://www.amazon.com/GreenZeta-The-Prize-Inside/dp/B00DAFWEAG/" target="_blank"><img src="img/azstore.png" style="height:55px;"/></a></li>
+	    		<li><a href="https://chrome.google.com/webstore/detail/the-prize-inside/dhifcjdhfplggpmnlfmgockjchmpcfkb" target="_blank"><img src="img/chromestore.png" style="height:55px;"/></a></li>
+	   			<li><a href="https://itunes.apple.com/us/app/the-prize-inside/id650582612?ls=1&mt=8" target="_blank"><img src="img/appstore.png" style="height:55px;"/></a></li>
+			</ul>
+		</div>
 
         <div id="container">
  
 			<div id="home" class="panel">
-				<h1 class="name">The Prize Inside</h1>
+				<h1 class="name"><span class="mob">The Prize Inside</span><span class="dsk">Prizes</span></h1>
 				<div class="header">
 					<img id="homeview" src="img/homebanner.jpg"/>
 					<a class="showuserprofile fa fa-user" target="_blank"> </a>
@@ -205,15 +248,6 @@
 			<a class="location" href="#" onclick="return false;">Location: <span> </span></a>
 		</div>
         
-        <div id="info" class="popup">
-			<a class="close" href="#"><span class="fa fa-times"></span></a>
-			<h1>About</h1>
-			<div id="aboutbox" class="scroll-pane">
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec rhoncus mollis quam. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed vel pellentesque nulla. Integer ac ullamcorper mi. Mauris non elit egestas, rhoncus nisi in, auctor ligula. Integer ante lectus, luctus vitae sem a, tempus pellentesque dolor. Fusce sed orci ornare, sodales orci vitae, viverra quam. Praesent a placerat tellus, ut convallis diam.</p>
-				<p>Donec tempor felis nec congue molestie. Nullam condimentum ac sem ut venenatis. Proin accumsan accumsan odio at fermentum. Quisque placerat, erat non pulvinar blandit, ante eros dapibus turpis, vitae fringilla nisi diam eu libero. Maecenas iaculis massa eu eros euismod, quis gravida augue consequat. Maecenas ornare erat id neque auctor, vitae luctus lorem aliquet. Quisque viverra hendrerit aliquet. Maecenas vestibulum ipsum ac vestibulum porttitor. Morbi sollicitudin sagittis erat vel sagittis. Fusce fermentum, nisl nec adipiscing ultricies, massa est sagittis elit, quis aliquam odio nisi sit amet quam.</p>
-			</div>
-		</div>
-        
         <div id="checkindetail" class="popup">
 			<a class="close" href="#"><span class="fa fa-times"></span></a>
 			<h1>Prize</h1>
@@ -276,6 +310,7 @@
 	    <script src="js/cUserProfile.js"></script>
 	    <script src="js/cUserLogin.js"></script>
 	    <script src="js/cInfo.js"></script>
+	    <script src="js/cApp.js"></script>
 	    <script src="js/cLocationOptions.js"></script>
 		
 		<script type="text/javascript" src="js/util.js"></script>
@@ -286,12 +321,20 @@
 				//AdInit();
 				if($(window).width() > 600) WallMapInit();
 				
+				$('.showapp').click(function(){
+					panel['app'].Load();
+				});
+				
 				$('.showinfo').click(function(){
 					panel['info'].Load();
 				});
 				
 				$('.showuserlocation').click(function(){
 					panel['userlocation'].Load();
+				});
+				
+				$( window ).resize(function() {
+					if((!wallmap)&&($(window).width() > 600)) WallMapInit();
 				});
         	});
         </script>

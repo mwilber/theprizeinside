@@ -60,6 +60,7 @@ function AppInit(){
 	panel['userprofile'] = new UserProfile();
 	panel['userlogin'] = new UserLogin();
 	panel['info'] = new Info();
+	panel['app'] = new App();
 	panel['locationoptions'] = new LocationOptions();
 
     panel['home'].Load();
@@ -122,7 +123,7 @@ function GetFSData(){
     DebugOut('getting fs data: ');
     for( idx in prizedata ){
         var value = prizedata[idx];
-        $.get('https://api.foursquare.com/v2/venues/search?client_id=UMRUA4UFFY0RLEI1TKGXUT30JLQULNFRM3YVQWNCASQ3VE31&client_secret=4XSWL2PUIN02A3RNJY4GFRCLISF4RPC3URLVLHK2AOQD0EQ5&v=20130815&ll='+userLocation.lat()+','+userLocation.lng()+'&limit=10&query='+value.restaurant.restaurantName,HandleFSData(value));
+        $.get('https://api.foursquare.com/v2/venues/search?client_id=UMRUA4UFFY0RLEI1TKGXUT30JLQULNFRM3YVQWNCASQ3VE31&client_secret=4XSWL2PUIN02A3RNJY4GFRCLISF4RPC3URLVLHK2AOQD0EQ5&v=20140128&ll='+userLocation.lat()+','+userLocation.lng()+'&limit=10&query='+value.restaurant.restaurantName,HandleFSData(value));
     }
 }
 

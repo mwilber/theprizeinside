@@ -97,7 +97,7 @@ Prize.prototype.Load = function(pPrize){
     		DebugOut("Checkin Photo: "+pPrize.checkins[idx].checkinPhoto);
     		if( pPrize.checkins[idx].checkinPhoto != "" ){
     			this.panel.elem.find('#prizephoto').attr('src',pPrize.checkins[idx].checkinPhoto);
-    			$('#header.header img').attr('src',pPrize.checkins[idx].checkinPhoto);
+    			$('#header.header #homeview').attr('src',pPrize.checkins[idx].checkinPhoto);
     			break;
     		}
     	}
