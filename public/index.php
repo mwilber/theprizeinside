@@ -285,6 +285,14 @@
         		AppInit();
 				//AdInit();
 				if($(window).width() > 600) WallMapInit();
+				
+				$('.showinfo').click(function(){
+					panel['info'].Load();
+				});
+				
+				$('.showuserlocation').click(function(){
+					panel['userlocation'].Load();
+				});
         	});
         </script>
     </body>

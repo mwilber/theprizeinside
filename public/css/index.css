@@ -1109,7 +1109,7 @@ a.close{
 
 /* Colors */
 
-.panel h1{
+.panel h1, .popup h1{
 	background: rgb(22,16,8); /* Old browsers */
 background: -moz-linear-gradient(top,  rgba(22,16,8,1) 0%, rgba(54,40,20,1) 100%); /* FF3.6+ */
 background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(22,16,8,1)), color-stop(100%,rgba(54,40,20,1))); /* Chrome,Safari4+ */
@@ -1133,7 +1133,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#362814', end
 }
 
 .popup h1{
-    background: #362814;
     color: #FFFFB2;
 }
 
@@ -1148,10 +1147,12 @@ a.close span {
 
 .panel {
 	background: #fafafa;
+	
 }
 
 .popup {
 	background:#F5F2ED;
+	border: solid 1px #F5F2ED;
 }
 
 .panel .linearlist li, .popup .linearlist li {

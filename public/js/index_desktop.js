@@ -47,7 +47,6 @@ var lang = dict.en;
 // Store object refs for each UI panel.
 // Arr idx matches html id of panel
 var panel = Array();
- 
 
 
 function AppInit(){
