@@ -17,5 +17,7 @@ Panel.prototype.Show = function(pProfileId){
     //this.elem.css('z-index',100);
     this.elem.show();
     
+    _gaq.push(['_trackEvent', 'PanelShow', this.elem.attr('id'), '']);
+    
     return true;
 };

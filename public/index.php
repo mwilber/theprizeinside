@@ -72,7 +72,8 @@
 		<meta name="twitter:app:id:googleplay" content="com.greenzeta.greenzeta.theprizeinside">
         
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, target-densitydpi=device-dpi" />
-		<link href='' rel='stylesheet' type='text/css'>
+		<link href='fonts/opensans_regular_macroman/stylesheet.css' rel='stylesheet' type='text/css'>
+		<link href='fonts/opensans_bold_macroman' rel='stylesheet' type='text/css'>
 		<link type="text/css" href="css/jquery.jscrollpane.css" rel="stylesheet" media="all" />
         <link rel="stylesheet" href="css/font-awesome.min.css">
         <link rel="stylesheet" type="text/css" href="css/index.css" />
@@ -93,7 +94,7 @@
         	<img id="homeview" src="img/homebanner.jpg"/>
         	<img id="logo" src="img/logo.png">
         	<a class="showapp fa fa-mobile-phone" style="right:300px; width: auto;" target="_blank"> <span style="font-size:18px;">Get the App!</span></a>
-        	<a class="showtweeter fa fa-twitter" href="#" onclick="window.open('http://www.twitter.com/tpiapp', '_system'); return false;" style="right:200px;"> </a>
+        	<a class="showtweeter fa fa-twitter" href="#" onclick="window.open('http://www.twitter.com/tpiapp', '_system'); _gaq.push(['_trackEvent', 'External', 'Twitter', '']); return false;" style="right:200px;"> </a>
 			<a class="showuserlocation fa fa-location-arrow" target="_blank"> </a>
 			<a class="showinfo fa fa-info-circle" target="_blank"> </a>
         </div>
@@ -349,6 +350,21 @@
 		
 		<script type="text/javascript" src="js/util.js"></script>
         <script type="text/javascript" src="js/index_desktop.js"></script>
+        
+        <script type="text/javascript">
+		
+		  var _gaq = _gaq || [];
+		  _gaq.push(['_setAccount', 'UA-76054-17']);
+		  _gaq.push(['_trackPageview']);
+		
+		  (function() {
+		    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		  })();
+		
+		</script>
+        
         <script type="text/javascript">
         	$(document).ready(function(){
         		AppInit();

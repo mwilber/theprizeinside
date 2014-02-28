@@ -15,6 +15,8 @@ MessageBox.prototype.Show = function(pProfileId){
     //this.elem.css('z-index',100);
     this.elem.show();
     
+    _gaq.push(['_trackEvent', 'MessageBoxShow', this.elem.attr('id'), '']);
+    
     return true;
 };
 
