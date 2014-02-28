@@ -1,10 +1,20 @@
 /* Mobile Web ----------- */
-#locationoptions .button {
-	
+
+#btncomments{
+	visibility: hidden;
 }
 
-#locationoptions .showcheckin{
+
+#locationoptions .showcheckin, #home .showuserprofile, #prize .showcheckin{
 	display:none;
+}
+
+.panel .header a.showwebsite, .panel .header a.showinfo {
+	margin-right: 0px;
+}
+
+.panel .header a.showuserlocation {
+	margin-right: 75px;
 }
 
 /* Desktop ----------- */
@@ -48,7 +58,7 @@
 		position: absolute;
 		top:100px;
 		left:2%;
-		width:320px;
+		width:380px;
 		height:480px;
 		min-height:0;
 		z-index:100;
@@ -73,10 +83,11 @@
 	}
 	.panel .linearlist li .restaurant {
 		font-weight: normal;
-		font-size: 10px;
+		font-size: 12px;
+		line-height: 14px;
 	}
 	.panel .linearlist li .prize {
-		font-size: 14px;
+		font-size: 18px;
 	}
 	.panel .linearlist li {
 		padding: 10px 10px 10px 10px;
@@ -150,7 +161,7 @@
 	}
 	
 	#prize .checkins li{
-		min-height: 50px;
+		min-height: 65px;
 	}
 	
 	#wallmap{
@@ -185,6 +196,10 @@
 		box-shadow: 0px 0px 350px 350px rgba(0,0,0,0.7);
 	}
 	
+	#checkindetail .prizename {
+		width: 47%;
+	}
+	
 	.messagebox {
 		bottom: 40%;
 		font-size: 18px;
@@ -211,21 +226,26 @@
 	#locationoptions .button {
 		font-size: 20px;
 	}
-
+	
+	#comments .checkins .comment {
+		width: 70%;
+	}
 	
 	#footer a.gz {
 		height: 22px;
-		line-height: 2.5em;
-		font-size: 0.75em;
+		line-height: 18px;
+		font-size: 18px;
+		padding: 5px 10px 5px 0px;
 	}
 	
 	#footer a.gz .badge {
 		width: 22px;
 		height: 22px;
-		font-size: 1.5em;
-		margin-left: -10px;
-		margin-right: 10px;
-		line-height: 1.5em;
+		font-size: 22px;
+		margin-left: 0px;
+		margin-right: 0px;
+		line-height: 32px;
+		padding: 4px 15px;
 	}
 	
 

@@ -93,6 +93,8 @@ Home.prototype.HandlePrizeClick = function(self,pPrize){
 };
 
 Home.prototype.Show = function(){
+	
+	$('#header.header img').attr('src','img/homebanner.jpg');
     
     //$('#header').show();
     var offsetheight =  this.panel.elem.find('.header').height()+this.panel.elem.find('.name').height()+(parseInt(this.panel.elem.find('.name').css('padding-top'))*4);

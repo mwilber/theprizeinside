@@ -366,7 +366,7 @@ a.close{
 .messagebox{
     color: #161008;
 	position: absolute;
-	top: 40%;
+	bottom: 20%;
 	left: 5%;
 	width: 90%;
 	height: auto;
@@ -1198,10 +1198,12 @@ a.close span {
 	}
 	.panel .linearlist li .restaurant {
 		font-weight: normal;
-		font-size: 10px;
+		font-size: 12px;
+		line-height: 14px;
 	}
 	.panel .linearlist li .prize {
-		font-size: 14px;
+		font-size: 28px;
+		line-height: 24px;
 	}
 	.panel .linearlist li {
 		padding: 10px 10px 10px 10px;
@@ -1235,15 +1237,21 @@ a.close span {
 		height: 75px;
 	}
 	.panel .tabs li a {
-		font-size: 14px;
+		font-size: 20px;
 	}
 	.panel .linearlist li, .popup .linearlist li {
-		font-size: 14px;
+		font-size: 20px;
 	}
 	
 	.panel .content{
 		margin-top:75px;
 	}
+	
+	a.close {
+		padding: 0px 10px;
+		line-height: 42px;
+	}
+	
 	a.close span {
 		font-size: 40px;
 		line-height: 45px;
@@ -1254,7 +1262,7 @@ a.close span {
 	}
 	
 	#prize .checkins li{
-		min-height: 50px;
+		min-height: 65px;
 	}
 	
 	#location .content .vcard p {
@@ -1267,19 +1275,52 @@ a.close span {
 		line-height: 18px;
 	}
 	
+	#checkindetail .prizecomment {
+	margin: 20px 4% 30px 4%;
+	font-size: 30px;
+	}
+	
+	#checkindetail .prizename {
+		width: 45%;
+		font-size: 20px;
+		line-height: 22px;
+	}
+	
+	#checkindetail .restaurantname {
+	font-size: 16px;
+	line-height: 16px;
+	}
+	
+	#checkindetail .profile .avatar {
+	width: 35px;
+	height: 35px;
+	margin: 0px 5px 0px 10px;
+	}
+	
+	#checkindetail .profile .nickname {
+	font-size: 25px;
+	line-height: 19px;
+	}
+	
+	#checkindetail .profile .checkincount {
+	font-size: 14px;
+	}
+	
 	#footer a.gz {
 		height: 22px;
-		line-height: 2.5em;
-		font-size: 0.75em;
+		line-height: 18px;
+		font-size: 18px;
+		padding: 5px 10px 5px 0px;
 	}
 	
 	#footer a.gz .badge {
 		width: 22px;
 		height: 22px;
-		font-size: 1.5em;
-		margin-left: -10px;
-		margin-right: 10px;
-		line-height: 1.5em;
+		font-size: 22px;
+		margin-left: 0px;
+		margin-right: 0px;
+		line-height: 32px;
+		padding: 4px 15px;
 	}
 	
 
