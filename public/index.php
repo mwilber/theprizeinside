@@ -5,6 +5,37 @@
 	$social['description'] = "When you're out on the road, The Prize Inside uses your location to find nearby restaurants that have kids meal premiums. Plan a meal stop around the prize you want most. The Prize inside provides driving directions to the location. Share with your finds on The Prize Inside website! Make The Prize Inside part of your next road trip.";
 	$social['image'] = "http://theprizeinside.com/img/fb_icon.png";
 	$social['link'] = "http://theprizeinside.com/";
+	
+	if(isset($_GET['ck'])){
+	
+		include('reactor/application/config/constants.php');
+		include('reactor/application/config/database.php');
+		include('reactor/application/helpers/idobfuscator_helper.php');
+		
+		$_GET['ck'] = IdObfuscator::decode($_GET['ck']);
+		
+		$conn = mysql_connect($db['default']['hostname'], $db['default']['username'], $db['default']['password']) 
+	  		or die("Unable to connect to MySQL");
+			
+		//select a database to work with
+		$dbc = mysql_select_db($db['default']['database'],$conn) 
+		  or die("Could not select examples");
+	
+		$checkinRS = mysql_query("SELECT tblCheckin.checkinId,checkinLat,checkinLng,checkinComment,checkinPhoto,checkinTimeStamp,restaurantName,prizeName,profileNickname,profilePicture FROM tblCheckin INNER JOIN tblRestaurant ON tblCheckin.restaurantId=tblRestaurant.restaurantId INNER JOIN tblPrize ON tblCheckin.prizeId=tblPrize.prizeId INNER JOIN tblProfile ON tblCheckin.profileId=tblProfile.profileId WHERE checkinId=".$_GET['ck']);
+		$checkin = mysql_fetch_assoc($checkinRS);
+		
+		if( $checkin['prizeName'] == "" ){
+			$checkin['prizeName']=$social['title'];
+		}else{
+			$social['title'] = $checkin['prizeName'];
+		}
+		
+		if( $checkin['checkinPhoto'] == "" ){
+			$checkin['checkinPhoto']=$social['image'];
+		}else{
+			$social['image'] = $checkin['checkinPhoto'];
+		}
+	}
 
 ?>
 <!DOCTYPE html>
@@ -41,7 +72,7 @@
 		<meta name="twitter:app:id:googleplay" content="com.greenzeta.greenzeta.theprizeinside">
         
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, target-densitydpi=device-dpi" />
-		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=latin,greek' rel='stylesheet' type='text/css'>
+		<link href='' rel='stylesheet' type='text/css'>
 		<link type="text/css" href="css/jquery.jscrollpane.css" rel="stylesheet" media="all" />
         <link rel="stylesheet" href="css/font-awesome.min.css">
         <link rel="stylesheet" type="text/css" href="css/index.css" />
@@ -88,6 +119,25 @@
 	    		<li><a href="https://chrome.google.com/webstore/detail/the-prize-inside/dhifcjdhfplggpmnlfmgockjchmpcfkb" target="_blank"><img src="img/chromestore.png" style="height:55px;"/></a></li>
 	   			<li><a href="https://itunes.apple.com/us/app/the-prize-inside/id650582612?ls=1&mt=8" target="_blank"><img src="img/appstore.png" style="height:55px;"/></a></li>
 			</ul>
+		</div>
+		
+		<div id="checkindetail" class="popup">
+			<a class="close" href="#"><span class="fa fa-times"></span></a>
+			<h1>Prize</h1>
+			<p class="prizecomment"><?= (isset($checkin['checkinComment']))?$checkin['checkinComment']:'' ?></p>
+			<img class="prizeimage" src="<?= (isset($checkin['checkinPhoto']))?$checkin['checkinPhoto']:'' ?>" />
+			<h2 class="prizename"><?= (isset($checkin['prizeName']))?$checkin['prizeName']:'' ?></h2>
+			<h3 class="restaurantname"><?= (isset($checkin['restaurantName']))?$checkin['restaurantName']:'' ?></h3>
+			<img class="locationmap" src="http://maps.googleapis.com/maps/api/staticmap?zoom=13&size=150x150&maptype=roadmap&markers=color:red%7Clabel:C%7C<?= (isset($checkin['checkinLat']))?$checkin['checkinLat']:'' ?>,<?= (isset($checkin['checkinLng']))?$checkin['checkinLng']:'' ?>&sensor=false" />
+			<div class="profile">
+				<img class="avatar" src="<?= (isset($checkin['profilePicture']))?$checkin['profilePicture']:'' ?>"/>
+				<div style="float:left;">
+					<h2 class="nickname"><?= (isset($checkin['profileNickname']))?$checkin['profileNickname']:'' ?></h2>
+					<div class="checkincount">
+						<span class="number">&nbsp;</span> Prizes
+					</div>
+				</div>
+			</div>
 		</div>
 
         <div id="container">
@@ -247,25 +297,6 @@
 			<img class="locationmap" src="" />
 			<a class="location" href="#" onclick="return false;">Location: <span> </span></a>
 		</div>
-        
-        <div id="checkindetail" class="popup">
-			<a class="close" href="#"><span class="fa fa-times"></span></a>
-			<h1>Prize</h1>
-			<p class="prizecomment"></p>
-			<img class="prizeimage" src="" />
-			<h2 class="prizename"></h2>
-			<h3 class="restaurantname"></h3>
-			<img class="locationmap" src="" />
-			<div class="profile">
-				<img class="avatar" src=""/>
-				<div style="float:left;">
-					<h2 class="nickname"></h2>
-					<div class="checkincount">
-						<span class="number">&nbsp;</span> Prizes
-					</div>
-				</div>
-			</div>
-		</div>
 		
 		<div id="locationoptions" class="messagebox">
 			<a class="close" href="#"><span class="fa fa-times"></span></a>
@@ -287,6 +318,9 @@
 		</div>
         
         <div id="footer">
+        	<a href="#" onclick="window.open('policy.php', '_system'); return false;" class="policy">
+				Privacy Policy
+			</a>
         	<a href="#" onclick="window.open('http://www.greenzeta.com/home/listing/product', '_system'); return false;" class="gz">
 				<span class="badge">&zeta;</span>
 				&nbsp;&nbsp;A GreenZeta Production
@@ -319,7 +353,11 @@
         	$(document).ready(function(){
         		AppInit();
 				//AdInit();
-				if($(window).width() > 600) WallMapInit();
+				if($(window).width() > 600){
+					WallMapInit();
+				}else{
+					//$('meta[name="viewport"]').attr('content', 'user-scalable=no, width=600');
+				}
 				
 				$('.showapp').click(function(){
 					panel['app'].Load();
@@ -336,6 +374,8 @@
 				$( window ).resize(function() {
 					if((!wallmap)&&($(window).width() > 600)) WallMapInit();
 				});
+				
+				<?= (isset($checkin))?"panel['checkindetail'].Show();":"" ?>
         	});
         </script>
     </body>

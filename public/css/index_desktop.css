@@ -1,7 +1,7 @@
 /* Mobile Web ----------- */
 
 #btncomments{
-	visibility: hidden;
+	/*visibility: hidden;*/
 }
 
 #locationoptions .showcheckin, #home .showuserprofile, #prize .showcheckin{
@@ -50,11 +50,16 @@
 		width:100%;
 	}
 	
-	#header.header img#logo {
-		width: auto;
+	#header.header #logo {
+		width: 214px;
 		position: absolute;
 		top: 10px;
 		left: 6%;
+		display: block;
+		background: transparent;
+	}
+	#header.header #logo img {
+		width: auto;
 	}
 	
 	#header.header a{
