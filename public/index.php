@@ -48,8 +48,7 @@
         <div id="wallmap">google map here</div>
 
         <div id="container">
-            
-        	
+ 
 			<div id="home" class="panel">
 				<h1 class="name">The Prize Inside</h1>
 				<div class="header">
@@ -132,19 +131,7 @@
 				<a id="btnCheckin" href="#" class="button">Share</a>
 			</div>
 			
-			<div id="userlocation" class="popup">
-				<a class="close" href="#"><span class="fa fa-times"> </span></a>
-				<h1>Set Location</h1>
-				<div id="locsearchbox">
-					<p class="gpserror">No GPS location found.</p>
-					<p class="locmessage">Enter an address to search:</p>
-					<input id="loctext" value=""/>
-					<a id="btnlocsearch" href="#" class="button" onclick="return false;">Search</a>
-					<a id="btngpssearch" href="#" class="button fa fa-crosshairs" onclick="return false;"></a>
-				</div>
-				<img class="locationmap" src="" />
-				<a class="location" href="#" onclick="return false;">Location: <span> </span></a>
-			</div>
+			
 			
 			<div id="userprofile" class="popup">
 				<a class="close" href="#"><span class="fa fa-times"> </span></a>
@@ -200,52 +187,70 @@
 				</ul>
 			</div>
 			
-			<div id="info" class="popup">
-				<a class="close" href="#"><span class="fa fa-times"></span></a>
-				<h1>About</h1>
-				<div id="aboutbox" class="scroll-pane">
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec rhoncus mollis quam. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed vel pellentesque nulla. Integer ac ullamcorper mi. Mauris non elit egestas, rhoncus nisi in, auctor ligula. Integer ante lectus, luctus vitae sem a, tempus pellentesque dolor. Fusce sed orci ornare, sodales orci vitae, viverra quam. Praesent a placerat tellus, ut convallis diam.</p>
-					<p>Donec tempor felis nec congue molestie. Nullam condimentum ac sem ut venenatis. Proin accumsan accumsan odio at fermentum. Quisque placerat, erat non pulvinar blandit, ante eros dapibus turpis, vitae fringilla nisi diam eu libero. Maecenas iaculis massa eu eros euismod, quis gravida augue consequat. Maecenas ornare erat id neque auctor, vitae luctus lorem aliquet. Quisque viverra hendrerit aliquet. Maecenas vestibulum ipsum ac vestibulum porttitor. Morbi sollicitudin sagittis erat vel sagittis. Fusce fermentum, nisl nec adipiscing ultricies, massa est sagittis elit, quis aliquam odio nisi sit amet quam.</p>
-				</div>
-			</div>
 			
-			<div id="checkindetail" class="popup">
-				<a class="close" href="#"><span class="fa fa-times"></span></a>
-				<h1>Prize</h1>
-				<p class="prizecomment"></p>
-				<img class="prizeimage" src="" />
-				<h2 class="prizename"></h2>
-				<h3 class="restaurantname"></h3>
-				<img class="locationmap" src="" />
-				<div class="profile">
-					<img class="avatar" src=""/>
-					<div style="float:left;">
-						<h2 class="nickname"></h2>
-						<div class="checkincount">
-							<span class="number">&nbsp;</span> Prizes
-						</div>
+			
+        </div>
+        
+        <div id="userlocation" class="popup">
+			<a class="close" href="#"><span class="fa fa-times"> </span></a>
+			<h1>Set Location</h1>
+			<div id="locsearchbox">
+				<p class="gpserror">No GPS location found.</p>
+				<p class="locmessage">Enter an address to search:</p>
+				<input id="loctext" value=""/>
+				<a id="btnlocsearch" href="#" class="button" onclick="return false;">Search</a>
+				<a id="btngpssearch" href="#" class="button fa fa-crosshairs" onclick="return false;"></a>
+			</div>
+			<img class="locationmap" src="" />
+			<a class="location" href="#" onclick="return false;">Location: <span> </span></a>
+		</div>
+        
+        <div id="info" class="popup">
+			<a class="close" href="#"><span class="fa fa-times"></span></a>
+			<h1>About</h1>
+			<div id="aboutbox" class="scroll-pane">
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec rhoncus mollis quam. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed vel pellentesque nulla. Integer ac ullamcorper mi. Mauris non elit egestas, rhoncus nisi in, auctor ligula. Integer ante lectus, luctus vitae sem a, tempus pellentesque dolor. Fusce sed orci ornare, sodales orci vitae, viverra quam. Praesent a placerat tellus, ut convallis diam.</p>
+				<p>Donec tempor felis nec congue molestie. Nullam condimentum ac sem ut venenatis. Proin accumsan accumsan odio at fermentum. Quisque placerat, erat non pulvinar blandit, ante eros dapibus turpis, vitae fringilla nisi diam eu libero. Maecenas iaculis massa eu eros euismod, quis gravida augue consequat. Maecenas ornare erat id neque auctor, vitae luctus lorem aliquet. Quisque viverra hendrerit aliquet. Maecenas vestibulum ipsum ac vestibulum porttitor. Morbi sollicitudin sagittis erat vel sagittis. Fusce fermentum, nisl nec adipiscing ultricies, massa est sagittis elit, quis aliquam odio nisi sit amet quam.</p>
+			</div>
+		</div>
+        
+        <div id="checkindetail" class="popup">
+			<a class="close" href="#"><span class="fa fa-times"></span></a>
+			<h1>Prize</h1>
+			<p class="prizecomment"></p>
+			<img class="prizeimage" src="" />
+			<h2 class="prizename"></h2>
+			<h3 class="restaurantname"></h3>
+			<img class="locationmap" src="" />
+			<div class="profile">
+				<img class="avatar" src=""/>
+				<div style="float:left;">
+					<h2 class="nickname"></h2>
+					<div class="checkincount">
+						<span class="number">&nbsp;</span> Prizes
 					</div>
 				</div>
 			</div>
-			
-			<div id="locationoptions" class="messagebox">
-				<a class="close" href="#"><span class="fa fa-times"></span></a>
-				<img id="streetview" src=""/>
-				<div class="vcard">
-					<p class="fn"><p>
-					<p class="adr">
-					<span class="street-address"></span> <span class="city"></span>, <span class="region"></span> <span class="postal-code"></span>
-					<br>
-					<span class="country-name"></span>
-					</p>
-					<p class="tel"></p>
-				</div>
-				
-				<a class="showdirections fa fa-road button">&nbsp;&nbsp;Driving Directions</a>
-				<a class="showcheckin fa fa-thumbs-up button">&nbsp;&nbsp;Share</a>
+		</div>
+		
+		<div id="locationoptions" class="messagebox">
+			<a class="close" href="#"><span class="fa fa-times"></span></a>
+			<img id="streetview" src=""/>
+			<div class="clearfix"></div>
+			<div class="vcard">
+				<p class="fn"><p>
+				<p class="adr">
+				<span class="street-address"></span> <span class="city"></span>, <span class="region"></span> <span class="postal-code"></span>
+				<br>
+				<span class="country-name"></span>
+				</p>
+				<p class="tel"></p>
 			</div>
 			
-        </div>
+			<a class="showdirections button"><span class="fa fa-road"></span>&nbsp;&nbsp;Driving Directions</a>
+			<a class="showcheckin button"><span class="fa fa-thumbs-up"></span>&nbsp;&nbsp;Share</a>
+			<a class="showwebsite button"><span class="fa fa-globe"></span>&nbsp;&nbsp;Website</a>
+		</div>
         
         <div id="footer">
         	<a href="#" onclick="window.open('http://www.greenzeta.com/home/listing/product', '_system'); return false;" class="gz">

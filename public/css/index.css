@@ -1065,11 +1065,13 @@ a.close{
 }
 
 #locationoptions .button{
-	width: 90%;
+	width: 80%;
 	margin: 10px 5%;
-	padding: 25px 0px;
-	font-size: 36px;
-	border-width: 5px;
+	padding: 5px 5%;
+	font-size: 24px;
+	border-width: 3px;
+	display: block;
+	text-align: left;
 }
 
 #footer{

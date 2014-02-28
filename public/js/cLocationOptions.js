@@ -35,9 +35,15 @@ LocationOptions.prototype.Load = function(pLocation){
     // Fill in the Location info
     this.panel.elem.find('.name').html(pLocation.name);
     this.panel.elem.find('.showdirections, .mapdirections').click(function(){
-    	alert('http://maps.google.com/?saddr='+userLocation.lat()+','+userLocation.lng()+'&daddr='+pLocation.location.address+','+pLocation.location.postalCode);
+    	//alert('http://maps.google.com/?saddr='+userLocation.lat()+','+userLocation.lng()+'&daddr='+pLocation.location.address+','+pLocation.location.postalCode);
     	window.open('http://maps.google.com/?saddr='+userLocation.lat()+','+userLocation.lng()+'&daddr='+pLocation.location.address+','+pLocation.location.postalCode, '_system');
     	return false;
+    });
+    
+    this.panel.elem.find('.showwebsite, .mapdirections').click(function(){
+        //alert('http://maps.google.com/?saddr='+userLocation.lat()+','+userLocation.lng()+'&daddr='+pLocation.location.address+','+pLocation.location.postalCode);
+        window.open(pLocation.url, '_system');
+        return false;
     });
     
     DebugOut('url(\''+streeturl+'\');');

@@ -1,3 +1,12 @@
+/* Mobile Web ----------- */
+#locationoptions .button {
+	
+}
+
+#locationoptions .showcheckin{
+	display:none;
+}
+
 /* Desktop ----------- */
 @media only screen 
 	and (min-width : 600px) {
@@ -126,13 +135,18 @@
 		display:none;
 	}
 	
+	a.close {
+		padding: 0px 15px;
+		line-height: 35px;
+	}
+	
 	a.close span {
 		font-size: 40px;
 		line-height: 45px;
 	}
 	.popup h1 {
-		font-size: 20px;
-		line-height: 45px;
+	font-size: 25px;
+	line-height: 45px;
 	}
 	
 	#prize .checkins li{
@@ -157,6 +171,47 @@
 		font-size: 14px;
 		line-height: 18px;
 	}
+	
+	.popup {
+		top: 2%;
+		left: 50%;
+		width: 550px;
+		margin-left:-275px;
+	}
+	
+	#checkindetail {
+		top: 5%;
+		-webkit-box-shadow: 0px 0px 350px 350px rgba(255,250,240,0.9);
+		box-shadow: 0px 0px 350px 350px rgba(0,0,0,0.7);
+	}
+	
+	.messagebox {
+		bottom: 40%;
+		font-size: 18px;
+		width: 300px;
+		right: 25%;
+		height: auto;
+		top: initial;
+		left: initial;
+	}
+	
+	#locationoptions .vcard p {
+		font-size: 16px;
+		line-height:18px;
+	}
+	
+	#locationoptions .vcard {
+	width: 90%;
+	margin: 15px 5% 0px 5%;
+	padding: 25px 0px 5px 0px;
+	font-size: 35px;
+	border-width: 5px;
+	}
+	
+	#locationoptions .button {
+		font-size: 20px;
+	}
+
 	
 	#footer a.gz {
 		height: 22px;

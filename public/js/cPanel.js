@@ -11,6 +11,8 @@ Panel.prototype.Show = function(pProfileId){
     
     //$('.panel').css('z-index',1);
     $('.panel').hide();
+    $('.popup').hide();
+    $('.messagebox').hide();
     //panel['sidemenu'].Hide();
     //this.elem.css('z-index',100);
     this.elem.show();

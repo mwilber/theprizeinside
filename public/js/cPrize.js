@@ -197,8 +197,15 @@ Prize.prototype.HandleLocationData = function(self){
 
 Prize.prototype.HandleLocationClick = function(self,pPrize){
 	return function(event){
-	    //alert('handling location');
-	    //DebugOut(pPrize);
+	    DebugOut('HandleLocationClick');
+	    DebugOut(pPrize.location);
+	    if(wallmap){
+	        var mapOffsetX = ($(window).width()*.25)-150;
+	        var mapOffsetY = ($(window).height()*.1)+50;
+	        self.locmap.setCenter(new google.maps.LatLng(pPrize.location.lat,pPrize.location.lng));
+	        self.locmap.setZoom(17);
+	        self.locmap.panBy(-mapOffsetX, -mapOffsetY);
+	    }
 		panel['locationoptions'].Load(pPrize);
         return false;
 	};
@@ -207,6 +214,13 @@ Prize.prototype.HandleLocationClick = function(self,pPrize){
 Prize.prototype.HandleMapClick = function(pPrize){
 	//alert('handling location');
     //DebugOut(pPrize);
+    if(wallmap){
+        var mapOffsetX = ($(window).width()*.25)-150;
+        var mapOffsetY = ($(window).height()*.1)+50;
+        this.locmap.setCenter(new google.maps.LatLng(pPrize.location.lat,pPrize.location.lng));
+        this.locmap.setZoom(17);
+        this.locmap.panBy(-mapOffsetX, -mapOffsetY);
+    }
 	panel['locationoptions'].Load(pPrize);
     return false;
 };
