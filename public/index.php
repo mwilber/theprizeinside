@@ -93,7 +93,7 @@
         <div id="header" class="header">
         	<img id="homeview" src="img/homebanner.jpg"/>
         	<img id="logo" src="img/logo.png">
-        	<a class="showapp fa fa-mobile-phone" style="right:300px; width: auto;" target="_blank"> <span style="font-size:18px;">Get the App!</span></a>
+        	<a class="showapp fa fa-mobile-phone" style="right:300px; width: 200px;" target="_blank"> <span style="font-size:18px;">Get the App!</span></a>
         	<a class="showtweeter fa fa-twitter" href="#" onclick="window.open('http://www.twitter.com/tpiapp', '_system'); _gaq.push(['_trackEvent', 'External', 'Twitter', '']); return false;" style="right:200px;"> </a>
 			<a class="showuserlocation fa fa-location-arrow" target="_blank"> </a>
 			<a class="showinfo fa fa-info-circle" target="_blank"> </a>
