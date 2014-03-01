@@ -105,7 +105,7 @@ var app = {
         pictureSource=navigator.camera.PictureSourceType;
         destinationType=navigator.camera.DestinationType;
 		AppInit();
-		//AdInit();
+		AdInit();
         
     },
     // Update DOM on a Received Event
