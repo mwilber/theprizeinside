@@ -319,10 +319,10 @@
 		</div>
         
         <div id="footer">
-        	<a href="#" onclick="window.open('policy.php', '_system'); return false;" class="policy">
+        	<a href="#" onclick="window.open('policy.php', '_system'); _gaq.push(['_trackEvent', 'External', 'Privacy Policy', '']); return false;" class="policy">
 				Privacy Policy
 			</a>
-        	<a href="#" onclick="window.open('http://www.greenzeta.com/home/listing/product', '_system'); return false;" class="gz">
+        	<a href="#" onclick="window.open('http://www.greenzeta.com/home/listing/product', '_system'); _gaq.push(['_trackEvent', 'External', 'GreenZeta', '']); return false;" class="gz">
 				<span class="badge">&zeta;</span>
 				&nbsp;&nbsp;A GreenZeta Production
 			</a>

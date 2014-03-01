@@ -50,6 +50,7 @@ Prize.prototype.ShowLocations = function(self){
        self.HideTabPanels();
        self.panel.elem.find('.tablocations').addClass('selected');
 	   self.panel.elem.find('#locations').show();
+	   _gaq.push(['_trackEvent', 'Prize', 'ShowLocations', '']);
        return false;
    };
 };
@@ -60,6 +61,7 @@ Prize.prototype.ShowMap = function(self){
        self.panel.elem.find('.tabmap').addClass('selected');
 	   self.panel.elem.find('#map').show();
 	   if( !self.locmap ) self.InitMap(self); else self.PlaceVenueMarkers(self);
+	   _gaq.push(['_trackEvent', 'Prize', 'ShowMap', '']);
        return false;
    };
 };
@@ -69,6 +71,7 @@ Prize.prototype.ShowComments = function(self){
        self.HideTabPanels();
        self.panel.elem.find('.tabcomments').addClass('selected');
 	   self.panel.elem.find('#comments').show();
+	   _gaq.push(['_trackEvent', 'Prize', 'ShowComment', '']);
        return false;
    };
 };
@@ -97,6 +100,7 @@ Prize.prototype.Load = function(pPrize){
     		DebugOut("Checkin Photo: "+pPrize.checkins[idx].checkinPhoto);
     		if( pPrize.checkins[idx].checkinPhoto != "" ){
     			this.panel.elem.find('#prizephoto').attr('src',pPrize.checkins[idx].checkinPhoto);
+    			$('#header.header #homeview').attr('src',pPrize.checkins[idx].checkinPhoto);
     			break;
     		}
     	}
@@ -110,12 +114,16 @@ Prize.prototype.Load = function(pPrize){
     this.panel.elem.find('.name').html(pPrize.prizeName);
     
     this.panel.elem.find('.showwebsite').attr('href',pPrize.restaurant.restaurantUrl);
+    
+    _gaq.push(['_trackEvent', 'Prize', this.restaurantalias, '']);
 
     this.Show(); 
     
     DebugOut('Loading alias: '+this.restaurantalias);
     var patsy = this.HandleLocationData(this);
     patsy(fsdata[this.restaurantalias]);
+    
+    if( wallmap ) this.PlaceVenueMarkers(this);
     
     // Get the checkin comments
     this.LoadCheckinData();
@@ -195,8 +203,15 @@ Prize.prototype.HandleLocationData = function(self){
 
 Prize.prototype.HandleLocationClick = function(self,pPrize){
 	return function(event){
-	    //alert('handling location');
-	    //DebugOut(pPrize);
+	    DebugOut('HandleLocationClick');
+	    DebugOut(pPrize.location);
+	    if(wallmap){
+	        var mapOffsetX = ($(window).width()*.25)-150;
+	        var mapOffsetY = ($(window).height()*.1)+50;
+	        self.locmap.setCenter(new google.maps.LatLng(pPrize.location.lat,pPrize.location.lng));
+	        self.locmap.setZoom(17);
+	        self.locmap.panBy(-mapOffsetX, -mapOffsetY);
+	    }
 		panel['locationoptions'].Load(pPrize);
         return false;
 	};
@@ -205,6 +220,13 @@ Prize.prototype.HandleLocationClick = function(self,pPrize){
 Prize.prototype.HandleMapClick = function(pPrize){
 	//alert('handling location');
     //DebugOut(pPrize);
+    if(wallmap){
+        var mapOffsetX = ($(window).width()*.25)-150;
+        var mapOffsetY = ($(window).height()*.1)+50;
+        this.locmap.setCenter(new google.maps.LatLng(pPrize.location.lat,pPrize.location.lng));
+        this.locmap.setZoom(17);
+        this.locmap.panBy(-mapOffsetX, -mapOffsetY);
+    }
 	panel['locationoptions'].Load(pPrize);
     return false;
 };
@@ -290,11 +312,13 @@ Prize.prototype.Show = function(){
     
     var offsetheight =  this.panel.elem.find('.header').height()+this.panel.elem.find('.tabs').height()+this.panel.elem.find('.name').height()+(parseInt(this.panel.elem.find('.name').css('padding-top'))*2);
     
+    if( $(window).width() > 600 ) offsetheight =  this.panel.elem.find('.tabs').height()+this.panel.elem.find('.name').height()+(parseInt(this.panel.elem.find('.name').css('padding-top'))*2);
+    
     DebugOut('offsetheight: '+offsetheight);
     
     // Size the map to fit the panel
     this.panel.elem.find('.tabpanel').css('width',this.panel.elem.width()+"px");
-    this.panel.elem.find('.tabpanel').css('height',(this.panel.elem.height()-offsetheight-75)+"px");
+    this.panel.elem.find('.tabpanel').css('height',(this.panel.elem.height()-offsetheight)+"px");
     
     return true;
 };

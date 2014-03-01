@@ -37,12 +37,14 @@ LocationOptions.prototype.Load = function(pLocation){
     this.panel.elem.find('.showdirections, .mapdirections').click(function(){
     	//alert('http://maps.google.com/?saddr='+userLocation.lat()+','+userLocation.lng()+'&daddr='+pLocation.location.address+','+pLocation.location.postalCode);
     	window.open('http://maps.google.com/?saddr='+userLocation.lat()+','+userLocation.lng()+'&daddr='+pLocation.location.address+','+pLocation.location.postalCode, '_system');
+    	_gaq.push(['_trackEvent', 'External', 'Driving Directions', '']);
     	return false;
     });
     
-    this.panel.elem.find('.showwebsite, .mapdirections').click(function(){
+    this.panel.elem.find('.showwebsite').click(function(){
         //alert('http://maps.google.com/?saddr='+userLocation.lat()+','+userLocation.lng()+'&daddr='+pLocation.location.address+','+pLocation.location.postalCode);
         window.open(pLocation.url, '_system');
+        _gaq.push(['_trackEvent', 'External', 'Restaurant Site', '']);
         return false;
     });
     

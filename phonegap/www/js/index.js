@@ -56,6 +56,7 @@
 	//var apipath = "http://gibson.loc/theprizeinside";
 	var userLocation = new google.maps.LatLng(0,0);
 	var autoCkLocation = new google.maps.LatLng(0,0);
+	var wallmap = false;
 	var locationTimer;
 	var lsUserId = 0;
 	var prizedata = null;

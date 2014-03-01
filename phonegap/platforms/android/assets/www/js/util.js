@@ -76,6 +76,9 @@ function HandleGeolocationQuery(position){
         userLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
         DebugOut('user location set: '+position.coords.latitude+', '+position.coords.longitude);
         panel['userlocation'].Update();
+        
+        if(wallmap) wallmap.setCenter(userLocation);
+        
         //GetLocationData();
         GetFSData();
         //$('#location span').html(position.coords.latitude.toString().substring(0,8)+', '+position.coords.longitude.toString().substring(0,8));

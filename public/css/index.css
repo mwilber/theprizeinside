@@ -1198,7 +1198,7 @@ a.close span {
 
 .popup {
 	background:#F5F2ED;
-	border: solid 1px #F5F2ED;
+	border: solid 1px #333;
 }
 
 .panel .linearlist li, .popup .linearlist li {

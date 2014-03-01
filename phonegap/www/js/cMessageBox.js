@@ -10,10 +10,12 @@ MessageBox.prototype.Show = function(pProfileId){
     DebugOut('showing messagebox: '+this.elem.attr('id'));
     
     //$('.panel').css('z-index',1);
-    $('.popup').hide();
+    $('.messagebox').hide();
     //panel['sidemenu'].Hide();
     //this.elem.css('z-index',100);
     this.elem.show();
+    
+    _gaq.push(['_trackEvent', 'MessageBoxShow', this.elem.attr('id'), '']);
     
     return true;
 };

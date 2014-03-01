@@ -37,7 +37,7 @@ body {
     );
     background-attachment:fixed;
     /*font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;*/
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'open_sansbold', sans-serif;
     font-size:12px;
     height:100%;
     margin:0px;
@@ -218,7 +218,7 @@ html, body{
   background-color:rgba(255,255,255,0.8);
 }
 
-.panel .header a{
+.panel .header a, #header.header a{
   	float:right;
   	width:200px;
   	height:100%;
@@ -310,7 +310,7 @@ font-weight: bold;
 	background:#FAF6F1;
 	padding:0px;
 	border: solid 1px #161008;
-	z-index:1000;
+	z-index:2000;
 	display:none;
 	-webkit-box-shadow: 0px 0px 100px 50px rgba(255,250,240,0.8);
 	box-shadow: 0px 0px 100px 50px rgba(255,250,240,0.8);
@@ -366,7 +366,7 @@ a.close{
 .messagebox{
     color: #161008;
 	position: absolute;
-	top: 40%;
+	bottom: 20%;
 	left: 5%;
 	width: 90%;
 	height: auto;
@@ -464,6 +464,7 @@ a.close{
 	list-style:none;
 	margin: 0px;
 	padding: 0px;
+	padding-bottom: 20px;
 }
 
 .panel .linearlist li, .popup .linearlist li{
@@ -528,7 +529,7 @@ a.close{
 	top: -100px;
 }
 
-.panel .header a{
+.panel .header a, #header.header a{
 	z-index: 1000;
 	top: 0px;
 	right: 0px;
@@ -603,6 +604,11 @@ a.close{
 	overflow: hidden;
 	float: right;
 	border: solid 1px #aaa;
+}
+
+#checkin a#setpic img{
+	width: 100%;
+	height: 100%;
 }
 
 #checkin #btnCheckin{
@@ -1003,8 +1009,24 @@ a.close{
 	margin: 0px 4%;
 }
 
+#app ul{
+	list-style: none;
+	float: left;
+	width: 100%;
+	margin: 10px 0px;
+	padding: 0px;
+}
+
+#app ul li{
+	float: left;
+	text-align: center;
+	margin: 5px 0px;
+	width: 50%;
+}
+
 #info.popup{
 	height:90%;
+	display:block;
 }
 
 #info .scroll-pane
@@ -1041,6 +1063,15 @@ a.close{
 	background: transparent;
 }
 
+#info #aboutbox p{
+	margin: 0px 0px 25px 0px;
+}
+
+#info #aboutbox p a{
+	color:#000;
+	font-weight:bold;
+}
+
 #locationoptions{
 	background-repeat: no-repeat;
 	background-position: 50% 70%;
@@ -1065,49 +1096,66 @@ a.close{
 }
 
 #locationoptions .button{
-	width: 90%;
+	width: 80%;
 	margin: 10px 5%;
-	padding: 25px 0px;
-	font-size: 36px;
-	border-width: 5px;
+	padding: 5px 5%;
+	font-size: 24px;
+	border-width: 3px;
+	display: block;
+	text-align: left;
 }
 
 #footer{
 	position: absolute;
 	float:right;
-	width: auto;
+	width: 100%;
 	right: 0px;
 	bottom: 0px;
 	overflow: hidden;
 }
 
+#footer .policy{
+	background: rgba(255,255,255,0.8);
+	font-size: 12px;
+	color: #333;
+	line-height: 12px;
+	margin-left: 10px;
+	padding: 3px 10px;
+	font-weight: bold;
+	float: left;
+}
+
 #footer a.gz {
 	width: auto;
 	color: #fff;
-	line-height: 50px;
+	line-height: 18px;
 	text-align: left;
 	font-weight: bold;
-	font-size: 24px;
+	font-size: 18px;
 	background: rgba(0,0,0,0.8);
-	padding: 20px 15px 20px 0px;
+	padding: 0px 15px 0px 0px;
 	text-decoration: none;
 	overflow: hidden;
+	margin: 0px 0px;
+	display: block;
+	float: right;
 }
 
 #footer a.gz .badge {
 	color: #fff;
 	text-align: center;
 	font-weight: normal;
-	font-size: 36px;
+	font-size: 30px;
 	background: #7cb750;
 	line-height: 36px;
 	font-family: serif;
-	padding: 4px 18px;
+	padding: 0px 15px 4px 15px;
+	margin: 0px;
 }
 
 /* Colors */
 
-.panel h1{
+.panel h1, .popup h1{
 	background: rgb(22,16,8); /* Old browsers */
 background: -moz-linear-gradient(top,  rgba(22,16,8,1) 0%, rgba(54,40,20,1) 100%); /* FF3.6+ */
 background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(22,16,8,1)), color-stop(100%,rgba(54,40,20,1))); /* Chrome,Safari4+ */
@@ -1131,7 +1179,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#362814', end
 }
 
 .popup h1{
-    background: #362814;
     color: #FFFFB2;
 }
 
@@ -1146,10 +1193,12 @@ a.close span {
 
 .panel {
 	background: #fafafa;
+	
 }
 
 .popup {
 	background:#F5F2ED;
+	border: solid 1px #333;
 }
 
 .panel .linearlist li, .popup .linearlist li {
@@ -1181,8 +1230,9 @@ a.close span {
 
 /* Smartphones (portrait) ----------- */
 @media only screen 
-	and (max-width : 480px) {
+	and (max-width : 600px) {
 	/* Styles */
+	
 	.panel h1 {
 		font-size: 14px;
 		line-height: 14px;
@@ -1195,10 +1245,12 @@ a.close span {
 	}
 	.panel .linearlist li .restaurant {
 		font-weight: normal;
-		font-size: 10px;
+		font-size: 12px;
+		line-height: 14px;
 	}
 	.panel .linearlist li .prize {
-		font-size: 14px;
+		font-size: 24px;
+		line-height: 24px;
 	}
 	.panel .linearlist li {
 		padding: 10px 10px 10px 10px;
@@ -1207,6 +1259,10 @@ a.close span {
 	.panel .linearlist li .details {
 		font-size: 45px;
 		margin-top: 0px;
+	}
+	a.back{
+		padding: 7px 10px;
+		margin: 0px;
 	}
 	a.back span {
 		font-size: 32px;
@@ -1228,15 +1284,21 @@ a.close span {
 		height: 75px;
 	}
 	.panel .tabs li a {
-		font-size: 14px;
+		font-size: 18px;
 	}
 	.panel .linearlist li, .popup .linearlist li {
-		font-size: 14px;
+		font-size: 20px;
 	}
 	
 	.panel .content{
 		margin-top:75px;
 	}
+	
+	a.close {
+		padding: 0px 10px;
+		line-height: 42px;
+	}
+	
 	a.close span {
 		font-size: 40px;
 		line-height: 45px;
@@ -1247,7 +1309,15 @@ a.close span {
 	}
 	
 	#prize .checkins li{
-		min-height: 50px;
+		min-height: 65px;
+	}
+	
+	#locationoptions .vcard p {
+		font-size: 20px;
+	}
+	
+	#locationoptions .button {
+		font-size: 22px;
 	}
 	
 	#location .content .vcard p {
@@ -1255,26 +1325,194 @@ a.close span {
 		font-size: 12px;
 	}
 	
+	#userlocation .locmessage {
+	font-size: 18px;
+	}
+	
+	#userlocation #loctext {
+	width: 80%;
+	}
+	
+	#userprofile #ckprofile .checkins .comment, #comments .checkins .comment {
+	float: left;
+	width: 65%;
+	}
+	
 	#checkin #msgAnonymous {
 		font-size: 14px;
 		line-height: 18px;
 	}
 	
+	#checkindetail .prizecomment {
+	margin: 20px 4% 30px 4%;
+	font-size: 30px;
+	}
+	
+	#checkindetail .prizename {
+		width: 45%;
+		font-size: 20px;
+		line-height: 22px;
+	}
+	
+	#checkindetail .restaurantname {
+	font-size: 16px;
+	line-height: 16px;
+	}
+	
+	#checkindetail .profile .avatar {
+	width: 35px;
+	height: 35px;
+	margin: 0px 5px 0px 10px;
+	}
+	
+	#checkindetail .profile .nickname {
+	font-size: 25px;
+	line-height: 19px;
+	}
+	
+	#checkindetail .profile .checkincount {
+	font-size: 14px;
+	}
+	
+	
+	
+	#footer{
+		height: 23px;
+	}
+	
 	#footer a.gz {
-		height: 22px;
-		line-height: 2.5em;
-		font-size: 0.75em;
+		line-height: 14px;
+font-size: 12px;
+padding: 0px 10px 0px 0px;
 	}
 	
 	#footer a.gz .badge {
-		width: 22px;
-		height: 22px;
-		font-size: 1.5em;
-		margin-left: -10px;
-		margin-right: 10px;
-		line-height: 1.5em;
+		font-size: 15px;
+margin-left: 0px;
+margin-right: 0px;
+line-height: 23px;
+padding: 5px 11px;
 	}
 	
+
+}
+
+/* Smartphones (super-small/iphone) ----------- */
+@media only screen 
+	and (max-width : 400px) {
+		
+	#userprofile .nickname {
+		font-size: 18px;
+		line-height: 18px;
+	}
+	
+	#userprofile #showedit {
+	font-size: 18px;
+	}
+		
+	#userprofile .avatar {
+		width: 50px;
+		height: 50px;
+		float: left;
+		margin-right: 5px;
+	}
+	
+	#info #aboutbox p {
+	font-size: 18px;
+	}
+	
+	#userprofile #checkincount {
+		width: 50px;
+		height: 50px;
+		margin: 0px 10px;
+	}
+	
+	#userprofile #checkincount .number {
+	font-size: 40px;
+	line-height: 16px;
+	margin-top: 10px;
+	}
+	
+	#userprofile #authprofile p {
+	margin: 0px;
+	font-size: 13px;
+	}
+	
+	#userprofile #authprofile .button {
+		font-size: 36px;
+		margin: 5px 0px;
+		padding: 6px 15px;
+	}
+	
+	#userprofile #authprofile, #userprofile .historytitle {
+	margin-top:10px;
+	}
+	
+	#userprofile #ckprofile {
+	height: 100px;
+	}
+
+	#userprofile #ckprofile .checkins .icon{
+		width:50px;
+		height:50px;
+	}
+	
+	#userprofile #ckprofile .checkins .comment{
+		font-size:18px;
+	}
+
+	#userprofile #ckprofile .checkins .details {
+		font-size: 60px;
+		margin-top: 0px;
+	}
+	
+	#userprofile #ckprofile .checkins li {
+		min-height: 60px;
+	}
+	
+	#userprofile #btnlogout {
+	margin: 10px 4% 10px 4%;
+	padding: 5px 0px;
+	}
+	
+	#checkin .prizename {
+	font-size: 24px;
+	margin: 10px 0px 4% 4%;
+	}
+	
+	#checkin .socialbreak {
+	margin: 1%;
+	}
+	
+	#checkin textarea {
+	font-size: 18px;
+	margin: 0px 5%;
+	height: 50px;
+	}
+	
+	#checkin #checkinAnonymous {
+	width: auto;
+	float: left;
+	margin: 0px 5px 0px 0px;
+	color: #161008;
+	border: none;
+	padding: 5px 10px;
+	}
+	
+	#checkin .locationmap {
+		margin: 0px 4% 0px 0%;
+	}
+	
+	#checkin .button.toggle.share {
+	margin: 0px 5px;
+	font-size: 24px;
+	padding: 5px 15px;
+	}
+	
+	#checkin #btnCheckin {
+		margin: 4% 4% 2% 4%;
+		padding: 5px 0px;
+	}
 
 }
 

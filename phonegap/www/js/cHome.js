@@ -81,7 +81,7 @@ Home.prototype.HandlePrizeData = function(self){
 	    ////////////////////////////////////////////
 	    
 	    // Call show() again to make sure everything is sized right
-	    self.Show();
+	    //self.Show();
     };
 };
 
@@ -93,12 +93,21 @@ Home.prototype.HandlePrizeClick = function(self,pPrize){
 };
 
 Home.prototype.Show = function(){
+	
+	$('#header.header #homeview').attr('src','img/homebanner.jpg');
     
     //$('#header').show();
     var offsetheight =  this.panel.elem.find('.header').height()+this.panel.elem.find('.name').height()+(parseInt(this.panel.elem.find('.name').css('padding-top'))*4);
-    this.panel.elem.find('.content').css('height',(this.panel.elem.height()-offsetheight-75)+"px");
+    if( $(window).width() > 600 ) offsetheight = this.panel.elem.find('.name').height()+(parseInt(this.panel.elem.find('.name').css('padding-top'))*2);
+    this.panel.elem.find('.content').css('height',(this.panel.elem.height()-offsetheight)+"px");
     
     this.panel.Show();
+    if( supports_html5_storage() ){
+        if(localStorage["firstrun"] == undefined){
+            localStorage["firstrun"] = true;
+            panel['info'].Show();
+        }
+    }
     
     return true;
 };

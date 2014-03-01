@@ -56,6 +56,7 @@
 	//var apipath = "http://gibson.loc/theprizeinside";
 	var userLocation = new google.maps.LatLng(0,0);
 	var autoCkLocation = new google.maps.LatLng(0,0);
+	var wallmap = false;
 	var locationTimer;
 	var lsUserId = 0;
 	var prizedata = null;
@@ -104,7 +105,7 @@ var app = {
         pictureSource=navigator.camera.PictureSourceType;
         destinationType=navigator.camera.DestinationType;
 		AppInit();
-		AdInit();
+		//AdInit();
         
     },
     // Update DOM on a Received Event
