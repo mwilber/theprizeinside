@@ -257,6 +257,7 @@
 /Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/js/jquery.jscrollpane.min.js \
 /Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/js/util.js \
 /Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/js/cCheckinDetail.js \
+/Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/js/iAd.js \
 /Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/js/cInfo.js \
 /Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/js/cUserProfile.js \
 /Volumes/www/theprizeinside/phonegap/platforms/android/assets/www/js/cMessageBox.js \

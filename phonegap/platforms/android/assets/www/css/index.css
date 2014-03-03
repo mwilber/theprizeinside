@@ -193,6 +193,7 @@ html, body{
 }
 
 .panel h1{
+	display: block;
 	width:100%;
 	font-weight: normal;
 	line-height: 36px;

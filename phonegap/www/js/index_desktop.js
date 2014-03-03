@@ -21,7 +21,7 @@ var LOCATION_CK_INTERVAL = 15000;
 var DISTANCE_CHANGE_REFRESH_THRESHOLD = 10;
 var CHECKIN_NOTIFICATION_THRESHOLD = 0.05;
 
-//var apipath = "http://theprizeinside.com";
+var apipath = "http://theprizeinside.com";
 //var apipath = "http://gibson.loc/theprizeinside";
 var apipath = "https://rippleapi.herokuapp.com/xhr_proxy?tinyhippos_apikey=ABC&tinyhippos_rurl=https%3A//theprizeinside.com";
 

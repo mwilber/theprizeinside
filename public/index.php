@@ -107,7 +107,7 @@
 			<div id="aboutbox" class="scroll-pane">
 				<p>When a burger is a burger, choose your fast food by The Prize Inside!</p>
 				<p>When you&rsquo;re out on the road, The Prize Inside uses your location to find nearby restaurants that have kids&rsquo; meal premiums. Plan a meal stop around the prize you want most. The Prize inside provides driving directions to the location. Share with your finds on The Prize Inside website! Make The Prize Inside part of your next road trip.</p>
-				<p>The Prize Inside was created by Internet software developer Matthew Wilber. For more information, visit <a href="http://www.mwilber.com" target="_blank">mwilber.com</a>.</p>			
+				<p>The Prize Inside was created by Internet software developer Matthew Wilber. For more information, visit <a href="#" onclick="window.open('http://www.mwilber.com', '_system'); _gaq.push(['_trackEvent', 'External', 'mwilber.com', '']); return false;">mwilber.com</a>.</p>			
 			</div>
 		</div>
 		

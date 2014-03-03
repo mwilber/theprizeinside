@@ -48,7 +48,7 @@ CheckinDetail.prototype.HandleCheckinData = function(self){
         	self.panel.elem.find('.prizeimage').show();
         }
         
-        if( response.checkin.checkinLat != "" && response.checkin.checkinLng != "" ){
+        if( response.checkin.checkinLat != "" && response.checkin.checkinLng != "" && response.checkin.checkinLat != 0 && response.checkin.checkinLng != 0 ){
         	var mapurl = "http://maps.googleapis.com/maps/api/staticmap?zoom=13&size="+Math.floor(self.panel.elem.width()/4)+"x"+Math.floor(self.panel.elem.width()/4)+"&maptype=roadmap&markers=color:red%7Clabel:C%7C"+response.checkin.checkinLat+","+response.checkin.checkinLng+"&sensor=false";
 			self.panel.elem.find('.locationmap').attr('src',mapurl);
 			self.panel.elem.find('.locationmap').show();
