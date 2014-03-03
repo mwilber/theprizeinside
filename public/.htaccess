@@ -489,4 +489,9 @@ AddCharset utf-8 .css .js .xml .json .rss .atom
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^/?ck/(.*?)/?$ /index.php?ck=$1 [L]
+RewriteRule ^/?ck/css/(.*?)/?$ css/$1 [L]
+RewriteRule ^/?ck/js/(.*?)/?$ js/$1 [L]
+RewriteRule ^/?ck/img/(.*?)/?$ img/$1 [L]
+RewriteRule ^/?ck/(.*?)/?$ index.php?ck=$1 [L]
+
+
