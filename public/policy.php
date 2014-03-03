@@ -80,7 +80,7 @@
 		 			 The Prize Inside uses your location to display nearby fast food restaurants. Location information provided to The Prize Inside is used directly in your browser and not stored in any form.
 		 		</p>
 		 		<p>
-		 			<a href="index.php">Back to the app.</a>
+		 			<a href="/index.php">Back to the app.</a>
 		 		</p>
 			</div>
 		</div>
