@@ -1,7 +1,7 @@
 /* Mobile Web ----------- */
 
 #btncomments{
-	visibility: hidden;
+	/*visibility: hidden;*/
 }
 
 #locationoptions .showcheckin, #home .showuserprofile, #prize .showcheckin{
@@ -17,8 +17,6 @@
 }
 
 .popup {
-
-	border: solid 1px #F5F2ED;
 	-webkit-box-shadow: 0px 0px 100px 50px rgba(0,0,0,0.7);
 	box-shadow: 0px 0px 100px 50px rgba(0,0,0,0.7);
 }

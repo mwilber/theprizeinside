@@ -20,6 +20,7 @@
 /Volumes/www/theprizeinside/phonegap/platforms/android/bin/classes/org/apache/cordova/geolocation/NetworkListener.class \
 /Volumes/www/theprizeinside/phonegap/platforms/android/bin/classes/org/apache/cordova/geolocation/CordovaLocationListener.class \
 /Volumes/www/theprizeinside/phonegap/platforms/android/bin/classes/org/apache/cordova/geolocation/GPSListener.class \
+/Volumes/www/theprizeinside/phonegap/platforms/android/bin/classes/R.java.d \
 /Volumes/www/theprizeinside/phonegap/platforms/android/bin/classes/com/google/cordova/plugin/AdMobPlugin$BannerListener.class \
 /Volumes/www/theprizeinside/phonegap/platforms/android/bin/classes/com/google/cordova/plugin/AdMobPlugin$5.class \
 /Volumes/www/theprizeinside/phonegap/platforms/android/bin/classes/com/google/cordova/plugin/AdMobPlugin.class \

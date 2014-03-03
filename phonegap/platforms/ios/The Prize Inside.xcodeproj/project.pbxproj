@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		0E7FC5B567374EF79473D57F /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C3001BA020440A0B1845537 /* StoreKit.framework */; };
 		10456039DD5240E3AFF6E7CC /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5685D4FC37184B329BBAE7D5 /* MessageUI.framework */; };
