@@ -62,6 +62,7 @@
 	var prizedata = null;
 	var fsdata = new Array();
     //prizedata = [{"restaurantId":"1","restaurantAlias":"mcd","restaurantColor":"ed947d","restaurantName":"Mc Donald's","restaurantUrl":"http:\/\/www.happymeal.com\/en_US\/index.html#\/Toys","restaurantDataUrl":"http:\/\/www.happymeal.com\/en_US\/config\/flash.xml","restaurantTimeStamp":"2013-06-02 04:41:50","prize":[{"prizeId":"571","prizeName":"Adventure Time","prizeImage":"","prizeGender":"M","prizeLink":"","prizeActive":"1","restaurantId":"1","prizeTimeStamp":"2014-01-04 07:12:09"},{"prizeId":"581","prizeName":"paul frank","prizeImage":"","prizeGender":"F","prizeLink":"","prizeActive":"1","restaurantId":"1","prizeTimeStamp":"2014-01-04 07:12:30"}]},{"restaurantId":"2","restaurantAlias":"bk","restaurantColor":"f6c68d","restaurantName":"Burger King","restaurantUrl":"http:\/\/www.bkcrown.com\/Toys\/Default.aspx","restaurantDataUrl":"http:\/\/www.bkcrown.com\/toys\/Default.aspx","restaurantTimeStamp":"2013-03-24 20:45:54","prize":[{"prizeId":"591","prizeName":"Pac-Man","prizeImage":"","prizeGender":"N","prizeLink":"","prizeActive":"1","restaurantId":"2","prizeTimeStamp":"2014-01-04 07:13:02"}]},{"restaurantId":"3","restaurantAlias":"bell","restaurantColor":"87cec7","restaurantName":"Taco Bell","restaurantUrl":"http:\/\/www.tacobell.com\/food\/menu\/kids-meals","restaurantDataUrl":"http:\/\/www.tacobell.com\/food\/menu\/kids-meals\/","restaurantTimeStamp":"2013-03-25 17:49:33","prize":[]},{"restaurantId":"4","restaurantAlias":"snc","restaurantColor":"87a7d8","restaurantName":"Sonic Drive-In","restaurantUrl":"http:\/\/mywackypack.com\/promotions.aspx","restaurantDataUrl":"http:\/\/www.sonicdrivein.com\/kids\/wackyPackToys.jsp","restaurantTimeStamp":"2013-03-25 17:50:48","prize":[{"prizeId":"601","prizeName":"Kidz Bop","prizeImage":"","prizeGender":"N","prizeLink":"","prizeActive":"1","restaurantId":"4","prizeTimeStamp":"2014-01-04 07:13:25"}]},{"restaurantId":"5","restaurantAlias":"sub","restaurantColor":"a7d69d","restaurantName":"Subway","restaurantUrl":"http:\/\/subwaykids.com","restaurantDataUrl":"http:\/\/subwaykids.com\/grownups\/promotions\/kidsmeals.aspx","restaurantTimeStamp":"2013-03-24 20:47:05","prize":[{"prizeId":"541","prizeName":"Frozen","prizeImage":"","prizeGender":"N","prizeLink":"","prizeActive":"1","restaurantId":"5","prizeTimeStamp":"2013-12-01 05:24:17"}]},{"restaurantId":"6","restaurantAlias":"wnd","restaurantColor":"fff99d","restaurantName":"Wendy's","restaurantUrl":"http:\/\/www.wendys.com","restaurantDataUrl":"-","restaurantTimeStamp":"2013-06-02 04:41:43","prize":[{"prizeId":"611","prizeName":"Surprise Toy","prizeImage":"","prizeGender":"N","prizeLink":"","prizeActive":"1","restaurantId":"6","prizeTimeStamp":"2014-01-13 03:29:42"}]},{"restaurantId":"11","restaurantAlias":"cfa","restaurantColor":"dddddd","restaurantName":"Chick-fil-A","restaurantUrl":"http:\/\/www.chick-fil-a.com\/Kids\/Meal","restaurantDataUrl":"","restaurantTimeStamp":"2013-03-30 02:28:30","prize":[{"prizeId":"471","prizeName":"Amazing Animals Books","prizeImage":"","prizeGender":"N","prizeLink":"","prizeActive":"1","restaurantId":"11","prizeTimeStamp":"2013-11-01 21:17:13"}]}];
+	var gaPlugin = false;
 	
 	var dict = {
 		en:{
@@ -96,6 +97,10 @@ var app = {
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
         
+        // Init google analytics
+        gaPlugin = window.plugins.gaPlugin;
+    	gaPlugin.init(GASuccess, GAFail, "UA-76054-25", 10);
+        
         if( supports_html5_storage() ){
             if(localStorage["userid"] != undefined){
                 lsUserId = parseInt(localStorage["userid"]);
@@ -105,7 +110,17 @@ var app = {
         pictureSource=navigator.camera.PictureSourceType;
         destinationType=navigator.camera.DestinationType;
 		AppInit();
-		AdInit();
+		//AdInit();
+		
+		if($(window).width() > 767){
+			//WallMapInit();
+		}else{
+			//$('meta[name="viewport"]').attr('content', 'user-scalable=no, width=600');
+		}
+		
+		$(window).trigger("resize");
+		
+		gaPlugin.trackEvent( GASuccess, GAFail, "App", "Init", "", 1);
         
     },
     // Update DOM on a Received Event
@@ -122,15 +137,21 @@ var app = {
 };
 
 $( window ).resize(function() {
+	
+	//alert("window: "+$(window).height());
+	//alert("home content: "+$('#home .content').height());
+	
 
 	// Resize home listing
 	var offsetheight =  $('#home .header').height()+$('#home .name').height()+$('#footer').height()+(parseInt($('#home .name').css('padding-top'))*2);
-	if( $(window).width() > 600 ) offsetheight = $('#home .name').height()+(parseInt($('#home .name').css('padding-top'))*2);
+	//if( $(window).width() > 600 ) offsetheight = $('#home .name').height()+(parseInt($('#home .name').css('padding-top'))*2);
 	$('#home .content').css('height',($('#home').height()-offsetheight)+"px");
+	
+	//alert("home offset: "+offsetheight);
 	
 	// Resize prize listing
 	offsetheight =  $('#prize .header').height()+$('#prize .tabs').height()+$('#footer').height()+$('#prize .name').height()+(parseInt($('#prize .name').css('padding-top'))*2);
-    if( $(window).width() > 600 ) offsetheight =  $('#prize .tabs').height()+$('#prize .name').height()+(parseInt($('#prize .name').css('padding-top'))*2);
+    //if( $(window).width() > 600 ) offsetheight =  $('#prize .tabs').height()+$('#prize .name').height()+(parseInt($('#prize .name').css('padding-top'))*2);
     $('#prize .tabpanel').css('width',$('#prize').width()+"px");
     $('#prize .tabpanel').css('height',($('#prize').height()-offsetheight)+"px");
 	
@@ -153,6 +174,9 @@ function AppInit(){
 }
 
 function AdInit(){
+	
+	document.addEventListener('onReceiveAd', function(){$(window).trigger("resize");});
+	
 	admob.createBannerView(
     	{
     		'publisherId': 'ca-app-pub-9860806024628930/2903343809',

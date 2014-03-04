@@ -306,18 +306,7 @@ Prize.prototype.Show = function(){
     
     this.panel.Show();
     
-    DebugOut('name: '+ this.panel.elem.find('.name').height());
-    DebugOut('tabs: '+ this.panel.elem.find('.tabs').height());
-    DebugOut('header: '+ this.panel.elem.find('.header').height());
-    
-    var offsetheight =  this.panel.elem.find('.header').height()+this.panel.elem.find('.tabs').height()+$('#footer').height()+this.panel.elem.find('.name').height()+(parseInt(this.panel.elem.find('.name').css('padding-top'))*2);
-    if( $(window).width() > 600 ) offsetheight =  this.panel.elem.find('.tabs').height()+this.panel.elem.find('.name').height()+(parseInt(this.panel.elem.find('.name').css('padding-top'))*2);
-    
-    DebugOut('offsetheight: '+offsetheight);
-    
-    // Size the map to fit the panel
-    this.panel.elem.find('.tabpanel').css('width',this.panel.elem.width()+"px");
-    this.panel.elem.find('.tabpanel').css('height',(this.panel.elem.height()-offsetheight)+"px");
+	$(window).trigger("resize");
     
     return true;
 };

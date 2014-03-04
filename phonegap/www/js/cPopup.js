@@ -16,7 +16,11 @@ Popup.prototype.Show = function(pProfileId){
     //this.elem.css('z-index',100);
     this.elem.show();
     
-    _gaq.push(['_trackEvent', 'PopupShow', this.elem.attr('id'), '']);
+    if(gaPlugin){
+    	gaPlugin.trackEvent( GASuccess, GAFail, "PopupShow", this.elem.attr('id'), "", 1);
+    }else{
+    	_gaq.push(['_trackEvent', 'PopupShow', this.elem.attr('id'), '']);
+    }
     
     return true;
 };

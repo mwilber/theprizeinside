@@ -2,6 +2,14 @@
 //  Utility Functions
 /////////////////////////////////////////////////////////////////////////////
 
+function GASuccess(){
+	DebugOut("GA Success!");
+}
+
+function GAFail(){
+	DebugOut("GA Fail!");
+}
+
 Number.prototype.toRad = function() {
    return this * Math.PI / 180;
 };

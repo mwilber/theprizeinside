@@ -106,9 +106,7 @@ Home.prototype.Show = function(){
     
     //$('#header').show();
     
-    var offsetheight =  this.panel.elem.find('.header').height()+this.panel.elem.find('.name').height()+$('#footer').height()+(parseInt(this.panel.elem.find('.name').css('padding-top'))*2);
-    if( $(window).width() > 600 ) offsetheight = this.panel.elem.find('.name').height()+(parseInt(this.panel.elem.find('.name').css('padding-top'))*2);
-    this.panel.elem.find('.content').css('height',(this.panel.elem.height()-offsetheight)+"px");
+    $(window).trigger("resize");
     
     
     

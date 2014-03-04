@@ -34,5 +34,7 @@
 /Volumes/www/theprizeinside/phonegap/platforms/android/bin/classes/com/greenzeta/greenzeta/theprizeinside/R.class \
 /Volumes/www/theprizeinside/phonegap/platforms/android/bin/classes/com/greenzeta/greenzeta/theprizeinside/BuildConfig.class \
 /Volumes/www/theprizeinside/phonegap/platforms/android/bin/classes/com/greenzeta/greenzeta/theprizeinside/R$drawable.class \
+/Volumes/www/theprizeinside/phonegap/platforms/android/bin/classes/com/adobe/plugins/GAPlugin.class \
+/Volumes/www/theprizeinside/phonegap/platforms/android/bin/dexedLibs/libGoogleAnalyticsV2-ce937f9b93b3157ea303153088bfc7ea.jar \
 /Volumes/www/theprizeinside/phonegap/platforms/android/bin/dexedLibs/cordova-3.1.0-655cbcda373ad0202b4a8bbad5904c8e.jar \
 /Volumes/www/theprizeinside/phonegap/platforms/android/bin/dexedLibs/GoogleAdMobAdsSdk-6.4.1-673a7f492713ff64fae41471c2f0e410.jar \

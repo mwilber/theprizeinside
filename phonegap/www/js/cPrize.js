@@ -50,7 +50,12 @@ Prize.prototype.ShowLocations = function(self){
        self.HideTabPanels();
        self.panel.elem.find('.tablocations').addClass('selected');
 	   self.panel.elem.find('#locations').show();
-	   _gaq.push(['_trackEvent', 'Prize', 'ShowLocations', '']);
+	   
+		if(gaPlugin){
+    		gaPlugin.trackEvent( GASuccess, GAFail, "Prize", "ShowLocations", "", 1);
+		}else{
+	    	_gaq.push(['_trackEvent', 'Prize', 'ShowLocations', '']);
+	    }
        return false;
    };
 };
@@ -61,7 +66,11 @@ Prize.prototype.ShowMap = function(self){
        self.panel.elem.find('.tabmap').addClass('selected');
 	   self.panel.elem.find('#map').show();
 	   if( !self.locmap ) self.InitMap(self); else self.PlaceVenueMarkers(self);
-	   _gaq.push(['_trackEvent', 'Prize', 'ShowMap', '']);
+	   if(gaPlugin){
+    		gaPlugin.trackEvent( GASuccess, GAFail, "Prize", "ShowMap", "", 1);
+		}else{
+	    	_gaq.push(['_trackEvent', 'Prize', 'ShowMap', '']);
+	    }
        return false;
    };
 };
@@ -71,7 +80,11 @@ Prize.prototype.ShowComments = function(self){
        self.HideTabPanels();
        self.panel.elem.find('.tabcomments').addClass('selected');
 	   self.panel.elem.find('#comments').show();
-	   _gaq.push(['_trackEvent', 'Prize', 'ShowComment', '']);
+	   if(gaPlugin){
+    		gaPlugin.trackEvent( GASuccess, GAFail, "Prize", "ShowComment", "", 1);
+		}else{
+	    	_gaq.push(['_trackEvent', 'Prize', 'ShowComment', '']);
+	    }
        return false;
    };
 };
@@ -115,7 +128,12 @@ Prize.prototype.Load = function(pPrize){
     
     this.panel.elem.find('.showwebsite').attr('href',pPrize.restaurant.restaurantUrl);
     
-    _gaq.push(['_trackEvent', 'Prize', this.restaurantalias, '']);
+    
+    if(gaPlugin){
+    	gaPlugin.trackEvent( GASuccess, GAFail, "Prize", this.restaurantalias, "", 1);
+    }else{
+    	_gaq.push(['_trackEvent', 'Prize', this.restaurantalias, '']);
+    }
 
     this.Show(); 
     
@@ -306,18 +324,7 @@ Prize.prototype.Show = function(){
     
     this.panel.Show();
     
-    DebugOut('name: '+ this.panel.elem.find('.name').height());
-    DebugOut('tabs: '+ this.panel.elem.find('.tabs').height());
-    DebugOut('header: '+ this.panel.elem.find('.header').height());
-    
-    var offsetheight =  this.panel.elem.find('.header').height()+this.panel.elem.find('.tabs').height()+$('#footer').height()+this.panel.elem.find('.name').height()+(parseInt(this.panel.elem.find('.name').css('padding-top'))*2);
-    if( $(window).width() > 600 ) offsetheight =  this.panel.elem.find('.tabs').height()+this.panel.elem.find('.name').height()+(parseInt(this.panel.elem.find('.name').css('padding-top'))*2);
-    
-    DebugOut('offsetheight: '+offsetheight);
-    
-    // Size the map to fit the panel
-    this.panel.elem.find('.tabpanel').css('width',this.panel.elem.width()+"px");
-    this.panel.elem.find('.tabpanel').css('height',(this.panel.elem.height()-offsetheight)+"px");
+	$(window).trigger("resize");
     
     return true;
 };

@@ -44,6 +44,10 @@
 		DDF6CF962834476793800101 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73619BAFBE39472F93178705 /* AudioToolbox.framework */; };
 		DE3AB0BECC534647A49DA15B /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6261AFC236D743CCA94C09CD /* libGoogleAdMobAds.a */; };
 		F840E1F1165FE0F500CFE078 /* config.xml in Resources */ = {isa = PBXBuildFile; fileRef = F840E1F0165FE0F500CFE078 /* config.xml */; };
+		94B303A3888844CC9811BFE7 /* GAPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 278D3F78F50049AAB3FB1FF4 /* GAPlugin.m */; };
+		5CAA9C607E6B467B89340866 /* GoogleAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A2872393B16488E8FA8A825 /* GoogleAnalytics.a */; };
+		D83FEF467B9F4D9B82A6E81B /* GoogleAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AC83803B7BA47D5A0AEEA47 /* GoogleAnalytics.a */; };
+		3D2DEFC76D934B4E8E2B1D65 /* CoreData.framework in Resources */ = {isa = PBXBuildFile; fileRef = 13A708942CF844859A2216B2 /* CoreData.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -123,6 +127,16 @@
 		DB01F86A61EB4DEB9533E775 /* AdSupport.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		F52F356CF74E4DBD972EDD98 /* CDVCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDVCamera.h; path = org.apache.cordova.camera/CDVCamera.h; sourceTree = "<group>"; };
 		F840E1F0165FE0F500CFE078 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = "The Prize Inside/config.xml"; sourceTree = "<group>"; };
+		278D3F78F50049AAB3FB1FF4 /* GAPlugin.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "GAPlugin.m"; path = "com.adobe.plugins.GAPlugin/GAPlugin.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		1A2872393B16488E8FA8A825 /* GoogleAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "GoogleAnalytics.a"; path = "com.adobe.plugins.GAPlugin/GoogleAnalytics.a"; sourceTree = "<group>"; fileEncoding = 4; };
+		7AC83803B7BA47D5A0AEEA47 /* GoogleAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "GoogleAnalytics.a"; path = "The Prize Inside/Plugins/com.adobe.plugins.GAPlugin/GoogleAnalytics.a"; sourceTree = "<group>"; fileEncoding = 4; };
+		51DA9DCEB44541A082A2CF6F /* GAITransactionItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "GAITransactionItem.h"; path = "com.adobe.plugins.GAPlugin/GAITransactionItem.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		FB86A35DA4BB484580FDC4C2 /* GAITransaction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "GAITransaction.h"; path = "com.adobe.plugins.GAPlugin/GAITransaction.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		06C219352B24401E9CB3DFEA /* GAITracker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "GAITracker.h"; path = "com.adobe.plugins.GAPlugin/GAITracker.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		D0110BE30AFA417EB75C9E49 /* GAITrackedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "GAITrackedViewController.h"; path = "com.adobe.plugins.GAPlugin/GAITrackedViewController.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		39BCCEFF77154F49BF554051 /* GAI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "GAI.h"; path = "com.adobe.plugins.GAPlugin/GAI.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		C0BA5EB82B824EF9AAD427D7 /* GAPlugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "GAPlugin.h"; path = "com.adobe.plugins.GAPlugin/GAPlugin.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		13A708942CF844859A2216B2 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "CoreData.framework"; path = "System/Library/Frameworks/CoreData.framework"; sourceTree = SDKROOT; fileEncoding = 4; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +156,8 @@
 				10456039DD5240E3AFF6E7CC /* MessageUI.framework in Frameworks */,
 				A87A47DF3CD34FB29D733714 /* SystemConfiguration.framework in Frameworks */,
 				B3FD5677807841D0B07A3C6E /* AdSupport.framework in Frameworks */,
+				D83FEF467B9F4D9B82A6E81B /* GoogleAnalytics.a in Frameworks */,
+				3D2DEFC76D934B4E8E2B1D65 /* CoreData.framework in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,6 +256,8 @@
 				5685D4FC37184B329BBAE7D5 /* MessageUI.framework */,
 				527545F400704743A25ED416 /* SystemConfiguration.framework */,
 				DB01F86A61EB4DEB9533E775 /* AdSupport.framework */,
+				7AC83803B7BA47D5A0AEEA47 /* GoogleAnalytics.a */,
+				13A708942CF844859A2216B2 /* CoreData.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -276,6 +294,14 @@
 				97692F0106CC4C559708FDA6 /* GADInterstitialDelegate.h */,
 				0BD6CB3B4D134296B4E9280D /* GADRequest.h */,
 				B92BA636C0EC4E7CA5FDB527 /* GADRequestError.h */,
+				278D3F78F50049AAB3FB1FF4 /* GAPlugin.m */,
+				1A2872393B16488E8FA8A825 /* GoogleAnalytics.a */,
+				51DA9DCEB44541A082A2CF6F /* GAITransactionItem.h */,
+				FB86A35DA4BB484580FDC4C2 /* GAITransaction.h */,
+				06C219352B24401E9CB3DFEA /* GAITracker.h */,
+				D0110BE30AFA417EB75C9E49 /* GAITrackedViewController.h */,
+				39BCCEFF77154F49BF554051 /* GAI.h */,
+				C0BA5EB82B824EF9AAD427D7 /* GAPlugin.h */,
 			);
 			name = Plugins;
 			path = "The Prize Inside/Plugins";
@@ -449,6 +475,8 @@
 				A68ADDB4C7AC426A9CE6E3A2 /* CDVInAppBrowser.m in Sources */,
 				CC095FD8C4AD4A11B7D647DA /* AdMobPlugin.m in Sources */,
 				433433816E554AD1B7D112B9 /* libGoogleAdMobAds.a in Sources */,
+				94B303A3888844CC9811BFE7 /* GAPlugin.m in Sources */,
+				5CAA9C607E6B467B89340866 /* GoogleAnalytics.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -515,6 +543,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/The Prize Inside/Plugins/com.google.cordova.plugin.AdMobPlugin\"",
+					"\"$(SRCROOT)/The Prize Inside/Plugins/com.adobe.plugins.GAPlugin\"",
 				);
 				OTHER_LDFLAGS = (
 					"-weak_framework",
@@ -550,6 +579,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/The Prize Inside/Plugins/com.google.cordova.plugin.AdMobPlugin\"",
+					"\"$(SRCROOT)/The Prize Inside/Plugins/com.adobe.plugins.GAPlugin\"",
 				);
 				OTHER_LDFLAGS = (
 					"-weak_framework",
