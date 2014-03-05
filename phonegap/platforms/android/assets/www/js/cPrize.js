@@ -50,7 +50,12 @@ Prize.prototype.ShowLocations = function(self){
        self.HideTabPanels();
        self.panel.elem.find('.tablocations').addClass('selected');
 	   self.panel.elem.find('#locations').show();
-	   _gaq.push(['_trackEvent', 'Prize', 'ShowLocations', '']);
+	   
+		if(gaPlugin){
+    		gaPlugin.trackEvent( GASuccess, GAFail, "Prize", "ShowLocations", "", 1);
+		}else{
+	    	_gaq.push(['_trackEvent', 'Prize', 'ShowLocations', '']);
+	    }
        return false;
    };
 };
@@ -61,7 +66,11 @@ Prize.prototype.ShowMap = function(self){
        self.panel.elem.find('.tabmap').addClass('selected');
 	   self.panel.elem.find('#map').show();
 	   if( !self.locmap ) self.InitMap(self); else self.PlaceVenueMarkers(self);
-	   _gaq.push(['_trackEvent', 'Prize', 'ShowMap', '']);
+	   if(gaPlugin){
+    		gaPlugin.trackEvent( GASuccess, GAFail, "Prize", "ShowMap", "", 1);
+		}else{
+	    	_gaq.push(['_trackEvent', 'Prize', 'ShowMap', '']);
+	    }
        return false;
    };
 };
@@ -71,7 +80,11 @@ Prize.prototype.ShowComments = function(self){
        self.HideTabPanels();
        self.panel.elem.find('.tabcomments').addClass('selected');
 	   self.panel.elem.find('#comments').show();
-	   _gaq.push(['_trackEvent', 'Prize', 'ShowComment', '']);
+	   if(gaPlugin){
+    		gaPlugin.trackEvent( GASuccess, GAFail, "Prize", "ShowComment", "", 1);
+		}else{
+	    	_gaq.push(['_trackEvent', 'Prize', 'ShowComment', '']);
+	    }
        return false;
    };
 };
@@ -113,9 +126,16 @@ Prize.prototype.Load = function(pPrize){
 
     this.panel.elem.find('.name').html(pPrize.prizeName);
     
-    this.panel.elem.find('.showwebsite').attr('href',pPrize.restaurant.restaurantUrl);
+    this.panel.elem.find('.showwebsite').click(function(){
+    	window.open(pPrize.restaurant.restaurantUrl, '_system');
+    });
     
-    _gaq.push(['_trackEvent', 'Prize', this.restaurantalias, '']);
+    
+    if(gaPlugin){
+    	gaPlugin.trackEvent( GASuccess, GAFail, "Prize", this.restaurantalias, "", 1);
+    }else{
+    	_gaq.push(['_trackEvent', 'Prize', this.restaurantalias, '']);
+    }
 
     this.Show(); 
     

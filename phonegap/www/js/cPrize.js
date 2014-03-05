@@ -126,7 +126,9 @@ Prize.prototype.Load = function(pPrize){
 
     this.panel.elem.find('.name').html(pPrize.prizeName);
     
-    this.panel.elem.find('.showwebsite').attr('href',pPrize.restaurant.restaurantUrl);
+    this.panel.elem.find('.showwebsite').click(function(){
+    	window.open(pPrize.restaurant.restaurantUrl, '_system');
+    });
     
     
     if(gaPlugin){

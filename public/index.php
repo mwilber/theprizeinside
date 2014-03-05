@@ -369,7 +369,7 @@
         	$(document).ready(function(){
         		AppInit();
 				//AdInit();
-				if($(window).width() > 600){
+				if($(window).width() > 1000){
 					WallMapInit();
 				}else{
 					//$('meta[name="viewport"]').attr('content', 'user-scalable=no, width=600');
@@ -388,16 +388,16 @@
 				});
 				
 				$( window ).resize(function() {
-					if((!wallmap)&&($(window).width() > 600)) WallMapInit();
+					if((!wallmap)&&($(window).width() > 1000)) WallMapInit();
 					
 					// Resize home listing
 					var offsetheight =  $('#home .header').height()+$('#home .name').height()+$('#footer').height()+(parseInt($('#home .name').css('padding-top'))*2);
-    				if( $(window).width() > 600 ) offsetheight = $('#home .name').height()+(parseInt($('#home .name').css('padding-top'))*2);
+    				if( $(window).width() > 1000 ) offsetheight = $('#home .name').height()+(parseInt($('#home .name').css('padding-top'))*2);
     				$('#home .content').css('height',($('#home').height()-offsetheight)+"px");
 					
 					// Resize prize listing
 					offsetheight =  $('#prize .header').height()+$('#prize .tabs').height()+$('#footer').height()+$('#prize .name').height()+(parseInt($('#prize .name').css('padding-top'))*2);
-				    if( $(window).width() > 600 ) offsetheight =  $('#prize .tabs').height()+$('#prize .name').height()+(parseInt($('#prize .name').css('padding-top'))*2);
+				    if( $(window).width() > 1000 ) offsetheight =  $('#prize .tabs').height()+$('#prize .name').height()+(parseInt($('#prize .name').css('padding-top'))*2);
 				    $('#prize .tabpanel').css('width',$('#prize').width()+"px");
 				    $('#prize .tabpanel').css('height',($('#prize').height()-offsetheight)+"px");
 					

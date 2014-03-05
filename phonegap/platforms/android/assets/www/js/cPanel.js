@@ -17,7 +17,11 @@ Panel.prototype.Show = function(pProfileId){
     //this.elem.css('z-index',100);
     this.elem.show();
     
-    _gaq.push(['_trackEvent', 'PanelShow', this.elem.attr('id'), '']);
+    if(gaPlugin){
+    	gaPlugin.trackEvent( GASuccess, GAFail, "PanelShow", this.elem.attr('id'), "", 1);
+    }else{
+    	_gaq.push(['_trackEvent', 'PanelShow', this.elem.attr('id'), '']);
+    }
     
     return true;
 };
