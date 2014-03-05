@@ -2,7 +2,7 @@
 
 	$social = array();
 	$social['title'] = "The Prize Inside";
-	$social['description'] = "When you're out on the road, The Prize Inside uses your location to find nearby restaurants that have kids meal premiums. Plan a meal stop around the prize you want most. The Prize inside provides driving directions to the location. Share with your finds on The Prize Inside website! Make The Prize Inside part of your next road trip.";
+	$social['description'] = "When a burger is a burger, and fries make no difference, choose your fast food by The Prize Inside!";
 	$social['image'] = "http://theprizeinside.com/img/fb_icon.png";
 	$social['link'] = "http://theprizeinside.com/";
 	
@@ -60,7 +60,7 @@
 		<meta name="twitter:card" content="summary">
 		<meta name="twitter:site" content="@greenzeta">
 		<meta name="twitter:title" content="<?=$social['title']?>">
-		<meta name="twitter:description" content="When a burger is a burger, choose your fast food by The Prize Inside!">
+		<meta name="twitter:description" content="When a burger is a burger, and fries make no difference, choose your fast food by The Prize Inside!">
 		<meta name="twitter:creator" content="@tpiapp">
 		<meta name="twitter:image:src" content="<?=$social['image']?>">
 		<meta name="twitter:domain" content="theprizeinside.com">
@@ -105,9 +105,9 @@
 			<a class="close" href="#"><span class="fa fa-times"></span></a>
 			<h1>About</h1>
 			<div id="aboutbox" class="scroll-pane">
-				<p>When a burger is a burger, choose your fast food by The Prize Inside!</p>
-				<p>When you&rsquo;re out on the road, The Prize Inside uses your location to find nearby restaurants that have kids&rsquo; meal premiums. Plan a meal stop around the prize you want most. The Prize inside provides driving directions to the location. Share with your finds on The Prize Inside website! Make The Prize Inside part of your next road trip.</p>
-				<p>The Prize Inside was created by Internet software developer Matthew Wilber. For more information, visit <a href="#" onclick="window.open('http://www.mwilber.com', '_system'); _gaq.push(['_trackEvent', 'External', 'mwilber.com', '']); return false;">mwilber.com</a>.</p>			
+				<p>When a burger is a burger, and fries make no difference, choose your fast food by The Prize Inside!</p>
+				<p>The Prize Inside helps you find a place to eat based on their kids&rsquo; meal premiums. Find the prize you want and locate the nearest restaurant. Browse other user&rsquo;s comments before you go. While you&rsquo;re there, use the mobile app to share your find on The Prize Insite website and social networks.</p>
+				<p>The Prize Inside was created by Internet software developer Matthew Wilber. For more information, visit <a href="#" onclick="window.open('http://www.greenzeta.com', '_system'); _gaq.push(['_trackEvent', 'External', 'mwilber.com', '']); return false;">greenzeta.com</a>.</p>			
 			</div>
 		</div>
 		
