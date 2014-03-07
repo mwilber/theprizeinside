@@ -11,8 +11,9 @@
     <preference name="permissions" value="none" />
     <preference name="orientation" value="portrait" />
     <preference name="target-device" value="universal" />
+    <!--preference name="target-device" value="handset" /-->
     <preference name="fullscreen" value="false" />
-    <preference name="webviewbounce" value="true" />
+    <preference name="webviewbounce" value="false" />
     <preference name="prerendered-icon" value="true" />
     <preference name="stay-in-webview" value="false" />
     <preference name="ios-statusbarstyle" value="black-opaque" />
@@ -21,6 +22,7 @@
     <preference name="show-splash-screen-spinner" value="true" />
     <preference name="auto-hide-splash-screen" value="true" />
     <preference name="disable-cursor" value="false" />
+    <preference name="EnableViewportScale" value="true" />
     <preference name="android-minSdkVersion" value="7" />
     <preference name="android-installLocation" value="auto" />
     <icon src="icon.png" />
@@ -49,4 +51,11 @@
     <gap:splash gap:platform="winphone" src="res/screen/windows-phone/screen-portrait.jpg" />
     <access origin="*" />
     <content src="index.html" />
+
+    <gap:plugin name="org.apache.cordova.device" />
+    <gap:plugin name="org.apache.cordova.camera" />
+    <gap:plugin name="org.apache.cordova.geolocation" />
+    <gap:plugin name="org.apache.cordova.inappbrowser" />
+    <gap:plugin name="com.kickstand.cordova.plugin.iad" />
+    <gap:plugin name="com.adobe.plugins.gaplugin" />
 </widget>

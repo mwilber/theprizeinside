@@ -279,6 +279,9 @@
 					<li><a id="btntwitter" href="#" class="button fa fa-twitter-square" onclick="return false;"> twitter</a></li>
 					<li><a id="btnfoursquare" href="#" class="button fa fa-foursquare" onclick="return false;"> foursquare</a></li>
 				</ul>
+				<p class="policy">
+					<a href="#" onclick="window.open('http://theprizeinside.com/policy.php', '_system'); _gaq.push(['_trackEvent', 'External', 'Policy', '']); return false;">Privacy Policy</a>
+				</p>
 			</div>
 			
 			

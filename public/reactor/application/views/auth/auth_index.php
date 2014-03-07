@@ -35,7 +35,7 @@
 			<?php if(substr_compare($name, 'Id', -2, 2) === 0): ?>
 				<td class="join" ref="<?=base_url()?><?=substr($name, 0, -2);?>/detail/<?=$record->$name?>"><a href='<?=base_url()?><?=substr($name, 0, -2);?>/edit/<?=$record->$name?>' ><?=$record->$name?></a></td>
 			<?php else: ?>
-				<td><?=$record->$name?></td>
+				<td><?=strlen($record->$name) > 50 ? substr($record->$name,0,50)."..." : $record->$name ?></td>
 			<?php endif; ?>
 			<?php endforeach; ?>
 			<td><a href='<?=base_url()?><?=$this->uri->segment(1);?>/edit/<?=$record->$pk?>'>Edit</a></td>

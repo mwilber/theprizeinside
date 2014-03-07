@@ -48,13 +48,16 @@
     <gap:splash gap:platform="ios" height="768" src="res/screen/ios/screen-ipad-landscape.png" width="1024" />
     <gap:splash gap:platform="winphone" src="res/screen/windows-phone/screen-portrait.jpg" />
     <content src="index.html" />
+    <feature name="GAPlugin">
+        <param name="ios-package" value="GAPlugin" />
+    </feature>
     <access origin="*" />
     <preference name="KeyboardDisplayRequiresUserAction" value="true" />
     <preference name="SuppressesIncrementalRendering" value="false" />
     <preference name="UIWebViewBounce" value="true" />
     <preference name="TopActivityIndicator" value="gray" />
     <preference name="EnableLocation" value="false" />
-    <preference name="EnableViewportScale" value="false" />
+    <preference name="EnableViewportScale" value="true" />
     <preference name="AutoHideSplashScreen" value="true" />
     <preference name="ShowSplashScreenSpinner" value="true" />
     <preference name="MediaPlaybackRequiresUserAction" value="false" />
@@ -65,7 +68,7 @@
     <preference name="orientation" value="portrait" />
     <preference name="target-device" value="universal" />
     <preference name="fullscreen" value="false" />
-    <preference name="webviewbounce" value="true" />
+    <preference name="webviewbounce" value="false" />
     <preference name="prerendered-icon" value="true" />
     <preference name="stay-in-webview" value="false" />
     <preference name="ios-statusbarstyle" value="black-opaque" />
@@ -76,7 +79,4 @@
     <preference name="disable-cursor" value="false" />
     <preference name="android-minSdkVersion" value="7" />
     <preference name="android-installLocation" value="auto" />
-    <feature name="GAPlugin">
-        <param name="ios-package" value="GAPlugin" />
-    </feature>
 </widget>
