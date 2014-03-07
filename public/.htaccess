@@ -492,6 +492,7 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^/?ck/css/(.*?)/?$ css/$1 [L]
 RewriteRule ^/?ck/js/(.*?)/?$ js/$1 [L]
 RewriteRule ^/?ck/img/(.*?)/?$ img/$1 [L]
+RewriteRule ^/?ck/fonts/(.*?)/?$ fonts/$1 [L]
 RewriteRule ^/?ck/policy.php policy.php [L]
 RewriteRule ^/?ck/(.*?)/?$ index.php?ck=$1 [L]
 
