@@ -57,7 +57,7 @@
 		left: 6%;
 		display: block;
 		background: transparent;
-		z-index:3000;
+		z-index:100;
 	}
 	#header.header #logo img {
 		width: auto;
