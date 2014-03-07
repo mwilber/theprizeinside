@@ -527,7 +527,7 @@ a.close{
 
 .panel .header #streetview, .panel .header #prizephoto, .panel .header #homeview{
 	width: 100%;
-	top: -100px;
+	top: -200px;
 }
 
 .panel .header a, #header.header a{
