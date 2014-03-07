@@ -90,9 +90,9 @@
 		</script>
     </head>
     <body>
+    	<img id="logo" src="img/logo.png">
         <div id="header" class="header">
         	<img id="homeview" src="img/homebanner.jpg"/>
-        	<img id="logo" src="img/logo.png">
         	<a class="showapp fa fa-mobile-phone" style="right:300px; width: 200px;" target="_blank"> <span style="font-size:18px;">Get the App!</span></a>
         	<a class="showtweeter fa fa-twitter" href="#" onclick="window.open('http://www.twitter.com/tpiapp', '_system'); _gaq.push(['_trackEvent', 'External', 'Twitter', '']); return false;" style="right:200px;"> </a>
 			<a class="showuserlocation fa fa-location-arrow" target="_blank"> </a>
@@ -106,7 +106,7 @@
 			<h1>About</h1>
 			<div id="aboutbox" class="scroll-pane">
 				<p>When a burger is a burger, and fries make no difference, choose your fast food by The Prize Inside!</p>
-				<p>The Prize Inside helps you find a place to eat based on their kids&rsquo; meal premiums. Find the prize you want and locate the nearest restaurant. Browse other user&rsquo;s comments before you go. While you&rsquo;re there, use the mobile app to share your find on The Prize Insite website and social networks.</p>
+				<p>The Prize Inside helps you find a place to eat based on their kids&rsquo; meal premiums. Find the prize you want and locate the nearest restaurant. Browse other user&rsquo;s comments before you go. While you&rsquo;re there, use the mobile app to share your find on The Prize Inside website and social networks.</p>
 				<p>The Prize Inside was created by Internet software developer Matthew Wilber. For more information, visit <a href="#" onclick="window.open('http://www.greenzeta.com', '_system'); _gaq.push(['_trackEvent', 'External', 'mwilber.com', '']); return false;">greenzeta.com</a>.</p>			
 			</div>
 		</div>
@@ -147,6 +147,7 @@
 				<h1 class="name"><span class="mob">The Prize Inside</span><span class="dsk">Prizes</span></h1>
 				<div class="header">
 					<img id="homeview" src="img/homebanner.jpg"/>
+					<a class="showapp fa fa-mobile-phone" style="right:75px; width: 200px;" target="_blank"> <span style="font-size:18px;">Get the App!</span></a>
 					<a class="showuserprofile fa fa-user" target="_blank"> </a>
 					<a class="showinfo fa fa-info-circle" target="_blank"> </a>
 				</div>
@@ -162,6 +163,7 @@
 				<h1 class="name"><!-- AJAX Data here --></h1>
 				<div class="header">
 					<img id="prizephoto" src=""/>
+					<a class="showapp fa fa-mobile-phone" style="right:150px; width: 200px;" target="_blank"> <span style="font-size:18px;">Get the App!</span></a>
 					<a class="showuserlocation fa fa-location-arrow" target="_blank"> </a>
 				  	<a class="showwebsite fa fa-globe" target="_blank"> </a>
 				  	<a class="showcheckin fa fa-thumbs-up"></a>
@@ -372,7 +374,7 @@
         	$(document).ready(function(){
         		AppInit();
 				//AdInit();
-				if($(window).width() > 1000){
+				if($(window).width() > 900){
 					WallMapInit();
 				}else{
 					//$('meta[name="viewport"]').attr('content', 'user-scalable=no, width=600');
@@ -391,16 +393,16 @@
 				});
 				
 				$( window ).resize(function() {
-					if((!wallmap)&&($(window).width() > 1000)) WallMapInit();
+					if((!wallmap)&&($(window).width() > 900)) WallMapInit();
 					
 					// Resize home listing
 					var offsetheight =  $('#home .header').height()+$('#home .name').height()+$('#footer').height()+(parseInt($('#home .name').css('padding-top'))*2);
-    				if( $(window).width() > 1000 ) offsetheight = $('#home .name').height()+(parseInt($('#home .name').css('padding-top'))*2);
+    				if( $(window).width() > 900 ) offsetheight = $('#home .name').height()+(parseInt($('#home .name').css('padding-top'))*2);
     				$('#home .content').css('height',($('#home').height()-offsetheight)+"px");
 					
 					// Resize prize listing
 					offsetheight =  $('#prize .header').height()+$('#prize .tabs').height()+$('#footer').height()+$('#prize .name').height()+(parseInt($('#prize .name').css('padding-top'))*2);
-				    if( $(window).width() > 1000 ) offsetheight =  $('#prize .tabs').height()+$('#prize .name').height()+(parseInt($('#prize .name').css('padding-top'))*2);
+				    if( $(window).width() > 900 ) offsetheight =  $('#prize .tabs').height()+$('#prize .name').height()+(parseInt($('#prize .name').css('padding-top'))*2);
 				    $('#prize .tabpanel').css('width',$('#prize').width()+"px");
 				    $('#prize .tabpanel').css('height',($('#prize').height()-offsetheight)+"px");
 					

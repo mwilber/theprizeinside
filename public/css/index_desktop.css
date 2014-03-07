@@ -30,7 +30,7 @@
 
 /* Desktop ----------- */
 @media only screen 
-	and (min-width : 600px) {
+	and (min-width : 900px) {
 	/* Styles */
 	
 	#header.header{
@@ -50,13 +50,14 @@
 		width:100%;
 	}
 	
-	#header.header #logo {
-		width: 214px;
+	#logo {
+		width: 315px;
 		position: absolute;
-		top: 10px;
+		top: 0px;
 		left: 6%;
 		display: block;
 		background: transparent;
+		z-index:3000;
 	}
 	#header.header #logo img {
 		width: auto;

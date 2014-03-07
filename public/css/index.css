@@ -1241,7 +1241,7 @@ a.close span {
 
 /* Smartphones (portrait) ----------- */
 @media only screen 
-	and (max-width : 1000px) {
+	and (max-width : 900px) {
 	/* Styles */
 	
 	.panel h1 {
@@ -1562,7 +1562,7 @@ a.close span {
 
 /* Desktop ----------- */
 @media only screen 
-	and (min-width : 1000px) {
+	and (min-width : 900px) {
 	/* Styles */
 	
 	#header.header{

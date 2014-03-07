@@ -58,7 +58,7 @@ class Checkin extends CI_Controller
 				$image = $twitterLayer->getResult();
 	 
 				//header('Content-type: image/jpeg');
-				//imagejpeg($image, null, 95); // We chose to show a JPG with a quality of 95%
+				//imagejpeg($image, null, 95); // JPG with a quality of 95%
 				$twitterLayer->save(UPLOAD_DIR."/", $imageData, CREATE_FOLDERS, BACKGROUND_COLOR, JPEG_IMAGE_QUALITY);
 					
 				$this->load->library('s3');
@@ -132,7 +132,7 @@ class Checkin extends CI_Controller
 									 'message' => $_POST['checkinComment'],
 									 'name' => $prizeName,
 									 'link' => $prizeUrl,
-									 'description' => 'When a burger is a burger, and a burrito makes no difference, choose your fast food by The Prize Inside!',
+									 'description' => 'When a burger is a burger, and fries make no difference, choose your fast food by The Prize Inside!',
 									 'picture'=>$_POST['checkinPhoto'],
 									 //'actions' => json_encode(array('name' => $action_name,'link' => $action_link))
 									 );
