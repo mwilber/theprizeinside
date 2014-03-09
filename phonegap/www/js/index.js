@@ -279,6 +279,7 @@ function HandleFSData(pRest){
         //DebugOut(pRest);
         //DebugOut(response);
         fsdata[pRest.restaurant.restaurantAlias] = response;
+        QueryLocation();
         DebugOut(fsdata);
         var patsy = panel['prize'].HandleLocationData(panel['prize']);
     	patsy(fsdata[panel['prize'].restaurantalias]);

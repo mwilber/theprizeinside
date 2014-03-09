@@ -36,9 +36,14 @@ LocationOptions.prototype.Load = function(pLocation){
     this.panel.elem.find('.name').html(pLocation.name);
     this.panel.elem.find('.showdirections, .mapdirections').click(function(){
     	//alert('http://maps.google.com/?saddr='+userLocation.lat()+','+userLocation.lng()+'&daddr='+pLocation.location.address+','+pLocation.location.postalCode);
-    	var dirurl = 'http://maps.google.com/?saddr='+userLocation.lat()+','+userLocation.lng()+'&daddr='+pLocation.location.address+','+pLocation.location.postalCode;
-    	dirurl = 'http://maps.apple.com/?saddr='+userLocation.lat()+','+userLocation.lng()+'&daddr='+pLocation.location.address+','+pLocation.location.postalCode;
+    	var dirurl = 'http://maps.google.com/?saddr='+userLocation.lat()+','+userLocation.lng()+'&daddr='+escape(pLocation.location.address)+','+pLocation.location.postalCode;
     	
+    	if( device ){
+    		if( device.platform == "iOS" ){
+    			dirurl = 'http://maps.apple.com/?saddr='+userLocation.lat()+','+userLocation.lng()+'&daddr='+escape(pLocation.location.address)+','+pLocation.location.postalCode;
+    		}
+    	}
+    	    	
     	//alert(dirurl);
     	
     	window.open(dirurl, '_system');

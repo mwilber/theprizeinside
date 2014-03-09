@@ -57,8 +57,8 @@ function AppInit(){
 	panel['checkindetail'] = new CheckinDetail();
 	panel['location'] = new Location();
 	panel['userlocation'] = new UserLocation();
-	panel['userprofile'] = new UserProfile();
-	panel['userlogin'] = new UserLogin();
+	//panel['userprofile'] = new UserProfile();
+	//panel['userlogin'] = new UserLogin();
 	panel['info'] = new Info();
 	panel['app'] = new App();
 	panel['locationoptions'] = new LocationOptions();

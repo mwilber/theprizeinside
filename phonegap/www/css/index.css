@@ -527,7 +527,7 @@ a.close{
 
 .panel .header #streetview, .panel .header #prizephoto, .panel .header #homeview{
 	width: 100%;
-	top: -100px;
+	top: -200px;
 }
 
 .panel .header a, #header.header a{
@@ -983,7 +983,7 @@ a.close{
 }
 
 #userlocation #locsearchbox #btngpssearch{
-	/*font-size:24px;*/
+	font-size:24px;
 }
 
 #userlogin ul{
@@ -1241,7 +1241,7 @@ a.close span {
 
 /* Smartphones (portrait) ----------- */
 @media only screen 
-	and (max-width : 1000px) {
+	and (max-width : 900px) {
 	/* Styles */
 	
 	.panel h1 {
@@ -1557,12 +1557,17 @@ a.close span {
 		margin: 20px 0px;
 		padding: 0px;
 	}
+	
+	#userlocation #locsearchbox #btngpssearch{
+		font-size:24px;
+		padding: 5px 20px;
+	}
 
 }
 
 /* Desktop ----------- */
 @media only screen 
-	and (min-width : 1000px) {
+	and (min-width : 900px) {
 	/* Styles */
 	
 	#header.header{
@@ -1580,6 +1585,7 @@ a.close span {
 	
 	#header.header img{
 		width:100%;
+		margin-top: -350px;
 	}
 	
 	#header.header #logo {

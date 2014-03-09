@@ -46,6 +46,7 @@ UserLogin.prototype.HandleAuthPopup = function(self){
             localStorage["userid"] = parseInt(aviam[aviam.length-1]);
             panel['userlogin'].ref.close();
             panel['userlogin'].panel.Hide();
+            QueryLocation();
         }
     }
 	};

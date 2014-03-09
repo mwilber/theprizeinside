@@ -527,7 +527,7 @@ a.close{
 
 .panel .header #streetview, .panel .header #prizephoto, .panel .header #homeview{
 	width: 100%;
-	top: -100px;
+	top: -200px;
 }
 
 .panel .header a, #header.header a{
@@ -983,7 +983,7 @@ a.close{
 }
 
 #userlocation #locsearchbox #btngpssearch{
-	/*font-size:24px;*/
+	font-size:24px;
 }
 
 #userlogin ul{
@@ -1000,6 +1000,16 @@ a.close{
 	width: 90%;
 	margin: 0px 5%;
 	padding: 15px 0px;
+}
+
+#userlogin .policy{
+	color:#333;
+	width:100%;
+	text-align: center;
+}
+
+#userlogin .policy a{
+	color:#333;
 }
 
 #aboutbox{
@@ -1231,7 +1241,7 @@ a.close span {
 
 /* Smartphones (portrait) ----------- */
 @media only screen 
-	and (max-width : 600px) {
+	and (max-width : 900px) {
 	/* Styles */
 	
 	.panel h1 {
@@ -1400,7 +1410,7 @@ a.close span {
 
 /* Smartphones (super-small/iphone) ----------- */
 @media only screen 
-	and (max-width : 400px) {
+	and (max-width : 500px) {
 		
 	#userprofile .nickname {
 		font-size: 18px;
@@ -1442,7 +1452,7 @@ a.close span {
 	#userprofile #authprofile .button {
 		font-size: 36px;
 		margin: 5px 0px;
-		padding: 6px 15px;
+		padding: 5px 10px;
 	}
 	
 	#userprofile #authprofile, #userprofile .historytitle {
@@ -1527,12 +1537,37 @@ a.close span {
 		padding: 5px 15px;
 		font-size: 24px;
 	}
+	
+	.panel .linearlist li .prize {
+		font-size: 22px;
+		line-height: 24px;
+		overflow: hidden;
+		width: 75%;
+		text-overflow: ellipsis;
+		height: 24px;
+	}
+	
+	#userprofile #authed div {
+		font-size: 36px;
+		margin: 10px 5px;
+	}
+	
+	#userlogin ul {
+		list-style: none;
+		margin: 20px 0px;
+		padding: 0px;
+	}
+	
+	#userlocation #locsearchbox #btngpssearch{
+		font-size:24px;
+		padding: 5px 20px;
+	}
 
 }
 
 /* Desktop ----------- */
 @media only screen 
-	and (min-width : 1000px) {
+	and (min-width : 900px) {
 	/* Styles */
 	
 	#header.header{
@@ -1550,6 +1585,7 @@ a.close span {
 	
 	#header.header img{
 		width:100%;
+		margin-top: -350px;
 	}
 	
 	#header.header #logo {

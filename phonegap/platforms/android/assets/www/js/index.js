@@ -113,15 +113,10 @@ var app = {
         pictureSource=navigator.camera.PictureSourceType;
         destinationType=navigator.camera.DestinationType;
 		AppInit();
-		//AdInit();
-		
-		if($(window).width() > 1000){
-			WallMapInit();
-		}else{
-			$('meta[name="viewport"]').attr('content', 'user-scalable=no, width=600');
-		}
+		AdInit();
 		
 		$(window).trigger("resize");
+		$(window).trigger("orientationchange");
 		
 		if( gaPlugin ){
 			gaPlugin.trackEvent( GASuccess, GAFail, "App", "Init", "", 1);
@@ -148,18 +143,53 @@ $( window ).resize(function() {
 
 	// Resize home listing
 	var offsetheight =  $('#home .header').height()+$('#home .name').height()+$('#footer').height()+(parseInt($('#home .name').css('padding-top'))*2);
-	//if( $(window).width() > 600 ) offsetheight = $('#home .name').height()+(parseInt($('#home .name').css('padding-top'))*2);
+	if( $(window).width() > 1000 ) offsetheight = $('#home .name').height()+(parseInt($('#home .name').css('padding-top'))*2);
 	$('#home .content').css('height',($('#home').height()-offsetheight)+"px");
 	
 	//alert("home offset: "+offsetheight);
 	
 	// Resize prize listing
 	offsetheight =  $('#prize .header').height()+$('#prize .tabs').height()+$('#footer').height()+$('#prize .name').height()+(parseInt($('#prize .name').css('padding-top'))*2);
-    //if( $(window).width() > 600 ) offsetheight =  $('#prize .tabs').height()+$('#prize .name').height()+(parseInt($('#prize .name').css('padding-top'))*2);
+    if( $(window).width() > 1000 ) offsetheight =  $('#prize .tabs').height()+$('#prize .name').height()+(parseInt($('#prize .name').css('padding-top'))*2);
     $('#prize .tabpanel').css('width',$('#prize').width()+"px");
     $('#prize .tabpanel').css('height',($('#prize').height()-offsetheight)+"px");
 	
 });
+
+$( window ).on('orientationchange',function() {
+	
+	//alert("window width: "+$(window).width());
+	//alert("window height: "+$(window).height());
+	
+	var compare = 0;
+	var vcompare = 0;
+	
+	switch(window.orientation) 
+	{  
+	  case -90:
+	  case 90:
+	    //alert('landscape');
+	    compare = $(window).height();
+	    vcompare = $(window).width();
+	    break; 
+	  default:
+	    //alert('portrait');
+	    compare = $(window).width();
+	    vcompare = $(window).height();
+	    break; 
+	}
+	
+	if(compare > 1000 && vcompare > 500){
+		WallMapInit();
+		//$('meta[name="viewport"]').attr('content', 'user-scalable=no, width=device-width');
+	}else{
+		panel['prize'].locmap = null;
+		//$('meta[name="viewport"]').attr('content', 'user-scalable=no, width=600');
+	}
+	
+	$(window).trigger("resize");
+
+});	
 
 function AppInit(){
     DebugOut('initing app');
@@ -218,19 +248,21 @@ function WallMapInit(){
 	
 	$('#wallmap').show();
 	
-	var latlng = new google.maps.LatLng(40.6687125,-73.5270709);
-    var myOptions = {
-      zoom: 15,
-      center: latlng,
-      mapTypeId: google.maps.MapTypeId.ROADMAP,
-      scrollwheel: true,
-      streetViewControl: false,
-      disableDefaultUI: true
-    };
-    
-    wallmap = new google.maps.Map(document.getElementById("wallmap"), myOptions);
-    
-    panel['prize'].locmap = wallmap;
+	if( !wallmap ){
+		var latlng = new google.maps.LatLng(40.6687125,-73.5270709);
+	    var myOptions = {
+	      zoom: 15,
+	      center: latlng,
+	      mapTypeId: google.maps.MapTypeId.ROADMAP,
+	      scrollwheel: true,
+	      streetViewControl: false,
+	      disableDefaultUI: true
+	    };
+	    
+	    wallmap = new google.maps.Map(document.getElementById("wallmap"), myOptions);
+	    
+	    panel['prize'].locmap = wallmap;
+   }
 }
 
 function GetFSData(){
@@ -247,6 +279,7 @@ function HandleFSData(pRest){
         //DebugOut(pRest);
         //DebugOut(response);
         fsdata[pRest.restaurant.restaurantAlias] = response;
+        QueryLocation();
         DebugOut(fsdata);
         var patsy = panel['prize'].HandleLocationData(panel['prize']);
     	patsy(fsdata[panel['prize'].restaurantalias]);
