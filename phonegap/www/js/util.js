@@ -252,7 +252,7 @@ function ReplaceURLWithHTMLLinks(text) {
 function DebugOut(newline){
     try{
         if (typeof console == "object"){ 
-            console.log(newline);
+            //console.log(newline);
         }
     }catch(err){
         
