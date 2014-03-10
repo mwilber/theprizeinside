@@ -46,6 +46,9 @@ UserLogin.prototype.HandleAuthPopup = function(self){
             localStorage["userid"] = parseInt(aviam[aviam.length-1]);
             panel['userlogin'].ref.close();
             panel['userlogin'].panel.Hide();
+            // Clear out the autocheck val so the checkin prompts again
+            autoCkLocation = new google.maps.LatLng(0,0);
+            QueryLocation();
         }
     }
 	};
