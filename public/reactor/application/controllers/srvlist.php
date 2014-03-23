@@ -116,6 +116,27 @@ class SrvList extends CI_Controller {
 		echo json_encode($result);
 	}
 	
+	public function getcheckinsbyrecent(){
+		$result = new stdClass();
+		$result->status = 0;
+		
+		$this->load->model('checkin_model'); 
+		$result->checkins = $this->checkin_model->Get(array('checkinAnonymous'=>0,'limit'=>10,'offset'=>0,'sortBy'=>'checkinTimeStamp','sortDirection'=>'DESC'));
+
+		// Sanetize anonymous postings
+		foreach($result->checkins as $checkin){
+			unset($checkin->profileId);
+			if( $checkin->checkinAnonymous == 1 ){
+				$checkin->checkinLocation = "";
+				$checkin->checkinLat = "";
+				$checkin->checkinLng = "";
+			}
+		}
+		
+		header('Content-type: application/json');
+		echo json_encode($result);
+	}
+	
 	public function getcheckindetail($pId = 0){
 		
 		$result = new stdClass();
