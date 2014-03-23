@@ -322,6 +322,20 @@
 			<a class="showcheckin button"><span class="fa fa-thumbs-up"></span>&nbsp;&nbsp;Share</a>
 			<a class="showwebsite button"><span class="fa fa-globe"></span>&nbsp;&nbsp;Website</a>
 		</div>
+		
+		<div id="checkinpop" class="messagebox arrow_box">
+			<p class="prizecomment"><?= (isset($checkin['checkinComment']))?$checkin['checkinComment']:'' ?></p>
+			<img class="prizeimage" src="<?= (isset($checkin['checkinPhoto']))?$checkin['checkinPhoto']:'' ?>" />
+			<h2 class="prizename"><?= (isset($checkin['prizeName']))?$checkin['prizeName']:'' ?></h2>
+			<h3 class="restaurantname"><?= (isset($checkin['restaurantName']))?$checkin['restaurantName']:'' ?></h3>
+			<img class="locationmap" style="<?php if($checkin['checkinLat'] == 0 && $checkin['checkinLng']==0) echo "display:none;" ?>" src="http://maps.googleapis.com/maps/api/staticmap?zoom=13&size=150x150&maptype=roadmap&markers=color:red%7Clabel:C%7C<?= (isset($checkin['checkinLat']))?$checkin['checkinLat']:'' ?>,<?= (isset($checkin['checkinLng']))?$checkin['checkinLng']:'' ?>&sensor=false" />
+			<div class="profile">
+				<img class="avatar" src="<?= (isset($checkin['profilePicture']))?$checkin['profilePicture']:'' ?>"/>
+				<div style="float:left;">
+					<h2 class="nickname"><?= (isset($checkin['profileNickname']))?$checkin['profileNickname']:'' ?></h2>
+				</div>
+			</div>	
+		</div>
         
         <div id="footer">
         	<a href="#" onclick="window.open('policy.php', '_system'); _gaq.push(['_trackEvent', 'External', 'Privacy Policy', '']); return false;" class="policy">
@@ -352,6 +366,7 @@
 	    <script src="js/cInfo.js"></script>
 	    <script src="js/cApp.js"></script>
 	    <script src="js/cLocationOptions.js"></script>
+	    <script src="js/cCheckinPop.js"></script>
 		
 		<script type="text/javascript" src="js/util.js"></script>
         <script type="text/javascript" src="js/index_desktop.js"></script>

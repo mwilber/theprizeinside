@@ -1,17 +1,345 @@
-function Prize(){this.panel=new Panel("prize");this.backId="home";this.prizeid=this.restaurantalias=this.restaurantid=null;this.prizeName="";this.locmap=null;this.bounds=new google.maps.LatLngBounds;this.markersArray=[];this.infowindow=new google.maps.InfoWindow({content:"this is a test"});this.locationdata=null;this.panel.elem.find(".back").click(this.Back(this));this.panel.elem.find(".showuserlocation").click(this.ShowUserLocation(this));this.panel.elem.find(".showcheckin").click(this.Checkin(this,
-null,null));this.panel.elem.find("#btnlocations").click(this.ShowLocations(this));this.panel.elem.find("#btnmap").click(this.ShowMap(this));this.panel.elem.find("#btncomments").click(this.ShowComments(this))}Prize.prototype.ShowUserLocation=function(a){return function(){panel.userlocation.Load();return!1}};Prize.prototype.Checkin=function(a,b,c){return function(){panel.checkin.Load(b,c);return!1}};Prize.prototype.Back=function(a){return function(){panel[a.backId].Show();return!1}};
-Prize.prototype.ShowLocations=function(a){return function(){a.HideTabPanels();a.panel.elem.find(".tablocations").addClass("selected");a.panel.elem.find("#locations").show();gaPlugin?gaPlugin.trackEvent(GASuccess,GAFail,"Prize","ShowLocations","",1):_gaq.push(["_trackEvent","Prize","ShowLocations",""]);return!1}};
-Prize.prototype.ShowMap=function(a){return function(){a.HideTabPanels();a.panel.elem.find(".tabmap").addClass("selected");a.panel.elem.find("#map").show();a.locmap?a.PlaceVenueMarkers(a):a.InitMap(a);gaPlugin?gaPlugin.trackEvent(GASuccess,GAFail,"Prize","ShowMap","",1):_gaq.push(["_trackEvent","Prize","ShowMap",""]);return!1}};
-Prize.prototype.ShowComments=function(a){return function(){a.HideTabPanels();a.panel.elem.find(".tabcomments").addClass("selected");a.panel.elem.find("#comments").show();gaPlugin?gaPlugin.trackEvent(GASuccess,GAFail,"Prize","ShowComment","",1):_gaq.push(["_trackEvent","Prize","ShowComment",""]);return!1}};
-Prize.prototype.Load=function(a){this.panel.elem.find("#locations ul").empty().append($("<li/>").html("loading..."));this.panel.elem.find("#comments ul").empty().append($("<li/>").html("loading..."));this.panel.elem.find(".name").empty();this.panel.elem.find(".showwebsite").attr("href","");this.panel.elem.find("#prizephoto").attr("src","img/homebanner.jpg");this.restaurantid=null;this.HideTabPanels();this.restaurantid=a.restaurant.restaurantId;this.restaurantalias=a.restaurant.restaurantAlias;try{for(idx in this.prizeid=
-a.prizeId,this.prizeName=a.prizeName,a.checkins)if(DebugOut("Checkin Photo: "+a.checkins[idx].checkinPhoto),""!=a.checkins[idx].checkinPhoto){this.panel.elem.find("#prizephoto").attr("src",a.checkins[idx].checkinPhoto);$("#header.header #homeview").attr("src",a.checkins[idx].checkinPhoto);break}}catch(b){this.prizeid=0}this.panel.elem.find(".name").html(a.prizeName);this.panel.elem.find(".showwebsite").click(function(){window.open(a.restaurant.restaurantUrl,"_system")});gaPlugin?gaPlugin.trackEvent(GASuccess,
-GAFail,"Prize",this.restaurantalias,"",1):_gaq.push(["_trackEvent","Prize",this.restaurantalias,""]);this.Show();DebugOut("Loading alias: "+this.restaurantalias);this.HandleLocationData(this)(fsdata[this.restaurantalias]);wallmap&&this.PlaceVenueMarkers(this);this.LoadCheckinData()};Prize.prototype.LoadCheckinData=function(){this.panel.elem.find("#comments ul").empty().append($("<li/>").html("loading..."));$.get(apipath+"/reactor/srvlist/getcheckinsbyprize/"+this.prizeid,this.HandleCheckinData(this))};
-Prize.prototype.HandleCheckinData=function(a){return function(b){DebugOut("checkin data incoming...");DebugOut(b);a.panel.elem.find(".checkins").empty();for(idx in b.checkins){var c=b.checkins[idx];a.panel.elem.find(".checkins").append($("<li>").append($("<div/>").addClass("details fa fa-caret-right")).append($("<div/>").addClass("icon").append($("<img/>").attr("src",c.checkinPhoto))).append($("<div/>").addClass("comment").html(c.checkinComment)).click(a.HandleCheckinClick(a,c)))}}};
-Prize.prototype.HandleCheckinClick=function(a,b){return function(a){panel.checkindetail.Load(b.checkinId);return!1}};
-Prize.prototype.HandleLocationData=function(a){return function(b){DebugOut(b);a.locationdata=b.response;a.panel.elem.find("#locations").show();a.panel.elem.find(".tablocations").addClass("selected");a.panel.elem.find("#locations ul").empty();for(idx in b.response.venues){var c=b.response.venues[idx];void 0!==c.location.address&&a.panel.elem.find("#locations ul").append($("<li>").append($("<div/>").addClass("details fa fa-caret-right")).append($("<div/>").addClass("address").html(c.location.address)).append($("<div/>").addClass("city").html(c.location.city+", "+
-c.location.state+" "+c.location.postalCode)).click(a.HandleLocationClick(a,c)))}}};Prize.prototype.HandleLocationClick=function(a,b){return function(c){DebugOut("HandleLocationClick");DebugOut(b.location);if(wallmap){c=0.25*$(window).width()-150;var d=0.1*$(window).height()+50;a.locmap.setCenter(new google.maps.LatLng(b.location.lat,b.location.lng));a.locmap.setZoom(17);a.locmap.panBy(-c,-d)}panel.locationoptions.Load(b);return!1}};
-Prize.prototype.HandleMapClick=function(a){if(wallmap){var b=0.25*$(window).width()-150,c=0.1*$(window).height()+50;this.locmap.setCenter(new google.maps.LatLng(a.location.lat,a.location.lng));this.locmap.setZoom(17);this.locmap.panBy(-b,-c)}panel.locationoptions.Load(a);return!1};
-Prize.prototype.InitMap=function(a){var b={zoom:15,center:new google.maps.LatLng(40.6687125,-73.5270709),mapTypeId:google.maps.MapTypeId.ROADMAP,scrollwheel:!0,streetViewControl:!1,disableDefaultUI:!0};a.locmap=new google.maps.Map(document.getElementById("map"),b);a.PlaceVenueMarkers(a)};Prize.prototype.PlaceVenueMarkers=function(a){a.ClearMarkers(a);for(idx in a.locationdata.venues){var b=a.locationdata.venues[idx];void 0!==b.location.address&&a.PlaceMarker(a,b)}};
-Prize.prototype.ClearMarkers=function(a){a.bounds=new google.maps.LatLngBounds;for(var b=0;b<a.markersArray.length;b++)a.markersArray[b].setMap(null)};
-Prize.prototype.PlaceMarker=function(a,b){new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|ff0000",new google.maps.Size(40,120),new google.maps.Point(0,0),new google.maps.Point(20,60));var c=new google.maps.Marker({map:a.locmap,position:new google.maps.LatLng(b.location.lat,b.location.lng),title:b.name,location:b,optimized:!1});a.markersArray.push(c);a.bounds.extend(c.getPosition());a.locmap.fitBounds(a.bounds);google.maps.event.addListener(c,"click",
-function(b){a.locmap.setCenter(this.position);panel.prize.HandleMapClick(this.location)})};Prize.prototype.HideTabPanels=function(){this.panel.elem.find(".tabpanel").hide();this.panel.elem.find(".tabs li").removeClass("selected")};Prize.prototype.Show=function(){this.panel.Show();$(window).trigger("resize");return!0};
+function Prize(){
+    
+    this.panel = new Panel('prize');
+    this.backId = "home";
+    
+    this.restaurantid = null;
+    this.restaurantalias = null;
+    this.prizeid = null;
+    this.prizeName = "";
+    this.locmap = null;
+    this.bounds = new google.maps.LatLngBounds();
+    this.markersArray = [];
+    this.infowindow = new google.maps.InfoWindow({
+        content: "this is a test"
+    });
+    this.locationdata = null;
+    
+    this.panel.elem.find('.back').click(this.Back(this));
+    this.panel.elem.find('.showuserlocation').click(this.ShowUserLocation(this));
+    this.panel.elem.find('.showcheckin').click(this.Checkin(this,null,null));
+	this.panel.elem.find('#btnlocations').click(this.ShowLocations(this));
+	this.panel.elem.find('#btnmap').click(this.ShowMap(this));
+	this.panel.elem.find('#btncomments').click(this.ShowComments(this));
+	
+}
+
+Prize.prototype.ShowUserLocation = function(self){
+   return function(){
+       panel['userlocation'].Load();
+       return false;
+   };
+};
+
+Prize.prototype.Checkin = function(self,pPrize,pLocation){
+   return function(){
+       panel['checkin'].Load(pPrize,pLocation);
+       return false;
+   };
+};
+
+Prize.prototype.Back = function(self){
+   return function(){
+       panel[self.backId].Show();
+       return false;
+   };
+};
+
+Prize.prototype.ShowLocations = function(self){
+   return function(){
+       self.HideTabPanels();
+       self.panel.elem.find('.tablocations').addClass('selected');
+	   self.panel.elem.find('#locations').show();
+	   
+		if(gaPlugin){
+    		gaPlugin.trackEvent( GASuccess, GAFail, "Prize", "ShowLocations", "", 1);
+		}else{
+	    	_gaq.push(['_trackEvent', 'Prize', 'ShowLocations', '']);
+	    }
+       return false;
+   };
+};
+
+Prize.prototype.ShowMap = function(self){
+   return function(){
+       self.HideTabPanels();
+       self.panel.elem.find('.tabmap').addClass('selected');
+	   self.panel.elem.find('#map').show();
+	   if( !self.locmap ) self.InitMap(self); else self.PlaceVenueMarkers(self);
+	   if(gaPlugin){
+    		gaPlugin.trackEvent( GASuccess, GAFail, "Prize", "ShowMap", "", 1);
+		}else{
+	    	_gaq.push(['_trackEvent', 'Prize', 'ShowMap', '']);
+	    }
+       return false;
+   };
+};
+
+Prize.prototype.ShowComments = function(self){
+   return function(){
+       self.HideTabPanels();
+       self.panel.elem.find('.tabcomments').addClass('selected');
+	   self.panel.elem.find('#comments').show();
+	   if(gaPlugin){
+    		gaPlugin.trackEvent( GASuccess, GAFail, "Prize", "ShowComment", "", 1);
+		}else{
+	    	_gaq.push(['_trackEvent', 'Prize', 'ShowComment', '']);
+	    }
+       return false;
+   };
+};
+
+Prize.prototype.Load = function(pPrize){
+	
+	ClearCheckinPops();
+    
+    // Clear out panel fields
+    this.panel.elem.find('#locations ul').empty().append($('<li/>').html('loading...'));
+	this.panel.elem.find('#comments ul').empty().append($('<li/>').html('loading...'));
+    this.panel.elem.find('.name').empty();
+    this.panel.elem.find('.showwebsite').attr('href','');
+    this.panel.elem.find('#prizephoto').attr('src','img/homebanner.jpg');
+    this.restaurantid = null;
+    
+    // hide the tab panels
+	this.HideTabPanels();
+    
+    
+    // Get the restaurant id
+    this.restaurantid = pPrize.restaurant.restaurantId;
+    this.restaurantalias = pPrize.restaurant.restaurantAlias;
+    try{
+    	this.prizeid = pPrize.prizeId;
+    	this.prizeName = pPrize.prizeName;
+    	for( idx in pPrize.checkins ){
+    		DebugOut("Checkin Photo: "+pPrize.checkins[idx].checkinPhoto);
+    		if( pPrize.checkins[idx].checkinPhoto != "" ){
+    			this.panel.elem.find('#prizephoto').attr('src',pPrize.checkins[idx].checkinPhoto);
+    			$('#header.header #homeview').attr('src',pPrize.checkins[idx].checkinPhoto);
+    			break;
+    		}
+    	}
+    }catch(e){
+    	this.prizeid = 0;
+    	//this.panel.elem.find('#prizephoto').attr('src','');
+    }
+    
+    // Fill in the prize info
+
+    this.panel.elem.find('.name').html(pPrize.prizeName);
+    
+    this.panel.elem.find('.showwebsite').click(function(){
+    	window.open(pPrize.restaurant.restaurantUrl, '_system');
+    });
+    
+    
+    if(gaPlugin){
+    	gaPlugin.trackEvent( GASuccess, GAFail, "Prize", this.restaurantalias, "", 1);
+    }else{
+    	_gaq.push(['_trackEvent', 'Prize', this.restaurantalias, '']);
+    }
+
+    this.Show(); 
+    
+    DebugOut('Loading alias: '+this.restaurantalias);
+    var patsy = this.HandleLocationData(this);
+    patsy(fsdata[this.restaurantalias]);
+    
+    if( wallmap ) this.PlaceVenueMarkers(this);
+    
+    // Get the checkin comments
+    this.LoadCheckinData();
+};
+
+Prize.prototype.LoadCheckinData = function(){
+	this.panel.elem.find('#comments ul').empty().append($('<li/>').html('loading...'));
+	$.get(apipath+'/reactor/srvlist/getcheckinsbyprize/'+this.prizeid,this.HandleCheckinData(this));
+};
+
+Prize.prototype.HandleCheckinData = function(self){
+    return function(response) {
+    	DebugOut("checkin data incoming...");
+        DebugOut(response);
+        
+        self.panel.elem.find('.checkins').empty();
+        
+        self.panel.elem.find('.checkins').append($('<li>').addClass('appnoti')
+             .append(
+                 $('<div/>').addClass('details fa fa-caret-right')
+             )
+             .append(
+                 $('<div/>').addClass('comment').html("Get the app to share prizes and add your own comments")
+             )
+             .click(function(){panel['app'].Load();})
+        );
+        
+         for( idx in response.checkins ){
+             var value = response.checkins[idx];
+             self.panel.elem.find('.checkins').append($('<li>')
+                 .append(
+                     $('<div/>').addClass('details fa fa-caret-right')
+                 )
+                 .append(
+                     $('<div/>').addClass('icon').append($('<img/>').attr('src',value.checkinPhoto))
+                 )
+                 .append(
+                     $('<div/>').addClass('comment').html(value.checkinComment)
+                 )
+                 .click(self.HandleCheckinClick(self,value))
+            ); 
+         }
+    };
+};
+
+Prize.prototype.HandleCheckinClick = function(self,pCheckin){
+	return function(event){
+		panel['checkindetail'].Load(pCheckin.checkinId);
+        return false;
+	};
+};
+
+Prize.prototype.HandleLocationData = function(self){
+    return function(response) {
+        DebugOut(response);
+        
+        self.locationdata = response.response;
+        
+		self.panel.elem.find('#locations').show();
+		self.panel.elem.find('.tablocations').addClass('selected');
+		self.panel.elem.find('#locations ul').empty();
+		
+        for( idx in response.response.venues ){
+            var value = response.response.venues[idx];
+			
+			if( value.location.address !== undefined ){
+	            self.panel.elem.find('#locations ul').append($('<li>')
+	                 .append(
+	                     $('<div/>').addClass('details fa fa-caret-right')
+	                 )
+	                 .append(
+	                     $('<div/>').addClass('address').html(value.location.address)
+	                 )
+					 .append(
+	                     $('<div/>').addClass('city').html(value.location.city+", "+value.location.state+" "+value.location.postalCode)
+	                 )
+	                 .click(self.HandleLocationClick(self,value))
+	            );
+           	}
+         }
+		 ////////////////////////////////////////////
+	    // For Testing
+	    ////////////////////////////////////////////
+	    //panel['location'].Load(response.response.venues[1]);
+	    ////////////////////////////////////////////
+    };
+};
+
+Prize.prototype.HandleLocationClick = function(self,pPrize){
+	return function(event){
+	    DebugOut('HandleLocationClick');
+	    DebugOut(pPrize.location);
+	    if(wallmap){
+	        var mapOffsetX = ($(window).width()*.25)-150;
+	        var mapOffsetY = ($(window).height()*.1)+50;
+	        self.locmap.setCenter(new google.maps.LatLng(pPrize.location.lat,pPrize.location.lng));
+	        self.locmap.setZoom(17);
+	        self.locmap.panBy(-mapOffsetX, -mapOffsetY);
+	    }
+		panel['locationoptions'].Load(pPrize);
+        return false;
+	};
+};
+
+Prize.prototype.HandleMapClick = function(pPrize){
+	//alert('handling location');
+    //DebugOut(pPrize);
+    if(wallmap){
+        var mapOffsetX = ($(window).width()*.25)-150;
+        var mapOffsetY = ($(window).height()*.1)+50;
+        this.locmap.setCenter(new google.maps.LatLng(pPrize.location.lat,pPrize.location.lng));
+        this.locmap.setZoom(17);
+        this.locmap.panBy(-mapOffsetX, -mapOffsetY);
+    }
+	panel['locationoptions'].Load(pPrize);
+    return false;
+};
+
+
+Prize.prototype.InitMap = function(self){
+    var latlng = new google.maps.LatLng(40.6687125,-73.5270709);
+    var myOptions = {
+      zoom: 15,
+      center: latlng,
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+      scrollwheel: true,
+      streetViewControl: false,
+      disableDefaultUI: true
+    };
+    
+    self.locmap = new google.maps.Map(document.getElementById("map"), myOptions);
+    
+    self.PlaceVenueMarkers(self);
+
+};
+
+Prize.prototype.PlaceVenueMarkers = function(self) {
+    self.ClearMarkers(self);
+    for( idx in self.locationdata.venues ){
+        var value = self.locationdata.venues[idx];
+        if( value.location.address !== undefined )
+            self.PlaceMarker(self, value);
+    }
+};
+
+Prize.prototype.ClearMarkers = function(self) {
+    self.bounds = new google.maps.LatLngBounds();
+    for (var i = 0; i < self.markersArray.length; i++ ) {
+        self.markersArray[i].setMap(null);
+    }
+};
+
+Prize.prototype.PlaceMarker = function(self, pLoc){
+    // Add map marker
+    //give the marker a color
+    var pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|ff0000",
+        new google.maps.Size(40, 120),
+        new google.maps.Point(0,0),
+        new google.maps.Point(20, 60));
+    var tmpMarker = new google.maps.Marker({
+        map: self.locmap, 
+        //icon: pinImage,
+        position: new google.maps.LatLng(pLoc.location.lat,pLoc.location.lng),
+        title: pLoc.name,
+        //locaddress: pLoc.locationAddress,
+        //locdescription: pLoc.locationDescription,
+        location: pLoc,
+        optimized: false
+    });
+    
+    self.markersArray.push(tmpMarker);
+    
+    self.bounds.extend(tmpMarker.getPosition());
+    self.locmap.fitBounds(self.bounds);
+    
+    google.maps.event.addListener(tmpMarker, 'click', function(pLoc) {
+        self.locmap.setCenter(this.position);
+        //self.infowindow.setContent("<strong>"+this.title+"</strong><p>"+this.locaddress+"</p>"+"<p>"+this.locdescription+"</p>");
+        //self.infowindow.open(self.locmap,this);
+        panel['prize'].HandleMapClick(this.location);
+    });
+};
+
+Prize.prototype.HideTabPanels = function()
+{
+	this.panel.elem.find('.tabpanel').hide();
+	this.panel.elem.find('.tabs li').removeClass('selected');
+};
+
+Prize.prototype.Show = function(){
+    
+    this.panel.Show();
+    
+	$(window).trigger("resize");
+    
+    return true;
+};
