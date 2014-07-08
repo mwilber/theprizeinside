@@ -44,7 +44,7 @@
  */
 	//define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
 	switch ($_SERVER["HTTP_HOST"]){
-			case "gibson.loc": define('ENVIRONMENT','development'); break;
+			case "gibson.loc": case "localhost": define('ENVIRONMENT','development'); break;
 			//TODO enter more environments as needed
             default : define('ENVIRONMENT', 'development');
     }
