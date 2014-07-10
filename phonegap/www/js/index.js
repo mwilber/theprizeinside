@@ -203,6 +203,7 @@ function AppInit(){
 	panel['userlogin'] = new UserLogin();
 	panel['info'] = new Info();
 	panel['locationoptions'] = new LocationOptions();
+	panel['share'] = new Share();
 
     panel['home'].Load();
 }

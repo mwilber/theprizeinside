@@ -148,6 +148,12 @@ function HandleGeolocationErrors(error)
             break;  
     }*/
     
+    var lautopop = false;
+    
+    if( userLocation.lat() == 0 && userLocation.lng() == 0){
+    	lautopop = true;
+    }
+    
     //if( testLocFallbackOn ){
         DebugOut('location error');
         //_gaq.push(['_trackEvent', 'Load', 'location', 'setfallback']);
@@ -162,8 +168,11 @@ function HandleGeolocationErrors(error)
     //$('#btngpssearch').hide();
     $('.gpserror').show();
     
-    // auto-pop the location search box
-    panel['userlocation'].Load();
+    
+    if( lautopop ){
+    	// auto-pop the location search box
+    	panel['userlocation'].Load();
+    }
     
     // Kill the querylocation loop
     window.clearInterval(locationTimer);

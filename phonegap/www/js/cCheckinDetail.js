@@ -4,12 +4,30 @@ function CheckinDetail(){
 	
 	this.panel.elem.find('.close').click(this.Close(this));
 	
+	this.panel.elem.find('.prizeimage').click(this.Lightbox(this));
+	
+	this.panel.elem.find('.pshare').click(this.Share(this));
 
 }
 
 CheckinDetail.prototype.Close = function(self){
    return function(){
        self.panel.Hide();
+       return false;
+   };
+};
+
+CheckinDetail.prototype.Lightbox = function(self){
+   return function(){
+       $('#lightbox img').attr('src',self.panel.elem.find('.prizeimage').attr('src'));
+       $('#lightbox').fadeIn();
+       return false;
+   };
+};
+
+CheckinDetail.prototype.Share = function(self){
+   return function(){
+       panel['share'].Load('pName', 'pLink', 'pImage');
        return false;
    };
 };
