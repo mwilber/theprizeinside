@@ -146,12 +146,15 @@ class SrvList extends CI_Controller {
 		$this->load->model('prize_model'); 
 		$this->load->model('restaurant_model'); 
 		$this->load->model('profile_model');
+		$this->load->helper('idobfuscator');
 		
 		$result->checkin = $this->checkin_model->Get(array($this->checkin_model->_pk()=>$pId));
 		$result->prize = $this->prize_model->Get(array($this->prize_model->_pk()=>$result->checkin->prizeId));
 		$result->restaurant = $this->restaurant_model->Get(array($this->restaurant_model->_pk()=>$result->checkin->restaurantId));
 		$result->profile = $this->profile_model->Get(array($this->profile_model->_pk()=>$result->checkin->profileId));
 		$result->profile->count = $this->checkin_model->Get(array('profileId'=>$result->profile->profileId,'count' => true));
+		
+		$result->checkin->checkinToken = $_GET['ck'] = IdObfuscator::encode($result->checkin->checkinId);
 		
 		unset($result->profile->profileId);
 		unset($result->checkin->profileId);
