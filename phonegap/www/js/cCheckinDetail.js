@@ -6,7 +6,12 @@ function CheckinDetail(){
 	
 	this.panel.elem.find('.prizeimage').click(this.Lightbox(this));
 	
-	this.panel.elem.find('.pshare').click(this.Share(this));
+	this.panel.elem.find('.postshare').click(this.Share(this));
+	
+	this.prizeLink = "";
+    this.prizeName = "";
+    this.prizeImage = "";
+    this.prizeMessage = "";
 
 }
 
@@ -27,7 +32,7 @@ CheckinDetail.prototype.Lightbox = function(self){
 
 CheckinDetail.prototype.Share = function(self){
    return function(){
-       panel['share'].Load('pName', 'pLink', 'pImage');
+       panel['share'].Load(self.prizeName, self.prizeLink, self.prizeImage, self.prizeMessage);
        return false;
    };
 };
@@ -61,9 +66,18 @@ CheckinDetail.prototype.HandleCheckinData = function(self){
     	DebugOut("checkin data incoming...");
         DebugOut(response);
         
+        self.prizeName = response.prize.prizeName;
+        if( response.checkin.checkinComment != "" ){
+        	self.prizeMessage = response.checkin.checkinComment;
+        }else{
+        	self.prizeMessage = social['description'];
+        }
+        self.prizeLink = 'http://theprizeinside.com/ck/'+response.checkin.checkinToken;
+        
         if( response.checkin.checkinPhoto != "" ){
         	self.panel.elem.find('.prizeimage').attr('src',response.checkin.checkinPhoto);
         	self.panel.elem.find('.prizeimage').show();
+        	self.prizeImage = response.checkin.checkinPhoto;
         }
         
         if( response.checkin.checkinLat != "" && response.checkin.checkinLng != "" && response.checkin.checkinLat != 0 && response.checkin.checkinLng != 0 ){

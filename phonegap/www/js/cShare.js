@@ -1,6 +1,6 @@
 function Share(){
     
-    this.panel = new Popup('share');
+    this.panel = new MessageBox('share');
 	
 	this.panel.elem.find('.close').click(this.Close(this));
 	
@@ -14,6 +14,7 @@ function Share(){
 	this.cloudLink = "";
     this.cloudName = "";
     this.cloudImage = "";
+    this.cloudMessage = "";
 
 }
 
@@ -23,15 +24,15 @@ Share.prototype.DoShare = function(self,pPlatform){
 		var patsy = self.Close(self);
 		switch(pPlatform){
 			case 'fb':
-			    fbshare(self.cloudName, self.cloudLink, self.cloudImage);
+			    fbshare(self.cloudName, self.cloudLink, self.cloudImage, self.cloudMessage);
 			    patsy(self);
 				break;
 			case 'tw':
-				twshare(DEFAULT_COMMENT, self.cloudLink);
+				twshare(self.cloudMessage, self.cloudLink);
 				patsy(self);
 				break;
 			case 'pn':
-			    pnshare(self.cloudName, self.cloudLink, self.cloudImage);
+			    pnshare(self.cloudName, self.cloudLink, self.cloudImage, self.cloudMessage);
 			    patsy(self);
 				break;
 			case 'gp':
@@ -52,11 +53,12 @@ Share.prototype.Close = function(self){
    };
 };
 
-Share.prototype.Load = function(pName, pLink, pImage){
+Share.prototype.Load = function(pName, pLink, pImage, pMessage){
     
     this.cloudName = pName;
     this.cloudLink = pLink;
     this.cloudImage = pImage;
+    this.cloudMessage = pMessage;
     
     this.Show();  
 };

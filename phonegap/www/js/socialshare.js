@@ -2,9 +2,9 @@
 //  Social Share Popup Functions
 /////////////////////////////////////////////////////////////////////////////
 
-function fbshare(pTitle, pLink, pImage){
+function fbshare(pTitle, pLink, pImage, pMessage){
     
-    var fbcontent = "https://www.facebook.com/dialog/feed?app_id=314668331957423&link="+escape(pLink)+"&picture="+escape(pImage)+"&name="+escape(pTitle)+"&message="+escape('')+"&description="+escape(social['description'])+"&redirect_uri=https://facebook.com/";
+    var fbcontent = "https://www.facebook.com/dialog/feed?app_id=314668331957423&link="+escape(pLink)+"&picture="+escape(pImage)+"&name="+escape(pTitle)+"&message="+escape(pMessage)+"&description="+escape(social['description'])+"&redirect_uri=https://facebook.com/";
     //openpopup(fbcontent,'facebook',1000,450);
     //navigator.app.loadUrl(url, { openExternal:true });
     window.open(fbcontent, '_system');
@@ -32,10 +32,10 @@ function gpshare(pLink){
     return false;
 }
 
-function pnshare(pTitle, pLink, pImage){
+function pnshare(pTitle, pLink, pImage, pMessage){
     
     //var pncontent = "https://www.facebook.com/dialog/feed?app_id=653498184686265&link="+escape(pLink)+"&picture="+escape(pImage)+"&name="+escape(pTitle)+"&message="+escape(DEFAULT_COMMENT)+"&description="+escape(social['description'])+"&redirect_uri=https://facebook.com/";
-    var pncontent = "https://pinterest.com/pin/create/button/?url="+escape(pLink)+"&media="+escape(pImage)+"&description="+escape(social['description']);
+    var pncontent = "https://pinterest.com/pin/create/button/?url="+escape(pLink)+"&media="+escape(pImage)+"&description="+escape(pMessage);
     //openpopup(fbcontent,'facebook',1000,450);
     //navigator.app.loadUrl(url, { openExternal:true });
     window.open(pncontent, '_system');
