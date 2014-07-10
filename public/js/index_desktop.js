@@ -2,9 +2,9 @@ var LOCATION_CK_INTERVAL = 15000;
 var DISTANCE_CHANGE_REFRESH_THRESHOLD = 10;
 var CHECKIN_NOTIFICATION_THRESHOLD = 0.05;
 
-var apipath = "http://theprizeinside.com";
+//var apipath = "http://theprizeinside.com";
 //var apipath = "http://gibson.loc/theprizeinside";
-//var apipath = "https://rippleapi.herokuapp.com/xhr_proxy?tinyhippos_apikey=ABC&tinyhippos_rurl=https%3A//theprizeinside.com";
+var apipath = "https://rippleapi.herokuapp.com/xhr_proxy?tinyhippos_apikey=ABC&tinyhippos_rurl=https%3A//theprizeinside.com";
 //var apipath = "http://localhost/theprizeinside/public";
 
 
@@ -51,6 +51,7 @@ function AppInit(){
 	panel['app'] = new App();
 	panel['locationoptions'] = new LocationOptions();
 	panel['checkinpop'] = new CheckinPop();
+	panel['share'] = new Share();
 
     panel['home'].Load();
 }
@@ -106,17 +107,17 @@ function HandleCheckinPops(response){
 		checkinpops = response.checkins;
 		panel['checkinpop'].Load(checkinpops[checkinpopsidx].checkinId);
 		
-		wallmaptimer = setInterval(function(){
-			panel['checkinpop'].panel.elem.hide();
-			if( checkinpopsidx < checkinpops.length-1){
-				checkinpopsidx++;
-			}else{
-				checkinpopsidx = 0;
-			}
-			panel['checkinpop'].Load(checkinpops[checkinpopsidx].checkinId);
-			
-			
-		},6000);
+//		wallmaptimer = setInterval(function(){
+//			panel['checkinpop'].panel.elem.hide();
+//			if( checkinpopsidx < checkinpops.length-1){
+//				checkinpopsidx++;
+//			}else{
+//				checkinpopsidx = 0;
+//			}
+//			panel['checkinpop'].Load(checkinpops[checkinpopsidx].checkinId);
+//			
+//			
+//		},6000);
 	}
 }
 

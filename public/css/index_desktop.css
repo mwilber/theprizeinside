@@ -28,6 +28,13 @@
 	display:inline;
 }
 
+#share{
+	top:20%;
+	bottom:auto;
+	left:50%;
+	margin-left:-150px;
+}
+
 /* Desktop ----------- */
 @media only screen 
 	and (min-width : 900px) {

@@ -48,6 +48,11 @@
         
         <div id="wallmap"></div>
         
+        <div id="lightbox">
+        	<a class="close" href="#" onclick="$('#lightbox').fadeOut();"><span class="fa fa-times"></span></a>
+        	<img src="icon.png" width="100%"/>
+        </div>
+        
         <div id="checkin" class="popup">
 			<a class="close" href="#"><span class="fa fa-times"></span></a>
 			<h1>Share</h1>
@@ -149,8 +154,20 @@
 			</div>
 		</div>
 		
+		<div id="share" class="messagebox">
+			<a class="close" href="#"><span class="fa fa-times"></span></a>
+			<h1>Share</h1>
+			<ul>
+				<li><a id="btntwitter" href="#" class="button fa fa-twitter-square" onclick="return false;"></a></li>
+				<li><a id="btnpinterest" href="#" class="button fa fa-pinterest-square" onclick="return false;"></a></li>
+				<li><a id="btnfacebook" href="#" class="button fa fa-facebook-square" onclick="return false;"></a></li>
+				<li><a id="btngoogle" href="#" class="button fa fa-google-plus-square" onclick="return false;"></a></li>
+			</ul>
+		</div>
+		
 		<div id="checkindetail" class="popup">
 			<a class="close" href="#"><span class="fa fa-times"></span></a>
+			<a class="postshare" href="#"><span class="fa fa-share-square-o"></span></a>
 			<h1>Prize</h1>
 			<p class="prizecomment"></p>
 			<img class="prizeimage" src="" />
@@ -280,7 +297,9 @@
 	    <script src="js/cUserLogin.js"></script>
 	    <script src="js/cInfo.js"></script>
 	    <script src="js/cLocationOptions.js"></script>
+	    <script src="js/cShare.js"></script>
 		
+		<script type="text/javascript" src="js/socialshare.js"></script>
 		<script type="text/javascript" src="js/util.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         

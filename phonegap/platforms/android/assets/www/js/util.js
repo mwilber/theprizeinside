@@ -148,6 +148,12 @@ function HandleGeolocationErrors(error)
             break;  
     }*/
     
+    var lautopop = false;
+    
+    if( userLocation.lat() == 0 && userLocation.lng() == 0){
+    	lautopop = true;
+    }
+    
     //if( testLocFallbackOn ){
         DebugOut('location error');
         //_gaq.push(['_trackEvent', 'Load', 'location', 'setfallback']);
@@ -162,41 +168,44 @@ function HandleGeolocationErrors(error)
     //$('#btngpssearch').hide();
     $('.gpserror').show();
     
-    // auto-pop the location search box
-    panel['userlocation'].Load();
+    
+    if( lautopop ){
+    	// auto-pop the location search box
+    	panel['userlocation'].Load();
+    }
     
     // Kill the querylocation loop
     window.clearInterval(locationTimer);
 } 
 
-function fbshare(pTitle, pDescription){
-    
-    var fbcontent = "https://www.facebook.com/dialog/feed?app_id=567792933313140&link="+escape(social['link'])+"&picture="+escape(social['image'])+"&name="+escape(pTitle)+"&caption="+escape(pTitle)+"&description="+escape(pDescription)+"&redirect_uri=https://facebook.com/";
-    //openpopup(fbcontent,'facebook',1000,450);
-    //navigator.app.loadUrl(url, { openExternal:true });
-    window.open(fbcontent, '_system');
-    //_gaq.push(['_trackEvent', 'Share', 'facebook', '']);
-    return false;
-}
-
-function twshare(pTitle){
-	//alert('error 201');
-    //DebugOut('twshare');
-    var twurl = "https://mobile.twitter.com/compose/tweet?status="+escape(pTitle)+escape(": ")+escape(social['link']);
-    //openpopup(twurl,'tweeters',550,450);
-    //(url, { openExternal:true });
-    //alert('error 201: '+twurl);
-    window.open(twurl, '_system');
-    //_gaq.push(['_trackEvent', 'Share', 'twitter', '']);
-    return false;
-}
-
-function gpshare(){
-    var url = "https://plus.google.com/share?url="+escape(social['link'])+"&description="+escape(social['description'])+" "+escape(social['link']);
-    openpopup(url,'gplus',550,450);
-    //_gaq.push(['_trackEvent', 'Share', 'googleplus', '']);
-    return false;
-}
+// function fbshare(pTitle, pDescription){
+//     
+    // var fbcontent = "https://www.facebook.com/dialog/feed?app_id=567792933313140&link="+escape(social['link'])+"&picture="+escape(social['image'])+"&name="+escape(pTitle)+"&caption="+escape(pTitle)+"&description="+escape(pDescription)+"&redirect_uri=https://facebook.com/";
+    // //openpopup(fbcontent,'facebook',1000,450);
+    // //navigator.app.loadUrl(url, { openExternal:true });
+    // window.open(fbcontent, '_system');
+    // //_gaq.push(['_trackEvent', 'Share', 'facebook', '']);
+    // return false;
+// }
+// 
+// function twshare(pTitle){
+	// //alert('error 201');
+    // //DebugOut('twshare');
+    // var twurl = "https://mobile.twitter.com/compose/tweet?status="+escape(pTitle)+escape(": ")+escape(social['link']);
+    // //openpopup(twurl,'tweeters',550,450);
+    // //(url, { openExternal:true });
+    // //alert('error 201: '+twurl);
+    // window.open(twurl, '_system');
+    // //_gaq.push(['_trackEvent', 'Share', 'twitter', '']);
+    // return false;
+// }
+// 
+// function gpshare(){
+    // var url = "https://plus.google.com/share?url="+escape(social['link'])+"&description="+escape(social['description'])+" "+escape(social['link']);
+    // openpopup(url,'gplus',550,450);
+    // //_gaq.push(['_trackEvent', 'Share', 'googleplus', '']);
+    // return false;
+// }
 
 $.fn.doesExist = function(){
     return jQuery(this).length > 0;

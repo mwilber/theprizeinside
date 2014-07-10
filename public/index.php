@@ -126,6 +126,7 @@
 		
 		<div id="checkindetail" class="popup">
 			<a class="close" href="#"><span class="fa fa-times"></span></a>
+			<a class="postshare" href="#"><span class="fa fa-share-square-o"></span></a>
 			<h1>Prize</h1>
 			<p class="prizecomment"><?= (isset($checkin['checkinComment']))?$checkin['checkinComment']:'' ?></p>
 			<img class="prizeimage" src="<?= (isset($checkin['checkinPhoto']))?$checkin['checkinPhoto']:'' ?>" />
@@ -141,6 +142,17 @@
 					</div>
 				</div>
 			</div>
+		</div>
+		
+		<div id="share" class="messagebox">
+			<a class="close" href="#"><span class="fa fa-times"></span></a>
+			<h1>Share</h1>
+			<ul>
+				<li><a id="btntwitter" href="#" class="button fa fa-twitter-square" onclick="return false;"></a></li>
+				<li><a id="btnpinterest" href="#" class="button fa fa-pinterest-square" onclick="return false;"></a></li>
+				<li><a id="btnfacebook" href="#" class="button fa fa-facebook-square" onclick="return false;"></a></li>
+				<li><a id="btngoogle" href="#" class="button fa fa-google-plus-square" onclick="return false;"></a></li>
+			</ul>
 		</div>
 
         <div id="container">
@@ -369,7 +381,9 @@
 	    <script src="js/cApp.js"></script>
 	    <script src="js/cLocationOptions.js"></script>
 	    <script src="js/cCheckinPop.js"></script>
+		<script src="js/cShare.js"></script>
 		
+		<script type="text/javascript" src="js/socialshare.js"></script>
 		<script type="text/javascript" src="js/util.js"></script>
         <script type="text/javascript" src="js/index_desktop.js"></script>
         

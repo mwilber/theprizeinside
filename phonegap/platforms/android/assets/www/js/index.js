@@ -113,7 +113,7 @@ var app = {
         pictureSource=navigator.camera.PictureSourceType;
         destinationType=navigator.camera.DestinationType;
 		AppInit();
-		AdInit();
+		//AdInit();
 		
 		$(window).trigger("resize");
 		$(window).trigger("orientationchange");
@@ -203,6 +203,7 @@ function AppInit(){
 	panel['userlogin'] = new UserLogin();
 	panel['info'] = new Info();
 	panel['locationoptions'] = new LocationOptions();
+	panel['share'] = new Share();
 
     panel['home'].Load();
 }

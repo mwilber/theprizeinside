@@ -349,7 +349,7 @@ a.back span {
 	margin-top: -17px;
 }
 
-a.close{
+a.close, a.postshare{
     position: absolute;
     right: 0px;
 	text-decoration: none;
@@ -364,6 +364,10 @@ a.close{
 	
 }
 
+a.postshare{
+	left:0px;
+	right:auto;
+}
 .messagebox{
     color: #161008;
 	position: absolute;
@@ -1132,6 +1136,54 @@ a.close{
 	text-align: left;
 }
 
+#share{
+	top:5%;
+	bottom:auto;
+}
+
+#share ul{
+	list-style:none;
+	margin:0px;
+	padding:0px;
+}
+
+#share li{
+	margin: 10px 0%;
+}
+
+#share a.button{
+	width: 80%;
+	margin-left: 10%;
+	padding: 10px 0px;
+	border-color: transparent;
+	font-size: 50px;
+}
+
+#share a#btnfacebook{
+	color:#fff;
+	background:#3b5998;
+}
+
+#share a#btntwitter{
+	color:#fff;
+	background:#00aced;
+}
+
+#share a#btngoogle{
+	color:#fff;
+	background:#dd4b39;
+}
+
+#share a#btnpinterest{
+	color:#fff;
+	background:#cb2027;
+}
+
+#share a#btndev{
+	color:#000;
+	background:#CCCC00;
+}
+
 #checkinpop{
 	min-height:50px;
 	height:auto;
@@ -1319,6 +1371,10 @@ a.close span {
 	color: #72695B;
 }
 
+a.postshare span {
+	color: #F5F2ED;
+}
+
 
 .panel {
 	background: #fafafa;
@@ -1423,15 +1479,21 @@ a.close span {
 		margin-top:75px;
 	}
 	
-	a.close {
+	a.close, a.postshare {
 		padding: 0px 10px;
 		line-height: 42px;
 	}
 	
-	a.close span {
+	a.close span, a.postshare span {
 		font-size: 40px;
 		line-height: 45px;
 	}
+	
+	a.postshare span {
+	font-size: 36px;
+	line-height: 48px;
+	}
+	
 	.popup h1 {
 		font-size: 20px;
 		line-height: 45px;
@@ -1837,15 +1899,21 @@ a.close span {
 		display:none;
 	}
 	
-	a.close {
+	a.close, a.postshare {
 		padding: 0px 15px;
 		line-height: 35px;
 	}
 	
-	a.close span {
+	a.close span, a.postshare span {
 		font-size: 40px;
 		line-height: 45px;
 	}
+	
+	a.postshare span {
+	font-size: 36px;
+	line-height: 48px;
+	}
+	
 	.popup h1 {
 	font-size: 25px;
 	line-height: 45px;

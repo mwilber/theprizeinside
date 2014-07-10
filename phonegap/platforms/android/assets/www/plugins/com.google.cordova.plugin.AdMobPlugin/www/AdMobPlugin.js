@@ -1,4 +1,4 @@
-cordova.define("com.google.cordova.plugin.AdMobPlugin.AdMob", function(require, exports, module) {/**
+cordova.define("com.google.cordova.plugin.AdMobPlugin.AdMob", function(require, exports, module) { /**
  * This class defines an AdMob object that is used to show ads natively in a
  * native iOS application.
  * @constructor
@@ -195,4 +195,5 @@ var admob =  {
 };
 
 module.exports = admob;
+
 });

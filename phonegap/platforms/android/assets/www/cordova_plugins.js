@@ -77,5 +77,15 @@ module.exports = [
             "GAPlugin"
         ]
     }
-]
+];
+module.exports.metadata = 
+// TOP OF METADATA
+{
+    "org.apache.cordova.camera": "0.2.6",
+    "org.apache.cordova.inappbrowser": "0.3.0",
+    "org.apache.cordova.geolocation": "0.3.5",
+    "com.google.cordova.plugin.AdMobPlugin": "0.0.2",
+    "com.adobe.plugins.GAPlugin": "2.3.1"
+}
+// BOTTOM OF METADATA
 });
