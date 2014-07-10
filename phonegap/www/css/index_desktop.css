@@ -28,6 +28,17 @@
 	display:inline;
 }
 
+#share{
+	top:20%;
+	bottom:auto;
+	left:50%;
+	margin-left:-150px;
+}
+
+#prize #locations .lopt .share {
+	color:#999;
+}
+
 /* Desktop ----------- */
 @media only screen 
 	and (min-width : 900px) {

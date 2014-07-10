@@ -368,7 +368,6 @@ a.postshare{
 	left:0px;
 	right:auto;
 }
-
 .messagebox{
     color: #161008;
 	position: absolute;
@@ -494,17 +493,6 @@ a.postshare{
 	float: right;
 	font-size: 70px;
 	margin-top: 5px;
-}
-
-.panel .linearlist li .simplistics, .popup .linearlist li .simplistics{
-	display: block;
-	float: left;
-	font-size: 70px;
-	margin-top: 5px;
-}
-
-.popup .linearlist li .simplistics{
-	margin-right:10px;	
 }
 
 .panel .linearlist li .icon, .popup .linearlist li .icon{
@@ -1148,131 +1136,6 @@ a.postshare{
 	text-align: left;
 }
 
-#prize .checkins li{
-	min-height: 65px;
-}
-
-#prize.panel #locations .linearlist li {
-	padding: 0px;
-	width:200%;
-	float: left;
-}
-
-#prize #locations .ldet, #prize #locations .lopt{
-	position: relative;
-	top: 0px;
-	left: 0px;
-	padding: 2%;
-	width: 46%;
-	float: left;
-	transition: all 0.15s linear;
-	-o-transition: all 0.15s linear;
-	-moz-transition: all 0.15s linear;
-	-webkit-transition: all 0.15s linear;
-}
-
-#prize #locations .lopt{
-	left:0%;
-	background:#E1DDD9;
-}
-
-#prize #locations .lopt .directions, #prize #locations .lopt .share{
-	float: right;
-	width: auto;
-	text-align: left;
-	font-size: 30px;
-	line-height: 45px;
-	margin-right: 17%;
-}
-
-#prize.panel #comments {
-	padding: 0px;
-	width:100%;
-	float: left;
-}
-
-#prize #comments ul{
-	position: absolute;
-	left: 0px;
-	padding: 0%;
-	width: 100%;
-	float: left;
-	overflow: hidden;
-	overflow-y: scroll;
-	transition: all 0.15s linear;
-	-o-transition: all 0.15s linear;
-	-moz-transition: all 0.15s linear;
-	-webkit-transition: all 0.15s linear;
-}
-
-#prize #comments ul.detail{
-	left:100%;
-	background:#E1DDD9;
-}
-
-#prize #comments ul.detail li .details{
-	float: left;
-	margin-right: 10px;
-	margin-top: -10px;
-}
-
-#prize #comments ul.detail li .prizeimage img{
-	width: 80%;
-	margin-left: 10%;
-}
-
-
-
-#prize #comments ul.detail .prizecomment{
-	
-}
-
-#prize #comments ul.detail .prizeimage{
-	height: auto;
-	float: left;
-	margin-top: 10px;
-}
-
-#prize #comments ul.detail .locationmap{
-	float: left;
-	margin: 15px 0% 0px 10%;
-	border: solid 1px #aaa;
-	clear: left;
-}
-
-#prize #comments ul.detail .profile{
-	clear: both;
-	margin: 20px 6% 20px 6%;
-	width: 88%;
-	float: left;
-}
-
-#prize #comments ul.detail .profile .avatar{
-	float: left;
-	width: 45px;
-	height: 45px;
-	margin: 0px 10px;	
-}
-
-#prize #comments ul.detail .profile .nickname{
-	float: left;
-	width: auto;
-	margin: 0%;
-	font-size: 30px;
-	line-height: 24px;
-	letter-spacing: 1px;
-	padding: 0px;
-	font-weight: bold;
-}
-
-#prize #comments ul.detail .profile .checkincount{
-	float: left;
-	width: auto;
-	clear: left;
-	font-size: 18px;
-}
-
-
 #share{
 	top:5%;
 	bottom:auto;
@@ -1320,23 +1183,6 @@ a.postshare{
 	color:#000;
 	background:#CCCC00;
 }
-
-#lightbox{
-	position:fixed;
-	top:0px;
-	left:0px;
-	width:100%;
-	height:100%;
-	background:#000;
-	z-index: 2500;
-	display:none;
-}
-
-#lightbox img{
-	position:absolute;
-	margin-top:40%;
-}
-
 
 #checkinpop{
 	min-height:50px;
@@ -1595,7 +1441,7 @@ a.postshare span {
 		padding: 10px 10px 10px 10px;
 		min-height: 40px;
 	}
-	.panel .linearlist li .details, .panel .linearlist li .simplistics {
+	.panel .linearlist li .details {
 		font-size: 45px;
 		margin-top: 0px;
 	}
@@ -1716,39 +1562,6 @@ a.postshare span {
 	}
 	
 	#checkindetail .profile .checkincount {
-	font-size: 14px;
-	}
-	
-	
-	
-	
-	#prize #comments ul.detail .prizecomment {
-		
-	}
-	
-	#prize #comments ul.detail .prizename {
-		width: 45%;
-		font-size: 20px;
-		line-height: 22px;
-	}
-	
-	#prize #comments ul.detail .restaurantname {
-	font-size: 16px;
-	line-height: 16px;
-	}
-	
-	#prize #comments ul.detail .profile .avatar {
-	width: 35px;
-	height: 35px;
-	margin: 0px 5px 0px 10px;
-	}
-	
-	#prize #comments ul.detail .profile .nickname {
-	font-size: 25px;
-	line-height: 19px;
-	}
-	
-	#prize #comments ul.detail .profile .checkincount {
 	font-size: 14px;
 	}
 	
@@ -2033,7 +1846,7 @@ a.postshare span {
 		padding: 10px 10px 10px 10px;
 		min-height: 40px;
 	}
-	.panel .linearlist li .details, .panel .linearlist li .simplistics {
+	.panel .linearlist li .details {
 		font-size: 45px;
 		margin-top: 0px;
 	}

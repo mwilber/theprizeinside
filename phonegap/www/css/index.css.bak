@@ -1037,13 +1037,6 @@ a.postshare{
 	color:#333;
 }
 
-#prize .checkins .appnoti{
-	background: #FFFFCC;
-	color: #660000;
-	font-size: 18px;
-	min-height: 44px;
-}
-
 #aboutbox{
 	/*overflow-x: hidden;
 	overflow-y: scroll;
@@ -1056,7 +1049,7 @@ a.postshare{
 	list-style: none;
 	float: left;
 	width: 100%;
-	margin: 40px 0px;
+	margin: 10px 0px;
 	padding: 0px;
 }
 
@@ -1182,7 +1175,7 @@ a.postshare{
 	text-align: left;
 	font-size: 30px;
 	line-height: 45px;
-	margin-right: 17%;
+	margin-right: 23%;
 }
 
 #prize.panel #comments {
@@ -1273,6 +1266,11 @@ a.postshare{
 }
 
 
+
+
+
+
+
 #share{
 	top:5%;
 	bottom:auto;
@@ -1335,109 +1333,6 @@ a.postshare{
 #lightbox img{
 	position:absolute;
 	margin-top:40%;
-}
-
-
-#checkinpop{
-	min-height:50px;
-	height:auto;
-	z-index: 1000;
-}
-
-#checkinpop .prizecomment{
-	float: left;
-width: 92%;
-margin: 20px 4% 20px 4%;
-font-size: 24px;
-}
-
-#checkinpop .prizeimage{
-	width:40%;
-	height:auto;
-	float:right;
-	clear:left;
-	margin-right:5%;
-}
-
-#checkinpop .prizename{
-	width: 40%;
-	float: left;
-	clear: left;
-	margin: 0px 0% 0% 5%;
-	color: #666;
-	font-size: 20px;
-line-height: 18px;
-}
-#checkinpop .restaurantname{
-	width: 40%;
-	float: left;
-	clear: left;
-	margin: 5px 0% 0% 5%;
-	color: #666;
-	font-size: 14px;
-	line-height: 18px;
-}
-
-#checkinpop .locationmap{
-	float: left;
-	margin: 15px 0% 0px 5%;
-	border: solid 1px #aaa;
-	clear: left;
-}
-
-#checkinpop .profile{
-	clear: both;
-	margin: 20px 2% 10px 2%;
-	width: 96%;
-	float: left;
-}
-
-#checkinpop .profile .avatar{
-	float: left;
-	width: 25px;
-	height: 25px;
-	margin: 0px 10px;	
-}
-
-#checkinpop .profile .nickname{
-	float: left;
-width: auto;
-margin: 0%;
-font-size: 14px;
-line-height: 24px;
-letter-spacing: 1px;
-}
-
-#checkinpop .profile .checkincount{
-	float: left;
-	width: auto;
-	clear: left;
-	font-size: 18px;
-}
-
-
-.arrow_box:after, .arrow_box:before {
-	top: 100%;
-	left: 50%;
-	border: solid transparent;
-	content: " ";
-	height: 0;
-	width: 0;
-	position: absolute;
-	pointer-events: none;
-}
-
-.arrow_box:after {
-	border-color: rgba(250, 246, 241, 0);
-	border-top-color: #FAF6F1;
-	border-width: 30px;
-	margin-left: -30px;
-}
-.arrow_box:before {
-	border-color: rgba(22, 16, 8, 0);
-	border-top-color: #161008;
-	border-width: 36px;
-	margin-left: -36px;
 }
 
 #footer{
@@ -1528,7 +1423,6 @@ a.close span {
 a.postshare span {
 	color: #F5F2ED;
 }
-
 
 .panel {
 	background: #fafafa;
@@ -1653,9 +1547,7 @@ a.postshare span {
 		line-height: 45px;
 	}
 	
-	#prize .checkins li{
-		min-height: 65px;
-	}
+	
 	
 	#locationoptions .vcard p {
 		font-size: 20px;

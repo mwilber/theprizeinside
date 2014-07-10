@@ -196,6 +196,7 @@
 			  </div>
 			  <div id="comments" class="tabpanel">
 				<ul class="checkins linearlist"><!-- AJAX Data here --></ul>
+				<ul class="detail linearlist"><!-- AJAX Data here --></ul>
 			  </div> 
 			  </div>
 			</div>
@@ -435,7 +436,7 @@
 					offsetheight =  $('#prize .header').height()+$('#prize .tabs').height()+$('#footer').height()+$('#prize .name').height()+(parseInt($('#prize .name').css('padding-top'))*2);
 				    if( $(window).width() > 900 ) offsetheight =  $('#prize .tabs').height()+$('#prize .name').height()+(parseInt($('#prize .name').css('padding-top'))*2);
 				    $('#prize .tabpanel').css('width',$('#prize').width()+"px");
-				    $('#prize .tabpanel').css('height',($('#prize').height()-offsetheight)+"px");
+				    $('#prize .tabpanel, #prize #comments ul.detail').css('height',($('#prize').height()-offsetheight)+"px");
 					
 				});
 				

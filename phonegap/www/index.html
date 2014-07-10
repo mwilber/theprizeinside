@@ -51,6 +51,7 @@
         <div id="lightbox">
         	<a class="close" href="#" onclick="$('#lightbox').fadeOut();"><span class="fa fa-times"></span></a>
         	<img src="icon.png" width="100%"/>
+        	<p>...</p>
         </div>
         
         <div id="checkin" class="popup">
@@ -138,6 +139,7 @@
 				<li><a id="btnfacebook" href="#" class="button fa fa-facebook-square" onclick="return false;"> facebook</a></li>
 				<li><a id="btntwitter" href="#" class="button fa fa-twitter-square" onclick="return false;"> twitter</a></li>
 				<li><a id="btnfoursquare" href="#" class="button fa fa-foursquare" onclick="return false;"> foursquare</a></li>
+				<li><a id="btnanon" href="#" class="button fa fa-user" onclick="return false;"> Anonymous</a></li>
 			</ul>
 			<p class="policy">
 				<a href="#" onclick="window.open('http://theprizeinside.com/policy.php', '_system'); _gaq.push(['_trackEvent', 'External', 'Policy', '']); return false;">Privacy Policy</a>
@@ -243,6 +245,7 @@
 			  </div>
 			  <div id="comments" class="tabpanel">
 				<ul class="checkins linearlist"><!-- AJAX Data here --></ul>
+				<ul class="detail linearlist"><!-- AJAX Data here --></ul>
 			  </div> 
 			  </div>
 			</div>

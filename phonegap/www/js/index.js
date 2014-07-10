@@ -53,7 +53,8 @@
 	var CHECKIN_NOTIFICATION_THRESHOLD = 0.05;
 
 	var apipath = "http://theprizeinside.com";
-	//var apipath = "http://gibson.loc/theprizeinside";
+	//var apipath = "http://gibson.loc/theprizeinside/public";
+	var isMobile = true;
 	var userLocation = new google.maps.LatLng(0,0);
 	var autoCkLocation = new google.maps.LatLng(0,0);
 	var wallmap = false;
@@ -151,8 +152,8 @@ $( window ).resize(function() {
 	// Resize prize listing
 	offsetheight =  $('#prize .header').height()+$('#prize .tabs').height()+$('#footer').height()+$('#prize .name').height()+(parseInt($('#prize .name').css('padding-top'))*2);
     if( $(window).width() > 1000 ) offsetheight =  $('#prize .tabs').height()+$('#prize .name').height()+(parseInt($('#prize .name').css('padding-top'))*2);
-    $('#prize .tabpanel').css('width',$('#prize').width()+"px");
-    $('#prize .tabpanel').css('height',($('#prize').height()-offsetheight)+"px");
+    //$('#prize .tabpanel').css('width',$('#prize').width()+"px");
+    $('#prize .tabpanel, #prize #comments ul.detail').css('height',($('#prize').height()-offsetheight)+"px");
 	
 });
 

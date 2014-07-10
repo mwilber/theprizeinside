@@ -47,7 +47,7 @@ Home.prototype.HandlePrizeData = function(self){
         
         prizedata = response;
         QueryLocation();
-        locationTimer = window.setInterval(QueryLocation,LOCATION_CK_INTERVAL);
+        //locationTimer = window.setInterval(QueryLocation,LOCATION_CK_INTERVAL);
         
         self.panel.elem.find('.prizes').empty();
          for( idx in response ){

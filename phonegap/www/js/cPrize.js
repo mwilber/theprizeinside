@@ -33,7 +33,12 @@ Prize.prototype.ShowUserLocation = function(self){
 
 Prize.prototype.Checkin = function(self,pPrize,pLocation){
    return function(){
-       panel['checkin'].Load(pPrize,pLocation);
+       if(isMobile){
+           panel['checkin'].Load(pPrize,pLocation);
+       }else{
+           panel['app'].Load();
+       }
+       
        return false;
    };
 };
@@ -41,6 +46,15 @@ Prize.prototype.Checkin = function(self,pPrize,pLocation){
 Prize.prototype.Back = function(self){
    return function(){
        panel[self.backId].Show();
+       return false;
+   };
+};
+
+Prize.prototype.Lightbox = function(self){
+   return function(){
+       $('#lightbox img').attr('src',self.panel.elem.find('.prizeimage img').attr('src'));
+       $('#lightbox p').html(self.panel.elem.find('.prizecomment').html());
+       $('#lightbox').fadeIn();
        return false;
    };
 };
@@ -90,6 +104,12 @@ Prize.prototype.ShowComments = function(self){
 };
 
 Prize.prototype.Load = function(pPrize){
+    
+    try{
+        ClearCheckinPops();
+    }catch(exception){
+        
+    }
     
     // Clear out panel fields
     this.panel.elem.find('#locations ul').empty().append($('<li/>').html('loading...'));
@@ -160,33 +180,127 @@ Prize.prototype.HandleCheckinData = function(self){
         DebugOut(response);
         
         self.panel.elem.find('.checkins').empty();
-         for( idx in response.checkins ){
-             var value = response.checkins[idx];
-             self.panel.elem.find('.checkins').append($('<li>')
+        
+        if(!isMobile){
+            self.panel.elem.find('.checkins').append($('<li>').addClass('appnoti')
                  .append(
                      $('<div/>').addClass('details fa fa-caret-right')
                  )
                  .append(
-                     $('<div/>').addClass('icon').append($('<img/>').attr('src',value.checkinPhoto))
+                     $('<div/>').addClass('comment').html("Get the app to share prizes and add your own comments")
                  )
-                 .append(
-                     $('<div/>').addClass('comment').html(value.checkinComment)
-                 )
-                 .click(self.HandleCheckinClick(self,value))
-            ); 
-         }
+                 .click(function(){panel['app'].Load();})
+            );
+        }
+        
+        if( response.checkins.length > 0 ){
+             for( idx in response.checkins ){
+                 var value = response.checkins[idx];
+                 self.panel.elem.find('.checkins').append(
+                     $('<li>')
+                     .append(
+                         $('<div/>').addClass('details fa fa-caret-right')
+                     )
+                     .append(
+                         $('<div/>').addClass('icon').append($('<img/>').attr('src',value.checkinPhoto))
+                     )
+                     .append(
+                         $('<div/>').addClass('comment').html(value.checkinComment)
+                     )
+                     .click(self.HandleCheckinClick(self,value))
+                ); 
+             }
+        }else{
+            self.panel.elem.find('#comments ul').empty().append($('<li/>').html('Tap on a location to add a comment.'));
+        }
     };
 };
 
 Prize.prototype.HandleCheckinClick = function(self,pCheckin){
 	return function(event){
-		panel['checkindetail'].Load(pCheckin.checkinId);
+		//panel['checkindetail'].Load(pCheckin.checkinId);
+		// Load checkin data
+		self.panel.elem.find('.detail').empty().append($('<li>').html('Loading...'));
+		$.get(apipath+'/reactor/srvlist/getcheckindetail/'+pCheckin.checkinId,self.HandleCheckinDetail(self));
+		//Show the panel
+        self.panel.elem.find('.checkins').css('left','-100%');
+        self.panel.elem.find('.detail').css('left','0%');
         return false;
 	};
 };
 
+Prize.prototype.HandleCheckinDetailClose = function(self,pCheckin){
+    return function(event){
+        //Hide the panel
+        self.panel.elem.find('.checkins').css('left','0%');
+        self.panel.elem.find('.detail').css('left','100%');
+        return false;
+    };
+};
+
+Prize.prototype.HandleCheckinDetail = function(self,pCheckin){
+    return function(response){
+        
+        self.panel.elem.find('.detail').empty();
+        
+        self.panel.elem.find('#comments .detail').append($('<li>')
+             .append(
+                 $('<div/>').addClass('details fa fa-caret-left')
+             )
+             .append(
+                 $('<div/>').addClass('prizecomment').html(response.checkin.checkinComment)
+             )
+             .append(
+                 $('<div/>').addClass('prizeimage').append($('<img/>').attr('src',response.checkin.checkinPhoto)).click(self.Lightbox(self))
+             )
+             
+             .click(self.HandleCheckinDetailClose(self))
+        );
+        if( response.checkin.checkinLat != "" && response.checkin.checkinLng != "" && response.checkin.checkinLat != 0 && response.checkin.checkinLng != 0 ){
+            var mapurl = "http://maps.googleapis.com/maps/api/staticmap?zoom=5&size="+Math.floor(self.panel.elem.width()*.7)+"x"+Math.floor((self.panel.elem.width()*.7)/2)+"&maptype=roadmap&markers=color:red%7Clabel:C%7C"+response.checkin.checkinLat+","+response.checkin.checkinLng+"&sensor=false";
+            self.panel.elem.find('#comments .detail').append(
+                $('<li>').addClass('location')
+                //.append(
+                 //    $('<div/>').addClass('address').html(value.location.address+", "+value.location.city+", "+value.location.state+" "+value.location.postalCode)
+                 //)
+                 .append(
+                     $('<img/>').addClass('locationmap').attr('src',mapurl)
+                 )
+            );
+        }
+        self.panel.elem.find('#comments .detail').append(
+                $('<li>').addClass('profile')
+                 .append(
+                     $('<img/>').addClass('avatar').attr('src',response.profile.profilePicture)
+                 )
+                 .append(
+                     $('<div/>')
+                        .css('float','left')
+                        .append(
+                            $('<h2/>').addClass('nickname').html(response.profile.profileNickname)
+                        )
+                        .append(
+                             $('<div/>')
+                                .addClass('checkincount')
+                                .append(
+                                    $('<span/>').addClass('number').html(response.profile.count)
+                                )
+                                .append('Prizes')
+                         )
+                 )
+            );
+        
+        
+        
+        return false;
+    };
+};
+
 Prize.prototype.HandleLocationData = function(self){
     return function(response) {
+    	
+    	if( typeof(response) !== undefined ){
+    	
         DebugOut(response);
         
         self.locationdata = response.response;
@@ -199,7 +313,8 @@ Prize.prototype.HandleLocationData = function(self){
             var value = response.response.venues[idx];
 			
 			if( value.location.address !== undefined ){
-	            self.panel.elem.find('#locations ul').append($('<li>')
+	            self.panel.elem.find('#locations ul').append($('<li>').append(
+	            	$('<div class="ldet">')
 	                 .append(
 	                     $('<div/>').addClass('details fa fa-caret-right')
 	                 )
@@ -209,7 +324,39 @@ Prize.prototype.HandleLocationData = function(self){
 					 .append(
 	                     $('<div/>').addClass('city').html(value.location.city+", "+value.location.state+" "+value.location.postalCode)
 	                 )
-	                 .click(self.HandleLocationClick(self,value))
+	                 .click(self.HandleLocationSlide(self,value))
+	            ).append(
+	            	$('<div class="lopt">')
+	                 .append(
+	                     $('<div/>').addClass('simplistics fa fa-caret-left')
+	                 )
+	                 .append(
+	                     $('<div/>')
+	                     	.addClass('directions')
+	                     	.addClass('fa')
+	                     	.addClass('fa-road')
+	                     	.html('')
+	                     	.click(self.HandleDirections(self,value))
+	                 )
+	                 .append(
+                         $('<div/>')
+                            .addClass('directions')
+                            .addClass('fa')
+                            .addClass('fa-globe')
+                            .html('')
+                            .click(self.HandleWebsite(self,value))
+                     )
+					 .append(
+	                     //$('<div/>').addClass('share').html(value.location.city+", "+value.location.state+" "+value.location.postalCode)
+	                     $('<div/>')
+	                     	.addClass('share')
+	                     	.addClass('fa')
+	                     	.addClass('fa-thumbs-up')
+	                     	.html('')
+	                     	.click(self.Checkin(self,null,value))
+	                 )
+	                 .click(self.HandleLocationSlide(self,value))
+	            )
 	            );
            	}
          }
@@ -218,7 +365,55 @@ Prize.prototype.HandleLocationData = function(self){
 	    ////////////////////////////////////////////
 	    //panel['location'].Load(response.response.venues[1]);
 	    ////////////////////////////////////////////
+	    }
     };
+};
+
+Prize.prototype.HandleWebsite = function(self,pLocation){
+    return function(event){
+        window.open(pLocation.url, '_system');
+        _gaq.push(['_trackEvent', 'External', 'Restaurant Site', '']);
+        return false;
+    };
+};
+
+Prize.prototype.HandleDirections = function(self,pLocation){
+	return function(event){
+		//alert('http://maps.google.com/?saddr='+userLocation.lat()+','+userLocation.lng()+'&daddr='+pLocation.location.address+','+pLocation.location.postalCode);
+    	var dirurl = 'http://maps.google.com/?saddr='+userLocation.lat()+','+userLocation.lng()+'&daddr='+escape(pLocation.location.address)+','+pLocation.location.postalCode;
+    	
+    	try{
+        	if( device ){
+        		if( device.platform == "iOS" ){
+        			dirurl = 'http://maps.apple.com/?saddr='+userLocation.lat()+','+userLocation.lng()+'&daddr='+escape(pLocation.location.address)+','+pLocation.location.postalCode;
+        		}
+        	}
+    	}catch(exception){
+    	}
+    	    	
+    	//alert(dirurl);
+    	
+    	window.open(dirurl, '_system');
+    	
+    	_gaq.push(['_trackEvent', 'External', 'Driving Directions', '']);
+    	return false;
+	};
+};
+
+Prize.prototype.HandleLocationSlide = function(self,pPrize){
+	return function(event){
+	    DebugOut('HandleLocationSlide');
+	    DebugOut(pPrize.location);
+	    DebugOut(event);
+	    if( $(event.delegateTarget).css('left') == '0%' || $(event.delegateTarget).css('left') == '0px' ){
+	    	$(event.delegateTarget).css('left','-50%');
+	    	$(event.delegateTarget).parent().find('.lopt').css('left','-50%');
+	    }else{
+	    	$(event.delegateTarget).css('left','0%');
+	    	$(event.delegateTarget).parent().find('.ldet').css('left','0%');
+	    }
+        return false;
+	};
 };
 
 Prize.prototype.HandleLocationClick = function(self,pPrize){
