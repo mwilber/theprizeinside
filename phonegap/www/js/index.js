@@ -206,7 +206,7 @@ function AppInit(){
 	panel['locationoptions'] = new LocationOptions();
 	panel['share'] = new Share();
 
-    panel['userprofile'].Load();
+    panel['home'].Load();
 }
 
 function AdInit(){

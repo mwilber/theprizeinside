@@ -228,7 +228,7 @@ class Profile extends CI_Controller
 	    if(!$data['record']) redirect($this->uri->segment(1));
 		
 		// Validate form
-	    $this->form_validation->set_rules($this->$model_ref->_rq(), 'required', 'trim|required');
+	    $this->form_validation->set_rules($this->$model_ref->_rq(), 'required', 'required');
 	    
 	    if($this->form_validation->run())
 		{
