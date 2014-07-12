@@ -149,11 +149,7 @@ $( window ).resize(function() {
 	
 	//alert("home offset: "+offsetheight);
 	
-	// Resize prize listing
-	offsetheight =  $('#prize .header').height()+$('#prize .tabs').height()+$('#footer').height()+$('#prize .name').height()+(parseInt($('#prize .name').css('padding-top'))*2);
-    if( $(window).width() > 1000 ) offsetheight =  $('#prize .tabs').height()+$('#prize .name').height()+(parseInt($('#prize .name').css('padding-top'))*2);
-    //$('#prize .tabpanel').css('width',$('#prize').width()+"px");
-    $('#prize .tabpanel, #prize #comments ul.detail, #userprofile .tabpanel').css('height',($('#prize').height()-offsetheight)+"px");
+	SizePanels();
 	
 });
 
@@ -191,6 +187,14 @@ $( window ).on('orientationchange',function() {
 	$(window).trigger("resize");
 
 });	
+
+function SizePanels(){
+	// Resize prize listing
+	offsetheight =  $('#prize .header').height()+$('#prize .tabs').height()+$('#footer').height()+$('#prize .name').height()+(parseInt($('#prize .name').css('padding-top'))*2);
+    if( $(window).width() > 1000 ) offsetheight =  $('#prize .tabs').height()+$('#prize .name').height()+(parseInt($('#prize .name').css('padding-top'))*2);
+    //$('#prize .tabpanel').css('width',$('#prize').width()+"px");
+    $('#prize .tabpanel, #prize #comments ul.detail, #userprofile .tabpanel').css('height',($('#prize').height()-offsetheight)+"px");
+}
 
 function AppInit(){
     DebugOut('initing app');
@@ -281,7 +285,7 @@ function HandleFSData(pRest){
         //DebugOut(pRest);
         //DebugOut(response);
         fsdata[pRest.restaurant.restaurantAlias] = response;
-        QueryLocation();
+        //QueryLocation();
         DebugOut(fsdata);
         var patsy = panel['prize'].HandleLocationData(panel['prize']);
     	patsy(fsdata[panel['prize'].restaurantalias]);

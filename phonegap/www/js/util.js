@@ -67,6 +67,7 @@ function supports_html5_storage() {
 }
 
 function QueryLocation(){
+	//alert('querying location');
     window.navigator.geolocation.getCurrentPosition(HandleGeolocationQuery,HandleGeolocationErrors,{
       enableHighAccuracy: true,
       timeout: 5000,

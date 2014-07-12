@@ -37,7 +37,7 @@ UserLocation.prototype.DoGPSSearch = function(self){
 		window.clearInterval(locationTimer);
 		userLocation = new google.maps.LatLng(0,0);
 		QueryLocation();
-		locationTimer = window.setInterval(QueryLocation,LOCATION_CK_INTERVAL);
+		//locationTimer = window.setInterval(QueryLocation,LOCATION_CK_INTERVAL);
 	};
 };
 

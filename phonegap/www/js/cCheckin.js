@@ -153,7 +153,7 @@ Checkin.prototype.Load = function(pPrize, pLocation){
 	
 	$('#btnCheckin').html('Share');
 
-	if( lsUserId > 0 ){
+	if( lsUserId >= 0 ){
 		this.panel.elem.find('#myImage').attr('src','img/add_photo.png');
 		
 		if( pLocation != null ){

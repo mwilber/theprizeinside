@@ -87,7 +87,7 @@ UserProfile.prototype.DoLogout = function(self){
             $('#home .showuserprofile').removeClass('fa-user');
         }
        
-       self.panel.Hide();
+       panel[self.backId].Show();
        return false;
    };
 };

@@ -41,20 +41,27 @@ UserLogin.prototype.DoLogin = function(self,pPlatform){
 
 UserLogin.prototype.HandleAuthPopup = function(self){
 	return function(event){
-	//alert('url: '+event.url);
-    if( String(event.url).indexOf('oauth/profile' ) > 0 ){
-        var aviam= String(event.url).split("/");
-        if( !isNaN(parseInt(aviam[aviam.length-1])) ){
-            //alert("Profile found: "+aviam[aviam.length-1]); 
-            lsUserId = parseInt(aviam[aviam.length-1]);
-            localStorage["userid"] = parseInt(aviam[aviam.length-1]);
-            panel['userlogin'].ref.close();
-            panel['userlogin'].panel.Hide();
-            // Clear out the autocheck val so the checkin prompts again
-            autoCkLocation = new google.maps.LatLng(0,0);
-            QueryLocation();
-        }
-    }
+		//alert('url: '+event.url);
+	    if( String(event.url).indexOf('oauth/profile' ) > 0 ){
+	        var aviam= String(event.url).split("/");
+	        if( !isNaN(parseInt(aviam[aviam.length-1])) ){
+	            //alert("Profile found: "+aviam[aviam.length-1]); 
+	            lsUserId = parseInt(aviam[aviam.length-1]);
+	            localStorage["userid"] = parseInt(aviam[aviam.length-1]);
+	            panel['userlogin'].ref.close();
+	            panel['userlogin'].panel.Hide();
+	            // Clear out the autocheck val so the checkin prompts again
+	            autoCkLocation = new google.maps.LatLng(0,0);
+	            QueryLocation();
+	        }
+	    }
+	    if( lsUserId > 0 ){
+	        $('#home .showuserprofile').addClass('fa-user');
+	        $('#home .showuserprofile').removeClass('fa-sign-in');
+	    }else{
+	        $('#home .showuserprofile').addClass('fa-sign-in');
+	        $('#home .showuserprofile').removeClass('fa-user');
+	    }
 	};
 };
 

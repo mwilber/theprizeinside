@@ -94,6 +94,7 @@ Prize.prototype.ShowComments = function(self){
        self.HideTabPanels();
        self.panel.elem.find('.tabcomments').addClass('selected');
 	   self.panel.elem.find('#comments').show();
+	   SizePanels();
 	   if(gaPlugin){
     		gaPlugin.trackEvent( GASuccess, GAFail, "Prize", "ShowComment", "", 1);
 		}else{
@@ -307,7 +308,7 @@ Prize.prototype.HandleCheckinDetail = function(self,pCheckin){
              )
         );
         
-        
+        SizePanels();
         
         return false;
     };
