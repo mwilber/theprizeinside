@@ -50,6 +50,15 @@ Prize.prototype.Back = function(self){
    };
 };
 
+Prize.prototype.Lightbox = function(self){
+   return function(){
+       $('#lightbox img').attr('src',self.panel.elem.find('.prizeimage img').attr('src'));
+       $('#lightbox p').html(self.panel.elem.find('.prizecomment').html());
+       $('#lightbox').fadeIn();
+       return false;
+   };
+};
+
 Prize.prototype.ShowLocations = function(self){
    return function(){
        self.HideTabPanels();
@@ -184,22 +193,26 @@ Prize.prototype.HandleCheckinData = function(self){
             );
         }
         
-         for( idx in response.checkins ){
-             var value = response.checkins[idx];
-             self.panel.elem.find('.checkins').append(
-                 $('<li>')
-                 .append(
-                     $('<div/>').addClass('details fa fa-caret-right')
-                 )
-                 .append(
-                     $('<div/>').addClass('icon').append($('<img/>').attr('src',value.checkinPhoto))
-                 )
-                 .append(
-                     $('<div/>').addClass('comment').html(value.checkinComment)
-                 )
-                 .click(self.HandleCheckinClick(self,value))
-            ); 
-         }
+        if( response.checkins.length > 0 ){
+             for( idx in response.checkins ){
+                 var value = response.checkins[idx];
+                 self.panel.elem.find('.checkins').append(
+                     $('<li>')
+                     .append(
+                         $('<div/>').addClass('details fa fa-caret-right')
+                     )
+                     .append(
+                         $('<div/>').addClass('icon').append($('<img/>').attr('src',value.checkinPhoto))
+                     )
+                     .append(
+                         $('<div/>').addClass('comment').html(value.checkinComment)
+                     )
+                     .click(self.HandleCheckinClick(self,value))
+                ); 
+             }
+        }else{
+            self.panel.elem.find('#comments ul').empty().append($('<li/>').html('Tap on a location to add a comment.'));
+        }
     };
 };
 
@@ -238,7 +251,7 @@ Prize.prototype.HandleCheckinDetail = function(self,pCheckin){
                  $('<div/>').addClass('prizecomment').html(response.checkin.checkinComment)
              )
              .append(
-                 $('<div/>').addClass('prizeimage').append($('<img/>').attr('src',response.checkin.checkinPhoto))
+                 $('<div/>').addClass('prizeimage').append($('<img/>').attr('src',response.checkin.checkinPhoto)).click(self.Lightbox(self))
              )
              
              .click(self.HandleCheckinDetailClose(self))
@@ -255,27 +268,44 @@ Prize.prototype.HandleCheckinDetail = function(self,pCheckin){
                  )
             );
         }
+        
+       
+        var profilePic = response.profile.profilePicture;
+        if( profilePic == undefined ){
+            profilePic = "img/anonymous-user.png";
+        }
+        var profileName = response.profile.profileNickname;
+        var countDisplay = "block";
+        if( profileName == undefined ){
+            profileName = "Anonymous";
+            countDisplay = "none";
+        }
+        
+        
+        
+
         self.panel.elem.find('#comments .detail').append(
-                $('<li>').addClass('profile')
-                 .append(
-                     $('<img/>').addClass('avatar').attr('src',response.profile.profilePicture)
-                 )
-                 .append(
-                     $('<div/>')
-                        .css('float','left')
-                        .append(
-                            $('<h2/>').addClass('nickname').html(response.profile.profileNickname)
-                        )
-                        .append(
-                             $('<div/>')
-                                .addClass('checkincount')
-                                .append(
-                                    $('<span/>').addClass('number').html(response.profile.count)
-                                )
-                                .append('Prizes')
-                         )
-                 )
-            );
+            $('<li>').addClass('profile')
+             .append(
+                 $('<img/>').addClass('avatar').attr('src',profilePic)
+             )
+             .append(
+                 $('<div/>')
+                    .css('float','left')
+                    .append(
+                        $('<h2/>').addClass('nickname').html(profileName)
+                    )
+                    .append(
+                         $('<div/>')
+                            .css('display',countDisplay)
+                            .addClass('checkincount')
+                            .append(
+                                $('<span/>').addClass('number').html(response.profile.count)
+                            )
+                            .append('Prizes')
+                     )
+             )
+        );
         
         
         

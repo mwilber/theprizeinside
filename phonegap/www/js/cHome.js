@@ -104,6 +104,14 @@ Home.prototype.Show = function(){
         }
     }
     
+    if( lsUserId > 0 ){
+        this.panel.elem.find('.showuserprofile').addClass('fa-user');
+        this.panel.elem.find('.showuserprofile').removeClass('fa-sign-in');
+    }else{
+        this.panel.elem.find('.showuserprofile').addClass('fa-sign-in');
+        this.panel.elem.find('.showuserprofile').removeClass('fa-user');
+    }
+    
     //$('#header').show();
     
     $(window).trigger("resize");

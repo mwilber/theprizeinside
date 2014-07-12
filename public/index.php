@@ -22,10 +22,19 @@
 		//select a database to work with
 		$dbc = mysql_select_db($db['default']['database'],$conn) 
 		  or die("Could not select examples");
-	
-		$checkinRS = mysql_query("SELECT tblCheckin.checkinId,checkinLat,checkinLng,checkinComment,checkinPhoto,checkinTimeStamp,restaurantName,prizeName,profileNickname,profilePicture FROM tblCheckin INNER JOIN tblRestaurant ON tblCheckin.restaurantId=tblRestaurant.restaurantId INNER JOIN tblPrize ON tblCheckin.prizeId=tblPrize.prizeId INNER JOIN tblProfile ON tblCheckin.profileId=tblProfile.profileId WHERE checkinId=".$_GET['ck']);
+		
+		$sql = "SELECT tblCheckin.checkinId,tblCheckin.profileId,checkinLat,checkinLng,checkinComment,checkinPhoto,checkinTimeStamp,restaurantName,prizeName,profileNickname,profilePicture FROM tblCheckin INNER JOIN tblRestaurant ON tblCheckin.restaurantId=tblRestaurant.restaurantId INNER JOIN tblPrize ON tblCheckin.prizeId=tblPrize.prizeId LEFT JOIN tblProfile ON tblCheckin.profileId=tblProfile.profileId WHERE checkinId=".$_GET['ck'];
+		//echo $sql;
+		$checkinRS = mysql_query($sql);
 		$checkin = mysql_fetch_assoc($checkinRS);
 		
+		if( $checkin['profileId'] ){
+			$profileRS = mysql_query("SELECT COUNT(*) FROM tblCheckin WHERE profileId = ".$checkin['profileId']);
+			$profile = mysql_fetch_array($profileRS);
+		}else{
+			$profile = 0;
+		}
+				
 		if( $checkin['prizeName'] == "" ){
 			$checkin['prizeName']=$social['title'];
 		}else{
@@ -128,17 +137,18 @@
 			<a class="close" href="#"><span class="fa fa-times"></span></a>
 			<a class="postshare" href="#"><span class="fa fa-share-square-o"></span></a>
 			<h1>Prize</h1>
-			<p class="prizecomment"><?= (isset($checkin['checkinComment']))?$checkin['checkinComment']:'' ?></p>
-			<img class="prizeimage" src="<?= (isset($checkin['checkinPhoto']))?$checkin['checkinPhoto']:'' ?>" />
 			<h2 class="prizename"><?= (isset($checkin['prizeName']))?$checkin['prizeName']:'' ?></h2>
+			<img class="prizeimage" src="<?= (isset($checkin['checkinPhoto']))?$checkin['checkinPhoto']:'' ?>" />
+			<p class="prizecomment"><?= (isset($checkin['checkinComment']))?$checkin['checkinComment']:'' ?></p>
+			
 			<h3 class="restaurantname"><?= (isset($checkin['restaurantName']))?$checkin['restaurantName']:'' ?></h3>
-			<img class="locationmap" style="<?php if($checkin['checkinLat'] == 0 && $checkin['checkinLng']==0) echo "display:none;" ?>" src="http://maps.googleapis.com/maps/api/staticmap?zoom=13&size=150x150&maptype=roadmap&markers=color:red%7Clabel:C%7C<?= (isset($checkin['checkinLat']))?$checkin['checkinLat']:'' ?>,<?= (isset($checkin['checkinLng']))?$checkin['checkinLng']:'' ?>&sensor=false" />
+			<img class="locationmap" style="<?php if($checkin['checkinLat'] == 0 && $checkin['checkinLng']==0) echo "display:none;" ?>" src="http://maps.googleapis.com/maps/api/staticmap?zoom=5&size=300x100&maptype=roadmap&markers=color:red%7Clabel:C%7C<?= (isset($checkin['checkinLat']))?$checkin['checkinLat']:'' ?>,<?= (isset($checkin['checkinLng']))?$checkin['checkinLng']:'' ?>&sensor=false" />
 			<div class="profile">
-				<img class="avatar" src="<?= (isset($checkin['profilePicture']))?$checkin['profilePicture']:'' ?>"/>
+				<img class="avatar" src="<?= (isset($checkin['profilePicture']))?$checkin['profilePicture']:'/img/anonymous-user.png' ?>"/>
 				<div style="float:left;">
 					<h2 class="nickname"><?= (isset($checkin['profileNickname']))?$checkin['profileNickname']:'' ?></h2>
 					<div class="checkincount">
-						<span class="number">&nbsp;</span> Prizes
+						<span class="number"><?= (isset($profile[0]))?$profile[0]:'Anonymous' ?></span><?php if(isset($profile[0])):?> Prizes<?php endif; ?>
 					</div>
 				</div>
 			</div>

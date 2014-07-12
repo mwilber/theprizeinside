@@ -65,11 +65,16 @@ UserLogin.prototype.Close = function(self){
    };
 };
 
-UserLogin.prototype.Load = function(){
-	
-	
+UserLogin.prototype.Load = function(pShowAnon){
     
-    this.Show();  
+    this.Show();
+	
+	if( pShowAnon === true ){
+	    this.panel.elem.find('#btnanon').show();
+	}else{
+	   this.panel.elem.find('#btnanon').hide(); 
+	}
+      
 };
 
 

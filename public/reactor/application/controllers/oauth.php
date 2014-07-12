@@ -32,15 +32,18 @@ class Oauth extends CI_Controller {
     }
 	
 	function anonymous(){
-        $this->load->model('profile_model'); 
 		
-		$rsAuth = $this->profile_model->Get(array('profileNickname'=>'Anonymous'));
-		if( count($rsAuth) > 0 ){
-	        // Redirect to profile
-	    	redirect('oauth/profile/'.$rsAuth[0]->profileId);
-		}else{
-			redirect('oauth/profile/0');
-		}
+		redirect('oauth/profile/0');
+		
+        // $this->load->model('profile_model'); 
+// 		
+		// $rsAuth = $this->profile_model->Get(array('profileNickname'=>'Anonymous'));
+		// if( count($rsAuth) > 0 ){
+	        // // Redirect to profile
+	    	// redirect('oauth/profile/'.$rsAuth[0]->profileId);
+		// }else{
+			// redirect('oauth/profile/0');
+		// }
 		
 	}
     

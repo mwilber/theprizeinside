@@ -4,7 +4,7 @@ var CHECKIN_NOTIFICATION_THRESHOLD = 0.05;
 
 var apipath = "http://theprizeinside.com";
 //var apipath = "http://gibson.loc/theprizeinside";
-//var apipath = "https://rippleapi.herokuapp.com/xhr_proxy?tinyhippos_apikey=ABC&tinyhippos_rurl=https%3A//theprizeinside.com";
+var apipath = "https://rippleapi.herokuapp.com/xhr_proxy?tinyhippos_apikey=ABC&tinyhippos_rurl=https%3A//theprizeinside.com";
 //var apipath = "http://localhost/theprizeinside/public";
 var isMobile = false;
 

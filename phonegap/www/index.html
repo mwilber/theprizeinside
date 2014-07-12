@@ -53,25 +53,6 @@
         	<img src="icon.png" width="100%"/>
         	<p>...</p>
         </div>
-        
-        <div id="checkin" class="popup">
-			<a class="close" href="#"><span class="fa fa-times"></span></a>
-			<h1>Share</h1>
-			<p class="prizename"></p><a id="setpic" href="#"><img id="myImage" src="img/add_photo.png"/></a>
-			<textarea id="checkinComment">Comment</textarea>
-			
-			<div style="margin: 1% 5%;">
-				<img class="locationmap" src="" />
-				<div id="checkinAnonymous" class="button toggle fa fa-square-o"></div>
-				<label id="msgAnonymous">Do not post this location on The Prize Inside website.</label>
-				<div class="clearfix socialbreak"></div>
-				<div id="checkinTwitter" class="button share toggle selected fa fa-twitter"> </div>
-				<div id="checkinFacebook" class="button share toggle selected fa fa-facebook"> </div>
-				<div id="checkinFoursquare" class="button share toggle selected fa fa-foursquare"> </div>
-			</div>
-			<div class="clearfix"></div>
-			<a id="btnCheckin" href="#" class="button">Share</a>
-		</div>
 		
 		<div id="userlocation" class="popup">
 			<a class="close" href="#"><span class="fa fa-times"> </span></a>
@@ -87,59 +68,15 @@
 			<a class="location" href="#" onclick="return false;">Location: <span> </span></a>
 		</div>
 		
-		<div id="userprofile" class="popup">
-			<a class="close" href="#"><span class="fa fa-times"> </span></a>
-			<h1>Profile</h1>
-			<div id="viewprofile">
-				<div id="checkincount">
-					<div class="number">&nbsp;</div>
-					<span>Prizes</span>
-				</div>
-				<img class="avatar" src=""/>
-				<div style="float:left;">
-					<h2 class="nickname"></h2>
-					<h3 class="name"></h3>
-					<p class="profileid"></p>
-					<a id="showedit" href="#">Edit</a>
-				</div>
-			</div>
-			<div id="editprofile">
-				<label>Nickname:</label> <input id="nickname" class="nickname" />
-				<a id="showview" href="#" class="button fa fa-times"></a>
-				<a id="btnsave" href="#" class="button fa fa-check" onclick="return false;"></a>
-				<br/>
-				<label>Name:</label> <input id="name" class="name" />
-			</div>
-			<div id="authprofile">
-				<div style="float:left; width:50%;">
-				<p>Currently signed in with:</p>
-				<div id="authed"></div>
-				</div>
-				<div style="float:left;">
-				<p id="addservicecopy">Add services to share:</p>
-				<a id="addfacebook" href="#" class="button addservice fa fa-facebook-square" onclick="return false;"></a>
-				<a id="addtwitter" href="#" class="button addservice fa fa-twitter-square" onclick="return false;"></a>
-				<a id="addfoursquare" href="#" class="button addservice fa fa-foursquare" onclick="return false;"></a>
-				</div>
-			</div>
-			<p class="historytitle">History</p>
-			<div id="ckprofile">
-				<ul class="checkins linearlist">
-					<!-- AJAX Data here -->
-				</ul>
-			</div>
-			<a id="btnlogout" href="#" class="button" onclick="return false;">Log Out</a>
-		</div>
-		
 		<div id="userlogin" class="popup">
 			<a class="close" href="#"><span class="fa fa-times"></span></a>
 			<h1>Login</h1>
 			<p>Sign-in to comment and share your prizes:</p>
 			<ul>
-				<li><a id="btnfacebook" href="#" class="button fa fa-facebook-square" onclick="return false;"> facebook</a></li>
-				<li><a id="btntwitter" href="#" class="button fa fa-twitter-square" onclick="return false;"> twitter</a></li>
-				<li><a id="btnfoursquare" href="#" class="button fa fa-foursquare" onclick="return false;"> foursquare</a></li>
-				<li><a id="btnanon" href="#" class="button fa fa-user" onclick="return false;"> Anonymous</a></li>
+				<li><a id="btnfacebook" href="#" class="button fa fa-facebook-square" onclick="return false;"></a></li>
+				<li><a id="btntwitter" href="#" class="button fa fa-twitter-square" onclick="return false;"></a></li>
+				<li><a id="btnfoursquare" href="#" class="button fa fa-foursquare" onclick="return false;"></a></li>
+				<li><a id="btnanon" href="#" class="button fa fa-user" onclick="return false;"></a></li>
 			</ul>
 			<p class="policy">
 				<a href="#" onclick="window.open('http://theprizeinside.com/policy.php', '_system'); _gaq.push(['_trackEvent', 'External', 'Policy', '']); return false;">Privacy Policy</a>
@@ -222,6 +159,59 @@
 				</div>
 			</div>
 			
+			<div id="userprofile" class="panel">
+				<a class="back" href="#"><span class="fa fa-angle-left"> </span></a>
+				<h1>Profile</h1>
+				<div class="header">
+					<img id="homeview" src="img/homebanner.jpg"/>
+					<a id="btnlogout" href="#" class="fa fa-sign-out" onclick="return false;"></a>
+					<div id="viewprofile">
+						<img class="avatar" src=""/>
+						<div style="float:left; width:50%;">
+							<h2 class="nickname"></h2>
+							<h3 class="name"></h3>
+							<p class="profileid"></p>
+							<!--<a id="showedit" href="#">Edit</a>-->
+						</div>
+					</div>
+				</div>
+				<div class="content">
+					<ul class="tabs">
+					  <li class="tabeditprofile"><a id="btneditprofile" href="#">Edit</a></li>
+					  <li class="tabauthprofile"><a id="btnauthprofile" href="#">Accounts</a></li>
+					  <li class="tabhistory selected"><a id="btnhistory" href="#">Prizes</a></li>
+					</ul>
+					<div id="editprofile" class="tabpanel">
+						<label>Nickname:</label> <input id="nickname" class="nickname" />
+						<br/>
+						<label>Full Name:</label> <input id="name" class="name" />
+						<a id="btnsave" href="#" class="button" onclick="return false;">Save</a>
+						
+					</div>
+					<div id="authprofile" class="tabpanel">
+						<div style="float:left; width:50%;">
+						<p>Currently signed in with:</p>
+						<div id="authed"></div>
+						</div>
+						<div style="float:left;">
+						<p id="addservicecopy">Add services to share:</p>
+						<a id="addfacebook" href="#" class="button addservice fa fa-facebook-square" onclick="return false;"></a>
+						<a id="addtwitter" href="#" class="button addservice fa fa-twitter-square" onclick="return false;"></a>
+						<a id="addfoursquare" href="#" class="button addservice fa fa-foursquare" onclick="return false;"></a>
+						</div>
+					</div>
+					<div id="history" class="tabpanel">
+						<div id="ckprofile">
+							<ul class="checkins linearlist">
+								<!-- AJAX Data here -->
+							</ul>
+						</div>
+					</div>
+					
+					
+				</div>
+			</div>
+				
 			<div id="prize" class="panel">
 				<a class="back" href="#"><span class="fa fa-angle-left"> </span></a>
 				<h1 class="name"><!-- AJAX Data here --></h1>
@@ -270,6 +260,25 @@
 					</div>
 					<a class="mapdirections" href="#" target="_blank"><img id="staticmap" src=""/></a>
 				</div>
+			</div>
+			
+			<div id="checkin" class="panel">
+				<a class="back" href="#"><span class="fa fa-angle-left"></span></a>
+				<h1>Share</h1>
+				<p class="prizename"></p><a id="setpic" href="#"><img id="myImage" src="img/add_photo.png"/></a>
+				<textarea id="checkinComment">Comment</textarea>
+				
+				<div style="margin: 1% 5%;">
+					<img class="locationmap" src="" />
+					<div id="checkinAnonymous" class="button toggle fa fa-square-o"></div>
+					<label id="msgAnonymous">Do not post this location on The Prize Inside website.</label>
+					<div class="clearfix socialbreak"></div>
+					<div id="checkinTwitter" class="button share toggle selected fa fa-twitter"> </div>
+					<div id="checkinFacebook" class="button share toggle selected fa fa-facebook"> </div>
+					<div id="checkinFoursquare" class="button share toggle selected fa fa-foursquare"> </div>
+				</div>
+				<div class="clearfix"></div>
+				<a id="btnCheckin" href="#" class="button">Share</a>
 			</div>
 			
         </div>

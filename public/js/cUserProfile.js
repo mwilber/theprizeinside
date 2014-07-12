@@ -1,12 +1,228 @@
-function UserProfile(){this.panel=new Popup("userprofile");this.panel.elem.find(".close").click(this.Close(this));this.panel.elem.find("#btnsave").click(this.DoProfileSave(this));this.panel.elem.find("#showedit").click(this.ShowProfileEdit(this));this.panel.elem.find("#showview").click(this.ShowProfileView(this));this.panel.elem.find("#btnlogout").click(this.DoLogout(this));this.panel.elem.find("#addfacebook").click(this.DoLogin(this,"fb"));this.panel.elem.find("#addtwitter").click(this.DoLogin(this,
-"tw"));this.panel.elem.find("#addfoursquare").click(this.DoLogin(this,"fs"));this.ref=null}UserProfile.prototype.DoLogout=function(a){return function(){lsUserId=0;localStorage.userid=0;a.panel.Hide();return!1}};UserProfile.prototype.ShowProfileEdit=function(a){return function(){a.panel.elem.find("#viewprofile").hide();a.panel.elem.find("#editprofile").show();return!1}};
-UserProfile.prototype.ShowProfileView=function(a){return function(){a.panel.elem.find("#editprofile").hide();a.panel.elem.find("#viewprofile").show();return!1}};
-UserProfile.prototype.DoLogin=function(a,b){return function(){switch(b){case "fb":a.ref=window.open("http://theprizeinside.com/reactor/oauth/login/facebook/%20/"+lsUserId,"_blank","location=yes");break;case "tw":a.ref=window.open("http://theprizeinside.com/reactor/oauth/login/twitter/%20/"+lsUserId,"_blank","location=yes");break;case "fs":a.ref=window.open("http://theprizeinside.com/reactor/oauth/login/foursquare/%20/"+lsUserId,"_blank","location=yes")}a.ref.addEventListener("loadstop",a.HandleAuthPopup(a))}};
-UserProfile.prototype.HandleAuthPopup=function(a){return function(b){0<String(b.url).indexOf("oauth/profile")&&(b=String(b.url).split("/"),isNaN(parseInt(b[b.length-1]))||(lsUserId=parseInt(b[b.length-1]),localStorage.userid=parseInt(b[b.length-1]),a.ref.close(),panel.userprofile.Load()))}};
-UserProfile.prototype.DoProfileSave=function(a){return function(){$.post(apipath+"/reactor/profile/edit/"+a.panel.elem.find(".profileid").html(),{profileId:a.panel.elem.find(".profileid").html(),profileFullname:a.panel.elem.find("input.name").val(),profileNickname:a.panel.elem.find("input.nickname").val()},a.HandleProfileSave(a))}};UserProfile.prototype.HandleProfileSave=function(a){return function(){a.Load();return!1}};UserProfile.prototype.Close=function(a){return function(){a.panel.Hide();return!1}};
-UserProfile.prototype.Load=function(){0<lsUserId?(this.panel.elem.find(".checkins").html("Loading..."),this.panel.elem.find(".name").html("Loading..."),this.panel.elem.find(".nickname").html(""),this.panel.elem.find(".profileid").html(""),this.panel.elem.find(".avatar").attr("src",""),$("#authprofile a.button").show(),$("#authprofile #authed").empty(),$.get(apipath+"/reactor/srvlist/getprofile/"+lsUserId,this.HandleProfileData(this)),$.get(apipath+"/reactor/srvlist/getcheckinsbyuser/"+lsUserId,this.HandleCheckinData(this)),
-this.Show(),this.ShowProfileView(this)()):panel.userlogin.Load()};
-UserProfile.prototype.HandleProfileData=function(a){return function(b,c){DebugOut("prize data incoming...");DebugOut(b);a.panel.elem.find(".name").html(b.profile.profileFullname);a.panel.elem.find("input.name").val(b.profile.profileFullname);a.panel.elem.find(".nickname").html(b.profile.profileNickname);a.panel.elem.find("input.nickname").val(b.profile.profileNickname);a.panel.elem.find(".avatar").attr("src",b.profile.profilePicture);a.panel.elem.find(".profileid").html(b.profile.profileId);for(idx in b.profile.auth){var d=
-$("<div/>").addClass("fa");switch(b.profile.auth[idx].authService){case "Facebook":d.addClass("fa-facebook-square");$("#addfacebook").hide();break;case "Twitter":d.addClass("fa-twitter-square");$("#addtwitter").hide();break;case "Foursquare":d.addClass("fa-foursquare"),$("#addfoursquare").hide()}a.panel.elem.find("#authed").append(d)}a.panel.elem.find(".addservice").length>b.profile.auth.length&&a.panel.elem.find("#addservicecopy").show()}};
-UserProfile.prototype.HandleCheckinData=function(a){return function(b){DebugOut("checkin data incoming...");DebugOut(b);a.panel.elem.find("#checkincount .number").html(b.checkins.length);a.panel.elem.find(".checkins").empty();for(idx in b.checkins){var c=b.checkins[idx];a.panel.elem.find(".checkins").append($("<li>").append($("<div/>").addClass("details fa fa-caret-right")).append($("<div/>").addClass("icon").append($("<img/>").attr("src",c.checkinPhoto))).append($("<div/>").addClass("comment").html(c.checkinComment)).click(a.HandleCheckinClick(a,
-c)))}}};UserProfile.prototype.HandleCheckinClick=function(a,b){return function(a){panel.checkindetail.Load(b.checkinId);return!1}};UserProfile.prototype.Show=function(){this.panel.Show();return!0};
+function UserProfile(){
+    
+    this.panel = new Popup('userprofile');
+	
+	this.panel.elem.find('.close').click(this.Close(this));
+	
+	this.panel.elem.find('#btnsave').click(this.DoProfileSave(this));
+	this.panel.elem.find('#showedit').click(this.ShowProfileEdit(this));
+	this.panel.elem.find('#showview').click(this.ShowProfileView(this));
+	this.panel.elem.find('#btnlogout').click(this.DoLogout(this));
+	
+	this.panel.elem.find('#addfacebook').click(this.DoLogin(this,'fb'));
+	this.panel.elem.find('#addtwitter').click(this.DoLogin(this,'tw'));
+	this.panel.elem.find('#addfoursquare').click(this.DoLogin(this,'fs'));
+	
+	this.ref = null;
+}
+
+UserProfile.prototype.DoLogout = function(self){
+   return function(){
+       lsUserId = -1;
+       localStorage["userid"] = -1;
+       
+       if( lsUserId > 0 ){
+            $('#home .showuserprofile').addClass('fa-user');
+            $('#home .showuserprofile').removeClass('fa-sign-in');
+        }else{
+            $('#home .showuserprofile').addClass('fa-sign-in');
+            $('#home .showuserprofile').removeClass('fa-user');
+        }
+       
+       self.panel.Hide();
+       return false;
+   };
+};
+
+UserProfile.prototype.ShowProfileEdit = function(self){
+   return function(){
+       self.panel.elem.find('#viewprofile').hide();
+       self.panel.elem.find('#editprofile').show();
+       return false;
+   };
+};
+
+UserProfile.prototype.ShowProfileView = function(self){
+   return function(){
+       self.panel.elem.find('#editprofile').hide();
+       self.panel.elem.find('#viewprofile').show();
+       return false;
+   };
+};
+
+UserProfile.prototype.DoLogin = function(self,pPlatform){
+    return function(){
+
+        switch(pPlatform){
+            case 'fb':
+                self.ref = window.open('http://theprizeinside.com/reactor/oauth/login/facebook/%20/'+lsUserId, '_blank', 'location=yes');
+                break;
+            case 'tw':
+                self.ref = window.open('http://theprizeinside.com/reactor/oauth/login/twitter/%20/'+lsUserId, '_blank', 'location=yes');
+                break;
+            case 'fs':
+                self.ref = window.open('http://theprizeinside.com/reactor/oauth/login/foursquare/%20/'+lsUserId, '_blank', 'location=yes');
+                break;
+        }
+
+        self.ref.addEventListener('loadstop', self.HandleAuthPopup(self));
+
+    };
+};
+
+UserProfile.prototype.HandleAuthPopup = function(self){
+	return function(event){
+	//alert('url: '+event.url);
+    if( String(event.url).indexOf('oauth/profile' ) > 0 ){
+        var aviam= String(event.url).split("/");
+        if( !isNaN(parseInt(aviam[aviam.length-1])) ){
+            //alert("Profile found: "+aviam[aviam.length-1]); 
+            lsUserId = parseInt(aviam[aviam.length-1]);
+            localStorage["userid"] = parseInt(aviam[aviam.length-1]);
+            self.ref.close();
+            
+            if( lsUserId > 0 ){
+                $('#home .showuserprofile').addClass('fa-user');
+                $('#home .showuserprofile').removeClass('fa-sign-in');
+            }else{
+                $('#home .showuserprofile').addClass('fa-sign-in');
+                $('#home .showuserprofile').removeClass('fa-user');
+            }
+            
+            panel['userprofile'].Load();
+        }
+    }
+	};
+};
+
+UserProfile.prototype.DoProfileSave = function(self){
+	return function(){
+		
+		//self.panel.elem.find('input.name').val(response.profile.profileFullname);
+        //self.panel.elem.find('input.nickname').val(response.profile.profileNickname);
+        $.post(apipath+'/reactor/profile/edit/'+self.panel.elem.find('.profileid').html(),{
+            profileId: self.panel.elem.find('.profileid').html(),
+            profileFullname: self.panel.elem.find('input.name').val(),
+            profileNickname: self.panel.elem.find('input.nickname').val()
+        },self.HandleProfileSave(self));
+	};
+};
+
+UserProfile.prototype.HandleProfileSave = function(self){
+   return function(){
+       self.Load();
+       return false;
+   };
+};
+
+UserProfile.prototype.Close = function(self){
+   return function(){
+       self.panel.Hide();
+       return false;
+   };
+};
+
+UserProfile.prototype.Load = function(){
+
+	if( lsUserId > 0 ){
+		
+		this.panel.elem.find('.checkins').html("Loading...");
+		this.panel.elem.find('.name').html("Loading...");
+		this.panel.elem.find('.nickname').html("");
+		this.panel.elem.find('.profileid').html("");
+		this.panel.elem.find('.avatar').attr('src','');
+		$('#authprofile a.button').show();
+		$('#authprofile #authed').empty();
+		
+	    $.get(apipath+'/reactor/srvlist/getprofile/'+lsUserId,this.HandleProfileData(this));
+	    $.get(apipath+'/reactor/srvlist/getcheckinsbyuser/'+lsUserId,this.HandleCheckinData(this));
+	    this.Show();
+	    var patsy = this.ShowProfileView(this);
+	    patsy();
+	    
+	}else{
+	    panel['userlogin'].Load();
+	}
+};
+
+UserProfile.prototype.HandleProfileData = function(self){
+    return function(response, textStatus) {
+    	DebugOut("prize data incoming...");
+        DebugOut(response);
+
+        self.panel.elem.find('.name').html(response.profile.profileFullname);
+        self.panel.elem.find('input.name').val(response.profile.profileFullname);
+		self.panel.elem.find('.nickname').html(response.profile.profileNickname);
+		self.panel.elem.find('input.nickname').val(response.profile.profileNickname);
+		self.panel.elem.find('.avatar').attr('src',response.profile.profilePicture);
+		self.panel.elem.find('.profileid').html(response.profile.profileId);
+		
+		for( idx in response.profile.auth ){
+		  var tmpAuthMarker = $('<div/>').addClass('fa');
+		  
+		  switch(response.profile.auth[idx].authService){
+		      case 'Facebook':
+		          tmpAuthMarker.addClass('fa-facebook-square');
+		          $('#addfacebook').hide();
+		          break;
+		      case 'Twitter':
+                  tmpAuthMarker.addClass('fa-twitter-square');
+                  $('#addtwitter').hide();
+                  break;
+              case 'Foursquare':
+                  tmpAuthMarker.addClass('fa-foursquare');
+                  $('#addfoursquare').hide();
+                  break;
+		  }
+		
+		  self.panel.elem.find('#authed').append(tmpAuthMarker);
+		}
+		
+		if(self.panel.elem.find('.addservice').length > response.profile.auth.length){
+			self.panel.elem.find('#addservicecopy').show();
+		}
+    };
+};
+
+UserProfile.prototype.HandleCheckinData = function(self){
+    return function(response) {
+    	DebugOut("checkin data incoming...");
+        DebugOut(response);
+        
+        self.panel.elem.find('#checkincount .number').html(response.checkins.length);
+        
+        self.panel.elem.find('.checkins').empty();
+         for( idx in response.checkins ){
+             var value = response.checkins[idx];
+             self.panel.elem.find('.checkins').append($('<li>')
+                 .append(
+                     $('<div/>').addClass('details fa fa-caret-right')
+                 )
+                 .append(
+                     $('<div/>').addClass('icon').append($('<img/>').attr('src',value.checkinPhoto))
+                 )
+                 .append(
+                     $('<div/>').addClass('comment').html(value.checkinComment)
+                 )
+                 .click(self.HandleCheckinClick(self,value))
+            ); 
+         }
+    };
+};
+
+UserProfile.prototype.HandleCheckinClick = function(self,pCheckin){
+	return function(event){
+		panel['checkindetail'].Load(pCheckin.checkinId);
+        return false;
+	};
+};
+
+
+UserProfile.prototype.Show = function(){
+    
+    //$('#header').show();
+    
+    this.panel.Show();
+    
+    return true;
+};

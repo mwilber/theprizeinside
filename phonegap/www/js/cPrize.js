@@ -268,27 +268,44 @@ Prize.prototype.HandleCheckinDetail = function(self,pCheckin){
                  )
             );
         }
+        
+       
+        var profilePic = response.profile.profilePicture;
+        if( profilePic == undefined ){
+            profilePic = "img/anonymous-user.png";
+        }
+        var profileName = response.profile.profileNickname;
+        var countDisplay = "block";
+        if( profileName == undefined ){
+            profileName = "Anonymous";
+            countDisplay = "none";
+        }
+        
+        
+        
+
         self.panel.elem.find('#comments .detail').append(
-                $('<li>').addClass('profile')
-                 .append(
-                     $('<img/>').addClass('avatar').attr('src',response.profile.profilePicture)
-                 )
-                 .append(
-                     $('<div/>')
-                        .css('float','left')
-                        .append(
-                            $('<h2/>').addClass('nickname').html(response.profile.profileNickname)
-                        )
-                        .append(
-                             $('<div/>')
-                                .addClass('checkincount')
-                                .append(
-                                    $('<span/>').addClass('number').html(response.profile.count)
-                                )
-                                .append('Prizes')
-                         )
-                 )
-            );
+            $('<li>').addClass('profile')
+             .append(
+                 $('<img/>').addClass('avatar').attr('src',profilePic)
+             )
+             .append(
+                 $('<div/>')
+                    .css('float','left')
+                    .append(
+                        $('<h2/>').addClass('nickname').html(profileName)
+                    )
+                    .append(
+                         $('<div/>')
+                            .css('display',countDisplay)
+                            .addClass('checkincount')
+                            .append(
+                                $('<span/>').addClass('number').html(response.profile.count)
+                            )
+                            .append('Prizes')
+                     )
+             )
+        );
         
         
         
