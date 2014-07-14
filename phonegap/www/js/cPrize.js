@@ -167,10 +167,12 @@ Prize.prototype.Load = function(pPrize){
     if( wallmap ) this.PlaceVenueMarkers(this);
     
     // Get the checkin comments
+    this.CloseCheckinDetail();
     this.LoadCheckinData();
 };
 
 Prize.prototype.LoadCheckinData = function(){
+	
 	this.panel.elem.find('#comments ul').empty().append($('<li/>').html('loading...'));
 	$.get(apipath+'/reactor/srvlist/getcheckinsbyprize/'+this.prizeid,this.HandleCheckinData(this));
 };
@@ -233,10 +235,16 @@ Prize.prototype.HandleCheckinClick = function(self,pCheckin){
 Prize.prototype.HandleCheckinDetailClose = function(self,pCheckin){
     return function(event){
         //Hide the panel
-        self.panel.elem.find('.checkins').css('left','0%');
-        self.panel.elem.find('.detail').css('left','100%');
+        self.CloseCheckinDetail();
         return false;
     };
+};
+
+Prize.prototype.CloseCheckinDetail = function(){
+    //Hide the panel
+    this.panel.elem.find('.checkins').css('left','0%');
+    this.panel.elem.find('.detail').css('left','100%');
+    return false;
 };
 
 Prize.prototype.HandleCheckinDetail = function(self,pCheckin){
@@ -303,7 +311,7 @@ Prize.prototype.HandleCheckinDetail = function(self,pCheckin){
                             .append(
                                 $('<span/>').addClass('number').html(response.profile.count)
                             )
-                            .append('Prizes')
+                            .append(' Prizes')
                      )
              )
         );

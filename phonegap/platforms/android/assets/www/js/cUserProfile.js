@@ -1,8 +1,10 @@
 function UserProfile(){
     
-    this.panel = new Popup('userprofile');
+    this.panel = new Panel('userprofile');
+    this.backId = "home";
 	
-	this.panel.elem.find('.close').click(this.Close(this));
+	//this.panel.elem.find('.close').click(this.Close(this));
+	this.panel.elem.find('.back').click(this.Back(this));
 	
 	this.panel.elem.find('#btnsave').click(this.DoProfileSave(this));
 	this.panel.elem.find('#showedit').click(this.ShowProfileEdit(this));
@@ -13,14 +15,79 @@ function UserProfile(){
 	this.panel.elem.find('#addtwitter').click(this.DoLogin(this,'tw'));
 	this.panel.elem.find('#addfoursquare').click(this.DoLogin(this,'fs'));
 	
+	this.panel.elem.find('#btneditprofile').click(this.ShowEdit(this));
+	this.panel.elem.find('#btnauthprofile').click(this.ShowAuth(this));
+	this.panel.elem.find('#btnhistory').click(this.ShowHistory(this));
+	
 	this.ref = null;
 }
 
+UserProfile.prototype.Back = function(self){
+   return function(){
+       panel[self.backId].Show();
+       return false;
+   };
+};
+
+UserProfile.prototype.ShowEdit = function(self){
+   return function(){
+       self.HideTabPanels();
+       self.panel.elem.find('.tabeditprofile').addClass('selected');
+	   self.panel.elem.find('#editprofile').show();
+	   
+		if(gaPlugin){
+    		gaPlugin.trackEvent( GASuccess, GAFail, "Profile", "ShowEdit", "", 1);
+		}else{
+	    	_gaq.push(['_trackEvent', 'Profile', 'ShowEdit', '']);
+	    }
+       return false;
+   };
+};
+
+UserProfile.prototype.ShowAuth = function(self){
+   return function(){
+       self.HideTabPanels();
+       self.panel.elem.find('.tabauthprofile').addClass('selected');
+	   self.panel.elem.find('#authprofile').show();
+	   
+		if(gaPlugin){
+    		gaPlugin.trackEvent( GASuccess, GAFail, "Profile", "ShowEdit", "", 1);
+		}else{
+	    	_gaq.push(['_trackEvent', 'Profile', 'ShowEdit', '']);
+	    }
+       return false;
+   };
+};
+
+UserProfile.prototype.ShowHistory = function(self){
+   return function(){
+       self.HideTabPanels();
+       self.panel.elem.find('.tabhistory').addClass('selected');
+	   self.panel.elem.find('#history').show();
+	   
+		if(gaPlugin){
+    		gaPlugin.trackEvent( GASuccess, GAFail, "Profile", "ShowHistory", "", 1);
+		}else{
+	    	_gaq.push(['_trackEvent', 'Profile', 'ShowHistory', '']);
+	    }
+       return false;
+   };
+};
+
 UserProfile.prototype.DoLogout = function(self){
    return function(){
-       lsUserId = 0;
-       localStorage["userid"] = 0;
-       self.panel.Hide();
+       lsUserId = -1;
+       localStorage["userid"] = -1;
+       
+       if( lsUserId > 0 ){
+            $('#home .showuserprofile').addClass('fa-user');
+            $('#home .showuserprofile').removeClass('fa-sign-in');
+        }else{
+            $('#home .showuserprofile').addClass('fa-sign-in');
+            $('#home .showuserprofile').removeClass('fa-user');
+        }
+       
+       panel[self.backId].Show();
        return false;
    };
 };
@@ -71,6 +138,15 @@ UserProfile.prototype.HandleAuthPopup = function(self){
             lsUserId = parseInt(aviam[aviam.length-1]);
             localStorage["userid"] = parseInt(aviam[aviam.length-1]);
             self.ref.close();
+            
+            if( lsUserId > 0 ){
+                $('#home .showuserprofile').addClass('fa-user');
+                $('#home .showuserprofile').removeClass('fa-sign-in');
+            }else{
+                $('#home .showuserprofile').addClass('fa-sign-in');
+                $('#home .showuserprofile').removeClass('fa-user');
+            }
+            
             panel['userprofile'].Load();
         }
     }
@@ -107,6 +183,11 @@ UserProfile.prototype.Close = function(self){
 UserProfile.prototype.Load = function(){
 
 	if( lsUserId > 0 ){
+		
+		// hide the tab panels
+		this.HideTabPanels();
+		this.panel.elem.find('#history').show();
+		this.panel.elem.find('.tabhistory').addClass('selected');
 		
 		this.panel.elem.find('.checkins').html("Loading...");
 		this.panel.elem.find('.name').html("Loading...");
@@ -171,7 +252,7 @@ UserProfile.prototype.HandleCheckinData = function(self){
     	DebugOut("checkin data incoming...");
         DebugOut(response);
         
-        self.panel.elem.find('#checkincount .number').html(response.checkins.length);
+        self.panel.elem.find('#btnhistory').html(response.checkins.length+' Prizes');
         
         self.panel.elem.find('.checkins').empty();
          for( idx in response.checkins ){
@@ -197,6 +278,12 @@ UserProfile.prototype.HandleCheckinClick = function(self,pCheckin){
 		panel['checkindetail'].Load(pCheckin.checkinId);
         return false;
 	};
+};
+
+UserProfile.prototype.HideTabPanels = function()
+{
+	this.panel.elem.find('.tabpanel').hide();
+	this.panel.elem.find('.tabs li').removeClass('selected');
 };
 
 

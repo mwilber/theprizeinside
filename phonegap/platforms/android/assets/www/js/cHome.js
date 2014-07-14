@@ -47,7 +47,7 @@ Home.prototype.HandlePrizeData = function(self){
         
         prizedata = response;
         QueryLocation();
-        locationTimer = window.setInterval(QueryLocation,LOCATION_CK_INTERVAL);
+        //locationTimer = window.setInterval(QueryLocation,LOCATION_CK_INTERVAL);
         
         self.panel.elem.find('.prizes').empty();
          for( idx in response ){
@@ -102,6 +102,14 @@ Home.prototype.Show = function(){
             localStorage["firstrun"] = true;
             panel['info'].Show();
         }
+    }
+    
+    if( lsUserId > 0 ){
+        this.panel.elem.find('.showuserprofile').addClass('fa-user');
+        this.panel.elem.find('.showuserprofile').removeClass('fa-sign-in');
+    }else{
+        this.panel.elem.find('.showuserprofile').addClass('fa-sign-in');
+        this.panel.elem.find('.showuserprofile').removeClass('fa-user');
     }
     
     //$('#header').show();
