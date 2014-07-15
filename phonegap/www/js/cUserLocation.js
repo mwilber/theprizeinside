@@ -68,7 +68,17 @@ UserLocation.prototype.Show = function(){
     
     //$('#header').show();
     
-    this.panel.Show();
+    //this.panel.Show();
+    
+    DebugOut('showing popup: '+this.panel.elem.attr('id'));
+    
+    this.panel.elem.show();
+    
+    if(gaPlugin){
+    	gaPlugin.trackEvent( GASuccess, GAFail, "PopupShow", this.panel.elem.attr('id'), "", 1);
+    }else{
+    	_gaq.push(['_trackEvent', 'PopupShow', this.panel.elem.attr('id'), '']);
+    }
     
     return true;
 };
