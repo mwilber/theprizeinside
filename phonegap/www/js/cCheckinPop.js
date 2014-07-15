@@ -41,7 +41,7 @@ CheckinPop.prototype.HandleCheckinData = function(self){
 	        var mapOffsetX = ($(window).width()*.25)-150;
 	        var mapOffsetY = ($(window).height()*.1)+50;
 	        wallmap.setCenter(new google.maps.LatLng(response.checkin.checkinLat,response.checkin.checkinLng));
-	        wallmap.setZoom(17);
+	        wallmap.setZoom(8);
 	        wallmap.panBy(-mapOffsetX, -mapOffsetY);
 	    }
         
