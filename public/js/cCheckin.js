@@ -8,6 +8,7 @@ function Checkin(){
 	this.panel.elem.find('.close').click(this.Close(this));
 	
 	this.panel.elem.find('#setpic').click(this.TakePhoto(this));
+	this.panel.elem.find('#setlib').click(this.GetLib(this));
 	
 	this.panel.elem.find('#btnCheckin').click(this.DoCheckin(this));
 	
@@ -45,8 +46,21 @@ Checkin.prototype.TakePhoto = function(self){
   			saveToPhotoAlbum: false
     	    });
 	};
-	 
+};
 
+Checkin.prototype.GetLib = function(self){
+    return function(){
+        navigator.camera.getPicture(self.onSuccess, self.onFail, { 
+            sourceType: navigator.camera.PictureSourceType.SAVEDPHOTOALBUM,
+            quality: 80,
+            destinationType: destinationType.DATA_URL,
+            correctOrientation: true,
+            encodingType: Camera.EncodingType.JPEG,
+            targetWidth: 1024,
+            targetHeight: 1024,
+            saveToPhotoAlbum: false
+            });
+    };
 };
 
 Checkin.prototype.DoCommentFocus = function(self){

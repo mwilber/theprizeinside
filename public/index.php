@@ -46,6 +46,8 @@
 		}else{
 			$social['image'] = $checkin['checkinPhoto'];
 		}
+		
+		mysql_close($conn);
 	}
 
 ?>

@@ -58,7 +58,8 @@ CheckinDetail.prototype.Load = function(pId){
 
 CheckinDetail.prototype.SetPosition = function(){
 	
-	this.panel.elem.css("margin-top",Math.floor( (panel['home'].panel.elem.height()-this.panel.elem.height())/3) );
+	this.panel.elem.find('.scrollholder').css("height",Math.floor( (this.panel.elem.height()*.95) ));
+	//this.panel.elem.css("margin-top",Math.floor( (panel['home'].panel.elem.height()-this.panel.elem.height())/3) );
 };
 
 CheckinDetail.prototype.HandleCheckinData = function(self){

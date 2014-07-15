@@ -9,6 +9,7 @@ function Checkin(){
 	//this.panel.elem.find('.close').click(this.Close(this));
 	this.panel.elem.find('.back').click(this.Back(this));
 	this.panel.elem.find('#setpic').click(this.TakePhoto(this));
+	this.panel.elem.find('#setlib').click(this.GetLib(this));
 	this.panel.elem.find('#btnCheckin').click(this.DoCheckin(this));
 	this.panel.elem.find('.button.toggle').click(DoToggle(this));
 	this.panel.elem.find('#checkinComment').focus(this.DoCommentFocus(this)).blur(this.DoCommentFocus(this));
@@ -54,6 +55,21 @@ Checkin.prototype.TakePhoto = function(self){
 
 };
 
+Checkin.prototype.GetLib = function(self){
+    return function(){
+        navigator.camera.getPicture(self.onSuccess, self.onFail, { 
+            sourceType: navigator.camera.PictureSourceType.SAVEDPHOTOALBUM,
+            quality: 80,
+            destinationType: destinationType.DATA_URL,
+            correctOrientation: true,
+            encodingType: Camera.EncodingType.JPEG,
+            targetWidth: 1024,
+            targetHeight: 1024,
+            saveToPhotoAlbum: false
+            });
+    };
+};
+
 Checkin.prototype.DoCommentFocus = function(self){
 	return function(){
 		if( self.panel.elem.find('#checkinComment').val() == lang.commentDefault ){
@@ -79,9 +95,14 @@ Checkin.prototype.onSuccess = function(imageData) {
 	if(img.width > img.height){
 		$('#myImage').css('height', $('#setpic').height()+"px");
 		$('#myImage').css('margin-left', -(  ((img.width*($('#setpic').height()/img.height))-$('#setpic').width())/2  )+"px");
-	}else{		
-		$('#myImage').css('margin-top', Math.floor(-(  ((img.height*($('#setpic').width()/img.width))-$('#setpic').height())/2  ))+"px");
+	}else{	
+		//-(  ((1024*(96/768))-96)/2  )
+		//-(  ((1024*0.125)-96)/2  )
+		//-(  (128-96)/2  )
+		//-(  32/2  ) 
+		//console.log("-(  (("+img.height+"*("+$('#setpic').width()+"/"+img.width+"))-"+$('#setpic').height()+")/2  ))");
 		$('#myImage').css('width', $('#setpic').width()+"px");
+		$('#myImage').css('margin-top', Math.floor(-(  ((img.height*($('#setpic').width()/img.width))-$('#setpic').height())/2  ))+"px");
 	}
 	
 	

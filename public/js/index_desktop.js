@@ -2,8 +2,8 @@ var LOCATION_CK_INTERVAL = 15000;
 var DISTANCE_CHANGE_REFRESH_THRESHOLD = 10;
 var CHECKIN_NOTIFICATION_THRESHOLD = 0.05;
 
-var apipath = "http://theprizeinside.com";
-//var apipath = "http://gibson.loc/theprizeinside";
+//var apipath = "http://theprizeinside.com";
+var apipath = "http://gibson.loc/theprizeinside/public";
 //var apipath = "https://rippleapi.herokuapp.com/xhr_proxy?tinyhippos_apikey=ABC&tinyhippos_rurl=https%3A//theprizeinside.com";
 //var apipath = "http://localhost/theprizeinside/public";
 var isMobile = false;
@@ -73,7 +73,7 @@ function WallMapInit(){
 	
 	var latlng = new google.maps.LatLng(40.6687125,-73.5270709);
     var myOptions = {
-      zoom: 15,
+      zoom: 12,
       center: latlng,
       mapTypeId: google.maps.MapTypeId.ROADMAP,
       scrollwheel: true,

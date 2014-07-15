@@ -121,16 +121,19 @@ class SrvList extends CI_Controller {
 		$result->status = 0;
 		
 		$this->load->model('checkin_model'); 
-		$result->checkins = $this->checkin_model->Get(array('checkinAnonymous'=>0,'limit'=>10,'offset'=>0,'sortBy'=>'checkinTimeStamp','sortDirection'=>'DESC'));
+		$tmpCheckin = $this->checkin_model->Get(array('checkinAnonymous'=>0,'limit'=>10,'offset'=>0,'sortBy'=>'checkinTimeStamp','sortDirection'=>'DESC'));
+		$result->checkins = array();
 
 		// Sanetize anonymous postings
-		foreach($result->checkins as $checkin){
+		foreach($tmpCheckin as $checkin){
 			unset($checkin->profileId);
 			if( $checkin->checkinAnonymous == 1 ){
 				$checkin->checkinLocation = "";
 				$checkin->checkinLat = "";
 				$checkin->checkinLng = "";
 			}
+			if( $checkin->checkinLat != 0 && $checkin->checkinLng != 0 )
+			$result->checkins[] = $checkin; 
 		}
 		
 		header('Content-type: application/json');
