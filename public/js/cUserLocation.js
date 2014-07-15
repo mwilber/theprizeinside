@@ -70,14 +70,14 @@ UserLocation.prototype.Show = function(){
     
     //this.panel.Show();
     
-    DebugOut('showing popup: '+this.elem.attr('id'));
+    DebugOut('showing popup: '+this.panel.elem.attr('id'));
     
-    this.elem.show();
+    this.panel.elem.show();
     
     if(gaPlugin){
-    	gaPlugin.trackEvent( GASuccess, GAFail, "PopupShow", this.elem.attr('id'), "", 1);
+    	gaPlugin.trackEvent( GASuccess, GAFail, "PopupShow", this.panel.elem.attr('id'), "", 1);
     }else{
-    	_gaq.push(['_trackEvent', 'PopupShow', this.elem.attr('id'), '']);
+    	_gaq.push(['_trackEvent', 'PopupShow', this.panel.elem.attr('id'), '']);
     }
     
     return true;
