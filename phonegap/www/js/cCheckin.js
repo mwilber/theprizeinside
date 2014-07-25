@@ -95,6 +95,8 @@ Checkin.prototype.onSuccess = function(imageData) {
 	if(img.width > img.height){
 		$('#myImage').css('height', $('#setpic').height()+"px");
 		$('#myImage').css('margin-left', -(  ((img.width*($('#setpic').height()/img.height))-$('#setpic').width())/2  )+"px");
+		$('#myImage').css('margin-top','0px');
+		$('#myImage').css('margin-left','0px');
 	}else{	
 		//-(  ((1024*(96/768))-96)/2  )
 		//-(  ((1024*0.125)-96)/2  )
@@ -103,6 +105,8 @@ Checkin.prototype.onSuccess = function(imageData) {
 		//console.log("-(  (("+img.height+"*("+$('#setpic').width()+"/"+img.width+"))-"+$('#setpic').height()+")/2  ))");
 		$('#myImage').css('width', $('#setpic').width()+"px");
 		$('#myImage').css('margin-top', Math.floor(-(  ((img.height*($('#setpic').width()/img.width))-$('#setpic').height())/2  ))+"px");
+		$('#myImage').css('margin-top','0px');
+		$('#myImage').css('margin-left','0px');
 	}
 	
 	
@@ -216,6 +220,9 @@ Checkin.prototype.Load = function(pPrize, pLocation){
 	    ////////////////////////////////////////////
 	    //this.onSuccess(this.dummyphoto);
 	    ////////////////////////////////////////////
+	    
+	    $('#myImage').css('height', $('#setpic').height()+"px");
+	    $('#myImage').css('width', $('#setpic').width()+"px");
 	    
 	    this.Show(); 
 	}else{

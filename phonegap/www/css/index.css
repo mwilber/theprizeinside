@@ -1334,6 +1334,7 @@ a.postshare{
 #share{
 	top:5%;
 	bottom:auto;
+	z-index: 3500;
 }
 
 #share ul{
