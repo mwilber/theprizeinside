@@ -3,8 +3,8 @@
 	$social = array();
 	$social['title'] = "The Prize Inside";
 	$social['description'] = "When a burger is a burger, and fries make no difference, choose your fast food by The Prize Inside!";
-	$social['image'] = "http://theprizeinside.com/img/fb_icon.png";
-	$social['link'] = "http://theprizeinside.com/";
+	$social['image'] = "http://www.theprizeinside.com/img/fb_icon.png";
+	$social['link'] = "http://www.theprizeinside.com/";
 	
 	if(isset($_GET['ck'])){
 	

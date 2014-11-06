@@ -52,7 +52,7 @@
 	var DISTANCE_CHANGE_REFRESH_THRESHOLD = 10;
 	var CHECKIN_NOTIFICATION_THRESHOLD = 0.05;
 
-	var apipath = "http://theprizeinside.com";
+	var apipath = "http://theprizeinside.herokuapp.com";
 	//var apipath = "http://gibson.loc/theprizeinside/public";
 	var isMobile = true;
 	var userLocation = new google.maps.LatLng(0,0);
