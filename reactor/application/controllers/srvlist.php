@@ -29,7 +29,7 @@ class SrvList extends CI_Controller {
 			}
 		}
 
-		header('Access-Control-Allow-Origin: *');
+		//header('Access-Control-Allow-Origin: *');
 		header('Content-type: application/json');
 		echo json_encode($data);
 	}
@@ -48,7 +48,7 @@ class SrvList extends CI_Controller {
 			$prize->checkins = $this->checkin_model->Get(array('prizeId'=>$prize->prizeId, 'limit'=>10, 'sortBy'=>'checkinTimeStamp','sortDirection'=>'DESC'));
 		}
 
-		header('Access-Control-Allow-Origin: *');
+		//header('Access-Control-Allow-Origin: *');
 		header('Content-type: application/json');
 		echo json_encode($data);
 	}
@@ -68,7 +68,7 @@ class SrvList extends CI_Controller {
 			}
 		}
 
-		header('Access-Control-Allow-Origin: *');
+		//header('Access-Control-Allow-Origin: *');
 		header('Content-type: application/json');
 		echo json_encode($result);
 	}
@@ -92,7 +92,7 @@ class SrvList extends CI_Controller {
 			}
 		}
 
-		header('Access-Control-Allow-Origin: *');
+		//header('Access-Control-Allow-Origin: *');
 		header('Content-type: application/json');
 		echo json_encode($result);
 	}
@@ -116,7 +116,7 @@ class SrvList extends CI_Controller {
 			}
 		}
 
-		header('Access-Control-Allow-Origin: *');
+		//header('Access-Control-Allow-Origin: *');
 		header('Content-type: application/json');
 		echo json_encode($result);
 	}
@@ -141,7 +141,7 @@ class SrvList extends CI_Controller {
 			$result->checkins[] = $checkin;
 		}
 
-		header('Access-Control-Allow-Origin: *');
+		//header('Access-Control-Allow-Origin: *');
 		header('Content-type: application/json');
 		echo json_encode($result);
 	}
@@ -178,7 +178,7 @@ class SrvList extends CI_Controller {
 			$result->profile->profileFullname = "";
 		}
 
-		header('Access-Control-Allow-Origin: *');
+		//header('Access-Control-Allow-Origin: *');
 		header('Content-type: application/json');
 		echo json_encode($result);
 	}
