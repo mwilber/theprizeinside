@@ -1,0 +1,295 @@
+/* Mobile Web ----------- */
+
+#btncomments{
+	/*visibility: hidden;*/
+}
+
+#locationoptions .showcheckin, #home .showuserprofile, #prize .showcheckin{
+	display:none;
+}
+
+.panel .header a.showwebsite, .panel .header a.showinfo {
+	margin-right: 0px;
+}
+
+.panel .header a.showuserlocation {
+	margin-right: 75px;
+}
+
+.popup {
+	-webkit-box-shadow: 0px 0px 100px 50px rgba(0,0,0,0.7);
+	box-shadow: 0px 0px 100px 50px rgba(0,0,0,0.7);
+}
+
+.panel h1 span.dsk{
+	display:none;
+}
+.panel h1 span.mob{
+	display:inline;
+}
+
+#share{
+	top:20%;
+	bottom:auto;
+	left:50%;
+	margin-left:-150px;
+}
+
+#prize #locations .lopt .share {
+	color:#999;
+}
+
+/* Desktop ----------- */
+@media only screen 
+	and (min-width : 900px) {
+	/* Styles */
+	
+	#header.header{
+		display:block;
+		z-index:10;
+		top:0px;
+		left:0px;
+		margin:0px;
+		padding:0px;
+		width:100%;
+		height:75px;
+		-webkit-box-shadow: 0px 0px 8px 4px rgba(0,0,0,0.8);
+		box-shadow: 0px 0px 8px 4px rgba(0,0,0,0.8);
+	}
+	
+	#header.header img{
+		width:100%;
+	}
+	
+	#logo {
+		width: 315px;
+		position: absolute;
+		top: 0px;
+		left: 6%;
+		display: block;
+		background: transparent;
+		z-index:100;
+	}
+	#header.header #logo img {
+		width: auto;
+	}
+	
+	#header.header a{
+		position: absolute;
+		font-size: 50px;
+		line-height: 75px;
+		width: 100px;
+	}
+	
+	#header.header a.showuserlocation{
+		right:100px;
+	}
+	
+	#container{
+		
+	}
+	
+	#container{
+		position: absolute;
+		top:100px;
+		left:2%;
+		width:380px;
+		height:480px;
+		min-height:0;
+		z-index:100;
+		-webkit-box-shadow: 0px 0px 10px 5px rgba(0,0,0,0.2);
+		box-shadow: 0px 0px 10px 5px rgba(0,0,0,0.2);
+	}
+	
+	.panel{
+		height:100%;
+		min-height:0;
+	}
+	
+	.panel h1 {
+		font-size: 14px;
+		line-height: 14px;
+		padding: 10px 0px;
+	}
+	
+	.panel h1 span.mob{
+		display:none;
+	}
+	.panel h1 span.dsk{
+		display:inline;
+	}
+	
+	.panel .linearlist li .icon {
+		font-size: 32px;
+		margin: 0px 7px 0px 0px;
+		padding: 3px;
+	}
+	.panel .linearlist li .restaurant {
+		font-weight: normal;
+		font-size: 12px;
+		line-height: 14px;
+	}
+	.panel .linearlist li .prize {
+		font-size: 18px;
+	}
+	.panel .linearlist li {
+		padding: 10px 10px 10px 10px;
+		min-height: 40px;
+	}
+	.panel .linearlist li .details {
+		font-size: 45px;
+		margin-top: 0px;
+	}
+	a.back span {
+		font-size: 32px;
+		margin-top: -8px;
+	}
+	
+	.panel .header{
+		display:none;
+		height:0px;
+	}
+	
+	.panel .header a {
+		width: 75px;
+		font-size: 40px;
+		line-height: 70px;
+	}
+	.panel .header a.showdirections, .panel .header a.showwebsite, .panel .header a.showinfo{
+		margin-right:75px;
+	}
+	.panel .header a.showuserlocation{
+		margin-right:150px;
+	}
+	
+	.panel .header {
+		height: 75px;
+	}
+	
+	a.back{
+		padding: 7px 10px;
+		margin: 0px;
+	}
+	.panel .tabs li a {
+		font-size: 14px;
+	}
+	.panel .linearlist li, .popup .linearlist li {
+		font-size: 14px;
+	}
+	
+	.panel .content{
+		margin-top:0px;
+	}
+	
+	.panel .tabs li, .panel .tabs li:last-child{
+		width:50%;
+	}
+	
+	.panel .tabs li.tabmap{
+		display:none;
+	}
+	
+	a.close {
+		padding: 0px 15px;
+		line-height: 35px;
+	}
+	
+	a.close span {
+		font-size: 40px;
+		line-height: 45px;
+	}
+	.popup h1 {
+	font-size: 25px;
+	line-height: 45px;
+	}
+	
+	#prize .checkins li{
+		min-height: 65px;
+	}
+	
+	#wallmap{
+		position:absolute;
+		width:100%;
+		height:100%;
+		
+		background:#ccccff;
+		display:none;
+	}
+	
+	#location .content .vcard p {
+		margin: 0px 5px;
+		font-size: 12px;
+	}
+	
+	#checkin #msgAnonymous {
+		font-size: 14px;
+		line-height: 18px;
+	}
+	
+	.popup {
+		top: 5%;
+		left: 50%;
+		width: 550px;
+		margin-left:-275px;
+		-webkit-box-shadow: 0px 0px 100px 50px rgba(0,0,0,0.7);
+		box-shadow: 0px 0px 100px 50px rgba(0,0,0,0.7);
+	}
+	
+	#checkindetail {
+		top: 5%;
+		-webkit-box-shadow: 0px 0px 350px 350px rgba(0,0,0,0.7);
+		box-shadow: 0px 0px 350px 350px rgba(0,0,0,0.7);
+	}
+	
+	.messagebox {
+		bottom: 40%;
+		font-size: 18px;
+		width: 300px;
+		right: 25%;
+		height: auto;
+		top: initial;
+		left: initial;
+		-webkit-box-shadow: 0px 0px 20px 10px rgba(0,0,0,0.1);
+		box-shadow: 0px 0px 20px 10px rgba(0,0,0,0.1);
+	}
+	
+	#locationoptions .vcard p {
+		font-size: 16px;
+		line-height:18px;
+	}
+	
+	#locationoptions .vcard {
+	width: 90%;
+	margin: 15px 5% 0px 5%;
+	padding: 25px 0px 5px 0px;
+	font-size: 35px;
+	border-width: 5px;
+	}
+	
+	#locationoptions .button {
+		font-size: 20px;
+	}
+	
+	#comments .checkins .comment {
+		width: 70%;
+	}
+	
+	/*#footer a.gz {
+		height: 22px;
+		line-height: 18px;
+		font-size: 18px;
+		padding: 5px 10px 5px 0px;
+	}
+	
+	#footer a.gz .badge {
+		width: 22px;
+		height: 22px;
+		font-size: 22px;
+		margin-left: 0px;
+		margin-right: 0px;
+		line-height: 32px;
+		padding: 4px 15px;
+	}*/
+	
+
+}

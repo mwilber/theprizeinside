@@ -1,0 +1,56 @@
+<html>
+	<head>
+		<script type="text/javascript">
+		
+			Number.prototype.toRad = function() {
+			   return this * Math.PI / 180;
+			}
+			
+			function roundNumber(number, digits) {
+	            var multiple = Math.pow(10, digits);
+	            var rndedNum = Math.round(number * multiple) / multiple;
+	            return rndedNum;
+	        }
+		
+			function CalcDistance(lat2, lon2, lat1, lon1){
+				
+				var R = 6371; // km 
+				//var x1 = lat2-lat1;
+				var x1 = roundNumber(lat2,7)-roundNumber(lat1,7);
+				var dLat = x1.toRad();  
+				var x2 = roundNumber(lon2,7)-roundNumber(lon1,7);
+				var dLon = x2.toRad(); 
+				console.log(roundNumber(lat2,7));
+				console.log(lat2+"-"+lat1);
+				console.log(x1);
+				console.log(dLat);
+				console.log(x2);
+				console.log(dLon);
+				var a = Math.sin(dLat/2) * Math.sin(dLat/2) + 
+				                Math.cos(lat1.toRad()) * Math.cos(lat2.toRad()) * 
+				                Math.sin(dLon/2) * Math.sin(dLon/2);  
+				var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+				var d = R * c; 
+				
+				return d;
+			}
+			
+			// Set a fallback location 40.7406941, -73.9905943 
+			// Location: 40.67857830000001, -73.5421847
+			
+			//38.421645570890554 
+			//38.42164557089027 
+			
+			//0.000011119492794399347 
+			//0.000022238985588798694 
+			
+			//console.log(CalcDistance(40.7406941,-73.9905943,40.67857830000001,-73.5421847));
+			
+			console.log("distance: "+CalcDistance(40.67857830110001,-73.5421847,40.67857830000001,-73.5421847));
+			
+		</script>
+	</head>
+	<body>
+		
+	</body>
+</html>
