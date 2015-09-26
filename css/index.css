@@ -103,13 +103,13 @@ h1 {
     50% { opacity: 0.4; }
     to { opacity: 1.0; }
 }
- 
+
 @-webkit-keyframes fade {
     from { opacity: 1.0; }
     50% { opacity: 0.4; }
     to { opacity: 1.0; }
 }
- 
+
 .blink {
     animation:fade 3000ms infinite;
     -webkit-animation:fade 3000ms infinite;
@@ -126,7 +126,7 @@ h1 {
 
 .smooth_zoom_preloader {
 		background-image: url(../images/preloader.gif);
-	}	
+	}
 	.smooth_zoom_icons {
 		background-image: url(../images/icons.png);
 	}
@@ -151,6 +151,10 @@ html, body{
 	padding: 10px 0px;
 	top:0px;
 	right:0px;
+}
+
+#banner_group{
+    display:none;
 }
 
 #container{
@@ -382,7 +386,7 @@ a.close, a.postshare{
 	width:auto;
 	text-transform: uppercase;
 	color:#161008;
-	
+
 }
 
 a.postshare{
@@ -495,7 +499,7 @@ a.postshare{
 }
 
 .panel .linearlist li, .popup .linearlist li{
-	border-bottom: solid 1px #161008;	
+	border-bottom: solid 1px #161008;
 	margin-top: 0px;
 	display:block;
 	padding: 20px 30px 20px 30px;
@@ -525,7 +529,7 @@ a.postshare{
 }
 
 .popup .linearlist li .simplistics{
-	margin-right:10px;	
+	margin-right:10px;
 }
 
 .panel .linearlist li .icon, .popup .linearlist li .icon{
@@ -759,7 +763,7 @@ a.postshare{
 	float: left;
 	width: 45px;
 	height: 45px;
-	margin: 0px 10px;	
+	margin: 0px 10px;
 }
 
 #checkindetail .profile .nickname{
@@ -802,8 +806,8 @@ a.postshare{
 }
 
 .button.toggle.selected{
-	
-	
+
+
 	color: #FFFFB2;
 	border-color: #161008;
 	background-color: #161008;
@@ -863,7 +867,7 @@ a.postshare{
 }
 
 #userprofile .name{
-	margin: 0px;	
+	margin: 0px;
 }
 
 #userprofile .avatar, #userprofile .profileid{
@@ -940,7 +944,7 @@ a.postshare{
 #userprofile #showedit {
 	font-size: 18px;
 }
-	
+
 #userprofile .avatar {
 	width: 50px;
 	height: 50px;
@@ -1147,15 +1151,15 @@ a.postshare{
 {
 	background-color: #5B6664;
 	-moz-border-radius: 10px;
-	border-radius: 10px; 
+	border-radius: 10px;
 }
 
 #info .jspTrack
 {
 	background-color: transparent;
-	background-color: rgba(91, 102, 100, 0.5); 
+	background-color: rgba(91, 102, 100, 0.5);
 	-moz-border-radius: 10px;
-	border-radius: 10px; 
+	border-radius: 10px;
 }
 
 #info .jspCap
@@ -1282,7 +1286,7 @@ a.postshare{
 
 
 #prize #comments ul.detail .prizecomment{
-	
+
 }
 
 #prize #comments ul.detail .prizeimage{
@@ -1309,7 +1313,7 @@ a.postshare{
 	float: left;
 	width: 45px;
 	height: 45px;
-	margin: 0px 10px;	
+	margin: 0px 10px;
 }
 
 #prize #comments ul.detail .profile .nickname{
@@ -1464,7 +1468,7 @@ line-height: 18px;
 	float: left;
 	width: 25px;
 	height: 25px;
-	margin: 0px 10px;	
+	margin: 0px 10px;
 }
 
 #checkinpop .profile .nickname{
@@ -1604,7 +1608,7 @@ a.postshare span {
 
 .panel {
 	background: #fafafa;
-	
+
 }
 
 .popup {
@@ -1640,10 +1644,10 @@ a.postshare span {
 
 
 /* Smartphones (portrait) ----------- */
-@media only screen 
+@media only screen
 	and (max-width : 900px) {
 	/* Styles */
-	
+
 	.panel h1 {
 		font-size: 24px;
 		line-height: 26px;
@@ -1690,7 +1694,7 @@ a.postshare span {
 	.panel .header a.showuserlocation{
 		margin-right:150px;
 	}
-	
+
 	.panel .header {
 		height: 75px;
 	}
@@ -1700,141 +1704,141 @@ a.postshare span {
 	.panel .linearlist li, .popup .linearlist li {
 		font-size: 20px;
 	}
-	
+
 	.panel .content{
 		margin-top:75px;
 	}
-	
+
 	a.close, a.postshare {
 		padding: 0px 10px;
 		line-height: 42px;
 	}
-	
+
 	a.close span, a.postshare span {
 		font-size: 40px;
 		line-height: 45px;
 	}
-	
+
 	a.postshare span {
 	font-size: 36px;
 	line-height: 48px;
 	}
-	
+
 	.popup h1 {
 		font-size: 26px;
 		line-height: 50px;
 	}
-	
+
 	#prize .checkins li{
 		min-height: 65px;
 	}
-	
+
 	#locationoptions .vcard p {
 		font-size: 20px;
 	}
-	
+
 	#locationoptions .button {
 		font-size: 22px;
 	}
-	
+
 	#location .content .vcard p {
 		margin: 0px 5px;
 		font-size: 12px;
 	}
-	
+
 	#userlocation .locmessage {
 	font-size: 18px;
 	}
-	
+
 	#userlocation #loctext {
 	width: 80%;
 	}
-	
+
 	#userprofile #ckprofile .checkins .comment, #comments .checkins .comment {
 	float: left;
 	width: 65%;
 	}
-	
+
 	#checkin #msgAnonymous {
 		font-size: 14px;
 		line-height: 18px;
 	}
-	
+
 	#checkindetail .prizecomment {
 		margin: 5px 15% 10px 15%;
 		font-size: 14px;
 	}
-	
+
 	#checkindetail .prizename {
 		font-size: 20px;
 		line-height: 22px;
 	}
-	
+
 	#checkindetail .restaurantname {
 	font-size: 16px;
 	line-height: 16px;
 	}
-	
+
 	#checkindetail .profile .avatar {
 	width: 35px;
 	height: 35px;
 	margin: 0px 5px 0px 10px;
 	}
-	
+
 	#checkindetail .profile .nickname {
 	font-size: 25px;
 	line-height: 19px;
 	}
-	
+
 	#checkindetail .profile .checkincount {
 	font-size: 14px;
 	}
-	
-	
-	
-	
+
+
+
+
 	#prize #comments ul.detail .prizecomment {
-		
+
 	}
-	
+
 	#prize #comments ul.detail .prizename {
 		width: 45%;
 		font-size: 20px;
 		line-height: 22px;
 	}
-	
+
 	#prize #comments ul.detail .restaurantname {
 	font-size: 16px;
 	line-height: 16px;
 	}
-	
+
 	#prize #comments ul.detail .profile .avatar {
 	width: 35px;
 	height: 35px;
 	margin: 0px 5px 0px 10px;
 	}
-	
+
 	#prize #comments ul.detail .profile .nickname {
 	font-size: 18px;
 	line-height: 19px;
 	}
-	
+
 	#prize #comments ul.detail .profile .checkincount {
 	font-size: 14px;
 	}
-	
-	
-	
+
+
+
 	#footer{
 		height: 28px;
 	}
-	
+
 	#footer a.gz {
 		line-height: 23px;
 		font-size: 16px;
 		padding: 1px 10px 6px 0px;
 	}
-	
+
 	#footer a.gz .badge {
 		font-size: 20px;
 		margin-left: 0px;
@@ -1842,53 +1846,53 @@ a.postshare span {
 		line-height: 23px;
 		padding: 5px 11px;
 	}
-	
+
 
 }
 
 /* Smartphones (super-small/iphone) ----------- */
-@media only screen 
+@media only screen
 	and (max-width : 500px) {
-		
+
 	.panel h1 {
 		font-size: 18px;
 	}
-		
+
 	.panel .header #prizephoto {
 		top: -100px;
 	}
-	
+
 	#info #aboutbox p {
 	font-size: 18px;
 	}
-	
+
 	#userprofile #checkincount {
 		width: 50px;
 		height: 50px;
 		margin: 0px 10px;
 	}
-	
+
 	#userprofile #checkincount .number {
 	font-size: 40px;
 	line-height: 16px;
 	margin-top: 10px;
 	}
-	
+
 	#userprofile #authprofile p {
 	margin: 0px;
 	font-size: 13px;
 	}
-	
+
 	#userprofile #authprofile .button {
 		font-size: 36px;
 		margin: 5px 0px;
 		padding: 5px 10px;
 	}
-	
+
 	#userprofile #authprofile, #userprofile .historytitle {
 	margin-top:10px;
 	}
-	
+
 	#userprofile #ckprofile {
 		/*height: 100px;*/
 	}
@@ -1897,7 +1901,7 @@ a.postshare span {
 		width:50px;
 		height:50px;
 	}
-	
+
 	#userprofile #ckprofile .checkins .comment{
 		font-size:18px;
 	}
@@ -1906,31 +1910,31 @@ a.postshare span {
 		font-size: 60px;
 		margin-top: 0px;
 	}
-	
+
 	#userprofile #ckprofile .checkins li {
 		min-height: 60px;
 	}
-	
+
 	#userprofile #btnlogout {
 		/*margin: 10px 4% 10px 4%;
 		padding: 5px 0px;*/
 	}
-	
+
 	#checkin .prizename {
 	font-size: 24px;
 	margin: 10px 0px 4% 4%;
 	}
-	
+
 	#checkin .socialbreak {
 	margin: 1%;
 	}
-	
+
 	#checkin textarea {
 	font-size: 18px;
 	margin: 0px 5%;
 	height: 50px;
 	}
-	
+
 	#checkin #checkinAnonymous {
 	width: auto;
 	float: left;
@@ -1939,35 +1943,35 @@ a.postshare span {
 	border: none;
 	padding: 5px 10px;
 	}
-	
+
 	#checkin .locationmap {
 		margin: 0px 4% 0px 0%;
 	}
-	
+
 	#checkin .button.toggle.share {
 	margin: 0px 5px;
 	font-size: 24px;
 	padding: 5px 15px;
 	}
-	
+
 	#checkin #btnCheckin {
 		margin: 4% 4% 2% 4%;
 		padding: 5px 0px;
 	}
-	
+
 	#userlocation .gpserror {
 		font-size: 24px;
 	}
-	
+
 	#userlocation #locsearchbox #btnlocsearch {
 		padding: 5px 10px;
 	}
-	
+
 	#userlocation #loctext {
 		padding: 5px 15px;
 		font-size: 24px;
 	}
-	
+
 	.panel .linearlist li .prize {
 		font-size: 22px;
 		line-height: 24px;
@@ -1976,23 +1980,23 @@ a.postshare span {
 		text-overflow: ellipsis;
 		height: 24px;
 	}
-	
+
 	#userprofile #authed div {
 		font-size: 36px;
 		margin: 10px 5px;
 	}
-	
+
 	#userlogin ul {
 		list-style: none;
 		margin: 20px 0px;
 		padding: 0px;
 	}
-	
+
 	#userlocation #locsearchbox #btngpssearch{
 		font-size:24px;
 		padding: 5px 20px;
 	}
-	
+
 	#lightbox img{
 		margin-top:20%;
 	}
@@ -2000,10 +2004,10 @@ a.postshare span {
 }
 
 /* Desktop ----------- */
-@media only screen 
+@media only screen
 	and (min-width : 900px) {
 	/* Styles */
-	
+
 	#header.header{
 		display:block;
 		z-index:10;
@@ -2016,12 +2020,12 @@ a.postshare span {
 		-webkit-box-shadow: 0px 0px 8px 4px rgba(0,0,0,0.8);
 		box-shadow: 0px 0px 8px 4px rgba(0,0,0,0.8);
 	}
-	
+
 	#header.header img{
 		width:100%;
 		margin-top: -350px;
 	}
-	
+
 	#header.header #logo {
 		width: 214px;
 		position: absolute;
@@ -2033,22 +2037,22 @@ a.postshare span {
 	#header.header #logo img {
 		width: auto;
 	}
-	
+
 	#header.header a{
 		position: absolute;
 		font-size: 50px;
 		line-height: 75px;
 		width: 100px;
 	}
-	
+
 	#header.header a.showuserlocation{
 		right:100px;
 	}
-	
+
 	#container{
-		
+
 	}
-	
+
 	#container{
 		position: absolute;
 		top:100px;
@@ -2060,25 +2064,25 @@ a.postshare span {
 		-webkit-box-shadow: 0px 0px 10px 5px rgba(0,0,0,0.2);
 		box-shadow: 0px 0px 10px 5px rgba(0,0,0,0.2);
 	}
-	
+
 	.panel{
 		height:100%;
 		min-height:0;
 	}
-	
+
 	.panel h1 {
 		font-size: 14px;
 		line-height: 14px;
 		padding: 10px 0px;
 	}
-	
+
 	.panel h1 span.mob{
 		display:none;
 	}
 	.panel h1 span.dsk{
 		display:inline;
 	}
-	
+
 	.panel .linearlist li .icon {
 		font-size: 32px;
 		margin: 0px 7px 0px 0px;
@@ -2104,12 +2108,12 @@ a.postshare span {
 		font-size: 32px;
 		margin-top: -8px;
 	}
-	
+
 	.panel .header{
 		display:none;
 		height:0px;
 	}
-	
+
 	.panel .header a {
 		width: 75px;
 		font-size: 40px;
@@ -2121,11 +2125,11 @@ a.postshare span {
 	.panel .header a.showuserlocation{
 		margin-right:150px;
 	}
-	
+
 	.panel .header {
 		height: 75px;
 	}
-	
+
 	a.back{
 		padding: 7px 10px;
 		margin: 0px;
@@ -2136,62 +2140,62 @@ a.postshare span {
 	.panel .linearlist li, .popup .linearlist li {
 		font-size: 14px;
 	}
-	
+
 	.panel .content{
 		margin-top:0px;
 	}
-	
+
 	.panel .tabs li, .panel .tabs li:last-child{
 		width:50%;
 	}
-	
+
 	.panel .tabs li.tabmap{
 		display:none;
 	}
-	
+
 	a.close, a.postshare {
 		padding: 0px 15px;
 		line-height: 35px;
 	}
-	
+
 	a.close span, a.postshare span {
 		font-size: 40px;
 		line-height: 45px;
 	}
-	
+
 	a.postshare span {
 	font-size: 36px;
 	line-height: 48px;
 	}
-	
+
 	.popup h1 {
 	font-size: 25px;
 	line-height: 45px;
 	}
-	
+
 	#prize .checkins li{
 		min-height: 65px;
 	}
-	
+
 	#wallmap{
 		position:absolute;
 		width:100%;
 		height:100%;
-		
+
 		background:#ccccff;
 		display:none;
 	}
-	
+
 	#location .content .vcard p {
 		margin: 0px 5px;
 		font-size: 12px;
 	}
-	
+
 	#checkin #msgAnonymous {
 		font-size: 14px;
 		line-height: 18px;
 	}
-	
+
 	.popup {
 		top: 5%;
 		left: 50%;
@@ -2200,17 +2204,17 @@ a.postshare span {
 		-webkit-box-shadow: 0px 0px 100px 50px rgba(0,0,0,0.7);
 		box-shadow: 0px 0px 100px 50px rgba(0,0,0,0.7);
 	}
-	
+
 	#checkindetail {
 		top: 5%;
 		-webkit-box-shadow: 0px 0px 350px 350px rgba(0,0,0,0.7);
 		box-shadow: 0px 0px 350px 350px rgba(0,0,0,0.7);
 	}
-	
+
 	#checkindetail .prizename {
-		
+
 	}
-	
+
 	.messagebox {
 		bottom: 40%;
 		font-size: 18px;
@@ -2222,12 +2226,12 @@ a.postshare span {
 		-webkit-box-shadow: 0px 0px 20px 10px rgba(0,0,0,0.1);
 		box-shadow: 0px 0px 20px 10px rgba(0,0,0,0.1);
 	}
-	
+
 	#locationoptions .vcard p {
 		font-size: 16px;
 		line-height:18px;
 	}
-	
+
 	#locationoptions .vcard {
 	width: 90%;
 	margin: 15px 5% 0px 5%;
@@ -2235,22 +2239,22 @@ a.postshare span {
 	font-size: 35px;
 	border-width: 5px;
 	}
-	
+
 	#locationoptions .button {
 		font-size: 20px;
 	}
-	
+
 	#comments .checkins .comment {
 		width: 70%;
 	}
-	
+
 	/*#footer a.gz {
 		height: 22px;
 		line-height: 18px;
 		font-size: 18px;
 		padding: 5px 10px 5px 0px;
 	}
-	
+
 	#footer a.gz .badge {
 		width: 22px;
 		height: 22px;
@@ -2260,6 +2264,6 @@ a.postshare span {
 		line-height: 32px;
 		padding: 4px 15px;
 	}*/
-	
+
 
 }

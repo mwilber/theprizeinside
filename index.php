@@ -5,58 +5,58 @@
 	$social['description'] = "When a burger is a burger, and fries make no difference, choose your fast food by The Prize Inside!";
 	$social['image'] = "http://www.theprizeinside.com/img/fb_icon.png";
 	$social['link'] = "http://www.theprizeinside.com/";
-	
+
 	if(isset($_GET['ck'])){
-	
+
 		include('reactor/application/config/constants.php');
 		include('reactor/application/config/database.php');
 		include('reactor/application/helpers/idobfuscator_helper.php');
-		
+
 		$_GET['ck'] = IdObfuscator::decode($_GET['ck']);
-		
+
 		//echo $_GET['ck'];
-		
-		$conn = mysql_connect($db['default']['hostname'], $db['default']['username'], $db['default']['password']) 
+
+		$conn = mysql_connect($db['default']['hostname'], $db['default']['username'], $db['default']['password'])
 	  		or die("Unable to connect to MySQL");
-			
+
 		//select a database to work with
-		$dbc = mysql_select_db($db['default']['database'],$conn) 
+		$dbc = mysql_select_db($db['default']['database'],$conn)
 		  or die("Could not select examples");
-		
+
 		$sql = "SELECT tblCheckin.checkinId,tblCheckin.profileId,checkinLat,checkinLng,checkinComment,checkinPhoto,checkinTimeStamp,restaurantName,prizeName,profileNickname,profilePicture FROM tblCheckin INNER JOIN tblRestaurant ON tblCheckin.restaurantId=tblRestaurant.restaurantId INNER JOIN tblPrize ON tblCheckin.prizeId=tblPrize.prizeId LEFT JOIN tblProfile ON tblCheckin.profileId=tblProfile.profileId WHERE checkinId=".$_GET['ck'];
 		//echo $sql;
 		$checkinRS = mysql_query($sql);
 		$checkin = mysql_fetch_assoc($checkinRS);
-		
+
 		if( $checkin['profileId'] ){
 			$profileRS = mysql_query("SELECT COUNT(*) FROM tblCheckin WHERE profileId = ".$checkin['profileId']);
 			$profile = mysql_fetch_array($profileRS);
 		}else{
 			$profile = 0;
 		}
-				
+
 		if( $checkin['prizeName'] == "" ){
 			$checkin['prizeName']=$social['title'];
 		}else{
 			$social['title'] = $checkin['prizeName'];
 		}
-		
+
 		if( $checkin['checkinPhoto'] == "" ){
 			$checkin['checkinPhoto']=$social['image'];
 		}else{
 			$social['image'] = $checkin['checkinPhoto'];
 		}
-		
+
 		mysql_close($conn);
 	}
 
 ?>
 <!DOCTYPE html>
 <html>
-    <head>       
+    <head>
 	    <meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	
+
 		<title><?=$social['title']?></title>
 		<meta name="description" content="<?=$social['description']?>">
 		<meta name="author" content="Matthew Wilber">
@@ -67,8 +67,8 @@
 		<meta property="og:site_name" content="<?=$social['title']?>" />
 		<meta property="fb:admins" content="631337813" />
 		<meta property="og:description" content="<?=$social['description']?>" />
-		
-		
+
+
 		<!-- Twitter Summary Card -->
 		<meta name="twitter:card" content="summary">
 		<meta name="twitter:site" content="@greenzeta">
@@ -77,13 +77,13 @@
 		<meta name="twitter:creator" content="@tpiapp">
 		<meta name="twitter:image:src" content="<?=$social['image']?>">
 		<meta name="twitter:domain" content="theprizeinside.com">
-		
+
 		<!-- Twitter App Card -->
 		<meta name="twitter:card" content="app">
 		<meta name="twitter:app:id:iphone" content="id650582612">
 		<meta name="twitter:app:id:ipad" content="id650582612">
 		<meta name="twitter:app:id:googleplay" content="com.greenzeta.greenzeta.theprizeinside">
-        
+
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, target-densitydpi=device-dpi" />
 		<link href='fonts/opensans_regular_macroman/stylesheet.css' rel='stylesheet' type='text/css'>
 		<link href='fonts/opensans_bold_macroman' rel='stylesheet' type='text/css'>
@@ -92,14 +92,14 @@
         <link rel="stylesheet" type="text/css" href="css/index.css" />
         <link rel="stylesheet" type="text/css" href="css/index_desktop.css" />
         <title>The Prize Inside</title>
-        
+
         <script type="text/javascript">
 		var social = [];
 			social['title'] = "The Prize Inside";
 			social['description'] = "Choose your fast food by the prize inside.";
 			social['image'] = "http://theprizeinside.com/img/fb_icon.png";
 			social['link'] = "http://theprizeinside.com/";
-			
+
 		</script>
     </head>
     <body>
@@ -111,19 +111,19 @@
 			<a class="showuserlocation fa fa-location-arrow" target="_blank"> </a>
 			<a class="showinfo fa fa-info-circle" target="_blank"> </a>
         </div>
-        
+
         <div id="wallmap"></div>
-        
+
         <div id="info" class="popup">
 			<a class="close" href="#"><span class="fa fa-times"></span></a>
 			<h1>About</h1>
 			<div id="aboutbox" class="scroll-pane">
 				<p>When a burger is a burger, and fries make no difference, choose your fast food by The Prize Inside!</p>
 				<p>The Prize Inside helps you find a place to eat based on their kids&rsquo; meal premiums. Find the prize you want and locate the nearest restaurant. Browse other user&rsquo;s comments before you go. While you&rsquo;re there, use the mobile app to share your find on The Prize Inside website and social networks.</p>
-				<p>The Prize Inside was created by Internet software developer Matthew Wilber. For more information, visit <a href="#" onclick="window.open('http://www.greenzeta.com', '_system'); _gaq.push(['_trackEvent', 'External', 'mwilber.com', '']); return false;">greenzeta.com</a>.</p>			
+				<p>The Prize Inside was created by Internet software developer Matthew Wilber. For more information, visit <a href="#" onclick="window.open('http://www.greenzeta.com', '_system'); _gaq.push(['_trackEvent', 'External', 'mwilber.com', '']); return false;">greenzeta.com</a>.</p>
 			</div>
 		</div>
-		
+
 		<div id="app" class="popup">
 			<a class="close" href="#"><span class="fa fa-times"></span></a>
 			<h1>APPs</h1>
@@ -134,7 +134,7 @@
 	   			<li><a href="https://itunes.apple.com/us/app/the-prize-inside/id650582612?ls=1&mt=8" target="_blank"><img src="img/appstore.png" style="height:55px;"/></a></li>
 			</ul>
 		</div>
-		
+
 		<div id="checkindetail" class="popup">
 			<a class="close" href="#"><span class="fa fa-times"></span></a>
 			<a class="postshare" href="#"><span class="fa fa-share-square-o"></span></a>
@@ -142,7 +142,7 @@
 			<h2 class="prizename"><?= (isset($checkin['prizeName']))?$checkin['prizeName']:'' ?></h2>
 			<img class="prizeimage" src="<?= (isset($checkin['checkinPhoto']))?$checkin['checkinPhoto']:'' ?>" />
 			<p class="prizecomment"><?= (isset($checkin['checkinComment']))?$checkin['checkinComment']:'' ?></p>
-			
+
 			<h3 class="restaurantname"><?= (isset($checkin['restaurantName']))?$checkin['restaurantName']:'' ?></h3>
 			<img class="locationmap" style="<?php if($checkin['checkinLat'] == 0 && $checkin['checkinLng']==0) echo "display:none;" ?>" src="http://maps.googleapis.com/maps/api/staticmap?zoom=5&size=300x100&maptype=roadmap&markers=color:red%7Clabel:C%7C<?= (isset($checkin['checkinLat']))?$checkin['checkinLat']:'' ?>,<?= (isset($checkin['checkinLng']))?$checkin['checkinLng']:'' ?>&sensor=false" />
 			<div class="profile">
@@ -155,7 +155,7 @@
 				</div>
 			</div>
 		</div>
-		
+
 		<div id="share" class="messagebox">
 			<a class="close" href="#"><span class="fa fa-times"></span></a>
 			<h1>Share</h1>
@@ -167,8 +167,61 @@
 			</ul>
 		</div>
 
+		<div id="banner_group" style="height: 90px; margin-bottom: 0px;">
+		<div id="gzad_container" style="position:absolute; z-index:10000; margin: 0px; width: 378px; height:90px; -webkit-transition: height 0.25s linear 0.25s, -webkit-transform 0.25s linear 0.25s; transition: height 0.25s linear 0.25s, transform 0.25s linear 0.25s;">
+		<a id="banner_close" href="#" onclick="GZAD_collapse(); return false;" class="banner_close fa fa-times" style="margin-top:75px; margin-left:90%; display: none; position: absolute; width: auto; height: auto; z-index: 60000; background: #000; border-radius: 50%; border: solid 2px #fff; color: #fff; font-size: 24px; font-weight: bold; text-decoration: none; text-align: center; line-height: 32px;"></a>
+		<iframe id="gzad_banner" src="" scrolling="no" border="0" marginwidth="0" style="width:100%; height:100%; border:solid 1px #e3343f; margin-bottom:20px; position: absolute; padding:0px; overflow: hidden; -webkit-transition: height 0.25s linear 0.25s, -webkit-transform 0.25s linear 0.25s; transition: height 0.25s linear 0.25s, transform 0.25s linear 0.25s;  -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;" frameborder="0"></iframe>
+		</div>
+		</div>
+		<script type="text/javascript">
+			function GZAD_externallink(pURL){
+				//'?utm_source=gzad&utm_medium=app&utm_campaign=gzad_banner'
+				window.open(pURL,'_system');
+			}
+
+			function GZAD_expand(){
+				//alert('expand here');
+				//$('#banner_group').addClass('expanded');
+				document.getElementById('gzad_container').style.height = '620px';
+				document.getElementById('banner_close').style.display = "block";
+			}
+
+			function GZAD_collapse(){
+				//alert('expand here');
+				document.getElementById('gzad_container').style.height = '90px';
+				document.getElementById('banner_close').style.display = "none";
+			}
+			//$(document).ready(function(){
+				var al = 'https://s3.amazonaws.com/gzads/live.html';
+				var ifrm = document.getElementById('gzad_banner');
+				var request = new XMLHttpRequest();
+				request.open('GET', al, true);
+
+				request.onload = function() {
+					if (request.status >= 200 && request.status < 400) {
+						// Success!
+						ifrm = (ifrm.contentWindow) ? ifrm.contentWindow : (ifrm.contentDocument.document) ? ifrm.contentDocument.document : ifrm.contentDocument;
+						ifrm.document.open();
+						ifrm.document.write(request.responseText);
+						ifrm.document.close();
+					} else {
+						// We reached our target server, but it returned an error
+						document.getElementById('gzad_banner').src = 'https://s3.amazonaws.com/gzads/backup.html';
+					}
+				};
+
+				request.onerror = function() {
+					// There was a connection error of some sort
+					document.getElementById('gzad_banner').src = 'https://s3.amazonaws.com/gzads/backup.html';
+				};
+
+				request.send();
+
+			//});
+		</script>
+
         <div id="container">
- 
+
 			<div id="home" class="panel">
 				<h1 class="name"><span class="mob">The Prize Inside</span><span class="dsk">Prizes</span></h1>
 				<div class="header">
@@ -183,7 +236,7 @@
 				</ul>
 				</div>
 			</div>
-			
+
 			<div id="prize" class="panel">
 				<a class="back" href="#"><span class="fa fa-angle-left"> </span></a>
 				<h1 class="name"><!-- AJAX Data here --></h1>
@@ -209,10 +262,10 @@
 			  <div id="comments" class="tabpanel">
 				<ul class="checkins linearlist"><!-- AJAX Data here --></ul>
 				<ul class="detail linearlist"><!-- AJAX Data here --></ul>
-			  </div> 
+			  </div>
 			  </div>
 			</div>
-			
+
 			<div id="location" class="panel">
 				<a class="back" href="#"><span class="fa fa-angle-left"></span></a>
 				<h1 class="name"><!-- AJAX Data here --></h1>
@@ -234,13 +287,13 @@
 					<a class="mapdirections" href="#" target="_blank"><img id="staticmap" src=""/></a>
 				</div>
 			</div>
-			
+
 			<div id="checkin" class="popup">
 				<a class="close" href="#"><span class="fa fa-times"></span></a>
 				<h1>Share</h1>
 				<p class="prizename"></p><a id="setpic" href="#"><img id="myImage" src="img/add_photo.png"/></a>
 				<textarea id="checkinComment">Comment</textarea>
-				
+
 				<div style="margin: 1% 5%;">
 					<img class="locationmap" src="" />
 					<div id="checkinAnonymous" class="button toggle fa fa-square-o"></div>
@@ -253,9 +306,9 @@
 				<div class="clearfix"></div>
 				<a id="btnCheckin" href="#" class="button">Share</a>
 			</div>
-			
-			
-			
+
+
+
 			<div id="userprofile" class="popup">
 				<a class="close" href="#"><span class="fa fa-times"> </span></a>
 				<h1>Profile</h1>
@@ -299,7 +352,7 @@
 				</div>
 				<a id="btnlogout" href="#" class="button" onclick="return false;">Log Out</a>
 			</div>
-			
+
 			<div id="userlogin" class="popup">
 				<a class="close" href="#"><span class="fa fa-times"></span></a>
 				<h1>Login</h1>
@@ -312,11 +365,11 @@
 					<a href="#" onclick="window.open('http://theprizeinside.com/policy.php', '_system'); _gaq.push(['_trackEvent', 'External', 'Policy', '']); return false;">Privacy Policy</a>
 				</p>
 			</div>
-			
-			
-			
+
+
+
         </div>
-        
+
         <div id="userlocation" class="popup">
 			<a class="close" href="#"><span class="fa fa-times"> </span></a>
 			<h1>Set Location</h1>
@@ -330,7 +383,7 @@
 			<img class="locationmap" src="" />
 			<a class="location" href="#" onclick="return false;">Location: <span> </span></a>
 		</div>
-		
+
 		<div id="locationoptions" class="messagebox">
 			<a class="close" href="#"><span class="fa fa-times"></span></a>
 			<img id="streetview" src=""/>
@@ -344,12 +397,12 @@
 				</p>
 				<p class="tel"></p>
 			</div>
-			
+
 			<a class="showdirections button"><span class="fa fa-road"></span>&nbsp;&nbsp;Driving Directions</a>
 			<a class="showcheckin button"><span class="fa fa-thumbs-up"></span>&nbsp;&nbsp;Share</a>
 			<a class="showwebsite button"><span class="fa fa-globe"></span>&nbsp;&nbsp;Website</a>
 		</div>
-		
+
 		<div id="checkinpop" class="messagebox arrow_box">
 			<p class="prizecomment"><?= (isset($checkin['checkinComment']))?$checkin['checkinComment']:'' ?></p>
 			<img class="prizeimage" src="<?= (isset($checkin['checkinPhoto']))?$checkin['checkinPhoto']:'' ?>" />
@@ -361,9 +414,9 @@
 				<div style="float:left;">
 					<h2 class="nickname"><?= (isset($checkin['profileNickname']))?$checkin['profileNickname']:'' ?></h2>
 				</div>
-			</div>	
+			</div>
 		</div>
-        
+
         <div id="footer">
         	<a href="#" onclick="window.open('policy.php', '_system'); _gaq.push(['_trackEvent', 'External', 'Privacy Policy', '']); return false;" class="policy">
 				Privacy Policy
@@ -373,7 +426,7 @@
 				&nbsp;&nbsp;A GreenZeta Production
 			</a>
         </div>
-        
+
         <script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>
         <script type="text/javascript" src="js/jquery.mousewheel.js"></script>
         <script type="text/javascript" src="js/jquery.jscrollpane.min.js"></script>
@@ -395,25 +448,25 @@
 	    <script src="js/cLocationOptions.js"></script>
 	    <script src="js/cCheckinPop.js"></script>
 		<script src="js/cShare.js"></script>
-		
+
 		<script type="text/javascript" src="js/socialshare.js"></script>
 		<script type="text/javascript" src="js/util.js"></script>
         <script type="text/javascript" src="js/index_desktop.js"></script>
-        
+
         <script type="text/javascript">
-		
+
 		  var _gaq = _gaq || [];
 		  _gaq.push(['_setAccount', 'UA-76054-17']);
 		  _gaq.push(['_trackPageview']);
-		
+
 		  (function() {
 		    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
 		    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
 		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 		  })();
-		
+
 		</script>
-        
+
         <script type="text/javascript">
         	$(document).ready(function(){
         		AppInit();
@@ -423,35 +476,35 @@
 				}else{
 					//$('meta[name="viewport"]').attr('content', 'user-scalable=no, width=600');
 				}
-				
+
 				$('.showapp').click(function(){
 					panel['app'].Load();
 				});
-				
+
 				$('.showinfo').click(function(){
 					panel['info'].Load();
 				});
-				
+
 				$('.showuserlocation').click(function(){
 					panel['userlocation'].Load();
 				});
-				
+
 				$( window ).resize(function() {
 					if((!wallmap)&&($(window).width() > 900)) WallMapInit();
-					
+
 					// Resize home listing
 					var offsetheight =  $('#home .header').height()+$('#home .name').height()+$('#footer').height()+(parseInt($('#home .name').css('padding-top'))*2);
     				if( $(window).width() > 900 ) offsetheight = $('#home .name').height()+(parseInt($('#home .name').css('padding-top'))*2);
     				$('#home .content').css('height',($('#home').height()-offsetheight)+"px");
-					
+
 					// Resize prize listing
 					offsetheight =  $('#prize .header').height()+$('#prize .tabs').height()+$('#footer').height()+$('#prize .name').height()+(parseInt($('#prize .name').css('padding-top'))*2);
 				    if( $(window).width() > 900 ) offsetheight =  $('#prize .tabs').height()+$('#prize .name').height()+(parseInt($('#prize .name').css('padding-top'))*2);
 				    $('#prize .tabpanel').css('width',$('#prize').width()+"px");
 				    $('#prize .tabpanel, #prize #comments ul.detail').css('height',($('#prize').height()-offsetheight)+"px");
-					
+
 				});
-				
+
 				<?= (isset($checkin))?"panel['checkindetail'].Show();":"" ?>
         	});
         </script>
