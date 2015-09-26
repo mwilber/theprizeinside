@@ -334,7 +334,7 @@ font-weight: bold;
 	border: solid 5px #161008;
 	-webkit-border-radius: 15px;
 	border-radius: 15px;
-	z-index: 2000;
+	z-index: 20000;
 	display:none;
 	max-height: 95%;
 	overflow: hidden;
