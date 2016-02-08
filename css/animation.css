@@ -1,0 +1,54 @@
+.container.modal.loading #loader{
+	display:block;
+	animation: loadpush 2s forwards;
+}
+
+@keyframes loadpush {
+	0% {
+		opacity: 0;
+		transform: scaleX(0) scaleY(0);
+	}
+	5% {
+		opacity: 1;
+		transform: scaleX(1) scaleY(0.2);
+	}
+	20% {
+		opacity: 1;
+		transform: scaleX(1) scaleY(1);
+	}
+}
+
+.container.modal.showing #loader{
+	animation: loadpop 0.5s forwards;
+}
+
+@keyframes loadpop {
+	0% {
+		transform: scaleX(1) scaleY(1);
+	}
+	33% {
+		opacity: 1;
+		transform: scaleX(0.8) scaleY(0.8) rotateY(0deg);
+	}
+	100% {
+		opacity: 1;
+		transform: scaleX(0) scaleY(4) rotateY(-90deg);
+	}
+}
+
+.container.modal.showing #telescreen{
+	display:block;
+	opacity:0;
+	animation: 0.3s linear 0.5s forwards telepush;
+}
+
+@keyframes telepush {
+	0% {
+		opacity:1;
+		transform: rotateY(90deg);
+	}
+	100% {
+		opacity:1;
+		transform: rotateY(0deg);
+	}
+}
