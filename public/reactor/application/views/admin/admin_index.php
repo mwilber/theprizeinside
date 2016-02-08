@@ -1,1 +1,0 @@
-Please <a href="<?= base_url() ?><?=$this->uri->segment(1);?>/login">log in</a>
