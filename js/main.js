@@ -34,7 +34,9 @@ function loadDeet(){
 		countSpeed = 20;
 		console.log(result);
 		canvasDeets = result.data;
-		$('#telescreen .title').html(canvasDeets.canvasName);
+		$('.modal #title').html(canvasDeets.canvasName);
+		$('#deets .prize').html('prizenamehere');
+		$('#deets .restaurant').html('restaurantnamehere');
 	});
 }
 

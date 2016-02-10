@@ -35,11 +35,10 @@
 		<link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
 		<!-- CSS -->
 		<link rel="stylesheet" type="text/css" media="all" href="css/responsiveboilerplate.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 		<link rel="stylesheet" type="text/css" media="all" href="css/style.css">
 		<link rel="stylesheet" type="text/css" media="all" href="css/animation.css">
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
-		<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.13.1/mapbox-gl.js'></script>
-    	<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.13.1/mapbox-gl.css' rel='stylesheet' />
+
 		<!-- HTML5 IE Enabling Script -->
 		<!--[if lt IE 9]>
 		<script src="libs/html5shiv.min.js"></script>
@@ -60,31 +59,39 @@
 			<img class="vport" src=""/>
 		</div>
 	</div>
+	<a href="#" class="fa fa-close"></a>
+	<div id="title">
+		<h1></h1>
+	</div>
 	<div id="deets">
+		<span class="prize"></span>
 		<br/>
-		<strong class="title"></strong>
-		<br/>
-		<span class="username">usernamehere</span>
-		<br/>
-		<span class="prize">prizenamehere</span>
-		<br/>
-		<span class="restaurant">restaurantnamehere</span>
+		<span class="restaurant"></span>
 	</div>
 </div>
 <div class="container">
 	<div id="header" class="content">
-		<div class="col3 logo">
+		<div class="col12 logo">
 			<img src="img/logo.png"/>
 		</div>
-		<div class="col9 store">
-			<p>StoreLinksHere</p>
+	</div>
+	<div class="content" style="margin-top:15px;">
+		<div id="" class="infobox col4">
+			<p><strong>The Prize Inside</strong> helps you find a place to eat based on their kids&rsquo; meal premiums. Use the mobile app to locate the nearest restaurant. While you&rsquo;re there, create some artwork to share your find.</p>
+		</div>
+		<div class="col4 store">
+			<ul>
+				<li><a href="https://play.google.com/store/apps/details?id=com.greenzeta.theprizeinside" target="_blank"><img src="img/playstore.png" style="height:55px;"/></a></li>
+	    		<li><a href="http://www.amazon.com/GreenZeta-The-Prize-Inside/dp/B00M2AM85Q" target="_blank"><img src="img/azstore.png" style="height:55px;"/></a></li>
+	   			<li><a href="https://itunes.apple.com/us/app/the-prize-inside/id650582612?ls=1&mt=8" target="_blank"><img src="img/appstore.png" style="height:55px;"/></a></li>
+			</ul>
+		</div>
+		<div class="col4 prizes">
+			prizelisthere
 		</div>
 	</div>
 	<div class="content">
 		<div id="viewmaster" class="col12">
-			<div id="infobox">
-				<p>InsertDescriptionHere</p>
-			</div>
 		</div>
 	</div>
 </div>
