@@ -1,6 +1,6 @@
 html,body{
 	height:100%;
-	background:#1a0d00;
+	background:#0b0600;
 	/*background: -moz-linear-gradient(top,  #000000 10%, #04111f 50%);
 	background: -webkit-linear-gradient(top,  #000000 10%,#04111f 50%);
 	background: linear-gradient(to bottom,  #000000 10%,#04111f 50%);
@@ -41,9 +41,9 @@ html,body{
 
 .modal .wrap{
 	position:absolute;
-	width:30%;
-	height:75%;
-	margin:5% 35%;
+	width:100%;
+	height:100%;
+	margin:0%;
 	/*border:solid 1px #f00;*/
 	transform-style:preserve-3d;
 	-webkit-transform-style:preserve-3d;
@@ -53,6 +53,7 @@ html,body{
 
 .modal #loader{
 	position:absolute;
+	max-width:200px;
 	width:25%;
 	padding-bottom:25%;
 	margin:38%;
@@ -64,38 +65,52 @@ html,body{
 .modal #telescreen{
 	position:absolute;
 	width:100%;
-	height:100%;
 	border:solid 1px rgba(255,255,255,0.5);
 	background:rgba(0,0,0,0.8);
 	display:none;
 }
 
 .modal #telescreen .vport{
-	width:100%;
+	height:80%;
+}
+
+.modal #deets{
+	position:absolute;
+	bottom:0px;
+	left:0px;
 }
 
 .container{
 	padding: 0px;
-    min-height: 100%;
+    /*min-height: 100%;*/
 }
 
 .content div#infobox{
-	background:#fff2e5;
-	color:#1a0d00;
+	/*background:transparent;
+	color:#ffffef;
 	width:25%;
 	margin:0%;
 	padding:0%;
 	position:fixed;
 	top:0px;
 	left:0%;
-	height:100%;
+	height:100%;*/
 }
 
-#infobox .logo{
-	width:90%;
-	padding:5%;
-	background:#1a0d00;
-	color:#ff0;
+#header, #infobox{
+	background: rgba(255,255,255,0.8);
+}
+
+#header .logo{
+	text-align:center;
+}
+
+#header .store{
+	text-align:right;
+}
+
+#header .logo img{
+	width:200px;
 }
 
 #viewmaster{
@@ -106,19 +121,25 @@ html,body{
 	position: relative;
     z-index: 100;
 	padding-top:5%;*/
-	margin:0%;
+	/*margin:0%;
 	padding:0%;
 	width: 75%;
 	position:absolute;
 	top:0px;
-	left:25%;
+	left:25%;*/
+}
+
+#infobox{
+	float: left;
+    width: 100%;
+	height:25%;
 }
 
 #viewmaster img{
 	float: left;
     width: 25%;
     margin: 0%;
-    border: solid 3px #1a0d00;
+    border: solid 3px rgba(0,0,0,0);
 	-webkit-transition: -webkit-transform 0.5s;
     transition: transform 0.5s;
 }
@@ -132,69 +153,45 @@ html,body{
     overflow: hidden;
 }
 
-#mapwrap{
-	width:100%;
-	height:300px;
+@media (min-width: 600px) {
+	#viewmaster img{
+		width: 16.666666666%;
+	}
+	#infobox{
+		width: 50%;
+	}
 }
 
-#map{
-	position: absolute;
-	width:100%;
-	height: 92%;
-    margin-top: 8%;
-}
-svg {
-      position: absolute;
-      width: 100%;
-      height: 300px;
-    }
-
-#mapmask{
-	position:absolute;
-	width:100%;
-	height:300px;
-	background: transparent url('../images/atmosphere.png') 50% 0px no-repeat;
-	background-size: 100% auto;
-	z-index:1;
+@media (min-width: 750px) {
+	#infobox{
+		width: 33.33333333%;
+	}
 }
 
-@media (max-width: 800px) {
-	#mapwrap, #mapmask, svg, #footer{
-		height:200px;
+@media (min-width: 900px) {
+	#viewmaster img{
+		width: 12.5%;
 	}
-	
-	.logo{
-		padding-top: 40%;
+	#infobox{
+		width: 37.5%;
 	}
-	
-	#logo{
-		height:150px;
+}
+
+@media (min-width: 1050px) {
+	#infobox{
+		width: 25%;
 	}
-	
-	.logo h1{
-		font-size:25px;
+}
+
+@media (min-width: 1200px) {
+	#viewmaster img{
+		width: 8.3333333333%;
+	}
+	#infobox{
+		width: 25%;
 	}
 }
 
 @media (max-height: 600px ) and (min-width: 400px ) {
-	#mapwrap, #mapmask, svg, #footer{
-		height:150px;
-	}
-	
-	.logo{
-		padding-top: 10%;
-	}
-	
-	#logo{
-		height:150px;
-	}
-	
-	.logo h1{
-		font-size:25px;
-	}
-	
-	#garnish {
-		top: 3%;
-		right: 5%;
-	}
+
 }

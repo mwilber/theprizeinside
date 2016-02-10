@@ -3,11 +3,6 @@ var countSpeed = 40;
 var activeCanvas = "";
 var canvasDeets = "";
 
-
-
-
-
-
 function closeModal(){
 	//DoAutopan();
 	$('.container.modal').removeClass('loading').removeClass('showing').removeClass('shutter');
@@ -16,11 +11,11 @@ function closeModal(){
 function loadCt(){
 	$('.container.modal').addClass('loading');
 	$('#loader .progress span').html(parseInt($('#loader .progress span').html())+1);
-	if(parseInt($('#loader .progress span').html()) == 33){
+	if(parseInt($('#loader .progress span').html()) == 76){
 		countSpeed = 600;
 		loadDeet();
 	}
-	if(parseInt($('#loader .progress span').html()) == 72){
+	if(parseInt($('#loader .progress span').html()) == 92){
 		countSpeed = 600;
 		if(canvasDeets.canvasImage){
 			loadImage();
@@ -35,7 +30,7 @@ function loadCt(){
 
 function loadDeet(){
 	$.get('http://api.greenzeta.com/gallery/detail/'+activeCanvas,function(result){
-		$('#loader .progress span').html('53');
+		$('#loader .progress span').html('83');
 		countSpeed = 20;
 		console.log(result);
 		canvasDeets = result.data;
@@ -58,16 +53,8 @@ $( document ).ready(function(){
 	$.post('http://api.greenzeta.com/gallery/listing/',{app:'tpi'},function(result){
 		console.log('listing',result);
 		//<img src="http://api.greenzeta.com/uploads/t_<?php echo $row['canvasImage']; ?>" onclick="fly();"/>
+		for( var idx=0; idx < 3; idx++){
 		$.each(result.data, function(idx){
-			
-			var rowct = 6;
-			
-			if( idx >= (result.data.length)-(result.data.length%rowct)) return;
-			
-			
-			var eol = 'none';
-			if( idx%rowct == 0 ) eol = 'left';
-			if(this.canvasDataStart == "NULL") this.canvasDataStart = "{}"
 			$('#viewmaster').append(
 				$('<img/>').attr('src','http://api.greenzeta.com/uploads/t_'+this.canvasImage)
 					.attr('cId',this.canvasId)
@@ -90,7 +77,7 @@ $( document ).ready(function(){
 						return function(){
 							console.log(cdata);
 							countSpeed = 40;
-							$('#loader .progress span').html('20');
+							$('#loader .progress span').html('55');
 							$('#telescreen .title').html('');
 							$('#telescreen .lat').html('');
 							$('#telescreen .lng').html('');
@@ -104,24 +91,8 @@ $( document ).ready(function(){
 					}(JSON.parse(this.canvasDataStart)))
 			);
 			
-			// Generate GEOJSON
-			try{
-				geodata.data.features.push({
-					"type": "Feature",
-					"geometry": {
-						"type": "Point",
-						"coordinates": [this.canvasLng, this.canvasLat]
-					},
-					"properties": {
-						"title": "Mapbox DC",
-						"marker-symbol": "monument"
-					}
-				});
-			}catch(err){
-				
-			}
-			
 		});
+		}
 	});
 	
 	$('.container.modal').click(function(){

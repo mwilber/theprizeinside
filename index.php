@@ -53,30 +53,39 @@
 				
 			</div>
 			<div class="progress">
-			<span>20</span>%
+			<span>55</span>%
 			</div>
 		</div>
 		<div id="telescreen">
 			<img class="vport" src=""/>
-			<br/>
-			<strong class="title"></strong>
-			<br/>
-			<span class="username">usernamehere</span>
-			<br/>
-			<span class="prize">prizenamehere</span>
-			<br/>
-			<span class="restaurant">restaurantnamehere</span>
 		</div>
+	</div>
+	<div id="deets">
+		<br/>
+		<strong class="title"></strong>
+		<br/>
+		<span class="username">usernamehere</span>
+		<br/>
+		<span class="prize">prizenamehere</span>
+		<br/>
+		<span class="restaurant">restaurantnamehere</span>
 	</div>
 </div>
 <div class="container">
-	<div class="content">
-		<div id="infobox" class="">
-			<h1 class="logo">TPI</h1>
-			<p>InsertDescriptionHere</p>
+	<div id="header" class="content">
+		<div class="col3 logo">
+			<img src="img/logo.png"/>
+		</div>
+		<div class="col9 store">
 			<p>StoreLinksHere</p>
 		</div>
-		<div id="viewmaster" class=""></div>
+	</div>
+	<div class="content">
+		<div id="viewmaster" class="col12">
+			<div id="infobox">
+				<p>InsertDescriptionHere</p>
+			</div>
+		</div>
 	</div>
 </div>
 <div id="footer">
@@ -97,7 +106,7 @@
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-76054-33', 'auto');
+  ga('create', 'UA-76054-00', 'auto');
   ga('send', 'pageview');
 
 </script>
