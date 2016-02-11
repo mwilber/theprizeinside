@@ -3,9 +3,22 @@ var countSpeed = 40;
 var activeCanvas = "";
 var canvasDeets = "";
 
+//{"tpi":{"prizeName":"Mac Tonight","restaurantName":"McDonalds"},"location":{"latitude":38.018853,"longitude":-77.501441,"altitude":null,"accuracy":40.5,"altitudeAccuracy":null,"heading":null,"speed":null,"timestamp":1455040693814,"magneticHeading":0}}
+//{"tpi":{"prizeName":"Valentine's Day Books","restaurantName":"McDonalds"},"location":{"latitude":38.018853,"longitude":-77.501441,"altitude":null,"accuracy":40.5,"altitudeAccuracy":null,"heading":null,"speed":null,"timestamp":1455040693814,"magneticHeading":0}}
+
+
+function ckHeight(){
+	if($(window).height() > $(window).width()){
+		$('body').addClass('tall');
+	}else{
+		$('body').removeClass('tall');
+	}
+}
+
 function closeModal(){
 	//DoAutopan();
 	$('.container.modal').removeClass('loading').removeClass('showing').removeClass('shutter');
+	return false;
 }
 
 function loadCt(){
@@ -34,9 +47,11 @@ function loadDeet(){
 		countSpeed = 20;
 		console.log(result);
 		canvasDeets = result.data;
+		var moreDeets = JSON.parse(canvasDeets.canvasDataStart);
+		console.log('moreDeets', moreDeets);
 		$('.modal #title').html(canvasDeets.canvasName);
-		$('#deets .prize').html('prizenamehere');
-		$('#deets .restaurant').html('restaurantnamehere');
+		$('#deets .prize').html(moreDeets.tpi.prizeName);
+		$('#deets .restaurant').html(moreDeets.tpi.restaurantName);
 	});
 }
 
@@ -51,6 +66,30 @@ function loadImage(){
 }
 
 $( document ).ready(function(){
+	
+	ckHeight();
+	
+	$(window).on('resize',function(){ckHeight();});
+	
+	$.post('http://api.greenzeta.com/tpi/prizes/',{},function(result){
+		console.log('prizes',result);
+		$.each(result.data, function(){
+			$('.prizes').append($('<li>').append($('<a>')
+				.attr('href','#').append(
+					$('<span>')
+						.addClass('restaurant')
+						.html(this.restaurant.restaurantName)
+				)/*.append(
+					$('<br>')
+				)*/.append(
+					$('<span>')
+						.addClass('prize')
+						.html(this.prizeName)
+				)
+				
+			));
+		});
+	});
 	
 	$.post('http://api.greenzeta.com/gallery/listing/',{app:'tpi'},function(result){
 		console.log('listing',result);
@@ -85,8 +124,11 @@ $( document ).ready(function(){
 							$('#telescreen .lng').html('');
 							$('#telescreen .mh').html('');
 							$('#telescreen .vport').attr('src','');
+							$('#deets .prize').html('');
+							$('#deets .restaurant').html('');
 							activeCanvas = $(this).attr('cId');
 							loadCt();
+							return false;
 							//StopAutopan();
 							//fly([cdata.longitude, cdata.latitude]);
 						};
@@ -99,6 +141,7 @@ $( document ).ready(function(){
 	
 	$('.container.modal').click(function(){
 		closeModal();
+		return false;
 	});
 	
 	

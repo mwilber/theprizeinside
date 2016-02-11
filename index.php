@@ -44,7 +44,7 @@
 		<script src="libs/html5shiv.min.js"></script>
 		<![endif]-->
 	</head>
-<body>
+<body class="tall">
 <div class="container modal">
 	<div class="wrap">
 		<div id="loader">
@@ -81,13 +81,14 @@
 		</div>
 		<div class="col4 store">
 			<ul>
-				<li><a href="https://play.google.com/store/apps/details?id=com.greenzeta.theprizeinside" target="_blank"><img src="img/playstore.png" style="height:55px;"/></a></li>
-	    		<li><a href="http://www.amazon.com/GreenZeta-The-Prize-Inside/dp/B00M2AM85Q" target="_blank"><img src="img/azstore.png" style="height:55px;"/></a></li>
-	   			<li><a href="https://itunes.apple.com/us/app/the-prize-inside/id650582612?ls=1&mt=8" target="_blank"><img src="img/appstore.png" style="height:55px;"/></a></li>
+				<li><a href="https://play.google.com/store/apps/details?id=com.greenzeta.theprizeinside" target="_blank"><img src="img/playstore.png" style="height:40px;"/></a></li>
+	    		<li><a href="http://www.amazon.com/GreenZeta-The-Prize-Inside/dp/B00M2AM85Q" target="_blank"><img src="img/amazonstore.png" style="height:40px;"/></a></li>
+	   			<li><a href="https://itunes.apple.com/us/app/the-prize-inside/id650582612?ls=1&mt=8" target="_blank"><img src="img/appstore.png" style="height:40px;"/></a></li>
 			</ul>
 		</div>
-		<div class="col4 prizes">
-			prizelisthere
+		<div class="col4">
+			<ul class="prizes">
+			</ul>
 		</div>
 	</div>
 	<div class="content">
