@@ -1,5 +1,12 @@
 <?php
 
+	$ck = false;
+	if(isset($_GET['ck'])){
+		$ck = $_GET['ck'];
+	}
+	
+	//echo $ck;
+
 	$listTitle = "The Prize Inside";
 
 	$social = array();
@@ -8,7 +15,15 @@
 	$social['image'] = "http://www.theprizeinside.com/img/fb_icon.png";
 	$social['link'] = "http://www.theprizeinside.com".$_SERVER[REQUEST_URI];
 		
-
+	if($ck){
+		$json = file_get_contents('http://api.greenzeta.com/gallery/detail/'.$ck);
+		$obj = json_decode($json);
+		//print_r($obj);
+		$social['title'] = $obj->data->canvasName;
+		$social['description'] = "When a burger is a burger, and fries make no difference, choose your fast food by The Prize Inside!";
+		$social['image'] = $obj->data->shareImage;
+		$social['link'] = $obj->data->shareUrl;
+	}
 
 ?>
 <!DOCTYPE html>
@@ -75,7 +90,7 @@
 			<img src="img/logo.png"/>
 		</div>
 	</div>
-	<div class="content" style="margin-top:15px;">
+	<div class="content" style="">
 		<div id="" class="infobox col4">
 			<p><strong>The Prize Inside</strong> helps you find a place to eat based on their kids&rsquo; meal premiums. Use the mobile app to locate the nearest restaurant. While you&rsquo;re there, create some artwork to share your find.</p>
 		</div>
@@ -106,7 +121,13 @@
 <script>window.jQuery || document.write('<script src="libs/jquery-1.10.1.min.js"><\/script>')</script>
 <script src="js/custom.js"></script>
 <script src="js/main.js"></script>
-
+<?php if($ck): ?>
+<script type="text/javascript">
+	$( document ).ready(function(){
+		showCanvas('<?php echo $ck; ?>');
+	});
+</script>
+<?php endif; ?>
 <!-- Google Analytics: change UA-XXXXX-X to your site's ID.-->
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
