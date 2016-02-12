@@ -52,6 +52,11 @@ function loadDeet(){
 		$('.modal #title').html(canvasDeets.canvasName);
 		$('#deets .prize').html(moreDeets.tpi.prizeName);
 		$('#deets .restaurant').html(moreDeets.tpi.restaurantName);
+		
+		$('#btnfacebook').click(DoShare('fb', canvasDeets));
+		$('#btntwitter').click(DoShare('tw', canvasDeets));
+		$('#btnpinterest').click(DoShare('pn', canvasDeets));
+		$('#btngoogle').click(DoShare('gp', canvasDeets));
 	});
 }
 
@@ -76,11 +81,64 @@ function showCanvas(pId){
 	$('#telescreen .vport').attr('src','');
 	$('#deets .prize').html('');
 	$('#deets .restaurant').html('');
+	
+	$('#btnfacebook').click(null);
+	$('#btntwitter').click(null);
+	$('#btnpinterest').click(null);
+	$('#btngoogle').click(null);
+	
 	activeCanvas = pId;
 	loadCt();
 	return false;
 	//StopAutopan();
 	//fly([cdata.longitude, cdata.latitude]);
+}
+
+function DoShare(pPlatform, pDeets){
+	return function(){
+		console.log(pDeets);
+		switch(pPlatform){
+			case 'fb':
+			    fbshare(pDeets.canvasName, pDeets.shareUrl, pDeets.shareImage, social['description']);
+				break;
+			case 'tw':
+				twshare(pDeets.canvasName, pDeets.shareUrl, social['description']);
+				break;
+			case 'pn':
+			    pnshare(pDeets.canvasName, pDeets.shareUrl, pDeets.shareImage, pDeets.canvasName+" - "+social['description']);
+				break;
+			case 'gp':
+			    gpshare(pDeets.shareUrl);
+				break;
+		}
+		return false;
+	};
+}
+
+function BuildGallery(pTag){
+	
+	var qo = {app:'tpi'};
+	if(pTag){
+		qo.tag = pTag;
+	}
+	
+	$.post('http://api.greenzeta.com/gallery/listing/',qo,function(result){
+		console.log('listing',result);
+		$('#viewmaster').empty();
+		//<img src="http://api.greenzeta.com/uploads/t_<?php echo $row['canvasImage']; ?>" onclick="fly();"/>
+		for( var idx=0; idx < 3; idx++){
+		$.each(result.data, function(idx){
+			$('#viewmaster').append($('<div>').append(
+				$('<img/>').attr('src','http://api.greenzeta.com/uploads/t_'+this.canvasImage)
+					.attr('cId',this.canvasId)
+					.click(function(){
+						showCanvas($(this).attr('cId'));
+					})
+			));
+			
+		});
+		}
+	});
 }
 
 $( document ).ready(function(){
@@ -103,48 +161,19 @@ $( document ).ready(function(){
 					$('<span>')
 						.addClass('prize')
 						.html(this.prizeName)
-				)
+				).click(function(pAlias){
+					return function(){
+					BuildGallery(pAlias);
+					};
+				}(this.restaurant.restaurantAlias))
 				
 			));
 		});
 	});
 	
-	$.post('http://api.greenzeta.com/gallery/listing/',{app:'tpi'},function(result){
-		console.log('listing',result);
-		//<img src="http://api.greenzeta.com/uploads/t_<?php echo $row['canvasImage']; ?>" onclick="fly();"/>
-		for( var idx=0; idx < 3; idx++){
-		$.each(result.data, function(idx){
-			$('#viewmaster').append($('<div>').append(
-				$('<img/>').attr('src','http://api.greenzeta.com/uploads/t_'+this.canvasImage)
-					.attr('cId',this.canvasId)
-					//.css('clear',eol)
-					//.css('transform','rotateX('+(-((idx%rowct)))+'deg) rotateY('+(-((idx%rowct)*5))+'deg) rotateZ('+(-((idx%rowct)))+'deg)')
-					//.css('transform-origin',(-((idx%rowct)*50))+'% '+(-(Math.floor(idx/rowct)*50))+'%')
-					// .attr('zref',(idx%rowct))
-					// .hover(function(pZ){
-					// 	return function(){
-					// 		$(this).css('transform','rotateX('+(-(pZ))+'deg) rotateY('+(-(pZ*5))+'deg) rotateZ('+(-(pZ))+'deg) translateZ(30px)');
-					// 		//.css('transform-origin','0% 0%');
-					// 	};
-					// }(idx%rowct),function(pZ){
-					// 	return function(){
-					// 		$(this).css('transform','rotateX('+(-(pZ))+'deg) rotateY('+(-(pZ*5))+'deg) rotateZ('+(-(pZ))+'deg) translateZ(0px)');
-					// 		//.css('transform-origin','0% 0%');
-					// 	};
-					// }(idx%rowct))
-					//.click(function(cdata){
-					//	
-					//}(JSON.parse(this.canvasDataStart)))
-					.click(function(){
-						showCanvas($(this).attr('cId'));
-					})
-			));
-			
-		});
-		}
-	});
+	BuildGallery(false);
 	
-	$('.container.modal').click(function(){
+	$('.container.modal .fa-close').click(function(){
 		closeModal();
 		return false;
 	});

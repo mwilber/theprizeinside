@@ -53,6 +53,21 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 		<link rel="stylesheet" type="text/css" media="all" href="css/style.css">
 		<link rel="stylesheet" type="text/css" media="all" href="css/animation.css">
+		
+		<!-- Twitter Summary Card -->
+		<meta name="twitter:card" content="summary">
+		<meta name="twitter:site" content="@greenzeta">
+		<meta name="twitter:title" content="The Prize Inside">
+		<meta name="twitter:description" content="When a burger is a burger, and fries make no difference, choose your fast food by The Prize Inside!">
+		<meta name="twitter:creator" content="@tpiapp">
+		<meta name="twitter:image:src" content="http://www.theprizeinside.com/img/fb_icon.png">
+		<meta name="twitter:domain" content="theprizeinside.com">
+
+		<!-- Twitter App Card -->
+		<meta name="twitter:card" content="app">
+		<meta name="twitter:app:id:iphone" content="id650582612">
+		<meta name="twitter:app:id:ipad" content="id650582612">
+		<meta name="twitter:app:id:googleplay" content="com.greenzeta.greenzeta.theprizeinside">
 
 		<!-- HTML5 IE Enabling Script -->
 		<!--[if lt IE 9]>
@@ -75,6 +90,12 @@
 		</div>
 	</div>
 	<a href="#" class="fa fa-close"></a>
+	<div class="sociallinks">
+		<a id="btntwitter" href="#" class="fa fa-twitter"></a>
+		<a id="btngoogle" href="#" class="fa fa-google-plus"></a>
+		<a id="btnpinterest" href="#" class="fa fa-pinterest"></a>
+		<a id="btnfacebook" href="#" class="fa fa-facebook"></a>
+	</div>
 	<div id="title">
 		<h1></h1>
 	</div>
@@ -121,6 +142,15 @@
 <script>window.jQuery || document.write('<script src="libs/jquery-1.10.1.min.js"><\/script>')</script>
 <script src="js/custom.js"></script>
 <script src="js/main.js"></script>
+<script src="js/socialshare.js"></script>
+<script type="text/javascript">
+		var social = [];
+			social['title'] = "The Prize Inside";
+			social['description'] = "Choose your fast food by the prize inside.";
+			social['image'] = "http://theprizeinside.com/img/fb_icon.png";
+			social['link'] = "http://theprizeinside.com/";
+
+		</script>
 <?php if($ck): ?>
 <script type="text/javascript">
 	$( document ).ready(function(){
