@@ -49,7 +49,8 @@ function loadDeet(){
 		canvasDeets = result.data;
 		var moreDeets = JSON.parse(canvasDeets.canvasDataStart);
 		console.log('moreDeets', moreDeets);
-		$('.modal #title').html(canvasDeets.canvasName);
+		$('.modal #title h1').html(canvasDeets.canvasName);
+		$('.modal #title h2 span').html(canvasDeets.profileUsername);
 		$('#deets .prize').html(moreDeets.tpi.prizeName);
 		$('#deets .restaurant').html(moreDeets.tpi.restaurantName);
 		
@@ -102,7 +103,7 @@ function DoShare(pPlatform, pDeets){
 			    fbshare(pDeets.canvasName, pDeets.shareUrl, pDeets.shareImage, social['description']);
 				break;
 			case 'tw':
-				twshare(pDeets.canvasName, pDeets.shareUrl, social['description']);
+				twshare(pDeets.canvasName, pDeets.shareUrl, social['message']);
 				break;
 			case 'pn':
 			    pnshare(pDeets.canvasName, pDeets.shareUrl, pDeets.shareImage, pDeets.canvasName+" - "+social['description']);
@@ -115,31 +116,44 @@ function DoShare(pPlatform, pDeets){
 	};
 }
 
-function BuildGallery(pTag){
+function BuildGallery(pTag, pOffset){
 	
 	var qo = {app:'tpi'};
 	if(pTag){
 		qo.tag = pTag;
 	}
 	
-	$.post('http://api.greenzeta.com/gallery/listing/',qo,function(result){
-		console.log('listing',result);
-		$('#viewmaster').empty();
-		//<img src="http://api.greenzeta.com/uploads/t_<?php echo $row['canvasImage']; ?>" onclick="fly();"/>
-		for( var idx=0; idx < 3; idx++){
-		$.each(result.data, function(idx){
-			$('#viewmaster').append($('<div>').append(
-				$('<img/>').attr('src','http://api.greenzeta.com/uploads/t_'+this.canvasImage)
-					.attr('cId',this.canvasId)
-					.click(function(){
-						showCanvas($(this).attr('cId'));
-					})
-			));
-			
-		});
-		}
-	});
+	pOffset++;
+	
+	$.post('http://api.greenzeta.com/gallery/listing/'+pOffset,qo,function(pPassset){
+		return function(result){
+			//console.log('listing',result);
+			console.log("offset", pPassset);
+			//<img src="http://api.greenzeta.com/uploads/t_<?php echo $row['canvasImage']; ?>" onclick="fly();"/>
+			//for( var idx=0; idx < 3; idx++){
+			$.each(result.data, function(idx){
+				$('#viewmaster').append($('<div>').append(
+					$('<img/>').attr('src','http://api.greenzeta.com/uploads/t_'+this.canvasImage)
+						.attr('cId',this.canvasId)
+						.click(function(){
+							showCanvas($(this).attr('cId'));
+						})
+				));
+			});
+			$('#viewmaster').css('height','')
+			setTimeout(function(pTOffset){
+				return function(){
+				//console.log(pTOffset,$(window).height(),$('#maincontainer').height(),result.data);
+				if( ($('#maincontainer').height() < $(window).height()) && result.data.length >= 30 ){
+					BuildGallery(pTag, pTOffset);
+				}
+				};
+			}(pPassset),500);
+		
+		};
+	}(pOffset));
 }
+
 
 $( document ).ready(function(){
 	
@@ -163,7 +177,18 @@ $( document ).ready(function(){
 						.html(this.prizeName)
 				).click(function(pAlias){
 					return function(){
-					BuildGallery(pAlias);
+						
+						if( $(this).hasClass('selected')){
+							$('.prizes a').removeClass('selected');
+							$('#viewmaster').css('height',$('#viewmaster').height()+'px').empty();
+							BuildGallery(false,-1);
+						}else{
+							$('.prizes a').removeClass('selected');
+							$(this).addClass('selected');
+							$('#viewmaster').css('height',$('#viewmaster').height()+'px').empty();
+							BuildGallery(pAlias,-1);
+						}
+						return false;
 					};
 				}(this.restaurant.restaurantAlias))
 				
@@ -171,12 +196,23 @@ $( document ).ready(function(){
 		});
 	});
 	
-	BuildGallery(false);
+	$('#viewmaster').empty();
+	BuildGallery(false, -1);
 	
 	$('.container.modal .fa-close').click(function(){
 		closeModal();
 		return false;
 	});
+	
+	window.onscroll = function(ev) {
+		//console.log( "("+window.innerHeight+" + "+window.scrollY+") >= "+$('#maincontainer').height() );
+		if ((window.innerHeight + window.scrollY) >= $('#maincontainer').height()) {
+			console.log("rock bottom", $('#viewmaster div').length, Math.floor($('#viewmaster div').length/30));
+			if($('#viewmaster div').length%30 == 0){
+				BuildGallery(false, Math.floor($('#viewmaster div').length/30)-1);
+			}
+		}
+	};
 	
 	
 });
