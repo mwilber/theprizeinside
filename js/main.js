@@ -42,7 +42,7 @@ function loadCt(){
 }
 
 function loadDeet(){
-	$.get('http://api.greenzeta.com/gallery/detail/'+activeCanvas,function(result){
+	$.get('https://api.greenzeta.com/gallery/detail/'+activeCanvas,function(result){
 		$('#loader .progress span').html('83');
 		countSpeed = 20;
 		console.log(result);
@@ -68,7 +68,7 @@ function loadImage(){
 		$('#telescreen .vport').attr('src',$(this).attr('src'));
 		countSpeed = 7;
 	};
-	lImg.src = 'http://api.greenzeta.com/uploads/'+canvasDeets.canvasImage;
+	lImg.src = 'https://api.greenzeta.com/uploads/'+canvasDeets.canvasImage;
 }
 
 function showCanvas(pId){
@@ -125,15 +125,15 @@ function BuildGallery(pTag, pOffset){
 	
 	pOffset++;
 	
-	$.post('http://api.greenzeta.com/gallery/listing/'+pOffset,qo,function(pPassset){
+	$.post('https://api.greenzeta.com/gallery/listing/'+pOffset,qo,function(pPassset){
 		return function(result){
 			//console.log('listing',result);
 			console.log("offset", pPassset);
-			//<img src="http://api.greenzeta.com/uploads/t_<?php echo $row['canvasImage']; ?>" onclick="fly();"/>
+			//<img src="https://api.greenzeta.com/uploads/t_<?php echo $row['canvasImage']; ?>" onclick="fly();"/>
 			//for( var idx=0; idx < 3; idx++){
 			$.each(result.data, function(idx){
 				$('#viewmaster').append($('<div>').append(
-					$('<img/>').attr('src','http://api.greenzeta.com/uploads/t_'+this.canvasImage)
+					$('<img/>').attr('src','https://api.greenzeta.com/uploads/t_'+this.canvasImage)
 						.attr('cId',this.canvasId)
 						.click(function(){
 							showCanvas($(this).attr('cId'));
@@ -161,7 +161,7 @@ $( document ).ready(function(){
 	
 	$(window).on('resize',function(){ckHeight();});
 	
-	$.post('http://api.greenzeta.com/tpi/prizes/',{},function(result){
+	$.post('https://api.greenzeta.com/tpi/prizes/',{},function(result){
 		console.log('prizes',result);
 		$.each(result.data, function(){
 			$('.prizes').append($('<li>').append($('<a>')

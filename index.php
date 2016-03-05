@@ -117,7 +117,7 @@
 	</div>
 	<div class="content" style="">
 		<div id="" class="infobox col4">
-			<p><strong>The Prize Inside</strong> is all about kids meal prizes. Use the app to see what prizes are available and find the closest restaurant. Also use the app to turn your prize into artwork! Share it in the gallery and on social networks. Choose your fast food by The Prize Inside.</p>
+			<p><strong>The Prize Inside</strong> is all about kids meal prizes. See what prizes are available and find the closest restaurant. Use the app to turn your prize into artwork! Share it in the gallery and on social networks. Choose your fast food by The Prize Inside.</p>
 		</div>
 		<div class="col4 store">
 			<ul>
